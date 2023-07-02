@@ -1,4 +1,4 @@
-package com.example.density_check.domain;
+package com.example.density_check_web_service.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

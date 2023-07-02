@@ -1,6 +1,6 @@
-package com.example.density_check.domain.Location;
+package com.example.density_check_web_service.domain.Location;
 
-import com.example.density_check.domain.BaseTimeEntity;
+import com.example.density_check_web_service.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

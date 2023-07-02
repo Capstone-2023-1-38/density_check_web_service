@@ -1,4 +1,4 @@
-package com.example.density_check.domain.Location;
+package com.example.density_check_web_service.domain.Location;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

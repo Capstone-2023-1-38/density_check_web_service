@@ -1,12 +1,8 @@
-package com.example.density_check;
+package com.example.density_check_web_service;
 
-import com.example.density_check.domain.Location.LocationRepository;
-import com.example.density_check.domain.Location.dto.LocationRequestDto;
-import com.example.density_check.service.LocationService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.density_check_web_service.domain.Location.dto.LocationRequestDto;
+import com.example.density_check_web_service.service.LocationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

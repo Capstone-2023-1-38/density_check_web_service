@@ -1,6 +1,6 @@
-package com.example.density_check.domain.Location.dto;
+package com.example.density_check_web_service.domain.Location.dto;
 
-import com.example.density_check.domain.Location.Location;
+import com.example.density_check_web_service.domain.Location.Location;
 import lombok.Getter;
 
 @Getter
