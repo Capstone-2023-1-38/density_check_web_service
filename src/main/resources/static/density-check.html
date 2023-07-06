@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-
+    <style>
+        .map {
+            margin: 0 auto;
+        }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -78,10 +82,10 @@
                     <i class="bi bi-caret-right"></i>
                     <span>제보 게시판</span></a>
             </li>  
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+            
             <li class="nav-item">
                 <a class="nav-link" href="/neighbor.html">
                     <i class="bi bi-caret-right"></i>
@@ -222,68 +226,81 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div>
-                        <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
-                    </div>
-                    <div style="margin-left:auto; margin-right:auto; justify-content: center;">
-                        <div style="display:inline-block">
-                            <img style="width:300px; height:300px" src="img/current_location.png"/>
-                        </div>
-                        <div class="col-lg-5" style="display:inline-block;">
-                            <p>현재 위치 : 2층 6202 강의실</p>
-                            <p>현재 위치에서의 밀집도 등급 : 안전</p>
-                        </div>
+                        <h1 class="h3 mb-4 text-gray-800" style="text-align:center">건물 전체의 밀집도 <button type="button" class="btn btn-secondary btn-sm" data-bs-container="body" data-toggle="popover" title="밀집도 등급 (1㎡ 당)">?</button></h1>
+                        
                     </div>
 
-<!--                    <div id="container" class="row justify-content-center">-->
-<!--                        &lt;!&ndash;                            <video autoplay="true" id="videoElement">&ndash;&gt;-->
-
-<!--                        &lt;!&ndash;                            </video>&ndash;&gt;-->
-<!--                        <iframe src="http://127.0.0.1:5000" id="videoElement" allowfullscreen> </iframe>-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-lg-12" style="text-align:center">-->
+<!--                            <img src="./img/second_floor.png"/>-->
+<!--                        </div>-->
 <!--                    </div>-->
+
 <!--                    <div class="row justify-content-center">-->
-<!--                        <script>-->
-<!--                            var j = 0;-->
-<!--                            var arr = new Array(2);-->
+                        <script>
+                            var j = 0;
+                            var arr = new Array(2);
 
-<!--                            for (var i = 0; i < arr.length; i++) {-->
-<!--                                arr[i] = new Array(2).fill(0);-->
-<!--                            }-->
-<!--                            setInterval(-->
-<!--                                function () {-->
-<!--                                    $.ajax({-->
-<!--                                        type: "GET",-->
-<!--                                        url: "http://localhost:8080/getLocationsEach",-->
-<!--                                        dataType: "json",-->
-<!--                                        success: function(data) {-->
-<!--                                            str = '<TR>';-->
-<!--                                            arr = new Array(2);-->
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i] = new Array(2).fill(0);
+                            }
+                            arr[0][0] = 7;
+                            arr[0][1] = 5;
+                            arr[1][0] = 3;
+                            arr[1][1] = 1;
+                            setInterval(
+                                function () {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "http://localhost:8080/getLocationsEach",
+                                        dataType: "json",
+                                        success: function(data) {
+                                            str = '';
 
-<!--                                            for (var i = 0; i < arr.length; i++) {-->
-<!--                                                arr[i] = new Array(2).fill(0);-->
-<!--                                            }-->
-<!--                                            $('#coordinate_info > tbody > tr').each(function () {-->
-<!--                                                $(this).find('td').eq(2).html(0);-->
-<!--                                                $(this).find('td').eq(3).html("");-->
-<!--                                            });-->
-<!--                                            $.each(data , function(i) {-->
-<!--                                                str += '<TD>' + data[i].address + '</TD>' +-->
-<!--                                                    '<TD>' + data[i].distance + '</TD>' +-->
-<!--                                                    '<TD>' + data[i].x + '</TD>' +-->
-<!--                                                    '<TD>' + data[i].y + '</TD>';-->
-<!--                                                str+= '</TR>';-->
+                                            // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
+                                            $.each(data , function(i) {
+                                                ++arr[data[i].x][data[i].y];
+                                            });
+                                            sum = 0;
+                                            for(var i = 0; i < arr.length; i++) {
+                                                for(var j = 0; j < arr[i].length; j++) {
+                                                    var count = arr[i][j];
+                                                    var grade = null;
+                                                    if(count > 6) {
+                                                        grade = "고위험";
+                                                    }else if(count > 4) {
+                                                        grade = "위험";
+                                                    }else if(count > 2) {
+                                                        grade = "주의";
+                                                    }else {
+                                                        grade = "안전";
+                                                    }
+                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(1).html(count.toString()+"명");
+                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).html(grade);
 
-<!--                                                var loc = data[i].x * 2 + data[i].y;-->
-<!--                                                $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);-->
-<!--                                                $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");-->
-<!--                                            });-->
-<!--                                            $('.table_body').html(str);-->
-<!--                                        },-->
-<!--                                        error: function(XMLHttpRequest, textStatus, errorThrown){-->
-<!--                                            alert("통신 실패")-->
-<!--                                        }-->
-<!--                                    })-->
-<!--                                },1000);-->
-<!--                        </script>-->
+                                                    sum += count;
+
+                                                }
+                                            $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(sum + "명");
+                                            }
+                                            //     str += '<TD>' + data[i].address + '</TD>' +
+                                            //         '<TD>' + data[i].distance + '</TD>' +
+                                            //         '<TD>' + data[i].x + '</TD>' +
+                                            //         '<TD>' + data[i].y + '</TD>';
+                                            //     str+= '</TR>';
+                                            //
+                                            //     var loc = data[i].x * 2 + data[i].y;
+                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);
+                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");
+                                            // });
+                                            // $('.table_body').html(str);
+                                        },
+                                        error: function(XMLHttpRequest, textStatus, errorThrown){
+                                            alert("통신 실패")
+                                        }
+                                    })
+                                },1000);
+                        </script>
 <!--                        <table class="table table-striped">-->
 <!--                            <thead>-->
 <!--                            <tr>-->
@@ -333,45 +350,141 @@
 <!--                            </tbody>-->
 <!--                        </table>-->
 <!--                    </div>-->
-<!--                    <div style="position:relative;">-->
-<!--                        <div id="popup" style="background-color:white;position:relative;opacity:0;border:2px solid black;padding:5px 12px;z-index: 1;width:15%;"-->
-<!--                             onmouseover="showPopup();" onmouseout="hidePopup();">-->
-<!--                            <a id="popup_addr" href="#" style="text-decoration:none;color:black;" target="_blank">-->
-<!--                                <p id="popup_title" style="margin:0;padding:0;font-size:15px;line-height:20px;text-align:center;">test</p>-->
-<!--                                <p id="popup_description" style="margin:0;padding:0;font-size:12px;line-height:12px;text-align:center;">test</p>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Image Map Generated by http://www.image-map.net/ &ndash;&gt;-->
-<!--                        <img class="map" src="img/2floor.png" usemap="#image-map">-->
-<!--                        <map name="image-map">-->
-<!--                            <area target="_self" alt="00" title="00" href="#" coords="62,395,297,43" shape="rect" onmouseover="changePopupText(0, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 50, 50);" onmouseout="hidePopup();">-->
-<!--                            <area target="_self" alt="01" title="01" href="#" coords="558,395,299,45" shape="rect" onmouseover="changePopupText(0, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 50, 50);" onmouseout="hidePopup();">-->
-<!--                            <area target="_self" alt="10" title="10" href="#" coords="62,394,298,709" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 50, 50);" onmouseout="hidePopup();">-->
-<!--                            <area target="_self" alt="11" title="11" href="#" coords="298,394,562,707" shape="rect" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 50, 50);" onmouseout="hidePopup();">-->
-<!--                        </map>-->
+                    <div style="position:relative;">
 
-<!--                        <script>-->
-<!--                            function changePopupText(locx, locy, addr, x, y) {-->
-<!--                                document.getElementById('popup_title').innerHTML = "(" + locx.toString() + "," + locy.toString() + ")";-->
-<!--                                document.getElementById('popup_description').innerHTML = "실시간 인원 수: " + arr[locx][locy];-->
-<!--                                document.getElementById('popup_addr').href = addr;-->
+                        <!-- Image Map Generated by http://www.image-map.net/ -->
+                        <img class="map" src="img/2floor.png" usemap="#image-map">
+                        <map name="image-map">
+                            <area target="_self" alt="0,0" title="00" href="#" coords="62,395,297,43" shape="rect" onmouseover="changePopupText(0, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="0,1" title="01" href="#" coords="558,395,299,45" shape="rect" onmouseover="changePopupText(0, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,0" title="10" href="#" coords="62,394,298,709" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,1" title="11" href="#" coords="298,394,562,707" shape="rect" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                        </map>
+                        <div id="popup" style="background-color:white;position:relative;opacity:0;border:2px solid black;padding:5px 12px;z-index: 1;height:5%;width:15%;"
+                             onmouseover="showPopup();" onmouseout="hidePopup();">
+                            <a id="popup_addr" href="#" style="text-decoration:none;color:black;" target="_blank">
+                                <p id="popup_title" style="margin:0;padding:0;font-size:15px;line-height:20px;text-align:center;">test</p>
+                                <p id="popup_description" style="margin:0;padding:0;font-size:12px;line-height:12px;text-align:center;">test</p>
+                            </a>
+                        </div>
+                        <script>
+                            function changePopupText(locx, locy, addr, x, y) {
+                                var loc = locx.toString() + "," + locy.toString();
+                                var data = {};
+                                if(arr[locx][locy] > 6) {
+                                    data.fillColor = "ff0000";
+                                }else if(arr[locx][locy] > 4) {
+                                    data.fillColor = "FFFF00";
+                                }else if(arr[locx][locy] > 2) {
+                                    data.fillColor = "008000";
+                                }else {
+                                    data.fillColor = "808080";
+                                }
+                                $('area[alt="' + loc + '"]').data('maphilight', data);
 
-<!--                                document.getElementById('popup').style.left = x + "px";-->
-<!--                                document.getElementById('popup').style.top = y + "px";-->
-<!--                                document.getElementById('popup').style.opacity = 1;-->
-<!--                            }-->
+                                document.getElementById('popup_title').innerHTML = "(" + locx.toString() + "," + locy.toString() + ")";
+                                document.getElementById('popup_description').innerHTML = "실시간 인원 수: " + arr[locx][locy];
+                                document.getElementById('popup_addr').href = addr;
 
-<!--                            // 마우스오버 상자 숨기기-->
-<!--                            function hidePopup() {-->
-<!--                                document.getElementById('popup').style.opacity = 0;-->
-<!--                            }-->
+                                document.getElementById('popup').style.left = x + "px";
+                                document.getElementById('popup').style.top = y + "px";
+                                document.getElementById('popup').style.opacity = 1;
+                            }
 
-<!--                            // 마우스오버 상자 보이기-->
-<!--                            function showPopup() {-->
-<!--                                document.getElementById('popup').style.opacity = 1;-->
-<!--                            }-->
-<!--                        </script>-->
-<!--                    </div>-->
+                            // 마우스오버 상자 숨기기
+                            function hidePopup() {
+                                document.getElementById('popup').style.opacity = 0;
+                            }
+
+                            // 마우스오버 상자 보이기
+                            function showPopup() {
+                                document.getElementById('popup').style.opacity = 1;
+                            }
+                        </script>
+                    </div>
+
+                    <div style="margin-left:auto; margin-right:auto">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#building">2</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div id="#building">
+                        <table class="table col-md-10" style="margin-left: auto; margin-right: auto; text-align:center" id="coordinate_info">
+                            <thead>
+                                <tr class="table-active">
+                                    <th scope="col">위치</th>
+                                    <th scope="col">인원수</th>
+                                    <th scope="col">밀집도 등급</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>(0,0)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(0,1)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(1,0)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(1,1)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+<!--                                <tr>-->
+<!--                                  <td>6202</td>-->
+<!--                                  <td>40명</td>-->
+<!--                                  <td>주의</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <td>6203</td>-->
+<!--                                  <td>10명</td>-->
+<!--                                  <td>안전</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>6208</td>-->
+<!--                                    <td>65명</td>-->
+<!--                                    <td>위험</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>6209</td>-->
+<!--                                    <td>44명</td>-->
+<!--                                    <td>주의</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>6210</td>-->
+<!--                                    <td>78명</td>-->
+<!--                                    <td>고위험</td>-->
+<!--                                </tr>-->
+                                <tr class="table-active">
+                                    <th>총 인원</th>
+                                    <th>237명</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                              </tbody>
+                          </table>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -422,19 +535,30 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $.fn.popover.Constructor.Default.whiteList.table=[];
+        $.fn.popover.Constructor.Default.whiteList.th=[];
+        $.fn.popover.Constructor.Default.whiteList.tr=[];
+        $.fn.popover.Constructor.Default.whiteList.td=[];
+        $.fn.popover.Constructor.Default.whiteList.div=[];
+        $.fn.popover.Constructor.Default.whiteList.tbody=[];
+        $.fn.popover.Constructor.Default.whiteList.thead=[];
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover({
+                placement : 'bottom',
+                trigger : 'hover',
+                html : true,
+                content : '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
+                //content : '<div class="media"><img src="img/density_level.png" class="mr-3" alt="Sample Image"><div class="media-body"><h5 class="media-heading">kk</h5><p>kk</p></div></div>'
+            });
+        });
+        </script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
 
     <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
     <script type="text/javascript">

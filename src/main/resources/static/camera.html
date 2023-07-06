@@ -2,6 +2,19 @@
 <html lang="en">
 
 <head>
+    <style>
+        #container {
+            margin: 0px auto;
+            padding: 0px;
+            width: 660px;
+            height: 500px;
+        }
+        #videoElement {
+            width: 680px;
+            height: 520px;
+            background-color: #666;
+        }
+    </style>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +40,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
+         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -78,10 +91,10 @@
                     <i class="bi bi-caret-right"></i>
                     <span>제보 게시판</span></a>
             </li>  
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+            
             <li class="nav-item">
                 <a class="nav-link" href="/neighbor.html">
                     <i class="bi bi-caret-right"></i>
@@ -221,157 +234,26 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <div>
-                        <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
-                    </div>
-                    <div style="margin-left:auto; margin-right:auto; justify-content: center;">
-                        <div style="display:inline-block">
-                            <img style="width:300px; height:300px" src="img/current_location.png"/>
+                    <h1 class="h3 mb-4 text-gray-800" style="text-align: center">Camera</h1>
+
+                    <div class="row">
+                        <div class="col-md-10 col-sm-10">
+                            <select class="form-select float-right" aria-label="Default select example" style="margin-bottom: 10px">
+                                <option selected>카메라</option>
+                                <option value="1">Camera1</option>
+                                <option value="2">Camera2</option>
+                                <option value="3">Camera3</option>
+                            </select>
                         </div>
-                        <div class="col-lg-5" style="display:inline-block;">
-                            <p>현재 위치 : 2층 6202 강의실</p>
-                            <p>현재 위치에서의 밀집도 등급 : 안전</p>
+                        <div id="container" class="row justify-content-center">
+                            <!--                            <video autoplay="true" id="videoElement">-->
+
+                            <!--                            </video>-->
+                            <iframe src="http://127.0.0.1:5000" id="videoElement" allowfullscreen> </iframe>
                         </div>
+
                     </div>
 
-<!--                    <div id="container" class="row justify-content-center">-->
-<!--                        &lt;!&ndash;                            <video autoplay="true" id="videoElement">&ndash;&gt;-->
-
-<!--                        &lt;!&ndash;                            </video>&ndash;&gt;-->
-<!--                        <iframe src="http://127.0.0.1:5000" id="videoElement" allowfullscreen> </iframe>-->
-<!--                    </div>-->
-<!--                    <div class="row justify-content-center">-->
-<!--                        <script>-->
-<!--                            var j = 0;-->
-<!--                            var arr = new Array(2);-->
-
-<!--                            for (var i = 0; i < arr.length; i++) {-->
-<!--                                arr[i] = new Array(2).fill(0);-->
-<!--                            }-->
-<!--                            setInterval(-->
-<!--                                function () {-->
-<!--                                    $.ajax({-->
-<!--                                        type: "GET",-->
-<!--                                        url: "http://localhost:8080/getLocationsEach",-->
-<!--                                        dataType: "json",-->
-<!--                                        success: function(data) {-->
-<!--                                            str = '<TR>';-->
-<!--                                            arr = new Array(2);-->
-
-<!--                                            for (var i = 0; i < arr.length; i++) {-->
-<!--                                                arr[i] = new Array(2).fill(0);-->
-<!--                                            }-->
-<!--                                            $('#coordinate_info > tbody > tr').each(function () {-->
-<!--                                                $(this).find('td').eq(2).html(0);-->
-<!--                                                $(this).find('td').eq(3).html("");-->
-<!--                                            });-->
-<!--                                            $.each(data , function(i) {-->
-<!--                                                str += '<TD>' + data[i].address + '</TD>' +-->
-<!--                                                    '<TD>' + data[i].distance + '</TD>' +-->
-<!--                                                    '<TD>' + data[i].x + '</TD>' +-->
-<!--                                                    '<TD>' + data[i].y + '</TD>';-->
-<!--                                                str+= '</TR>';-->
-
-<!--                                                var loc = data[i].x * 2 + data[i].y;-->
-<!--                                                $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);-->
-<!--                                                $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");-->
-<!--                                            });-->
-<!--                                            $('.table_body').html(str);-->
-<!--                                        },-->
-<!--                                        error: function(XMLHttpRequest, textStatus, errorThrown){-->
-<!--                                            alert("통신 실패")-->
-<!--                                        }-->
-<!--                                    })-->
-<!--                                },1000);-->
-<!--                        </script>-->
-<!--                        <table class="table table-striped">-->
-<!--                            <thead>-->
-<!--                            <tr>-->
-<!--                                <td>Address</td>-->
-<!--                                <td>Distance</td>-->
-<!--                                <td>x</td>-->
-<!--                                <td>y</td>-->
-<!--                            </tr>-->
-<!--                            </thead>-->
-<!--                            <tbody class="table_body">-->
-<!--                            </tbody>-->
-<!--                        </table>-->
-<!--                        <table class="table table-striped" id="coordinate_info">-->
-<!--                            <thead>-->
-<!--                            <tr>-->
-<!--                                <td>x</td>-->
-<!--                                <td>y</td>-->
-<!--                                <td>Count</td>-->
-<!--                                <td>Addresses</td>-->
-<!--                            </tr>-->
-<!--                            </thead>-->
-<!--                            <tbody class="table_body2">-->
-<!--                            <tr>-->
-<!--                                <td>0</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td></td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td>0</td>-->
-<!--                                <td>1</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td></td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td>1</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td></td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td>1</td>-->
-<!--                                <td>1</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td></td>-->
-<!--                            </tr>-->
-<!--                            </tbody>-->
-<!--                        </table>-->
-<!--                    </div>-->
-<!--                    <div style="position:relative;">-->
-<!--                        <div id="popup" style="background-color:white;position:relative;opacity:0;border:2px solid black;padding:5px 12px;z-index: 1;width:15%;"-->
-<!--                             onmouseover="showPopup();" onmouseout="hidePopup();">-->
-<!--                            <a id="popup_addr" href="#" style="text-decoration:none;color:black;" target="_blank">-->
-<!--                                <p id="popup_title" style="margin:0;padding:0;font-size:15px;line-height:20px;text-align:center;">test</p>-->
-<!--                                <p id="popup_description" style="margin:0;padding:0;font-size:12px;line-height:12px;text-align:center;">test</p>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; Image Map Generated by http://www.image-map.net/ &ndash;&gt;-->
-<!--                        <img class="map" src="img/2floor.png" usemap="#image-map">-->
-<!--                        <map name="image-map">-->
-<!--                            <area target="_self" alt="00" title="00" href="#" coords="62,395,297,43" shape="rect" onmouseover="changePopupText(0, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 50, 50);" onmouseout="hidePopup();">-->
-<!--                            <area target="_self" alt="01" title="01" href="#" coords="558,395,299,45" shape="rect" onmouseover="changePopupText(0, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 50, 50);" onmouseout="hidePopup();">-->
-<!--                            <area target="_self" alt="10" title="10" href="#" coords="62,394,298,709" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 50, 50);" onmouseout="hidePopup();">-->
-<!--                            <area target="_self" alt="11" title="11" href="#" coords="298,394,562,707" shape="rect" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 50, 50);" onmouseout="hidePopup();">-->
-<!--                        </map>-->
-
-<!--                        <script>-->
-<!--                            function changePopupText(locx, locy, addr, x, y) {-->
-<!--                                document.getElementById('popup_title').innerHTML = "(" + locx.toString() + "," + locy.toString() + ")";-->
-<!--                                document.getElementById('popup_description').innerHTML = "실시간 인원 수: " + arr[locx][locy];-->
-<!--                                document.getElementById('popup_addr').href = addr;-->
-
-<!--                                document.getElementById('popup').style.left = x + "px";-->
-<!--                                document.getElementById('popup').style.top = y + "px";-->
-<!--                                document.getElementById('popup').style.opacity = 1;-->
-<!--                            }-->
-
-<!--                            // 마우스오버 상자 숨기기-->
-<!--                            function hidePopup() {-->
-<!--                                document.getElementById('popup').style.opacity = 0;-->
-<!--                            }-->
-
-<!--                            // 마우스오버 상자 보이기-->
-<!--                            function showPopup() {-->
-<!--                                document.getElementById('popup').style.opacity = 1;-->
-<!--                            }-->
-<!--                        </script>-->
-<!--                    </div>-->
                 </div>
                 <!-- /.container-fluid -->
 
@@ -428,21 +310,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-
-    <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $('.map').maphilight();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
 
 </body>
 
