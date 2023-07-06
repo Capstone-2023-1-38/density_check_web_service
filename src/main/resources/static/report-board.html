@@ -27,8 +27,8 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+          <!-- Sidebar -->
+          <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
@@ -77,21 +77,16 @@
                 <a class="nav-link" href="/report-board.html">
                     <i class="bi bi-caret-right"></i>
                     <span>제보 게시판</span></a>
-            </li>  
-            
+            </li>            
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
             <li class="nav-item">
                 <a class="nav-link" href="/neighbor.html">
                     <i class="bi bi-caret-right"></i>
                     <span>이웃</span></a>
             </li> 
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -226,19 +221,73 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <div>
-                        <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
-                    </div>
-                    <div style="margin-left:auto; margin-right:auto">
-                        <div style="display:inline-block">
-                            <img src="./current_location.png"/>                    
-                        </div>
-                        <div class="col-lg-5" style="display:inline-block;">
-                            <p>현재 위치 : 2층 6202 강의실</p>
-                            <p>현재 위치에서의 밀집도 등급 : 안전</p>
-                        </div>
-                    </div>
-                </div>
+                    <h1 class="h3 mb-4 text-gray-800" style="text-align: center">제보 게시판</h1>
+                    <table class="table col-md-10" style="margin-left: auto; margin-right: auto;">
+                        <thead>
+                            <tr class="table-active">
+                                <th scope="col">#</th>
+                                <th scope="col">위치</th>
+                                <th scope="col">제목</th>
+                                <th scope="col">작성자</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td>6203 강의실</td>
+                                <td>제보합니다.</td>
+                                <td>user</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">5</th>
+                                <td>6203 강의실</td>
+                                <td>제보합니다.</td>
+                                <td>user</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">4</th>
+                                <td>6209 강의실</td>
+                                <td>제보합니다.</td>
+                                <td>user</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>6208 강의실</td>
+                                <td>제보합니다.</td>
+                                <td>user</td>
+                              </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>6202 강의실</td>
+                              <td>제보 합니다.</td>
+                              <td>user</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>6208 강의실</td>
+                              <td>제보합니다.</td>
+                              <td>user</td>
+                            </tr>
+                          </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        </ul>
+                    </nav>
+                </div>                    
                 <!-- /.container-fluid -->
 
             </div>

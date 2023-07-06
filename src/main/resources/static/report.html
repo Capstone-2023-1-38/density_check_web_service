@@ -27,8 +27,8 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+         <!-- Sidebar -->
+         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
@@ -77,7 +77,7 @@
                 <a class="nav-link" href="/report-board.html">
                     <i class="bi bi-caret-right"></i>
                     <span>제보 게시판</span></a>
-            </li>  
+            </li> 
             
             <li class="nav-item">
                 <a class="nav-link" href="/neighbor.html">
@@ -87,11 +87,6 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -226,19 +221,31 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <div>
-                        <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
-                    </div>
-                    <div style="margin-left:auto; margin-right:auto">
-                        <div style="display:inline-block">
-                            <img src="./current_location.png"/>                    
+                    <h1 class="h3 mb-4 text-gray-800" style="text-align: center">제보하기</h1>
+                    <div class="col-sm-10 mb-3 row" style="margin-left: auto; margin-right:auto;">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">위치</label>
+                        <div class="col-sm-2">
+                            <select class="form-select" aria-label="Default select example" style="margin-bottom: 10px">
+                                <option selected>위치</option>
+                                <option value="1">6202강의실</option>
+                                <option value="2">6203강의실</option>
+                                <option value="3">6208강의실</option>
+                                <option value="3">6208강의실</option>
+                            </select>
                         </div>
-                        <div class="col-lg-5" style="display:inline-block;">
-                            <p>현재 위치 : 2층 6202 강의실</p>
-                            <p>현재 위치에서의 밀집도 등급 : 안전</p>
-                        </div>
                     </div>
-                </div>
+                    <div class="col-sm-10" style="margin-left: auto; margin-right: auto">
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">제보 내용</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control col-sm-10" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary btn-sm col-sm-2 float-right" onclick="location.href = '/report-board.html'">제출</button>
+                    </div>
+                
+                        
+                </div>                    
                 <!-- /.container-fluid -->
 
             </div>

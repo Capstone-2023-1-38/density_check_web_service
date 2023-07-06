@@ -111,6 +111,8 @@ ul,
 dl {
   margin-top: 0;
   margin-bottom: 1rem;
+  list-style: none; 
+  padding-left: 0px;
 }
 
 ol ol,
@@ -5604,6 +5606,18 @@ a.close.disabled {
   border-radius: 0.25rem;
 }
 
+.window{
+    /*check out container's movement : command + */
+  position: relative;
+  top: 20%;
+  left: 50%;
+  transform: translateY(-50%);
+  transform: translateX(-50%);
+  border: 4px solid red; 
+  height: 557px;
+  width: 714px;
+}
+
 .toast:not(:last-child) {
   margin-bottom: 0.75rem;
 }
@@ -9806,6 +9820,29 @@ a:focus {
   flex: 1 0 auto;
 }
 
+.carousel-container{
+  overflow: hidden;
+  position: absolute;
+  height: 120px;
+  width: 630px;
+  border: 4px solid green;
+  left: -125px;
+}
+
+.cell {
+  text-decoration: none;
+  list-style: none;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  border: 4px solid #555;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 10px 10px;
+  padding-top: 30px
+}
+
+
 .container,
 .container-fluid,
 .container-sm,
@@ -9900,8 +9937,8 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: #4e73df;
-  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+  background-color: #a3b6ee;
+  background-image: linear-gradient(180deg, #a3b6ee 10%, #224abe 100%);
   background-size: cover;
 }
 
@@ -10931,40 +10968,40 @@ form.user .btn-user {
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }
 
-.btn-facebook {
+.btn-kakao {
   color: #fff;
-  background-color: #3b5998;
+  background-color: #FFE400;
   border-color: #fff;
 }
 
-.btn-facebook:hover {
+.btn-kakao:hover {
   color: #fff;
-  background-color: #30497c;
+  background-color: #E5D85C;
   border-color: #e6e6e6;
 }
 
-.btn-facebook:focus, .btn-facebook.focus {
+.btn-kakao:focus, .btn-kakao.focus {
   color: #fff;
-  background-color: #30497c;
+  background-color: #E5D85C;
   border-color: #e6e6e6;
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }
 
-.btn-facebook.disabled, .btn-facebook:disabled {
+.btn-kakao.disabled, .btn-kakao:disabled {
   color: #fff;
-  background-color: #3b5998;
+  background-color: #FFE400;
   border-color: #fff;
 }
 
-.btn-facebook:not(:disabled):not(.disabled):active, .btn-facebook:not(:disabled):not(.disabled).active,
-.show > .btn-facebook.dropdown-toggle {
+.btn-kakao:not(:disabled):not(.disabled):active, .btn-kakao:not(:disabled):not(.disabled).active,
+.show > .btn-kakao.dropdown-toggle {
   color: #fff;
-  background-color: #2d4373;
+  background-color: #f4b30d;
   border-color: #dfdfdf;
 }
 
-.btn-facebook:not(:disabled):not(.disabled):active:focus, .btn-facebook:not(:disabled):not(.disabled).active:focus,
-.show > .btn-facebook.dropdown-toggle:focus {
+.btn-kakao:not(:disabled):not(.disabled):active:focus, .btn-kakao:not(:disabled):not(.disabled).active:focus,
+.show > .btn-kakao.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }
 
