@@ -6159,7 +6159,7 @@ a.close.disabled {
 .carousel-item {
   position: relative;
   display: none;
-  float: left;
+  float: center;
   width: 100%;
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
@@ -6225,11 +6225,11 @@ a.close.disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15%;
+  width: 10%;
   color: #fff;
   text-align: center;
-  opacity: 0.5;
-  transition: opacity 0.15s ease;
+  opacity: 50%;
+  /*transition: opacity 0.15s ease;*/
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6261,7 +6261,8 @@ a.close.disabled {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: 50% / 100% 100% no-repeat;
+  color: #3860ff;
+  background: 0% / 100% 100% no-repeat;
 }
 
 .carousel-control-prev-icon {
