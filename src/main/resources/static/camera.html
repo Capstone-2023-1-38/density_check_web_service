@@ -2,6 +2,19 @@
 <html lang="en">
 
 <head>
+    <style>
+        #container {
+            margin: 0px auto;
+            padding: 0px;
+            width: 660px;
+            height: 500px;
+        }
+        #videoElement {
+            width: 680px;
+            height: 520px;
+            background-color: #666;
+        }
+    </style>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -232,56 +245,11 @@
                                 <option value="3">Camera3</option>
                             </select>
                         </div>
-                        <div class="col-lg-12">
-                            <div id="container" class="row justify-content-center">
-                                <!--                            <video autoplay="true" id="videoElement">-->
-        
-                                <!--                            </video>-->
-                                <iframe src="http://127.0.0.1:5000" style ="width:85%" id="videoElement" allowfullscreen> </iframe>
-                            </div>
-                            <div class="row justify-content-center">
-                                <script>
-                                    var j = 0;
-                                    setInterval(
-                                        function () {
-                                            // $("#test").text(j);
-                                            // j++;
-                                            $.ajax({
-                                                type: "GET",
-                                                url: "http://localhost:8080/getLocations",
-                                                dataType: "json",
-                                                success: function(data) {
-                                                    str = '<TR>';
-                                                    $.each(data , function(i) {
-                                                        str += '<TD>' + data[i].address + '</TD>' +
-                                                            '<TD>' + data[i].distance + '</TD>' +
-                                                            '<TD>' + data[i].x + '</TD>' +
-                                                            '<TD>' + data[i].y + '</TD>';
-                                                        str+= '</TR>';
-                                                    });
-                                                    $('.table_body').html(str);
-                                                },
-                                                error: function(XMLHttpRequest, textStatus, errorThrown){
-                                                    alert("통신 실패")
-                                                }
-                                            })
-                                        },1000);
-                                </script>
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <td>Address</td>
-                                        <td>Distance</td>
-                                        <td>x</td>
-                                        <td>y</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="table_body">
-                                    </tbody>
-                                </table>
+                        <div id="container" class="row justify-content-center">
+                            <!--                            <video autoplay="true" id="videoElement">-->
 
-                            
-
+                            <!--                            </video>-->
+                            <iframe src="http://127.0.0.1:5000" id="videoElement" allowfullscreen> </iframe>
                         </div>
 
                     </div>

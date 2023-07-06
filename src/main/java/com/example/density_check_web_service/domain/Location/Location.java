@@ -4,9 +4,11 @@ import com.example.density_check_web_service.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Setter
 @Getter
 @NoArgsConstructor
 @Entity
@@ -24,8 +26,7 @@ public class Location extends BaseTimeEntity {
     private int y;
 
     @Builder
-    public Location(Long id, String address, int distance, int x, int y) {
-        this.id = id;
+    public Location(String address, int distance, int x, int y) {
         this.address = address;
         this.distance = distance;
         this.x = x;

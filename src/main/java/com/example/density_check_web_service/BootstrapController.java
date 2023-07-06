@@ -27,4 +27,10 @@ public class BootstrapController {
         List<LocationRequestDto> allLocation = locationService.allLocationToJson();
         return allLocation;
     }
+
+    @GetMapping(path = "/getLocationsEach")
+    public List<LocationRequestDto> getLocationsEach() {
+        List<LocationRequestDto> eachLocation = locationService.eachLocationToJson();
+        return eachLocation;
+    }
 }
