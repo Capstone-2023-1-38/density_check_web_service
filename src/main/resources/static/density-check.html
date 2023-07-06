@@ -77,10 +77,24 @@
                 <a class="nav-link" href="/report-board.html">
                     <i class="bi bi-caret-right"></i>
                     <span>제보 게시판</span></a>
-            </li>            
+            </li>  
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            
+            <li class="nav-item">
+                <a class="nav-link" href="/neighbor.html">
+                    <i class="bi bi-caret-right"></i>
+                    <span>이웃</span></a>
+            </li> 
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -188,21 +202,13 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    설정
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    로그아웃
                                 </a>
                             </div>
                         </li>
@@ -351,7 +357,7 @@
                 placement : 'bottom',
                 trigger : 'hover',
                 html : true,
-                content : '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>2-3명</td></tr><tr class="table-warning"><td>위험</td><td>3-4명</td></tr><tr class="table-danger"><td>고위험</td><td>5명 이상</td><tr></table></div></div>'
+                content : '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
                 //content : '<div class="media"><img src="img/density_level.png" class="mr-3" alt="Sample Image"><div class="media-body"><h5 class="media-heading">kk</h5><p>kk</p></div></div>'
             });
         });
