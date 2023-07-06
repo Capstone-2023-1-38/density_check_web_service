@@ -77,21 +77,10 @@
                 <a class="nav-link" href="/report-board.html">
                     <i class="bi bi-caret-right"></i>
                     <span>제보 게시판</span></a>
-            </li>  
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/neighbor.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>이웃</span></a>
-            </li> 
+            </li>            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -227,16 +216,77 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div>
-                        <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
+                        <h1 class="h3 mb-4 text-gray-800" style="text-align:center">건물 전체의 밀집도 <button type="button" class="btn btn-secondary btn-sm" data-bs-container="body" data-toggle="popover" title="밀집도 등급 (1㎡ 당)">?</button></h1>
+                        
                     </div>
+
+                    <div class="row">
+                        <div class="col-lg-12" style="text-align:center">
+                            <img src="./img/second_floor.png"/>
+                        </div>
+                    </div>
+
                     <div style="margin-left:auto; margin-right:auto">
-                        <div style="display:inline-block">
-                            <img src="./current_location.png"/>                    
-                        </div>
-                        <div class="col-lg-5" style="display:inline-block;">
-                            <p>현재 위치 : 2층 6202 강의실</p>
-                            <p>현재 위치에서의 밀집도 등급 : 안전</p>
-                        </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#building">2</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div id="#building">
+                        <table class="table col-md-10" style="margin-left: auto; margin-right: auto; text-align:center">
+                            <thead>
+                                <tr class="table-active">
+                                    <th scope="col">위치</th>
+                                    <th scope="col">인원수</th>
+                                    <th scope="col">밀집도 등급</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                  <td>6202</td>
+                                  <td>40명</td>
+                                  <td>주의</td>
+                                </tr>
+                                <tr>
+                                  <td>6203</td>
+                                  <td>10명</td>
+                                  <td>안전</td>
+                                </tr>
+                                <tr>
+                                    <td>6208</td>
+                                    <td>65명</td>
+                                    <td>위험</td>
+                                </tr>
+                                <tr>
+                                    <td>6209</td>
+                                    <td>44명</td>
+                                    <td>주의</td>
+                                </tr>
+                                <tr>
+                                    <td>6210</td>
+                                    <td>78명</td>
+                                    <td>고위험</td>
+                                </tr>
+                                <tr class="table-active">
+                                    <th>총 인원</th>
+                                    <th>237명</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                              </tbody>
+                          </table>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -288,6 +338,24 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $.fn.popover.Constructor.Default.whiteList.table=[];
+        $.fn.popover.Constructor.Default.whiteList.th=[];
+        $.fn.popover.Constructor.Default.whiteList.tr=[];
+        $.fn.popover.Constructor.Default.whiteList.td=[];
+        $.fn.popover.Constructor.Default.whiteList.div=[];
+        $.fn.popover.Constructor.Default.whiteList.tbody=[];
+        $.fn.popover.Constructor.Default.whiteList.thead=[];
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover({
+                placement : 'bottom',
+                trigger : 'hover',
+                html : true,
+                content : '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>2-3명</td></tr><tr class="table-warning"><td>위험</td><td>3-4명</td></tr><tr class="table-danger"><td>고위험</td><td>5명 이상</td><tr></table></div></div>'
+                //content : '<div class="media"><img src="img/density_level.png" class="mr-3" alt="Sample Image"><div class="media-body"><h5 class="media-heading">kk</h5><p>kk</p></div></div>'
+            });
+        });
+        </script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>

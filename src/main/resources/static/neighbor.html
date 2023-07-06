@@ -27,8 +27,8 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+          <!-- Sidebar -->
+          <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
@@ -77,21 +77,16 @@
                 <a class="nav-link" href="/report-board.html">
                     <i class="bi bi-caret-right"></i>
                     <span>제보 게시판</span></a>
-            </li>  
-            
+            </li>            
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
             <li class="nav-item">
                 <a class="nav-link" href="/neighbor.html">
                     <i class="bi bi-caret-right"></i>
                     <span>이웃</span></a>
             </li> 
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -134,58 +129,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h4 class="dropdown-header">
-                                    알림
-                                </h4>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">23/07/05 13:49:07</div>
-                                        제보게시판에 새로운 제보가 등록되었습니다.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">23/07/05 11:23:45</div>
-                                        제보게시판에 새로운 제보가 등록되었습니다.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">23/07/02 21:34:11</div>
-                                        제보게시판에 새로운 제보가 등록되었습니다.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>
-                            </div>
-                        </li>
+                        </li>                       
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -199,21 +143,13 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    설정
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    로그아웃
                                 </a>
                             </div>
                         </li>
@@ -226,19 +162,71 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <div>
-                        <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
+                    
+                    <h1 class="h3 mb-4 text-gray-800" style="text-align: center">이웃 목록 
+                        <button type="button" class="btn btn-sm" style="border:0px; background-color: transparent;"
+                        onclick="location.href = 'neighbor-add.html'">
+                            <i class="bi bi-person-fill-add"></i>
+                            <!-- Counter - Alerts -->
+                            <span class="badge badge-danger badge-counter">2</span>
+                        </button>
+                    </h1>
+                    <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto;">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃1</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃2</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃3</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃4</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃5</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃6</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃7</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃8</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃9</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃10</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃11</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃12</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div style="margin-left:auto; margin-right:auto">
-                        <div style="display:inline-block">
-                            <img src="./current_location.png"/>                    
-                        </div>
-                        <div class="col-lg-5" style="display:inline-block;">
-                            <p>현재 위치 : 2층 6202 강의실</p>
-                            <p>현재 위치에서의 밀집도 등급 : 안전</p>
-                        </div>
-                    </div>
-                </div>
+                    
+                </div>                    
                 <!-- /.container-fluid -->
 
             </div>
