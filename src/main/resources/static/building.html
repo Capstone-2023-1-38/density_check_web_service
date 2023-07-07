@@ -195,14 +195,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">user</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg"/>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="setting.html">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     설정
                                 </a>
@@ -229,17 +229,17 @@
                     <div id="carouselExampleControls" class="carousel slide">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <div style="width:557px; height:714px; margin-left:auto; margin-right:auto">
-                                <div style="display:inline-block">
+                            <div style="width:600px; height:714px; margin-left:auto; margin-right:auto; padding-top:100px;">
+                                <div style="display:inline-block; text-align:center; margin:5px">
                                     <img src="./img/exit.png"/>
                                 </div>
-                                <div class="col-md-5" style="display:inline-block; margin-left:auto; margin-right:auto">
+                                <div style="display:inline-block;">
                                     <p>건물 총 층 수 : 5층</p>
                                     <p>건물 총 면적 : 450㎡</p>
                                 </div>
                             </div>
                           </div>
-                          <div class="carousel-item center-block" >
+                          <div class="carousel-item center-block" style="text-align:center">
                             <img src="./img/second_floor.png"/>
                           </div>
                         </div>
@@ -276,24 +276,23 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
+   <!-- Logout Modal-->
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h6 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h6>
+                   <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">×</span>
+                   </button>
+               </div>
+               <div class="modal-footer">
+                   <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
+                   <a class="btn btn-primary btn-sm" href="login.html">로그아웃</a>
+               </div>
+           </div>
+       </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
@@ -306,7 +305,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+    </div>
 </body>
 
 </html>

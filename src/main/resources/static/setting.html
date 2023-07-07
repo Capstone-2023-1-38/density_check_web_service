@@ -2,19 +2,6 @@
 <html lang="en">
 
 <head>
-    <style>
-        #container {
-            margin: 0px auto;
-            padding: 0px;
-            width: 660px;
-            height: 500px;
-        }
-        #videoElement {
-            width: 680px;
-            height: 520px;
-            background-color: #666;
-        }
-    </style>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,7 +27,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-         <!-- Sidebar -->
+          <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -150,58 +137,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h4 class="dropdown-header">
-                                    알림
-                                </h4>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">23/07/05 13:49:07</div>
-                                        제보게시판에 새로운 제보가 등록되었습니다.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">23/07/05 11:23:45</div>
-                                        제보게시판에 새로운 제보가 등록되었습니다.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">23/07/02 21:34:11</div>
-                                        제보게시판에 새로운 제보가 등록되었습니다.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>
-                            </div>
-                        </li>
+                        </li>                       
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -214,7 +150,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="setting.html">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     설정
                                 </a>
@@ -234,27 +170,42 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800" style="text-align: center">Camera</h1>
-
-                    <div class="row">
-                        <div class="col-md-10 col-sm-10">
-                            <select class="form-select float-right" aria-label="Default select example" style="margin-bottom: 10px">
-                                <option selected>카메라</option>
-                                <option value="1">Camera1</option>
-                                <option value="2">Camera2</option>
-                                <option value="3">Camera3</option>
-                            </select>
+                    <h1 class="h3 mb-4 text-gray-800" style="text-align: center">설정</h1>
+                    <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto">
+                        <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg" style="width:150px; height:150px; margin:20px"/>
+                        <div class="col-md-5" style="margin-top:auto; margin-bottom:auto">
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
-                        <div id="container" class="row justify-content-center">
-                            <!--                            <video autoplay="true" id="videoElement">-->
-
-                            <!--                            </video>-->
-                            <iframe src="http://127.0.0.1:5000" id="videoElement" allowfullscreen> </iframe>
-                        </div>
-
                     </div>
-
-                </div>
+                    <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto; padding-top:50px">
+                        <table class="table">
+                            <thead>
+                                <th>이웃 목록</th>
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃1</td>
+                                    <td><button type="button" class="btn btn-secondary" style="float:right">삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃2</td>
+                                    <td><button type="button" class="btn btn-secondary" style="float:right">삭제</button></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bi bi-person-circle"></i></td>
+                                    <td>이웃3</td>
+                                    <td><button type="button" class="btn btn-secondary" style="float:right">삭제</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>                    
                 <!-- /.container-fluid -->
 
             </div>
@@ -281,24 +232,24 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-   <!-- Logout Modal-->
-   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-   aria-hidden="true">
-   <div class="modal-dialog" role="document">
-       <div class="modal-content">
-           <div class="modal-header">
-               <h6 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h6>
-               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                   <span aria-hidden="true">×</span>
-               </button>
-           </div>
-           <div class="modal-footer">
-               <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
-               <a class="btn btn-primary btn-sm" href="login.html">로그아웃</a>
-           </div>
-       </div>
-   </div>
-</div>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h6>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary btn-sm" href="login.html">로그아웃</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
