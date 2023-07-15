@@ -188,14 +188,21 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800" style="text-align: center">사용자 찾기</h1>
-                <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
-                    <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
-                </div>
-                <div style="text-align:center">
-                    <img src="./img/map.png"/>
+                <h1 class="h3 mb-4 text-gray-800" style="text-align: center">카메라</h1>
+                <div style="display:flex; flex-direction:column;">
+                    <div style="display: flex; justify-content:center; padding:15px">
+                        <div style="text-align:center; position:relative; width:622px; height:720px;">
+                            <img src="./img/2floor.png"/>
+                            <div>
+                                <i class="bi bi-camera-fill" type="button" style="position: absolute; top:30%; left:30%; font-size: 50px;" onclick="location.href='camera.html'"></i>
+                                <i class="bi bi-camera-fill" type="button" style="position: absolute; top:50%; left:60%; font-size: 50px;" onclick="location.href='camera.html'"></i>
+                                <i class="bi bi-camera-fill" type="button" style="position: absolute; top:80%; left:45%; font-size: 50px;" onclick="location.href='camera.html'"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content:center">
+                        <button class="btn btn-secondary" type="button" style="width:622px;" onclick="location.href='camera.html'">건물 내 카메라 전체 화면</button>
+                    </div>
                 </div>
 
             </div>
