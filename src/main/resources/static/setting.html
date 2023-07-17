@@ -168,7 +168,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="setting.html">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     설정
                                 </a>
@@ -188,17 +188,18 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800" style="text-align: center">이웃 추가</h1>
-                    <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+                    <h1 class="h3 mb-4 text-gray-800" style="text-align: center">설정</h1>
+                    <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto">
+                        <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg" style="width:150px; height:150px; margin:20px"/>
+                        <div class="col-md-5" style="margin-top:auto; margin-bottom:auto">
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
                     </div>
                     <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto; padding-top:50px">
                         <table class="table">
                             <thead>
-                                <th>이웃 신청 목록</th>
-                                <th>&nbsp;</th>
+                                <th>이웃 목록</th>
                                 <th>&nbsp;</th>
                                 <th>&nbsp;</th>
                             </thead>
@@ -206,22 +207,17 @@
                                 <tr>
                                     <td><i class="bi bi-person-circle"></i></td>
                                     <td>이웃1</td>
-                                    <td><button type="button" class="btn btn-secondary" style="float:right">수락</button></td>
-                                    <td><button type="button" class="btn btn-secondary">거절</button></td>
+                                    <td><button type="button" class="btn btn-secondary" style="float:right">삭제</button></td>
                                 </tr>
                                 <tr>
                                     <td><i class="bi bi-person-circle"></i></td>
                                     <td>이웃2</td>
-                                    <td><button type="button" class="btn btn-secondary" style="float:right">수락</button></td>
-                                    <td><button type="button" class="btn btn-secondary">거절</button></td>
+                                    <td><button type="button" class="btn btn-secondary" style="float:right">삭제</button></td>
                                 </tr>
                                 <tr>
                                     <td><i class="bi bi-person-circle"></i></td>
                                     <td>이웃3</td>
-                                    <td><button type="button" class="btn btn-secondary" style="float:right">수락</button></td>
-                                    <td><button type="button" class="btn btn-secondary">거절</button></td>
-                                </tr>
-                                
+                                    <td><button type="button" class="btn btn-secondary" style="float:right">삭제</button></td>
                                 </tr>
                             </tbody>
                         </table>

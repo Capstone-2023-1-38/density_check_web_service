@@ -58,7 +58,7 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="/camera.html">
+                <a class="nav-link" href="/camera-location.html">
                     <i class="bi bi-caret-right"></i>
                     <span>카메라</span></a>
             </li>
@@ -86,7 +86,25 @@
                 <a class="nav-link" href="/neighbor.html">
                     <i class="bi bi-caret-right"></i>
                     <span>이웃</span></a>
-            </li> 
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/user-find.html">
+                    <i class="bi bi-caret-right"></i>
+                    <span>사용자 찾기</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/specific-area-user-find.html">
+                    <i class="bi bi-caret-right"></i>
+                    <span>특정 구역 사용자 찾기</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/user-management.html">
+                    <i class="bi bi-caret-right"></i>
+                    <span>회원 관리</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -194,14 +212,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">user</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg"/>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="setting.html">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     설정
                                 </a>
@@ -224,9 +242,9 @@
                     <div>
                         <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
                     </div>
-                    <div style="margin-left:auto; margin-right:auto; justify-content: center;">
+                    <div style="text-align:center">
                         <div style="display:inline-block">
-                            <img style="width:300px; height:300px" src="img/current_location.png"/>
+                            <img style="width:500px; height:500px" src="img/current_location.png"/>
                         </div>
                         <div class="col-lg-5" style="display:inline-block;">
                             <p>현재 위치 : 2층 6202 강의실</p>
@@ -399,25 +417,24 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+   <!-- Logout Modal-->
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog" role="document">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h6 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h6>
+               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">×</span>
+               </button>
+           </div>
+           <div class="modal-footer">
+               <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
+               <a class="btn btn-primary btn-sm" href="login.html">로그아웃</a>
+           </div>
+       </div>
+   </div>
+</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
