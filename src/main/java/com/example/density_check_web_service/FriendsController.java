@@ -62,9 +62,10 @@ public class FriendsController {
     }
 
     @GetMapping(path = "/friends/add/new")
-    public String save(@RequestParam String toEmail, Authentication authentication, RedirectAttributes ra ) {
+    public RedirectView save(@RequestParam String toEmail, Authentication authentication, RedirectAttributes ra ) {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String fromEmail = oAuth2User.getAttribute("email");
-        return friendsService.save(fromEmail, toEmail);
+        friendsService.save(fromEmail, toEmail);
+        return new RedirectView("/neighbor-add.html");
     }
 }
