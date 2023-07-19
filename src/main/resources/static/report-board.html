@@ -249,43 +249,43 @@
                                 <th scope="col">작성자</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>6203 강의실</td>
-                                <td>제보합니다.</td>
-                                <td>user</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">5</th>
-                                <td>6203 강의실</td>
-                                <td>제보합니다.</td>
-                                <td>user</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">4</th>
-                                <td>6209 강의실</td>
-                                <td>제보합니다.</td>
-                                <td>user</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>6208 강의실</td>
-                                <td>제보합니다.</td>
-                                <td>user</td>
-                              </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>6202 강의실</td>
-                              <td>제보 합니다.</td>
-                              <td>user</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>6208 강의실</td>
-                              <td>제보합니다.</td>
-                              <td>user</td>
-                            </tr>
+                        <tbody class="table_body">
+<!--                            <tr>-->
+<!--                                <th scope="row">6</th>-->
+<!--                                <td>6203 강의실</td>-->
+<!--                                <td>제보합니다.</td>-->
+<!--                                <td>user</td>-->
+<!--                              </tr>-->
+<!--                              <tr>-->
+<!--                                <th scope="row">5</th>-->
+<!--                                <td>6203 강의실</td>-->
+<!--                                <td>제보합니다.</td>-->
+<!--                                <td>user</td>-->
+<!--                              </tr>-->
+<!--                              <tr>-->
+<!--                                <th scope="row">4</th>-->
+<!--                                <td>6209 강의실</td>-->
+<!--                                <td>제보합니다.</td>-->
+<!--                                <td>user</td>-->
+<!--                              </tr>-->
+<!--                              <tr>-->
+<!--                                <th scope="row">3</th>-->
+<!--                                <td>6208 강의실</td>-->
+<!--                                <td>제보합니다.</td>-->
+<!--                                <td>user</td>-->
+<!--                              </tr>-->
+<!--                            <tr>-->
+<!--                              <th scope="row">2</th>-->
+<!--                              <td>6202 강의실</td>-->
+<!--                              <td>제보 합니다.</td>-->
+<!--                              <td>user</td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                              <th scope="row">1</th>-->
+<!--                              <td>6208 강의실</td>-->
+<!--                              <td>제보합니다.</td>-->
+<!--                              <td>user</td>-->
+<!--                            </tr>-->
                           </tbody>
                     </table>
                     <nav aria-label="Page navigation example">
@@ -345,7 +345,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
-                    <a class="btn btn-primary btn-sm" href="login.html">로그아웃</a>
+                    <a class="btn btn-primary btn-sm" href="/logout">로그아웃</a>
                 </div>
             </div>
         </div>
@@ -360,6 +360,29 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/posts/list",
+            dataType: "json",
+            success: function(data) {
+                str = '';
+
+                $.each(data , function(i) {
+                    str += '<TD>' + data[i].id + '</TD>' +
+                        '<TD>' + data[i].location + '</TD>' +
+                        '<TD>' + data[i].title + '</TD>' +
+                        '<TD>' + data[i].author + '</TD>';
+                    str += '</TR>';
+                });
+                $('.table_body').html(str);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("통신 실패");
+            }
+        });
+    </script>
 
 </body>
 

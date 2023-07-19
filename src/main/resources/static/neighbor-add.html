@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -23,7 +23,6 @@
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -189,11 +188,13 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800" style="text-align: center">이웃 추가</h1>
-                    <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
-                    </div>
+                    <form action="/friends/add/new", method="get">
+                        <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input name="toEmail" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" onclick="location.href = 'neighbor-add.html'">검색</button>
+                    </form>
                     <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto; padding-top:50px">
                         <table class="table">
                             <thead>
@@ -202,27 +203,25 @@
                                 <th>&nbsp;</th>
                                 <th>&nbsp;</th>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃1</td>
-                                    <td><button type="button" class="btn btn-secondary" style="float:right">수락</button></td>
-                                    <td><button type="button" class="btn btn-secondary">거절</button></td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃2</td>
-                                    <td><button type="button" class="btn btn-secondary" style="float:right">수락</button></td>
-                                    <td><button type="button" class="btn btn-secondary">거절</button></td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃3</td>
-                                    <td><button type="button" class="btn btn-secondary" style="float:right">수락</button></td>
-                                    <td><button type="button" class="btn btn-secondary">거절</button></td>
-                                </tr>
-                                
-                                </tr>
+                            <tbody class="table_body">
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃1</td>-->
+<!--                                    <td><button type="button" class="btn btn-secondary" style="float:right">수락</button></td>-->
+<!--                                    <td><button type="button" class="btn btn-secondary">거절</button></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃2</td>-->
+<!--                                    <td><button type="button" class="btn btn-secondary" style="float:right">수락</button></td>-->
+<!--                                    <td><button type="button" class="btn btn-secondary">거절</button></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃3</td>-->
+<!--                                    <td><button type="button" class="btn btn-secondary" style="float:right">수락</button></td>-->
+<!--                                    <td><button type="button" class="btn btn-secondary">거절</button></td>-->
+<!--                                </tr>-->
                             </tbody>
                         </table>
                     </div>
@@ -267,7 +266,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
-                    <a class="btn btn-primary btn-sm" href="login.html">로그아웃</a>
+                    <a class="btn btn-primary btn-sm" href="/logout">로그아웃</a>
                 </div>
             </div>
         </div>
@@ -283,6 +282,35 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/friends/add/list",
+            dataType: "json",
+            success: function(data) {
+                str = '';
+
+                $.each(data , function(i) {
+                    str += '<TR>' +
+                        '<TD><i class="bi bi-person-circle"></i></TD>' +
+                        '<TD>' + data[i].toName + '</TD>' +
+                        '<TD><a class="btn btn-secondary" style="float:right" href="friends/accept?toEmail='+data[i].toEmail+'" >수락</a></TD>' +
+                        '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail='+data[i].toEmail+'">거절</a></TD>';
+                    str += '</TR>';
+                });
+                $('.table_body').html(str);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("통신 실패");
+            }
+        });
+
+    </script>
+    <script>
+        const result = data;
+        if (result !== "") {
+            alert(result);
+        }
+    </script>
 </body>
 
-</html>

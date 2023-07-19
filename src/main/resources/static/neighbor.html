@@ -194,60 +194,67 @@
                         onclick="location.href = 'neighbor-add.html'">
                             <i class="bi bi-person-fill-add"></i>
                             <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">2</span>
+                            <span id="friend_add_count" class="badge badge-danger badge-counter"></span>
                         </button>
                     </h1>
                     <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto;">
                         <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃1</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃2</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃3</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃4</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃5</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃6</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃7</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃8</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃9</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃10</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃11</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-person-circle"></i></td>
-                                    <td>이웃12</td>
-                                </tr>
+                            <thead>
+                            <tr class="table-active">
+                                <th scope="col">#</th>
+                                <th scope="col">이름</th>
+                                <th scope="col">이메일</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table_body">
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃1</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃2</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃3</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃4</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃5</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃6</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃7</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃8</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃9</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃10</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃11</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td><i class="bi bi-person-circle"></i></td>-->
+<!--                                    <td>이웃12</td>-->
+<!--                                </tr>-->
                             </tbody>
                         </table>
                     </div>
@@ -292,7 +299,7 @@
            </div>
            <div class="modal-footer">
                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
-               <a class="btn btn-primary btn-sm" href="login.html">로그아웃</a>
+               <a class="btn btn-primary btn-sm" href="/logout">로그아웃</a>
            </div>
        </div>
    </div>
@@ -307,6 +314,43 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/friends/mutual/list",
+            dataType: "json",
+            success: function(data) {
+                str = '';
+
+                $.each(data , function(i) {
+                    str += '<TR>' +
+                        '<TD><i class="bi bi-person-circle"></i></TD>' +
+                        '<TD>' + data[i].toName + '</TD>' +
+                        '<TD>' + data[i].toEmail + '</TD>';
+                    str += '</TR>';
+                });
+                $('.table_body').html(str);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("통신 실패");
+            }
+        });
+    </script>
+
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/friends/add/count",
+            dataType: "json",
+            success: function(data) {
+                $('#friend_add_count').text(data);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("통신 실패");
+            }
+        });
+    </script>
 
 </body>
 
