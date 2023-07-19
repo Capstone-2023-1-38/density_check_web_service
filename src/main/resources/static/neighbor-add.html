@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -309,12 +309,14 @@
 
     </script>
 
-<!--    <script>-->
-<!--        const result = data;-->
-<!--        if (result !== "") {-->
-<!--            alert(result);-->
-<!--        }-->
-<!--    </script>-->
+    <script>
+        window.onload = () => {
+            const result = [${result}];
+            if (result !== "") {
+                alert(result);
+            }
+        }
+    </script>
 </body>
 
 </html>

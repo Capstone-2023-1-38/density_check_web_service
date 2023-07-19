@@ -211,6 +211,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">이름</th>
                                 <th scope="col">이메일</th>
+                                <th scope="col">&nbsp;</th>
                             </tr>
                             </thead>
                             <tbody class="table_body">
@@ -334,7 +335,7 @@
                     str += '<TR>' +
                         '<TD><i class="bi bi-person-circle"></i></TD>' +
                         '<TD>' + data[i].toName + '</TD>' +
-                        '<TD>' + data[i].toEmail + '</TD>'
+                        '<TD>' + data[i].toEmail + '</TD>' +
                         '<TD><button type="button" class="btn btn-secondary" style="float:right">삭제</button></TD>';
                     str += '</TR>';
                 });

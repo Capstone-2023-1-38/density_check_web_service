@@ -24,7 +24,7 @@ public class FriendsService {
     @Transactional
     public List<FriendsListResponseDto> findMutualByFrom(String email) {
         Users user = usersRepository.findById(1L).orElseThrow();
-        Users user2 = usersRepository.findById(2L).orElse(usersRepository.saveAndFlush(new Users("아무개", "chju0905@naver.com", Role.USER)));
+        Users user2 = usersRepository.findByEmail("chjU0905@naver.com").orElse(usersRepository.saveAndFlush(new Users("아무개", "chju0905@naver.com", null, Role.USER)));
         if(friendsRepository.findByFromAndTo(user.getEmail(), user2.getEmail()).isEmpty()) {
             List<Friends> tmp = new ArrayList<>();
             tmp.add(new Friends(user, user2, true));
@@ -67,13 +67,16 @@ public class FriendsService {
 
     @Transactional
     public int count(String email) {
-        Users user = usersRepository.findById(1L).orElseThrow();
-        Users user2 = usersRepository.findById(3L).orElse(usersRepository.saveAndFlush(new Users("아무개2", "chju0905@kakao.com", Role.USER)));
-        if(friendsRepository.findByFromAndTo(user.getEmail(), user2.getEmail()).isEmpty()) {
-            List<Friends> tmp = new ArrayList<>();
-            tmp.add(new Friends(user, user2, false));
-            tmp.add(new Friends(user2, user, true));
-            friendsRepository.saveAllAndFlush(tmp);
+        Users user2 = null;
+        if (usersRepository.findById(3L).isEmpty()) {
+            Users user = usersRepository.findById(1L).orElseThrow();
+            user2 = usersRepository.saveAndFlush(new Users("아무개2", "chju0905@kakao.com", null, Role.USER));
+            if(friendsRepository.findByFromAndTo(user.getEmail(), user2.getEmail()).isEmpty()) {
+                List<Friends> tmp = new ArrayList<>();
+                tmp.add(new Friends(user, user2, false));
+                tmp.add(new Friends(user2, user, true));
+                friendsRepository.saveAllAndFlush(tmp);
+            }
         }
 
         return friendsRepository.countByFrom(email);
