@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
+    </style>
 </head>
 
 <body id="page-top">
@@ -40,7 +42,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/current-location.html">
                     <i class="bi bi-caret-right"></i>
                     <span>현재 위치에서의 밀집도</span></a>
             </li>
@@ -189,13 +191,18 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     
-                    <h1 class="h3 mb-4 text-gray-800" style="text-align: center">이웃 목록 
-                        <button type="button" class="btn btn-sm" style="border:0px; background-color: transparent;"
-                        onclick="location.href = 'neighbor-add.html'">
-                            <i class="bi bi-person-fill-add"></i>
-                            <!-- Counter - Alerts -->
-                            <span id="friend_add_count" class="badge badge-danger badge-counter"></span>
+                    <h1 class="h3 mb-4 text-gray-800" style="font-family: 'Orbit', sans-serif; font-weight: 700; font-size:40px;text-align: center">이웃 목록
+                        <button type="button" class="position-relative" onclick="location.href = 'neighbor-add.html'" style="border:0px; background-color: transparent;">
+                            <i class="bi bi-person-fill-add text-gray-800" style="font-size:40px"></i>
+                            <span id="friend_add_count"  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:17px">
+                            </span>
                         </button>
+<!--                        <button type="button" class="btn btn-sm" style="border:0px; background-color: transparent;"-->
+<!--                        onclick="location.href = 'neighbor-add.html'">-->
+<!--                            <i class="bi bi-person-fill-add " style="font-size:30px"></i>-->
+<!--                            &lt;!&ndash; Counter - Alerts &ndash;&gt;-->
+<!--                            <span class="position-absolute translate-middle badge rounded-pill bg-danger">2</span>-->
+<!--                        </button>-->
                     </h1>
                     <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto;">
                         <table class="table">
@@ -327,7 +334,8 @@
                     str += '<TR>' +
                         '<TD><i class="bi bi-person-circle"></i></TD>' +
                         '<TD>' + data[i].toName + '</TD>' +
-                        '<TD>' + data[i].toEmail + '</TD>';
+                        '<TD>' + data[i].toEmail + '</TD>'
+                        '<TD><button type="button" class="btn btn-secondary" style="float:right">삭제</button></TD>';
                     str += '</TR>';
                 });
                 $('.table_body').html(str);
