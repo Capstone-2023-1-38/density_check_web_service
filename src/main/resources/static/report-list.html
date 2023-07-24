@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800" style="font-family: 'Orbit', sans-serif; font-weight: 700; font-size:40px;text-align: center">제보 게시판</h1>
+    <table class="table col-md-10" style="margin-left: auto; margin-right: auto;">
+        <thead>
+        <tr class="table-active">
+            <th scope="col">#</th>
+            <th scope="col">위치</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일자</th>
+        </tr>
+        </thead>
+        <tbody class="table_body">
+        <tr th:each="post, loop : ${paging}" th:onclick="|location.href='/posts/${post.id}'|">
+            <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+            <td th:text="${post.location}"></td>
+            <td><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></td>
+            <td th:text="${post.author}"></td>
+            <td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
+        <!--                            <tr>-->
+        <!--                                <th scope="row">6</th>-->
+        <!--                                <td>6203 강의실</td>-->
+        <!--                                <td>제보합니다.</td>-->
+        <!--                                <td>user</td>-->
+        <!--                              </tr>-->
+        <!--                              <tr>-->
+        <!--                                <th scope="row">5</th>-->
+        <!--                                <td>6203 강의실</td>-->
+        <!--                                <td>제보합니다.</td>-->
+        <!--                                <td>user</td>-->
+        <!--                              </tr>-->
+        <!--                              <tr>-->
+        <!--                                <th scope="row">4</th>-->
+        <!--                                <td>6209 강의실</td>-->
+        <!--                                <td>제보합니다.</td>-->
+        <!--                                <td>user</td>-->
+        <!--                              </tr>-->
+        <!--                              <tr>-->
+        <!--                                <th scope="row">3</th>-->
+        <!--                                <td>6208 강의실</td>-->
+        <!--                                <td>제보합니다.</td>-->
+        <!--                                <td>user</td>-->
+        <!--                              </tr>-->
+        <!--                            <tr>-->
+        <!--                              <th scope="row">2</th>-->
+        <!--                              <td>6202 강의실</td>-->
+        <!--                              <td>제보 합니다.</td>-->
+        <!--                              <td>user</td>-->
+        <!--                            </tr>-->
+        <!--                            <tr>-->
+        <!--                              <th scope="row">1</th>-->
+        <!--                              <td>6208 강의실</td>-->
+        <!--                              <td>제보합니다.</td>-->
+        <!--                              <td>user</td>-->
+        <!--                            </tr>-->
+        </tbody>
+    </table>
+    <!--                    <nav aria-label="Page navigation example">-->
+    <!--                        <ul class="pagination justify-content-center">-->
+    <!--                        <li class="page-item">-->
+    <!--                            <a class="page-link" href="#" aria-label="Previous">-->
+    <!--                            <span aria-hidden="true">&laquo;</span>-->
+    <!--                            </a>-->
+    <!--                        </li>-->
+    <!--                        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+    <!--                        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+    <!--                        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+    <!--                        <li class="page-item">-->
+    <!--                            <a class="page-link" href="#" aria-label="Next">-->
+    <!--                            <span aria-hidden="true">&raquo;</span>-->
+    <!--                            </a>-->
+    <!--                        </li>-->
+    <!--                        </ul>-->
+    <!--                    </nav>-->
+    <!-- 페이징처리 시작 -->
+    <div th:if="${!paging.isEmpty()}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{|?page=${(paging.number)-1}|}">
+                    <span>이전</span>
+                </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(0, (paging.totalPages)-1)}"
+                th:if="${page >= (paging.number)-5 and page <= paging.number+5}"
+                th:classappend="${page == paging.number} ? 'active'"
+                class="page-item">
+                <a th:text="${page}+1" class="page-link" th:href="@{|/report-board.html?page=${page}|}"></a>
+            </li>
+            <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                    <span>다음</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 페이징처리 끝 -->
+</html>
