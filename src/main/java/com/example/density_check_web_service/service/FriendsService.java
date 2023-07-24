@@ -23,13 +23,15 @@ public class FriendsService {
 
     @Transactional
     public List<FriendsListResponseDto> findMutualByFrom(String email) {
-        Users user = usersRepository.findById(1L).orElseThrow();
-        Users user2 = usersRepository.findByEmail("chjU0905@naver.com").orElse(usersRepository.saveAndFlush(new Users("아무개", "chju0905@naver.com", null, Role.USER)));
-        if(friendsRepository.findByFromAndTo(user.getEmail(), user2.getEmail()).isEmpty()) {
-            List<Friends> tmp = new ArrayList<>();
-            tmp.add(new Friends(user, user2, true));
-            tmp.add(new Friends(user2, user, true));
-            friendsRepository.saveAllAndFlush(tmp);
+        if(usersRepository.findByEmail("chju0905@naver.com").isEmpty()) {
+            Users user = usersRepository.findById(1L).orElseThrow();
+            Users user2 = usersRepository.saveAndFlush(new Users("아무개", "chju0905@naver.com", null, Role.USER));
+            if(friendsRepository.findByFromAndTo(user.getEmail(), user2.getEmail()).isEmpty()) {
+                List<Friends> tmp = new ArrayList<>();
+                tmp.add(new Friends(user, user2, true));
+                tmp.add(new Friends(user2, user, true));
+                friendsRepository.saveAllAndFlush(tmp);
+            }
         }
         List<FriendsListResponseDto> friendsListResponseDtoList = friendsRepository.findMutualByFrom(email).stream()
                 .map(FriendsListResponseDto::new).collect(Collectors.toList());
@@ -99,7 +101,7 @@ public class FriendsService {
                 return "이웃 신청이 성공적으로 완료되었습니다.";
             }
             else {
-                return "이미 이웃 신청을 한 이메일입니다.";
+                return "이미 이웃 신청을 했거나, 이웃인 이메일입니다.";
             }
         }
         else {

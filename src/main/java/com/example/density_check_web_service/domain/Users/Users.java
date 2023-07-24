@@ -1,12 +1,15 @@
 package com.example.density_check_web_service.domain.Users;
 
 import com.example.density_check_web_service.domain.BaseTimeEntity;
+import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Setter
 @Getter
 @NoArgsConstructor
 @Entity
@@ -38,7 +41,6 @@ public class Users extends BaseTimeEntity {
 
     public Users update(String name) {
         this.name = name;
-
         return this;
     }
 

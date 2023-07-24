@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 
     <meta charset="utf-8">
@@ -163,13 +163,13 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">user</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>
                             <img class="img-profile rounded-circle"
                                  src="img/undraw_profile.svg"/>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="userDropdown">
+                             aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
                             <a class="dropdown-item" href="setting.html">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 설정
@@ -178,6 +178,13 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 로그아웃
+                            </a>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
+                            <a class="dropdown-item" href="login.html">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                로그인
                             </a>
                         </div>
                     </li>
@@ -191,10 +198,15 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <h1 class="h3 mb-4 text-gray-800" style="font-family: 'Orbit', sans-serif; font-weight: 700; font-size:40px;text-align: center">사용자 찾기</h1>
-                <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
-                    <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+                <form action="/find", method="post">
+                    <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                        <input name="email" type="text" class="form-control" placeholder="Useremail" aria-label="Useremail" aria-describedby="basic-addon1">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+                    </div>
+                </form>
+                <div class="col-md-8 input-group mb-3">
+                    <label class="col-sm-3 col-form-label" id="location" th:text="|위치: (${x}, ${y})|"></label>
                 </div>
                 <div style="text-align:center">
                     <img src="./img/map.png"/>
@@ -255,6 +267,29 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
+<script>
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/setting/name",
+        dataType: "json",
+        success: function(data) {
+            $('.userName').text(data.name);
+            if (data.picture)
+                $('.img-profile').attr("src", data.picture);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("통신 실패");
+        }
+    });
+</script>
+
+<!--<script>-->
+<!--    window.onload = () => {-->
+<!--        var x = "${x}";-->
+<!--        var y = "{$y}";-->
+<!--        alert(x);-->
+<!--    }-->
+<!--</script>-->
 
 </body>
 

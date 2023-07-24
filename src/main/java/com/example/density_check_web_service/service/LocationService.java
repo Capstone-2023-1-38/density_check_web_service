@@ -2,15 +2,25 @@ package com.example.density_check_web_service.service;
 
 import com.example.density_check_web_service.domain.Location.Location;
 import com.example.density_check_web_service.domain.Location.LocationRepository;
+import com.example.density_check_web_service.domain.Location.dto.LocationListResponseDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationRequestDto;
+import com.example.density_check_web_service.domain.Location.dto.LocationResponseDto;
 import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import com.example.density_check_web_service.domain.PiAddress.PiAddressRepository;
+import com.example.density_check_web_service.domain.Users.Role;
+import com.example.density_check_web_service.domain.Users.Users;
+import com.example.density_check_web_service.domain.Users.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -18,42 +28,88 @@ import java.util.stream.Collectors;
 public class LocationService {
     private final LocationRepository locationRepository;
     private final PiAddressRepository piAddressRepository;
+    private final UsersRepository usersRepository;
 
     @Transactional
     public void saveLocation(LocationRequestDto locationRequestDto) {
-        if (locationRepository.countByAddress(locationRequestDto.getAddress()) > 1000) {
-            Location tmp = locationRepository.findFirstByAddressOrderByModifiedDateAsc(locationRequestDto.getAddress());
-            tmp.setX(locationRequestDto.getX());
-            tmp.setY(locationRequestDto.getY());
-            locationRepository.save(tmp);
+        PiAddress tmp = piAddressRepository.findByAddress(locationRequestDto.getAddress())
+                .orElse(piAddressRepository.save(new PiAddress(locationRequestDto.getAddress())));
+        if (locationRepository.countByPiAddress(tmp) > 1000) {
+            Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateAsc(tmp);
+            location.setX(locationRequestDto.getX());
+            location.setY(locationRequestDto.getY());
+            locationRepository.save(location);
         }
         else {
-            if (!piAddressRepository.existsByAddress(locationRequestDto.getAddress())) {
-                PiAddress tmp = new PiAddress(locationRequestDto.getAddress());
-                piAddressRepository.save(tmp);
-            }
-            locationRepository.save(locationRequestDto.toEntity());
+            locationRepository.save(locationRequestDto.toEntity(tmp));
         }
     }
 
     @Transactional
-    public List<LocationRequestDto> allLocationToJson(){
+    public List<LocationResponseDto> allLocationToJson(){
         List<Location> entity = locationRepository.findFirst10ByOrderByIdDesc();
         return entity.stream()
-                .map(LocationRequestDto::new)
+                .map(LocationResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public List<LocationRequestDto> eachLocationToJson(){
+    public List<LocationResponseDto> eachLocationToJson(){
         List<PiAddress> allAddress = piAddressRepository.findAll();
-        List<Location> entity = new ArrayList<>();;
+        List<Location> entity = new ArrayList<>();
         for(PiAddress tmp : allAddress) {
-            entity.add(locationRepository.findFirstByAddressOrderByModifiedDateDesc(tmp.getAddress()));
+            entity.add(locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(tmp));
         }
         return entity.stream()
-                .map(LocationRequestDto::new)
+                .map(LocationResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public LocationResponseDto findLocationByEmail(String email) {
+        if(piAddressRepository.findByEmail(email).isEmpty()) {
+            Users users = new Users("아무개3", email, null, Role.USER);
+            usersRepository.saveAndFlush(users);
+            PiAddress piAddress = new PiAddress("111.111.111.111");
+            piAddress.setUsers(users);
+            piAddress = piAddressRepository.saveAndFlush(piAddress);
+            locationRepository.saveAndFlush(new Location(piAddress, 0, 0, 0));
+        }
+        PiAddress piAddress = piAddressRepository.findByEmail(email).orElseThrow();
+        Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateAsc(piAddress);
+
+        return new LocationResponseDto(location);
+    }
+
+    @Transactional
+    public List<LocationListResponseDto> findUserByArea(int x, int y, int duration) {
+        if(piAddressRepository.findByAddress("222").isEmpty()) {
+            for (int i = 2; i < 5; i++) {
+                Users users = new Users("아무개" + String.valueOf(i), "email@email.com" + String.valueOf(i), null, Role.USER);
+                usersRepository.saveAndFlush(users);
+                PiAddress piAddress = new PiAddress(String.valueOf(i * 111));
+                piAddress.setUsers(users);
+                piAddressRepository.saveAndFlush(piAddress);
+                locationRepository.saveAndFlush(new Location(piAddress, 0, x, y));
+                locationRepository.saveAndFlush(new Location(piAddress, 0, x, y));
+            }
+        }
+
+        List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(x, y, LocalDateTime.now().minusMinutes(duration));
+        Set<PiAddress> set = locations.stream().map(location -> {
+            return location.getPiAddress();
+        }).collect(Collectors.toSet());
+        List<LocationListResponseDto> modifiedLocation = new ArrayList<>();
+
+        for (Location location : locations) {
+            PiAddress piAddress = location.getPiAddress();
+            if (set.contains(piAddress)) {
+                modifiedLocation.add(LocationListResponseDto.builder().entity(location).build());
+                set.remove(piAddress);
+            }
+        }
+
+        return modifiedLocation;
     }
 
 

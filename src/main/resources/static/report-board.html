@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 
     <meta charset="utf-8">
@@ -214,13 +214,13 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">user</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg"/>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                                 aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
                                 <a class="dropdown-item" href="setting.html">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     설정
@@ -229,6 +229,13 @@
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     로그아웃
+                                </a>
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
+                                <a class="dropdown-item" href="login.html">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    로그인
                                 </a>
                             </div>
                         </li>
@@ -240,73 +247,6 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800" style="font-family: 'Orbit', sans-serif; font-weight: 700; font-size:40px;text-align: center">제보 게시판</h1>
-                    <table class="table col-md-10" style="margin-left: auto; margin-right: auto;">
-                        <thead>
-                            <tr class="table-active">
-                                <th scope="col">#</th>
-                                <th scope="col">위치</th>
-                                <th scope="col">제목</th>
-                                <th scope="col">작성자</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table_body">
-<!--                            <tr>-->
-<!--                                <th scope="row">6</th>-->
-<!--                                <td>6203 강의실</td>-->
-<!--                                <td>제보합니다.</td>-->
-<!--                                <td>user</td>-->
-<!--                              </tr>-->
-<!--                              <tr>-->
-<!--                                <th scope="row">5</th>-->
-<!--                                <td>6203 강의실</td>-->
-<!--                                <td>제보합니다.</td>-->
-<!--                                <td>user</td>-->
-<!--                              </tr>-->
-<!--                              <tr>-->
-<!--                                <th scope="row">4</th>-->
-<!--                                <td>6209 강의실</td>-->
-<!--                                <td>제보합니다.</td>-->
-<!--                                <td>user</td>-->
-<!--                              </tr>-->
-<!--                              <tr>-->
-<!--                                <th scope="row">3</th>-->
-<!--                                <td>6208 강의실</td>-->
-<!--                                <td>제보합니다.</td>-->
-<!--                                <td>user</td>-->
-<!--                              </tr>-->
-<!--                            <tr>-->
-<!--                              <th scope="row">2</th>-->
-<!--                              <td>6202 강의실</td>-->
-<!--                              <td>제보 합니다.</td>-->
-<!--                              <td>user</td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                              <th scope="row">1</th>-->
-<!--                              <td>6208 강의실</td>-->
-<!--                              <td>제보합니다.</td>-->
-<!--                              <td>user</td>-->
-<!--                            </tr>-->
-                          </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                        </ul>
-                    </nav>
                 </div>                    
                 <!-- /.container-fluid -->
 
@@ -364,28 +304,54 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <script>
+        const urlParams = new URL(location.href).searchParams;
+        const page = urlParams.get('page');
         $.ajax({
             type: "GET",
             url: "http://localhost:8080/posts/list",
+            data: {"page" : page},
+            dataType: "text",
+        // })
+        //     .done(function (result) {
+        //         console.log(result);
+        //         $(".container-fluid").replaceWith(result);
+        //     })
+        //     .fail(function (result) {
+        //         alert(result.error());
+        //     });
+            success: function(data) {
+                $(".container-fluid").replaceWith(data);
+                // str = '';
+                // $.each(data , function(i) {
+                //     str += '<TR>' +
+                //         '<TD>' + data[i].id + '</TD>' +
+                //         '<TD>' + data[i].location + '</TD>' +
+                //         '<TD>' + data[i].title + '</TD>' +
+                //         '<TD>' + data[i].author + '</TD>';
+                //     str += '</TR>';
+                // });
+                // $('.table_body').html(str);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("code:"+XMLHttpRequest.status+"\n"+"message:"+XMLHttpRequest.responseText+"\n");
+            }
+        });
+    </script>
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/setting/name",
             dataType: "json",
             success: function(data) {
-                str = '';
-
-                $.each(data , function(i) {
-                    str += '<TD>' + data[i].id + '</TD>' +
-                        '<TD>' + data[i].location + '</TD>' +
-                        '<TD>' + data[i].title + '</TD>' +
-                        '<TD>' + data[i].author + '</TD>';
-                    str += '</TR>';
-                });
-                $('.table_body').html(str);
+                $('.userName').text(data.name);
+                if (data.picture)
+                    $('.img-profile').attr("src", data.picture);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("통신 실패");
             }
         });
     </script>
-
 </body>
 
 </html>

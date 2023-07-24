@@ -6,7 +6,15 @@ import com.example.density_check_web_service.domain.Posts.dto.PostsListResponseD
 import com.example.density_check_web_service.domain.Posts.dto.PostsResponseDto;
 import com.example.density_check_web_service.domain.Posts.dto.PostsSaveRequestDto;
 import com.example.density_check_web_service.domain.Posts.dto.PostsUpdateRequestDto;
+import com.example.density_check_web_service.domain.Users.Users;
+import com.example.density_check_web_service.domain.Users.UsersRepository;
+import com.example.density_check_web_service.domain.Users.dto.UsersResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +25,13 @@ import java.util.stream.Collectors;
 @Service
 public class PostsService {
     private final PostsRepository postsRepository;
+    private final UsersRepository usersRepository;
 
     @Transactional
-    public Long save(PostsSaveRequestDto requestDto)
+    public Long save(PostsSaveRequestDto requestDto, String email)
     {
+        Users users = usersRepository.findByEmail(email).orElseThrow();
+        requestDto.setAuthor(users);
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 
@@ -51,9 +62,11 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostsListResponseDto> findAllDesc() {
-        return postsRepository.findAllDesc().stream()
-                .map(PostsListResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<PostsListResponseDto> findAllDesc(int page) {
+        Sort sort = Sort.by("createdDate").descending();
+        Pageable pageable = PageRequest.of(page, 10, sort);
+
+        return postsRepository.findAll(pageable)
+                .map(p -> PostsListResponseDto.builder().entity(p).build());
     }
 }

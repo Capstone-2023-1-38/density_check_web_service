@@ -20,6 +20,6 @@ public class UsersService {
     @Transactional
     public void updateName(String email, String name) {
         Users users = usersRepository.findByEmail(email).orElseThrow();
-        users.update(name);
+        users.setName(name);
     }
 }

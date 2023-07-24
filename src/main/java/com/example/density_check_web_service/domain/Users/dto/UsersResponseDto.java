@@ -16,4 +16,10 @@ public class UsersResponseDto {
         this.name = entity.getName();
         this.picture = entity.getPicture();
     }
+
+    public UsersResponseDto(String name) {
+        this.id = -1L;
+        this.name = name;
+        this.picture = null;
+    }
 }
