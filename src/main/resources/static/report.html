@@ -249,35 +249,37 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800" style="text-align: center">제보하기</h1>
-                    <form action="/posts/new", method="post">
+                    <form name="loc" action="/posts/new", method="post" onsubmit="return btn();">
                         <div class="col-sm-10 mb-3 row" style="margin-left: auto; margin-right:auto;">
                             <label class="col-sm-3 col-form-label">위치</label>
                             <div class="col-sm-2">
                                 <select name="location" class="form-select" aria-label="Default select example" style="margin-bottom: 10px">
-                                    <option selected>위치</option>
-                                    <option value="1">6202강의실</option>
-                                    <option value="2">6203강의실</option>
-                                    <option value="3">6208강의실</option>
-                                    <option value="3">6208강의실</option>
+                                    <option selected value="">위치</option>
+                                    <option value="6202강의실">6202강의실</option>
+                                    <option value="6203강의실">6203강의실</option>
+                                    <option value="6208강의실">6208강의실</option>
+                                    <option value="6210강의실">6210강의실</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-10" style="margin-left: auto; margin-right: auto">
+                        <div class="col-sm-10" style="margin-left: auto; margin-right: auto;">
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">제목</label>
-                                <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="제목을 입력하세요">
-
+                                <div class="col-sm-9">
+                                    <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="제목을 입력하세요">
+                                </div>
                                 <label class="col-sm-3 col-form-label">제보 내용</label>
                                 <div class="col-sm-9">
-                                    <textarea name="content" class="form-control col-sm-10" rows="10"></textarea>
+                                    <textarea name="content" class="form-control col-sm-10" rows="10" placeholder="내용을 입력하세요"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-secondary btn-sm col-sm-2 float-right" onclick="location.href = '/report-board.html'">제출</button>
+                        <button class="btn btn-secondary btn-sm col-sm-2 float-right">제출</button>
+                        <!--                    <button type="submit" class="btn btn-secondary btn-sm col-sm-2 float-right" onclick="javascript:btn()">제출</button>-->
                     </form>
 
 
-                </div>                    
+                </div>
                 <!-- /.container-fluid -->
 
             </div>
@@ -348,6 +350,17 @@
             }
         });
     </script>
+
+    <script>
+    function btn(){
+        if(loc.location.value == ""){
+            alert("위치를 선택해주세요.");
+            loc.location.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
 
 </body>
 
