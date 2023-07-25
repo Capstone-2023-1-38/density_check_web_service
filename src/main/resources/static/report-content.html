@@ -245,17 +245,17 @@
           <h1 class="h3 mb-4 text-gray-800" style="text-align: center">제보 게시판</h1>
           <div class="input-group mb-3">
             <span class="input-group-text">위치</span>
-            <input th:value="${post.location}" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <input th:value="${post.location}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">
             <span class="input-group-text">작성자</span>
-            <input th:value="${post.author}" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <input th:value="${post.author}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">제목</span>
-            <input th:value="${post.title}" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <input th:value="${post.title}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">
           </div>
 
           <div class="mb-3">
-            <textarea th:text="${post.content}" class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+            <textarea th:text="${post.content}" class="form-control" id="exampleFormControlTextarea1" rows="10" style="background-color:#FFF" readonly onfocus="this.blur();"></textarea>
           </div>
 
 
