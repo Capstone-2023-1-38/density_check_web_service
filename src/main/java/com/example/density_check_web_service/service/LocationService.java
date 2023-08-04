@@ -1,5 +1,7 @@
 package com.example.density_check_web_service.service;
 
+import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationRequestDto;
+import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationResponseDto;
 import com.example.density_check_web_service.domain.Location.Location;
 import com.example.density_check_web_service.domain.Location.LocationRepository;
 import com.example.density_check_web_service.domain.Location.dto.LocationListResponseDto;
@@ -111,6 +113,15 @@ public class LocationService {
 
         return modifiedLocation;
     }
-
-
+//
+//    public List<CameraLocationResponseDto> cameraLocation(List<CameraLocationRequestDto> cameraLocationRequestDtos) {
+//        double x1 = 0.3;
+//        double x2 = 0.7;
+//        double y = 0.7;
+//
+//        List<CameraLocationResponseDto> cameraLocationResponseDtos = cameraLocationRequestDtos.stream().map(c -> {c.getX(); c.getY()}).collect(Collectors.toList());
+//
+//        return cameraLocationResponseDtos;
+//
+//    }
 }

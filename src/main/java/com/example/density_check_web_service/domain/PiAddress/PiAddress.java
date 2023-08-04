@@ -28,4 +28,8 @@ public class PiAddress extends BaseTimeEntity {
     public PiAddress(String address) {
         this.address = address;
     }
+
+    public void update(Users users) {
+        this.users = users;
+    }
 }

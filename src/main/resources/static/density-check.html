@@ -5,7 +5,9 @@
     <style>
         .map {
             margin: 0 auto;
+            display: block;
         }
+
     </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,14 +20,15 @@
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
     </style>
+
 </head>
 
 <body id="page-top">
@@ -62,7 +65,7 @@
                     <i class="bi bi-caret-right"></i>
                     <span>건물 정보 및 대피로</span></a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="/camera-location.html">
                     <i class="bi bi-caret-right"></i>
@@ -83,11 +86,11 @@
                 <a class="nav-link" href="/report-board.html">
                     <i class="bi bi-caret-right"></i>
                     <span>제보 게시판</span></a>
-            </li>  
-            
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="/neighbor.html">
                     <i class="bi bi-caret-right"></i>
@@ -111,6 +114,7 @@
                     <i class="bi bi-caret-right"></i>
                     <span>회원 관리</span></a>
             </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -141,17 +145,17 @@
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                               placeholder="Search for..." aria-label="Search"
+                                               aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -165,14 +169,14 @@
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
+                                 aria-labelledby="alertsDropdown">
                                 <h4 class="dropdown-header">
                                     알림
                                 </h4>
@@ -216,10 +220,10 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg"/>
+                                     src="img/undraw_profile.svg"/>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -253,139 +257,179 @@
                     <!-- Page Heading -->
                     <div>
                         <h1 class="h3 mb-4 text-gray-800" style="font-family: 'Orbit', sans-serif; font-weight: 700; font-size:40px;text-align:center">건물 전체의 밀집도 <button type="button" class="btn btn-secondary btn-sm" data-bs-container="body" data-toggle="popover" title="밀집도 등급 (1㎡ 당)" style="vertical-align:middle">?</button></h1>
-                        
+
                     </div>
 
-<!--                    <div class="row">-->
-<!--                        <div class="col-lg-12" style="text-align:center">-->
-<!--                            <img src="./img/second_floor.png"/>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <!--                    <div class="row">-->
+                    <!--                        <div class="col-lg-12" style="text-align:center">-->
+                    <!--                            <img src="./img/second_floor.png"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
-<!--                    <div class="row justify-content-center">-->
-                        <script>
-                            var j = 0;
-                            var arr = new Array(2);
+                    <!--                    <div class="row justify-content-center">-->
+                    <script>
+                        var j = 0;
+                        var arr = new Array(6);
 
-                            for (var i = 0; i < arr.length; i++) {
-                                arr[i] = new Array(2).fill(0);
-                            }
-                            arr[0][0] = 7;
-                            arr[0][1] = 5;
-                            arr[1][0] = 3;
-                            arr[1][1] = 1;
-                            setInterval(
-                                function () {
-                                    $.ajax({
-                                        type: "GET",
-                                        url: "http://localhost:8080/getLocationsEach",
-                                        dataType: "json",
-                                        success: function(data) {
-                                            str = '';
+                        for (var i = 0; i < arr.length; i++) {
+                            arr[i] = new Array(4).fill(0);
+                        }
+                        arr[0][0] = 7;
+                        arr[0][1] = 5;
+                        arr[0][2] = 24;
+                        arr[0][3] = 6;
+                        arr[1][0] = 3;
+                        arr[1][1] = 1;
+                        arr[1][2] = 9;
+                        arr[1][3] = 10;
+                        arr[2][0] = 7;
+                        arr[2][1] = 5;
+                        arr[2][3] = 6;
+                        arr[3][0] = 3;
+                        arr[3][1] = 1;
+                        arr[3][3] = 2;
+                        arr[4][0] = 8;
+                        arr[4][1] = 5;
+                        arr[4][2] = 0;
+                        arr[4][3] = 6;
+                        arr[5][0] = 3;
+                        arr[5][1] = 1;
+                        arr[5][2] = 4;
+                        arr[5][3] = 1;
 
-                                            // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
-                                            $.each(data , function(i) {
-                                                ++arr[data[i].x][data[i].y];
-                                            });
-                                            sum = 0;
-                                            for(var i = 0; i < arr.length; i++) {
-                                                for(var j = 0; j < arr[i].length; j++) {
-                                                    var count = arr[i][j];
-                                                    var grade = null;
-                                                    if(count > 6) {
-                                                        grade = "고위험";
-                                                    }else if(count > 4) {
-                                                        grade = "위험";
-                                                    }else if(count > 2) {
-                                                        grade = "주의";
-                                                    }else {
-                                                        grade = "안전";
-                                                    }
-                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(1).html(count.toString()+"명");
-                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).html(grade);
+                        setInterval(
+                            function () {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "http://localhost:8080/getLocationsEach",
+                                    dataType: "json",
+                                    success: function(data) {
+                                        str = '';
 
-                                                    sum += count;
-
+                                        // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
+                                        $.each(data , function(i) {
+                                            ++arr[data[i].x][data[i].y];
+                                        });
+                                        sum = 0;
+                                        for(var i = 0; i < arr.length; i++) {
+                                            for(var j = 0; j < arr[i].length; j++) {
+                                                var count = arr[i][j];
+                                                var grade = null;
+                                                if(count > 7) {
+                                                    grade = "고위험";
+                                                }else if(count > 4) {
+                                                    grade = "위험";
+                                                }else if(count > 2) {
+                                                    grade = "주의";
+                                                }else {
+                                                    grade = "안전";
                                                 }
-                                            $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(sum + "명");
+                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(1).html(count.toString()+"명");
+                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).html(grade);
+
+                                                sum += count;
+
                                             }
-                                            //     str += '<TD>' + data[i].address + '</TD>' +
-                                            //         '<TD>' + data[i].distance + '</TD>' +
-                                            //         '<TD>' + data[i].x + '</TD>' +
-                                            //         '<TD>' + data[i].y + '</TD>';
-                                            //     str+= '</TR>';
-                                            //
-                                            //     var loc = data[i].x * 2 + data[i].y;
-                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);
-                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");
-                                            // });
-                                            // $('.table_body').html(str);
-                                        },
-                                        error: function(XMLHttpRequest, textStatus, errorThrown){
-                                            alert("통신 실패")
+                                            $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(sum + "명");
                                         }
-                                    })
-                                },1000);
-                        </script>
-<!--                        <table class="table table-striped">-->
-<!--                            <thead>-->
-<!--                            <tr>-->
-<!--                                <td>Address</td>-->
-<!--                                <td>Distance</td>-->
-<!--                                <td>x</td>-->
-<!--                                <td>y</td>-->
-<!--                            </tr>-->
-<!--                            </thead>-->
-<!--                            <tbody class="table_body">-->
-<!--                            </tbody>-->
-<!--                        </table>-->
-<!--                        <table class="table table-striped" id="coordinate_info">-->
-<!--                            <thead>-->
-<!--                            <tr>-->
-<!--                                <td>x</td>-->
-<!--                                <td>y</td>-->
-<!--                                <td>Count</td>-->
-<!--                                <td>Addresses</td>-->
-<!--                            </tr>-->
-<!--                            </thead>-->
-<!--                            <tbody class="table_body2">-->
-<!--                            <tr>-->
-<!--                                <td>0</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td></td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td>0</td>-->
-<!--                                <td>1</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td></td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td>1</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td></td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td>1</td>-->
-<!--                                <td>1</td>-->
-<!--                                <td>0</td>-->
-<!--                                <td></td>-->
-<!--                            </tr>-->
-<!--                            </tbody>-->
-<!--                        </table>-->
-<!--                    </div>-->
+                                        //     str += '<TD>' + data[i].address + '</TD>' +
+                                        //         '<TD>' + data[i].distance + '</TD>' +
+                                        //         '<TD>' + data[i].x + '</TD>' +
+                                        //         '<TD>' + data[i].y + '</TD>';
+                                        //     str+= '</TR>';
+                                        //
+                                        //     var loc = data[i].x * 2 + data[i].y;
+                                        //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);
+                                        //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");
+                                        // });
+                                        // $('.table_body').html(str);
+                                    },
+                                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                                        alert("통신 실패")
+                                    }
+                                })
+                            },1000);
+                    </script>
+                    <!--                        <table class="table table-striped">-->
+                    <!--                            <thead>-->
+                    <!--                            <tr>-->
+                    <!--                                <td>Address</td>-->
+                    <!--                                <td>Distance</td>-->
+                    <!--                                <td>x</td>-->
+                    <!--                                <td>y</td>-->
+                    <!--                            </tr>-->
+                    <!--                            </thead>-->
+                    <!--                            <tbody class="table_body">-->
+                    <!--                            </tbody>-->
+                    <!--                        </table>-->
+                    <!--                        <table class="table table-striped" id="coordinate_info">-->
+                    <!--                            <thead>-->
+                    <!--                            <tr>-->
+                    <!--                                <td>x</td>-->
+                    <!--                                <td>y</td>-->
+                    <!--                                <td>Count</td>-->
+                    <!--                                <td>Addresses</td>-->
+                    <!--                            </tr>-->
+                    <!--                            </thead>-->
+                    <!--                            <tbody class="table_body2">-->
+                    <!--                            <tr>-->
+                    <!--                                <td>0</td>-->
+                    <!--                                <td>0</td>-->
+                    <!--                                <td>0</td>-->
+                    <!--                                <td></td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr>-->
+                    <!--                                <td>0</td>-->
+                    <!--                                <td>1</td>-->
+                    <!--                                <td>0</td>-->
+                    <!--                                <td></td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr>-->
+                    <!--                                <td>1</td>-->
+                    <!--                                <td>0</td>-->
+                    <!--                                <td>0</td>-->
+                    <!--                                <td></td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr>-->
+                    <!--                                <td>1</td>-->
+                    <!--                                <td>1</td>-->
+                    <!--                                <td>0</td>-->
+                    <!--                                <td></td>-->
+                    <!--                            </tr>-->
+                    <!--                            </tbody>-->
+                    <!--                        </table>-->
+                    <!--                    </div>-->
                     <div style="position:relative;">
 
                         <!-- Image Map Generated by http://www.image-map.net/ -->
                         <img class="map" src="img/2floor.png" usemap="#image-map">
                         <map name="image-map">
-                            <area target="_self" alt="0,0" title="00" href="#" coords="62,395,297,43" shape="rect" onmouseover="changePopupText(0, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
-                            <area target="_self" alt="0,1" title="01" href="#" coords="558,395,299,45" shape="rect" onmouseover="changePopupText(0, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
-                            <area target="_self" alt="1,0" title="10" href="#" coords="62,394,298,709" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
-                            <area target="_self" alt="1,1" title="11" href="#" coords="298,394,562,707" shape="rect" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="0,0" title="A0" href="#" coords="181,43,65,160" shape="rect" onmouseover="changePopupText(0, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="0,1" title="A1" href="#" coords="181,160,298,43" shape="rect" onmouseover="changePopupText(0, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="0,2" title="A2" href="#" coords="298,43,416,160" shape="rect" onmouseover="changePopupText(0, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="0,3" title="A3" href="#" coords="416,43,571,160" shape="rect" onmouseover="changePopupText(0, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,0" title="B0" href="#" coords="64,160,181,277" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -625);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,1" title="B1" href="#" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -625);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,2" title="B2" href="#" coords="298,160,416,197" shape="rect" onmouseover="changePopupText(1, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -625);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,3" title="B3" href="#" coords="416,161,571,277" shape="rect" onmouseover="changePopupText(1, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -625);" onmouseout="hidePopup();">
+                            <area target="_self" alt="2,0" title="C0" href="#" coords="64,278,181,395" shape="rect" onmouseover="changePopupText(2, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -500);" onmouseout="hidePopup();">
+                            <area target="_self" alt="2,1" title="C1" href="#" coords="181,278,219,394" shape="rect" onmouseover="changePopupText(2, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -500);" onmouseout="hidePopup();">
+                            <area target="_self" alt="2,2" title="C2" coords="" shape="rect">
+                            <area target="_self" alt="2,3" title="C3" href="#" coords="416,277,571,394" shape="rect" onmouseover="changePopupText(2, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -500);" onmouseout="hidePopup();">
+                            <area target="_self" alt="3,0" title="D0" href="#" coords="64,395,181,511" shape="rect" onmouseover="changePopupText(3, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -375);" onmouseout="hidePopup();">
+                            <area target="_self" alt="3,1" title="D1" href="#" coords="181,395,219,511" shape="rect" onmouseover="changePopupText(3, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -375);" onmouseout="hidePopup();">
+                            <area target="_self" alt="3,2" title="D2" coords="" shape="rect">
+                            <area target="_self" alt="3,3" title="D3" href="#" coords="416,395,571,511" shape="rect" onmouseover="changePopupText(3, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -375);" onmouseout="hidePopup();">
+                            <area target="_self" alt="4,0" title="E0" href="#" coords="64,511,181,628" shape="rect" onmouseover="changePopupText(4, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -250);" onmouseout="hidePopup();">
+                            <area target="_self" alt="4,1" title="E1" href="#" coords="219,560,219,512,182,511,182,628,298,628,298,560,269,560" shape="poly" onmouseover="changePopupText(4, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -250);" onmouseout="hidePopup();">
+                            <area target="_self" alt="4,2" title="E2" href="#" coords="298,560,416,628" shape="rect" onmouseover="changePopupText(4, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -250);" onmouseout="hidePopup();">
+                            <area target="_self" alt="4,3" title="E3" href="#" coords="416,511,571,628" shape="rect" onmouseover="changePopupText(4, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -250);" onmouseout="hidePopup();">
+                            <area target="_self" alt="5,0" title="F0" href="#" coords="64,629,181,710" shape="rect" onmouseover="changePopupText(5, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -125);" onmouseout="hidePopup();">
+                            <area target="_self" alt="5,1" title="F1" href="#" coords="181,628,298,710" shape="rect" onmouseover="changePopupText(5, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -125);" onmouseout="hidePopup();">
+                            <area target="_self" alt="5,2" title="F2" href="#" coords="298,628,416,710" shape="rect" onmouseover="changePopupText(5, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -125);" onmouseout="hidePopup();">
+                            <area target="_self" alt="5,3" title="F3" href="#" coords="416,628,571,710" shape="rect" onmouseover="changePopupText(5, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -125);" onmouseout="hidePopup();">
                         </map>
+
                         <div id="popup" style="background-color:white;position:relative;opacity:0;border:2px solid black;padding:5px 12px;z-index: 1;height:5%;width:15%;"
                              onmouseover="showPopup();" onmouseout="hidePopup();">
                             <a id="popup_addr" href="#" style="text-decoration:none;color:black;" target="_blank">
@@ -408,7 +452,7 @@
                                 }
                                 $('area[alt="' + loc + '"]').data('maphilight', data);
 
-                                document.getElementById('popup_title').innerHTML = "(" + locx.toString() + "," + locy.toString() + ")";
+                                document.getElementById('popup_title').innerHTML = "(" + String.fromCharCode(locx+65) + "," + locy.toString() + ")";
                                 document.getElementById('popup_description').innerHTML = "실시간 인원 수: " + arr[locx][locy];
                                 document.getElementById('popup_addr').href = addr;
 
@@ -432,65 +476,156 @@
                     <div id="#building">
                         <table class="table col-md-10" style="margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF" id="coordinate_info">
                             <thead>
-                                <tr class="table-active">
-                                    <th scope="col">위치</th>
-                                    <th scope="col">인원수</th>
-                                    <th scope="col">밀집도 등급</th>
-                                </tr>
+                            <tr class="table-active">
+                                <th scope="col">위치</th>
+                                <th scope="col">인원수</th>
+                                <th scope="col">밀집도 등급</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>(0,0)</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>(0,1)</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>(1,0)</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>(1,1)</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-<!--                                <tr>-->
-<!--                                  <td>6202</td>-->
-<!--                                  <td>40명</td>-->
-<!--                                  <td>주의</td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                  <td>6203</td>-->
-<!--                                  <td>10명</td>-->
-<!--                                  <td>안전</td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <td>6208</td>-->
-<!--                                    <td>65명</td>-->
-<!--                                    <td>위험</td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <td>6209</td>-->
-<!--                                    <td>44명</td>-->
-<!--                                    <td>주의</td>-->
-<!--                                </tr>-->
-<!--                                <tr>-->
-<!--                                    <td>6210</td>-->
-<!--                                    <td>78명</td>-->
-<!--                                    <td>고위험</td>-->
-<!--                                </tr>-->
-                                <tr class="table-active">
-                                    <th>총 인원</th>
-                                    <th>237명</th>
-                                    <th>&nbsp;</th>
-                                </tr>
-                              </tbody>
-                          </table>
+                            <tr>
+                                <td>(A,0)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(A,1)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(A,2)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(A,3)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(B,0)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(B,1)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(B,2)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(B,3)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(C,0)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(C,1)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(C,3)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(D,0)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(D,1)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(D,3)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(E,0)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(E,1)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(E,2)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(E,3)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(F,0)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(F,1)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(F,2)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>(F,3)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <!--                                <tr>-->
+                            <!--                                  <td>6202</td>-->
+                            <!--                                  <td>40명</td>-->
+                            <!--                                  <td>주의</td>-->
+                            <!--                                </tr>-->
+                            <!--                                <tr>-->
+                            <!--                                  <td>6203</td>-->
+                            <!--                                  <td>10명</td>-->
+                            <!--                                  <td>안전</td>-->
+                            <!--                                </tr>-->
+                            <!--                                <tr>-->
+                            <!--                                    <td>6208</td>-->
+                            <!--                                    <td>65명</td>-->
+                            <!--                                    <td>위험</td>-->
+                            <!--                                </tr>-->
+                            <!--                                <tr>-->
+                            <!--                                    <td>6209</td>-->
+                            <!--                                    <td>44명</td>-->
+                            <!--                                    <td>주의</td>-->
+                            <!--                                </tr>-->
+                            <!--                                <tr>-->
+                            <!--                                    <td>6210</td>-->
+                            <!--                                    <td>78명</td>-->
+                            <!--                                    <td>고위험</td>-->
+                            <!--                                </tr>-->
+                            <tr class="table-active">
+                                <th>총 인원</th>
+                                <th>237명</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -521,7 +656,7 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -558,7 +693,7 @@
                 //content : '<div class="media"><img src="img/density_level.png" class="mr-3" alt="Sample Image"><div class="media-body"><h5 class="media-heading">kk</h5><p>kk</p></div></div>'
             });
         });
-        </script>
+    </script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
