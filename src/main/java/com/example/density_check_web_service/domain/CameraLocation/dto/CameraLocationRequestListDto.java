@@ -8,12 +8,15 @@ import java.util.List;
 
 @ToString
 @Getter
-public class CameraLocationResponseDto {
-    private Long id;
+public class CameraLocationRequestListDto {
     private String ip;
+    private List<CameraLocationRequestDto> xy;
 
+    public CameraLocationRequestListDto() {
+    }
     @Builder
-    public CameraLocationResponseDto(String ip) {
+    public CameraLocationRequestListDto(String ip, List<CameraLocationRequestDto> xy) {
         this.ip = ip;
+        this.xy = xy;
     }
 }

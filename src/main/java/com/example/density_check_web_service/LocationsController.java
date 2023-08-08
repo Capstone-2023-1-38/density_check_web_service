@@ -1,11 +1,11 @@
 package com.example.density_check_web_service;
 
-import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationRequestDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationListResponseDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationRequestDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationResponseDto;
 import com.example.density_check_web_service.service.LocationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
@@ -24,6 +24,7 @@ public class LocationsController {
         return "../templates/index.html";
     }
 
+    @ResponseBody
     @PostMapping(path = "/sendLocations")
     public void sendLocations(@RequestBody LocationRequestDto locationRequestDto) {
         locationService.saveLocation(locationRequestDto);
@@ -59,9 +60,4 @@ public class LocationsController {
         model.addAttribute("list", locationListResponseDto);
         return "/specific-area-user.html";
     }
-//    @ResponseBody
-//    @PostMapping(path = "/cameraLocation")
-//    public void cameraLocation(@RequestBody List<CameraLocationRequestDto> cameraLocationRequestDtoList) {
-//        System.out.println(cameraLocationRequestDtoList.toString());
-//    }
 }

@@ -1,6 +1,9 @@
 package com.example.density_check_web_service.service;
 
+import com.example.density_check_web_service.domain.CameraLocation.CameraLocation;
+import com.example.density_check_web_service.domain.CameraLocation.CameraLocationRepository;
 import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationRequestDto;
+import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationRequestListDto;
 import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationResponseDto;
 import com.example.density_check_web_service.domain.Location.Location;
 import com.example.density_check_web_service.domain.Location.LocationRepository;
@@ -15,12 +18,9 @@ import com.example.density_check_web_service.domain.Users.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -113,15 +113,4 @@ public class LocationService {
 
         return modifiedLocation;
     }
-//
-//    public List<CameraLocationResponseDto> cameraLocation(List<CameraLocationRequestDto> cameraLocationRequestDtos) {
-//        double x1 = 0.3;
-//        double x2 = 0.7;
-//        double y = 0.7;
-//
-//        List<CameraLocationResponseDto> cameraLocationResponseDtos = cameraLocationRequestDtos.stream().map(c -> {c.getX(); c.getY()}).collect(Collectors.toList());
-//
-//        return cameraLocationResponseDtos;
-//
-//    }
 }

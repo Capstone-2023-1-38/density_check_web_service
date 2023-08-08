@@ -275,7 +275,8 @@
                             <!--                            <video autoplay="true" id="videoElement">-->
 
                             <!--                            </video>-->
-                            <iframe src="http://127.0.0.1:5000" id="videoElement" allowfullscreen> </iframe>
+                            <img id="img" src="" width="640" height="480" />
+<!--                            <iframe src="http://172.30.1.63:5000" id="videoElement" allowfullscreen> </iframe>-->
                         </div>
 
                     </div>
@@ -335,6 +336,24 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script type="text/javascript"></script>
+
+    <script>
+        setInterval(
+            function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/getCameraFrame",
+                dataType: 'multipart/x-mixed-replace;boundary=frame',
+                success: function(data) {
+                    $("#img").setAttribute("src", data.frame)
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+
+                }
+            })
+        },50);
+    </script>
 
     <script>
         $.ajax({

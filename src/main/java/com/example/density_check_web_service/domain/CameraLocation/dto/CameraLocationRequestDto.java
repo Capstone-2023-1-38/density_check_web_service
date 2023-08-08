@@ -1,20 +1,26 @@
 package com.example.density_check_web_service.domain.CameraLocation.dto;
 
+import com.example.density_check_web_service.domain.CameraLocation.CameraLocation;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.List;
+
 @ToString
 @Getter
 public class CameraLocationRequestDto {
-    private double x;
-    private double y;
+    private int x;
+    private int y;
 
     public CameraLocationRequestDto() {
+
     }
+
     @Builder
-    public CameraLocationRequestDto(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public CameraLocationRequestDto(CameraLocation cameraLocation) {
+        this.x = cameraLocation.getY();
+        this.y = cameraLocation.getY();
     }
 }
+
