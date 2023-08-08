@@ -5,30 +5,42 @@
     <style>
         .map {
             margin: 0 auto;
-            display: block;
         }
 
+        body {
+            margin: 0;
+        }
+        #wrapper {
+            width: 100vw;
+            height: 100vh;
+        }
     </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-    <title>SB Admin 2 - Buttons</title>
+    <title>건물 전체의 밀집도</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
+        body{
+          font-family: 'NanumSquareNeoExtraBold'
+        }
     </style>
-
 </head>
 
 <body id="page-top">
@@ -37,92 +49,93 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-                <div class="sidebar-brand-text mx-3">MENU</div>
-            </a>
+        <!--  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="font-family: 'NanumSquareNeo';background-color:#1f2c54">-->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+        <!--    &lt;!&ndash; Sidebar - Brand &ndash;&gt;-->
+        <!--    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">-->
+        <!--      <div>MENU</div>-->
+        <!--    </a>-->
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/current-location.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>현재 위치에서의 밀집도</span></a>
-            </li>
+        <!--    &lt;!&ndash; Divider &ndash;&gt;-->
+        <!--    <hr class="sidebar-divider my-0">-->
 
-            <li class="nav-item">
-                <a class="nav-link" href="/density-check.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>실시간 밀집도 및 통계 확인</span></a>
-            </li>
+        <!--    &lt;!&ndash; Nav Item - Dashboard &ndash;&gt;-->
+        <!--    <li class="nav-item">-->
+        <!--      <a class="nav-link" href="/current-location.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>현재 위치에서의 밀집도</span></a>-->
+        <!--    </li>-->
 
-            <li class="nav-item">
-                <a class="nav-link" href="/building.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>건물 정보 및 대피로</span></a>
-            </li>
+        <!--    <li class="nav-item">-->
+        <!--      <a class="nav-link" href="/density-check.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>실시간 밀집도 및 통계 확인</span></a>-->
+        <!--    </li>-->
 
-            <li class="nav-item">
-                <a class="nav-link" href="/camera-location.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>카메라</span></a>
-            </li>
+        <!--    <li class="nav-item">-->
+        <!--      <a class="nav-link" href="/building.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>건물 정보 및 대피로</span></a>-->
+        <!--    </li>-->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+        <!--    <li class="nav-item">-->
+        <!--      <a class="nav-link" href="/camera-location.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>카메라</span></a>-->
+        <!--    </li>-->
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="/report.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>제보하기</span></a>
-            </li>
+        <!--    &lt;!&ndash; Divider &ndash;&gt;-->
+        <!--    <hr class="sidebar-divider my-0">-->
 
-            <li class="nav-item">
-                <a class="nav-link" href="/report-board.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>제보 게시판</span></a>
-            </li>
+        <!--    &lt;!&ndash; Nav Item - Pages Collapse Menu &ndash;&gt;-->
+        <!--    <li class="nav-item">-->
+        <!--      <a class="nav-link" href="/report.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>제보하기</span></a>-->
+        <!--    </li>-->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+        <!--    <li class="nav-item">-->
+        <!--      <a class="nav-link" href="/report-board.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>제보 게시판</span></a>-->
+        <!--    </li>-->
 
-            <li class="nav-item">
-                <a class="nav-link" href="/neighbor.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>이웃</span></a>
-            </li>
+        <!--    &lt;!&ndash; Divider &ndash;&gt;-->
+        <!--    <hr class="sidebar-divider">-->
 
-            <li class="nav-item">
-                <a class="nav-link" href="/user-find.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>사용자 찾기</span></a>
-            </li>
+        <!--    <li class="nav-item">-->
+        <!--      <a class="nav-link" href="/neighbor.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>이웃</span></a>-->
+        <!--    </li>-->
 
-            <li class="nav-item">
-                <a class="nav-link" href="/specific-area-user-find.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>특정 구역 사용자 찾기</span></a>
-            </li>
+        <!--    <li class="nav-item">-->
+        <!--      <a class="nav-link" href="/user-find.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>사용자 찾기</span></a>-->
+        <!--    </li>-->
 
-            <li class="nav-item">
-                <a class="nav-link" href="/user-management.html">
-                    <i class="bi bi-caret-right"></i>
-                    <span>회원 관리</span></a>
-            </li>
+        <!--    <li class="nav-item">-->
+        <!--      <a class="nav-link" href="/specific-area-user-find.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>특정 구역 사용자 찾기</span></a>-->
+        <!--    </li>-->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+        <!--    <li class="nav-item" sec:authorize="isAuthenticated()">-->
+        <!--      <a class="nav-link" href="/user-management.html">-->
+        <!--        <i class="bi bi-caret-right"></i>-->
+        <!--        <span>회원 관리</span></a>-->
+        <!--    </li>-->
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-        </ul>
+        <!--    &lt;!&ndash; Divider &ndash;&gt;-->
+        <!--    <hr class="sidebar-divider">-->
+
+        <!--    &lt;!&ndash; Sidebar Toggler (Sidebar) &ndash;&gt;-->
+        <!--    <div class="text-center d-none d-md-inline">-->
+        <!--      <button class="rounded-circle border-0" id="sidebarToggle"></button>-->
+        <!--    </div>-->
+        <!--  </ul>-->
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -132,273 +145,429 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!--      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">-->
 
-                    <!-- Sidebar Toggle (Topbar) -->
+                <!-- Sidebar Toggle (Topbar) -->
+
+
+                <!-- Topbar Navbar -->
+                <nav class="navbar navbar-expand topbar mb-4 static-top" style="background-color:#FFF; border-bottom:solid 1px #d7d9de">
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/" >MENU</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: 'NanumSquareNeoExtraBold'; color:#FFF; font-size:18px;">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                                        위치 및 밀집도
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                        <li><a class="dropdown-item" href="current-location.html" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
+                                        <li><a class="dropdown-item" href="density-check.html">실시간 밀집도 및 통계</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="building.html">건물 정보 및 대피로</a></li>
+                                        <li><a class="dropdown-item" href="camera-location.html">카메라</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        제보
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                        <li><a class="dropdown-item" href="report.html">제보하기</a></li>
+                                        <li><a class="dropdown-item" href="report-board.html">제보 게시판</a></li>
+                                    </ul>
+                                </li>
+                                <!--                            <li class="nav-item dropdown">-->
+                                <!--                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+                                <!--                                    이웃-->
+                                <!--                                </a>-->
+                                <!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Action</a></li>-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Another action</a></li>-->
+                                <!--                                    <li><hr class="dropdown-divider"></li>-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                                <!--                                </ul>-->
+                                <!--                            </li>-->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        찾기
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                        <li><a class="dropdown-item" href="user-find.html">사용자 찾기</a></li>
+                                        <li><a class="dropdown-item" href="specific-area-user-find.html">특정 구역 사용자 찾기</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align:center">
+                                <a>팀 네카라쿠배</a>
+                            </ul>
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">
+                                    <a href="/neighbor.html"><i class="bi bi-person-fill"></i></a>
+                                </li>
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bell fa-fw"></i>
+                                        <!-- Counter - Alerts -->
+                                        <span class="badge badge-danger badge-counter">3+</span>
+                                    </a>
+                                    <!-- Dropdown - Alerts -->
+                                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                         aria-labelledby="alertsDropdown">
+                                        <h4 class="dropdown-header">
+                                            알림
+                                        </h4>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-warning">
+                                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">23/07/05 13:49:07</div>
+                                                제보게시판에 새로운 제보가 등록되었습니다.
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-warning">
+                                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">23/07/05 11:23:45</div>
+                                                제보게시판에 새로운 제보가 등록되었습니다.
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-warning">
+                                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">23/07/02 21:34:11</div>
+                                                제보게시판에 새로운 제보가 등록되었습니다.
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>
+                                    </div>
+                                </li>
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow" >
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>
+                                        <img class="img-profile rounded-circle"
+                                             src="img/undraw_profile.svg"/>
+                                    </a>
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                         aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
+                                        <a class="dropdown-item" href="setting.html">
+                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            설정
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            로그아웃
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                         aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
+                                        <a class="dropdown-item" href="login.html">
+                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            로그인
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                 aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                               placeholder="Search for..." aria-label="Search"
-                                               aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="alertsDropdown">
-                                <h4 class="dropdown-header">
-                                    알림
-                                </h4>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">23/07/05 13:49:07</div>
-                                        제보게시판에 새로운 제보가 등록되었습니다.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">23/07/05 11:23:45</div>
-                                        제보게시판에 새로운 제보가 등록되었습니다.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">23/07/02 21:34:11</div>
-                                        제보게시판에 새로운 제보가 등록되었습니다.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>
-                                <img class="img-profile rounded-circle"
-                                     src="img/undraw_profile.svg"/>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
-                                <a class="dropdown-item" href="setting.html">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    설정
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    로그아웃
-                                </a>
-                            </div>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
-                                <a class="dropdown-item" href="login.html">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    로그인
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
+                        </div>
+                    </div>
                 </nav>
+                <!--        <ul class="navbar-nav ml-auto">-->
+
+                <!--          &lt;!&ndash; Nav Item - Search Dropdown (Visible Only XS) &ndash;&gt;-->
+                <!--          <li class="nav-item dropdown no-arrow d-sm-none">-->
+                <!--            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"-->
+                <!--               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--              <i class="fas fa-search fa-fw"></i>-->
+                <!--            </a>-->
+                <!--            &lt;!&ndash; Dropdown - Messages &ndash;&gt;-->
+                <!--            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated&#45;&#45;grow-in"-->
+                <!--                 aria-labelledby="searchDropdown">-->
+                <!--              <form class="form-inline mr-auto w-100 navbar-search">-->
+                <!--                <div class="input-group">-->
+                <!--                  <input type="text" class="form-control bg-light border-0 small"-->
+                <!--                         placeholder="Search for..." aria-label="Search"-->
+                <!--                         aria-describedby="basic-addon2">-->
+                <!--                  <div class="input-group-append">-->
+                <!--                    <button class="btn btn-primary" type="button">-->
+                <!--                      <i class="fas fa-search fa-sm"></i>-->
+                <!--                    </button>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--              </form>-->
+                <!--            </div>-->
+                <!--          </li>-->
+
+                <!--          &lt;!&ndash; Nav Item - Alerts &ndash;&gt;-->
+                <!--          <li class="nav-item dropdown no-arrow mx-1">-->
+                <!--            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"-->
+                <!--               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--              <i class="fas fa-bell fa-fw"></i>-->
+                <!--              &lt;!&ndash; Counter - Alerts &ndash;&gt;-->
+                <!--              <span class="badge badge-danger badge-counter">3+</span>-->
+                <!--            </a>-->
+                <!--            &lt;!&ndash; Dropdown - Alerts &ndash;&gt;-->
+                <!--            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+                <!--                 aria-labelledby="alertsDropdown">-->
+                <!--              <h4 class="dropdown-header">-->
+                <!--                알림-->
+                <!--              </h4>-->
+                <!--              <a class="dropdown-item d-flex align-items-center" href="#">-->
+                <!--                <div class="mr-3">-->
+                <!--                  <div class="icon-circle bg-warning">-->
+                <!--                    <i class="fas fa-exclamation-triangle text-white"></i>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--                <div>-->
+                <!--                  <div class="small text-gray-500">23/07/05 13:49:07</div>-->
+                <!--                  제보게시판에 새로운 제보가 등록되었습니다.-->
+                <!--                </div>-->
+                <!--              </a>-->
+                <!--              <a class="dropdown-item d-flex align-items-center" href="#">-->
+                <!--                <div class="mr-3">-->
+                <!--                  <div class="icon-circle bg-warning">-->
+                <!--                    <i class="fas fa-exclamation-triangle text-white"></i>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--                <div>-->
+                <!--                  <div class="small text-gray-500">23/07/05 11:23:45</div>-->
+                <!--                  제보게시판에 새로운 제보가 등록되었습니다.-->
+                <!--                </div>-->
+                <!--              </a>-->
+                <!--              <a class="dropdown-item d-flex align-items-center" href="#">-->
+                <!--                <div class="mr-3">-->
+                <!--                  <div class="icon-circle bg-warning">-->
+                <!--                    <i class="fas fa-exclamation-triangle text-white"></i>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--                <div>-->
+                <!--                  <div class="small text-gray-500">23/07/02 21:34:11</div>-->
+                <!--                  제보게시판에 새로운 제보가 등록되었습니다.-->
+                <!--                </div>-->
+                <!--              </a>-->
+                <!--              <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>-->
+                <!--            </div>-->
+                <!--          </li>-->
+
+                <!--          &lt;!&ndash; Nav Item - User Information &ndash;&gt;-->
+                <!--          <li class="nav-item dropdown no-arrow">-->
+                <!--            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"-->
+                <!--               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--              <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>-->
+                <!--              <img class="img-profile rounded-circle"-->
+                <!--                   src="img/undraw_profile.svg"/>-->
+                <!--            </a>-->
+                <!--            &lt;!&ndash; Dropdown - User Information &ndash;&gt;-->
+                <!--            <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+                <!--                 aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">-->
+                <!--              <a class="dropdown-item" href="setting.html">-->
+                <!--                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+                <!--                설정-->
+                <!--              </a>-->
+                <!--              <div class="dropdown-divider"></div>-->
+                <!--              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">-->
+                <!--                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>-->
+                <!--                로그아웃-->
+                <!--              </a>-->
+                <!--            </div>-->
+                <!--            <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+                <!--                 aria-labelledby="userDropdown" sec:authorize="isAnonymous()">-->
+                <!--              <a class="dropdown-item" href="login.html">-->
+                <!--                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+                <!--                로그인-->
+                <!--              </a>-->
+                <!--            </div>-->
+                <!--          </li>-->
+
+                <!--        </ul>-->
+
+                <!--      </nav>-->
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div>
-                        <h1 class="h3 mb-4 text-gray-800" style="font-family: 'Orbit', sans-serif; font-weight: 700; font-size:40px;text-align:center">건물 전체의 밀집도 <button type="button" class="btn btn-secondary btn-sm" data-bs-container="body" data-toggle="popover" title="밀집도 등급 (1㎡ 당)" style="vertical-align:middle">?</button></h1>
-
+                        <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align:center">건물 전체의 밀집도 <button type="button" class="btn btn-secondary btn-sm" data-bs-container="body" onclick="btn()" style="vertical-align:middle">?</button></h1>
+                        
                     </div>
 
-                    <!--                    <div class="row">-->
-                    <!--                        <div class="col-lg-12" style="text-align:center">-->
-                    <!--                            <img src="./img/second_floor.png"/>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-lg-12" style="text-align:center">-->
+<!--                            <img src="./img/second_floor.png"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <!--                    <div class="row justify-content-center">-->
-                    <script>
-                        var j = 0;
-                        var arr = new Array(6);
+<!--                    <div class="row justify-content-center">-->
+                        <script>
+                            var j = 0;
+                            var arr = new Array(6);
 
-                        for (var i = 0; i < arr.length; i++) {
-                            arr[i] = new Array(4).fill(0);
-                        }
-                        arr[0][0] = 7;
-                        arr[0][1] = 5;
-                        arr[0][2] = 24;
-                        arr[0][3] = 6;
-                        arr[1][0] = 3;
-                        arr[1][1] = 1;
-                        arr[1][2] = 9;
-                        arr[1][3] = 10;
-                        arr[2][0] = 7;
-                        arr[2][1] = 5;
-                        arr[2][3] = 6;
-                        arr[3][0] = 3;
-                        arr[3][1] = 1;
-                        arr[3][3] = 2;
-                        arr[4][0] = 8;
-                        arr[4][1] = 5;
-                        arr[4][2] = 0;
-                        arr[4][3] = 6;
-                        arr[5][0] = 3;
-                        arr[5][1] = 1;
-                        arr[5][2] = 4;
-                        arr[5][3] = 1;
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i] = new Array(4).fill(0);
+                            }
+                            arr[0][0] = 7;
+                            arr[0][1] = 5;
+                            arr[0][2] = 24;
+                            arr[0][3] = 6;
+                            arr[1][0] = 3;
+                            arr[1][1] = 1;
+                            arr[1][2] = 9;
+                            arr[1][3] = 10;
+                            arr[2][0] = 7;
+                            arr[2][1] = 5;
+                            arr[2][3] = 6;
+                            arr[3][0] = 3;
+                            arr[3][1] = 1;
+                            arr[3][3] = 2;
+                            arr[4][0] = 8;
+                            arr[4][1] = 5;
+                            arr[4][2] = 0;
+                            arr[4][3] = 6;
+                            arr[5][0] = 3;
+                            arr[5][1] = 1;
+                            arr[5][2] = 4;
+                            arr[5][3] = 1;
 
-                        setInterval(
-                            function () {
-                                $.ajax({
-                                    type: "GET",
-                                    url: "http://localhost:8080/getLocationsEach",
-                                    dataType: "json",
-                                    success: function(data) {
-                                        str = '';
+                            setInterval(
+                                function () {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "http://localhost:8080/getLocationsEach",
+                                        dataType: "json",
+                                        success: function(data) {
+                                            str = '';
 
-                                        // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
-                                        $.each(data , function(i) {
-                                            ++arr[data[i].x][data[i].y];
-                                        });
-                                        sum = 0;
-                                        for(var i = 0; i < arr.length; i++) {
-                                            for(var j = 0; j < arr[i].length; j++) {
-                                                var count = arr[i][j];
-                                                var grade = null;
-                                                if(count > 7) {
-                                                    grade = "고위험";
-                                                }else if(count > 4) {
-                                                    grade = "위험";
-                                                }else if(count > 2) {
-                                                    grade = "주의";
-                                                }else {
-                                                    grade = "안전";
+                                            // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
+                                            $.each(data , function(i) {
+                                                ++arr[data[i].x][data[i].y];
+                                            });
+                                            sum = 0;
+                                            for(var i = 0; i < arr.length; i++) {
+                                                for(var j = 0; j < arr[i].length; j++) {
+                                                    var count = arr[i][j];
+                                                    var grade = null;
+                                                    if(count > 7) {
+                                                        grade = "고위험";
+                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#ff0000");
+
+                                                    }else if(count > 4) {
+                                                        grade = "위험";
+                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#e3d430");
+
+                                                    }else if(count > 2) {
+                                                        grade = "주의";
+                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#008000");
+
+                                                    }else {
+                                                        grade = "안전";
+                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#808080");
+
+                                                    }
+
+                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(1).html(count.toString()+"명");
+                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).html(grade);
+                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').css("opacity",1);
+
+                                                    sum += count;
+
                                                 }
-                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(1).html(count.toString()+"명");
-                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).html(grade);
-
-                                                sum += count;
-
-                                            }
                                             $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(sum + "명");
+                                            }
+                                            //     str += '<TD>' + data[i].address + '</TD>' +
+                                            //         '<TD>' + data[i].distance + '</TD>' +
+                                            //         '<TD>' + data[i].x + '</TD>' +
+                                            //         '<TD>' + data[i].y + '</TD>';
+                                            //     str+= '</TR>';
+                                            //
+                                            //     var loc = data[i].x * 2 + data[i].y;
+                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);
+                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");
+                                            // });
+                                            // $('.table_body').html(str);
+                                        },
+                                        error: function(XMLHttpRequest, textStatus, errorThrown){
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: '통신 실패',
+                                                text: '통신에 실패하였습니다.',
+                                            })
                                         }
-                                        //     str += '<TD>' + data[i].address + '</TD>' +
-                                        //         '<TD>' + data[i].distance + '</TD>' +
-                                        //         '<TD>' + data[i].x + '</TD>' +
-                                        //         '<TD>' + data[i].y + '</TD>';
-                                        //     str+= '</TR>';
-                                        //
-                                        //     var loc = data[i].x * 2 + data[i].y;
-                                        //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);
-                                        //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");
-                                        // });
-                                        // $('.table_body').html(str);
-                                    },
-                                    error: function(XMLHttpRequest, textStatus, errorThrown){
-                                        alert("통신 실패")
-                                    }
-                                })
-                            },1000);
-                    </script>
-                    <!--                        <table class="table table-striped">-->
-                    <!--                            <thead>-->
-                    <!--                            <tr>-->
-                    <!--                                <td>Address</td>-->
-                    <!--                                <td>Distance</td>-->
-                    <!--                                <td>x</td>-->
-                    <!--                                <td>y</td>-->
-                    <!--                            </tr>-->
-                    <!--                            </thead>-->
-                    <!--                            <tbody class="table_body">-->
-                    <!--                            </tbody>-->
-                    <!--                        </table>-->
-                    <!--                        <table class="table table-striped" id="coordinate_info">-->
-                    <!--                            <thead>-->
-                    <!--                            <tr>-->
-                    <!--                                <td>x</td>-->
-                    <!--                                <td>y</td>-->
-                    <!--                                <td>Count</td>-->
-                    <!--                                <td>Addresses</td>-->
-                    <!--                            </tr>-->
-                    <!--                            </thead>-->
-                    <!--                            <tbody class="table_body2">-->
-                    <!--                            <tr>-->
-                    <!--                                <td>0</td>-->
-                    <!--                                <td>0</td>-->
-                    <!--                                <td>0</td>-->
-                    <!--                                <td></td>-->
-                    <!--                            </tr>-->
-                    <!--                            <tr>-->
-                    <!--                                <td>0</td>-->
-                    <!--                                <td>1</td>-->
-                    <!--                                <td>0</td>-->
-                    <!--                                <td></td>-->
-                    <!--                            </tr>-->
-                    <!--                            <tr>-->
-                    <!--                                <td>1</td>-->
-                    <!--                                <td>0</td>-->
-                    <!--                                <td>0</td>-->
-                    <!--                                <td></td>-->
-                    <!--                            </tr>-->
-                    <!--                            <tr>-->
-                    <!--                                <td>1</td>-->
-                    <!--                                <td>1</td>-->
-                    <!--                                <td>0</td>-->
-                    <!--                                <td></td>-->
-                    <!--                            </tr>-->
-                    <!--                            </tbody>-->
-                    <!--                        </table>-->
-                    <!--                    </div>-->
+                                    })
+                                },1000);
+                        </script>
+<!--                        <table class="table table-striped">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <td>Address</td>-->
+<!--                                <td>Distance</td>-->
+<!--                                <td>x</td>-->
+<!--                                <td>y</td>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody class="table_body">-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                        <table class="table table-striped" id="coordinate_info">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <td>x</td>-->
+<!--                                <td>y</td>-->
+<!--                                <td>Count</td>-->
+<!--                                <td>Addresses</td>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody class="table_body2">-->
+<!--                            <tr>-->
+<!--                                <td>0</td>-->
+<!--                                <td>0</td>-->
+<!--                                <td>0</td>-->
+<!--                                <td></td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>0</td>-->
+<!--                                <td>1</td>-->
+<!--                                <td>0</td>-->
+<!--                                <td></td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>1</td>-->
+<!--                                <td>0</td>-->
+<!--                                <td>0</td>-->
+<!--                                <td></td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>1</td>-->
+<!--                                <td>1</td>-->
+<!--                                <td>0</td>-->
+<!--                                <td></td>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
                     <div style="position:relative;">
 
                         <!-- Image Map Generated by http://www.image-map.net/ -->
@@ -408,26 +577,26 @@
                             <area target="_self" alt="0,1" title="A1" href="#" coords="181,160,298,43" shape="rect" onmouseover="changePopupText(0, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
                             <area target="_self" alt="0,2" title="A2" href="#" coords="298,43,416,160" shape="rect" onmouseover="changePopupText(0, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
                             <area target="_self" alt="0,3" title="A3" href="#" coords="416,43,571,160" shape="rect" onmouseover="changePopupText(0, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
-                            <area target="_self" alt="1,0" title="B0" href="#" coords="64,160,181,277" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -625);" onmouseout="hidePopup();">
-                            <area target="_self" alt="1,1" title="B1" href="#" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -625);" onmouseout="hidePopup();">
-                            <area target="_self" alt="1,2" title="B2" href="#" coords="298,160,416,197" shape="rect" onmouseover="changePopupText(1, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -625);" onmouseout="hidePopup();">
-                            <area target="_self" alt="1,3" title="B3" href="#" coords="416,161,571,277" shape="rect" onmouseover="changePopupText(1, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -625);" onmouseout="hidePopup();">
-                            <area target="_self" alt="2,0" title="C0" href="#" coords="64,278,181,395" shape="rect" onmouseover="changePopupText(2, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -500);" onmouseout="hidePopup();">
-                            <area target="_self" alt="2,1" title="C1" href="#" coords="181,278,219,394" shape="rect" onmouseover="changePopupText(2, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -500);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,0" title="B0" href="#" coords="64,160,181,277" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,1" title="B1" href="#" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,2" title="B2" href="#" coords="298,160,416,197" shape="rect" onmouseover="changePopupText(1, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="1,3" title="B3" href="#" coords="416,161,571,277" shape="rect" onmouseover="changePopupText(1, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="2,0" title="C0" href="#" coords="64,278,181,395" shape="rect" onmouseover="changePopupText(2, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="2,1" title="C1" href="#" coords="181,278,219,394" shape="rect" onmouseover="changePopupText(2, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
                             <area target="_self" alt="2,2" title="C2" coords="" shape="rect">
-                            <area target="_self" alt="2,3" title="C3" href="#" coords="416,277,571,394" shape="rect" onmouseover="changePopupText(2, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -500);" onmouseout="hidePopup();">
-                            <area target="_self" alt="3,0" title="D0" href="#" coords="64,395,181,511" shape="rect" onmouseover="changePopupText(3, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -375);" onmouseout="hidePopup();">
-                            <area target="_self" alt="3,1" title="D1" href="#" coords="181,395,219,511" shape="rect" onmouseover="changePopupText(3, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -375);" onmouseout="hidePopup();">
+                            <area target="_self" alt="2,3" title="C3" href="#" coords="416,277,571,394" shape="rect" onmouseover="changePopupText(2, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="3,0" title="D0" href="#" coords="64,395,181,511" shape="rect" onmouseover="changePopupText(3, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="3,1" title="D1" href="#" coords="181,395,219,511" shape="rect" onmouseover="changePopupText(3, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
                             <area target="_self" alt="3,2" title="D2" coords="" shape="rect">
-                            <area target="_self" alt="3,3" title="D3" href="#" coords="416,395,571,511" shape="rect" onmouseover="changePopupText(3, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -375);" onmouseout="hidePopup();">
-                            <area target="_self" alt="4,0" title="E0" href="#" coords="64,511,181,628" shape="rect" onmouseover="changePopupText(4, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -250);" onmouseout="hidePopup();">
-                            <area target="_self" alt="4,1" title="E1" href="#" coords="219,560,219,512,182,511,182,628,298,628,298,560,269,560" shape="poly" onmouseover="changePopupText(4, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -250);" onmouseout="hidePopup();">
-                            <area target="_self" alt="4,2" title="E2" href="#" coords="298,560,416,628" shape="rect" onmouseover="changePopupText(4, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -250);" onmouseout="hidePopup();">
-                            <area target="_self" alt="4,3" title="E3" href="#" coords="416,511,571,628" shape="rect" onmouseover="changePopupText(4, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -250);" onmouseout="hidePopup();">
-                            <area target="_self" alt="5,0" title="F0" href="#" coords="64,629,181,710" shape="rect" onmouseover="changePopupText(5, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -125);" onmouseout="hidePopup();">
-                            <area target="_self" alt="5,1" title="F1" href="#" coords="181,628,298,710" shape="rect" onmouseover="changePopupText(5, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -125);" onmouseout="hidePopup();">
-                            <area target="_self" alt="5,2" title="F2" href="#" coords="298,628,416,710" shape="rect" onmouseover="changePopupText(5, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -125);" onmouseout="hidePopup();">
-                            <area target="_self" alt="5,3" title="F3" href="#" coords="416,628,571,710" shape="rect" onmouseover="changePopupText(5, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -125);" onmouseout="hidePopup();">
+                            <area target="_self" alt="3,3" title="D3" href="#" coords="416,395,571,511" shape="rect" onmouseover="changePopupText(3, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="4,0" title="E0" href="#" coords="64,511,181,628" shape="rect" onmouseover="changePopupText(4, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="4,1" title="E1" href="#" coords="219,560,219,512,182,511,182,628,298,628,298,560,269,560" shape="poly" onmouseover="changePopupText(4, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="4,2" title="E2" href="#" coords="298,560,416,628" shape="rect" onmouseover="changePopupText(4, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="4,3" title="E3" href="#" coords="416,511,571,628" shape="rect" onmouseover="changePopupText(4, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="5,0" title="F0" href="#" coords="64,629,181,710" shape="rect" onmouseover="changePopupText(5, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="5,1" title="F1" href="#" coords="181,628,298,710" shape="rect" onmouseover="changePopupText(5, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="5,2" title="F2" href="#" coords="298,628,416,710" shape="rect" onmouseover="changePopupText(5, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
+                            <area target="_self" alt="5,3" title="F3" href="#" coords="416,628,571,710" shape="rect" onmouseover="changePopupText(5, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 250, -750);" onmouseout="hidePopup();">
                         </map>
 
                         <div id="popup" style="background-color:white;position:relative;opacity:0;border:2px solid black;padding:5px 12px;z-index: 1;height:5%;width:15%;"
@@ -473,159 +642,159 @@
                         </script>
                     </div>
 
-                    <div id="#building">
-                        <table class="table col-md-10" style="margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF" id="coordinate_info">
+                    <div class="col-md-5" id="#building" style="height:714px; overflow:auto">
+                        <table class="table" style="color:#595959; float:right; margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF" id="coordinate_info">
                             <thead>
-                            <tr class="table-active">
-                                <th scope="col">위치</th>
-                                <th scope="col">인원수</th>
-                                <th scope="col">밀집도 등급</th>
-                            </tr>
+                                <tr class="table-active">
+                                    <th scope="col">위치</th>
+                                    <th scope="col">인원수</th>
+                                    <th scope="col">밀집도 등급</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>(A,0)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(A,1)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(A,2)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(A,3)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(B,0)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(B,1)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(B,2)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(B,3)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(C,0)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(C,1)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(C,3)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(D,0)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(D,1)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(D,3)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(E,0)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(E,1)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(E,2)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(E,3)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(F,0)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(F,1)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(F,2)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>(F,3)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                                <tr>
+                                    <td>(A,0)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(A,1)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(A,2)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(A,3)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(B,0)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(B,1)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(B,2)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(B,3)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(C,0)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(C,1)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(C,3)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(D,0)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(D,1)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(D,3)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(E,0)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(E,1)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(E,2)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(E,3)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(F,0)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(F,1)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(F,2)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>(F,3)</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
 
-                            <!--                                <tr>-->
-                            <!--                                  <td>6202</td>-->
-                            <!--                                  <td>40명</td>-->
-                            <!--                                  <td>주의</td>-->
-                            <!--                                </tr>-->
-                            <!--                                <tr>-->
-                            <!--                                  <td>6203</td>-->
-                            <!--                                  <td>10명</td>-->
-                            <!--                                  <td>안전</td>-->
-                            <!--                                </tr>-->
-                            <!--                                <tr>-->
-                            <!--                                    <td>6208</td>-->
-                            <!--                                    <td>65명</td>-->
-                            <!--                                    <td>위험</td>-->
-                            <!--                                </tr>-->
-                            <!--                                <tr>-->
-                            <!--                                    <td>6209</td>-->
-                            <!--                                    <td>44명</td>-->
-                            <!--                                    <td>주의</td>-->
-                            <!--                                </tr>-->
-                            <!--                                <tr>-->
-                            <!--                                    <td>6210</td>-->
-                            <!--                                    <td>78명</td>-->
-                            <!--                                    <td>고위험</td>-->
-                            <!--                                </tr>-->
-                            <tr class="table-active">
-                                <th>총 인원</th>
-                                <th>237명</th>
-                                <th>&nbsp;</th>
-                            </tr>
-                            </tbody>
-                        </table>
+<!--                                <tr>-->
+<!--                                  <td>6202</td>-->
+<!--                                  <td>40명</td>-->
+<!--                                  <td>주의</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <td>6203</td>-->
+<!--                                  <td>10명</td>-->
+<!--                                  <td>안전</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>6208</td>-->
+<!--                                    <td>65명</td>-->
+<!--                                    <td>위험</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>6209</td>-->
+<!--                                    <td>44명</td>-->
+<!--                                    <td>주의</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>6210</td>-->
+<!--                                    <td>78명</td>-->
+<!--                                    <td>고위험</td>-->
+<!--                                </tr>-->
+                                <tr class="table-active">
+                                    <th>총 인원</th>
+                                    <th>237명</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                              </tbody>
+                          </table>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -656,7 +825,7 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -693,13 +862,14 @@
                 //content : '<div class="media"><img src="img/density_level.png" class="mr-3" alt="Sample Image"><div class="media-body"><h5 class="media-heading">kk</h5><p>kk</p></div></div>'
             });
         });
-    </script>
+        </script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
     <script type="text/javascript">
@@ -720,9 +890,23 @@
                     $('.img-profile').attr("src", data.picture);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("통신 실패");
+                Swal.fire({
+                  icon: 'error',
+                  title: '통신 실패',
+                  text: '통신에 실패하였습니다.',
+                })
             }
         });
+    </script>
+    <script>
+        function btn(){
+            Swal.fire({
+              title: '<strong>밀집도 등급</strong>',
+              html:
+                '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
+
+            })
+        }
     </script>
 
 </body>
