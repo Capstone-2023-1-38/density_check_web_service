@@ -51,13 +51,13 @@ public class LocationsController {
         LocationResponseDto locationRequestDto = locationService.findLocationByEmail(email);
         model.addAttribute("x", locationRequestDto.getX());
         model.addAttribute("y", locationRequestDto.getY());
-        return "/user-find.html";
+        return "/user-find";
     }
 
     @GetMapping(path = "/area")
     public String findUserByArea(@RequestParam int x, @RequestParam int y, @RequestParam(defaultValue = "1") int duration, Model model) {
         List<LocationListResponseDto> locationListResponseDto = locationService.findUserByArea(x, y, duration);
         model.addAttribute("list", locationListResponseDto);
-        return "/specific-area-user.html";
+        return "/specific-area-user";
     }
 }

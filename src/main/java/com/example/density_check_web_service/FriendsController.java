@@ -46,7 +46,7 @@ public class FriendsController {
         String fromEmail = oAuth2User.getAttribute("email");
 
         friendsService.update(fromEmail, toEmail);
-        return "redirect:/neighbor-add.html";
+        return "redirect:/neighbor-add";
     }
 
     @GetMapping(path = "/friends/deny")
@@ -74,12 +74,12 @@ public class FriendsController {
         String fromEmail = oAuth2User.getAttribute("email");
         redirectAttributes.addFlashAttribute("result", friendsService.save(fromEmail, toEmail));
 
-        return "redirect:/redirectNeighborAdd";
+        return "redirect:/neighbor-add";
     }
 
     @GetMapping(path = "/redirectNeighborAdd")
     public String redirectNeighborAdd(Model model) {
 
-        return "/neighbor-add.html";
+        return "/neighbor-add";
     }
 }

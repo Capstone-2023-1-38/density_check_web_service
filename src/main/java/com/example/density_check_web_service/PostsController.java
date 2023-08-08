@@ -39,7 +39,7 @@ public class PostsController {
     public String findById(@PathVariable Long id, Model model)
     {
         model.addAttribute("post", postsService.findById(id));
-        return "/report-content.html";
+        return "/report-content";
     }
     @ResponseBody
     @DeleteMapping("/api/v1/posts/{id}")
@@ -53,7 +53,7 @@ public class PostsController {
     public String findAll(@RequestParam(defaultValue = "0") int page, Model model)
     {
         model.addAttribute("paging", postsService.findAllDesc(page));
-        return "/report-list.html";
+        return "/report-list";
     }
 
 }

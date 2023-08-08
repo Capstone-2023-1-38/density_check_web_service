@@ -30,6 +30,6 @@ public class UsersController {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getAttribute("email");
         usersService.updateName(email, name);
-        return "redirect:/setting.html";
+        return "redirect:/setting";
     }
 }

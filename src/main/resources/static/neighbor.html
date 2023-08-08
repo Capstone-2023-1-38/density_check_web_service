@@ -205,11 +205,11 @@
                                         위치 및 밀집도
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
-                                        <li><a class="dropdown-item" href="current-location.html" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
-                                        <li><a class="dropdown-item" href="density-check.html">실시간 밀집도 및 통계</a></li>
+                                        <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
+                                        <li><a class="dropdown-item" href="/density-check">실시간 밀집도 및 통계</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="building.html">건물 정보 및 대피로</a></li>
-                                        <li><a class="dropdown-item" href="camera-location.html">카메라</a></li>
+                                        <li><a class="dropdown-item" href="/building">건물 정보 및 대피로</a></li>
+                                        <li><a class="dropdown-item" href="/camera-location">카메라</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -217,8 +217,8 @@
                                         제보
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
-                                        <li><a class="dropdown-item" href="report.html">제보하기</a></li>
-                                        <li><a class="dropdown-item" href="report-board.html">제보 게시판</a></li>
+                                        <li><a class="dropdown-item" href="/report">제보하기</a></li>
+                                        <li><a class="dropdown-item" href="/report-board">제보 게시판</a></li>
                                     </ul>
                                 </li>
                                 <!--                            <li class="nav-item dropdown">-->
@@ -237,8 +237,8 @@
                                         찾기
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
-                                        <li><a class="dropdown-item" href="user-find.html">사용자 찾기</a></li>
-                                        <li><a class="dropdown-item" href="specific-area-user-find.html">특정 구역 사용자 찾기</a></li>
+                                        <li><a class="dropdown-item" href="/user-find">사용자 찾기</a></li>
+                                        <li><a class="dropdown-item" href="/specific-area-user-find">특정 구역 사용자 찾기</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -247,7 +247,7 @@
                             </ul>
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">
-                                    <a href="/neighbor.html"><i class="bi bi-person-fill"></i></a>
+                                    <a href="/neighbor"><i class="bi bi-person-fill"></i></a>
                                 </li>
                                 <li class="nav-item dropdown no-arrow mx-1">
                                     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -310,7 +310,7 @@
                                     <!-- Dropdown - User Information -->
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                          aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
-                                        <a class="dropdown-item" href="setting.html">
+                                        <a class="dropdown-item" href="/setting">
                                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                             설정
                                         </a>
@@ -450,7 +450,7 @@
                     <!-- Page Heading -->
 
                     <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center;">이웃 목록
-                        <button type="button" class="position-relative" onclick="location.href = 'neighbor-add.html'" style="border:0px; background-color: transparent;">
+                        <button type="button" class="position-relative" onclick="location.href = '/neighbor-add'" style="border:0px; background-color: transparent;">
                             <i class="bi bi-person-fill-add text-gray-800" style="font-size:35px"></i>
                             <span id="friend_add_count"  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary text-white" style="font-size:15px;">
                                 </span>
@@ -607,16 +607,6 @@
                     str += '</TR>';
                 });
                 $('.table_body').html(str);
-                $('.location-btn').click(function(){
-                  var str="";
-                  var tdArr = new Array();
-                  var locBtn = $(this);
-
-                  var tr = locBtn.parent().parent();
-                  var td = tr.children();
-
-                  $('#neighbor-location').html(td.eq(1).text() + '님의 위치 : ');
-              });
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("통신 실패");
@@ -624,6 +614,18 @@
         });
     </script>
 
+    <script>
+        $('.location-btn').click(function(){
+            var str="";
+            var tdArr = new Array();
+            var locBtn = $(this);
+
+            var tr = locBtn.parent().parent();
+            var td = tr.children();
+
+            $('#neighbor-location').html(td.eq(1).text() + '님의 위치 : ');
+        });
+    </script>
 
     <script>
         $.ajax({
