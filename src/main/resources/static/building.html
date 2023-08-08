@@ -147,9 +147,6 @@
 
                 <!-- Topbar Navbar -->
                 <nav class="navbar navbar-expand topbar mb-4 static-top" style="background-color:#FFF; border-bottom:solid 1px #d7d9de">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
                     <div class="container-fluid">
                         <a class="navbar-brand" href="/" >MENU</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -408,47 +405,40 @@
                     <div>
                         <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style=" font-weight: 700; font-size:40px; text-align:center">건물 대피로 및 정보</h1>
                     </div>
-
-                    <div id="carouselExampleControls" class="carousel slide">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div style="height:714px; margin-left:auto; margin-right:auto; padding-top:150px; text-align:center;
-">
-                                    <div style="display:inline-block;">
-                                        <img src="./img/csbuilding.png" style="width:600px;"/>
-                                    </div>
-                                    <div style="display:inline-block; vertical-align:middle; margin-left: 50px; font-size:20px; letter-spacing:-1px;">
-                                        <p>지하층수 : 1층</p>
-                                        <p>지상층수 : 5층</p>
-                                        <p>준공연도 : 1982년 12월 15일</p>
-                                        <p>건축면적 : 1825㎡</p>
-                                        <p>연면적 : 8382㎡</p>
-                                        <p>안전등급 : B</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div style="width:600px; height:714px; margin-left:auto; margin-right:auto; position:relative;">
-
+                    <div class="col-md-11" style="margin-left:auto; margin-right:auto">
+                        <table class="table table-bordered" bgcolor="#FFF" style="text-align:center">
+                            <thead>
+                            <tr bgcolor="#858796" style="color:#FFF;">
+                                <th scope="col">건물 정보</th>
+                                <th scope="col" colspan="2">건물 대피로</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td scope="row"><img src="./img/csbuilding.png" style="width:600px;"/></td>
+                                <td colspan="2" rowspan="2" ><div style="width:600px; height:714px; margin-left:auto; margin-right:auto; position:relative;">
                                     <img src="./img/2floor.png"/>
                                     <div>
-                                        <img src="./img/exit_icon.png" type="button" style="position: absolute; top:5%; left:28%; width:50px; height:50px;"/>
-                                        <img src="./img/exit_icon.png" type="button" style="position: absolute; top:90%; left:48%; width:50px; height:50px;"/>
-<!--                                        <i class="bi bi-box-arrow-right" type="button" style="position: absolute; top:5%; left:30%; font-size: 50px; font-weight: bold; color:#b02323;"></i>-->
-<!--                                        <i class="bi bi-box-arrow-right" type="button" style="position: absolute; top:90%; left:48%; font-size: 50px; font-weight:bold; color:#b02323;"></i>-->
+                                        <i class="bi bi-box-arrow-right" type="button" style="position: absolute; top:5%; left:30%; font-size: 50px; font-weight:900; color:#b30404;"></i>
+                                        <i class="bi bi-box-arrow-right" type="button" style="position: absolute; top:90%; left:48%; font-size: 50px; font-weight:900; color:#b30404;"></i>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" style="font-size: 50px; color:black;">
-                            &lt;
-                          </button>
-                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" style="color:black; font-size: 50px;">
-                            &gt;
-                          </button>
+                                </div></td>
+                            </tr>
+                            <tr>
+                                <td><div style="display:inline-block; vertical-align:middle; margin-left: 50px; font-size:20px;">
+                                    <p>지하층수 : 1층</p>
+                                    <p>지상층수 : 5층</p>
+                                    <p>준공연도 : 1982년 12월 15일</p>
+                                    <p>건축면적 : 1825㎡</p>
+                                    <p>연면적 : 8382㎡</p>
+                                    <p>안전등급 : B</p>
+                                </div></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
+
                 </div>
-                <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class IndexController {
     @GetMapping(path = "/current-location")
     public String currentLocation() {
-        return "/neighbor-add.html";
+        return "/current-location.html";
     }
 
     @GetMapping(path = "/density-check")

@@ -190,9 +190,6 @@
 
                 <!-- Topbar Navbar -->
                 <nav class="navbar navbar-expand topbar mb-4 static-top" style="background-color:#FFF; border-bottom:solid 1px #d7d9de">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
                     <div class="container-fluid">
                         <a class="navbar-brand" href="/" >MENU</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -607,6 +604,16 @@
                     str += '</TR>';
                 });
                 $('.table_body').html(str);
+                $('.location-btn').click(function(){
+                  var str="";
+                  var tdArr = new Array();
+                  var locBtn = $(this);
+
+                  var tr = locBtn.parent().parent();
+                  var td = tr.children();
+
+                  $('#neighbor-location').html(td.eq(1).text() + '님의 위치 : ');
+              });
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("통신 실패");
