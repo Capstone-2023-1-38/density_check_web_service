@@ -139,9 +139,6 @@
 
                 <!-- Topbar Navbar -->
                 <nav class="navbar navbar-expand topbar mb-4 static-top" style="background-color:#FFF; border-bottom:solid 1px #d7d9de">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
                     <div class="container-fluid">
                         <a class="navbar-brand" href="/" >MENU</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -485,6 +482,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -520,7 +518,7 @@
     <script th:inline="javascript">
         result = [[${result}]];
         if (result !== null) {
-            alert(result);
+            Swal.fire(result);
         }
     </script>
     <script>
