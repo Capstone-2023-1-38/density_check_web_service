@@ -526,7 +526,7 @@
                     <div class="offcanvas">
                         <h1>이웃 위치 확인</h1>
                         <img src="img/current_location.png" style="width:450px; height:400px; text-align:center"/>
-                        <p id="neighbor-location"></p>
+                        <p id="neighbor-location" style="text-align:center"></p>
                     </div>
 
 
@@ -590,7 +590,7 @@
     <script>
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/friends/mutual/list",
+            url: "/friends/mutual/list",
             dataType: "json",
             success: function(data) {
                 str = '';
@@ -600,20 +600,11 @@
                         '<TD><i class="bi bi-person-circle"></i></TD>' +
                         '<TD>' + data[i].toName + '</TD>' +
                         '<TD>' + data[i].toEmail + '</TD>' +
-                        '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail='+data[i].toEmail+'" style="float:right">삭제</a><label type="button" for="toggle" class="btn btn-secondary location-btn" style="float:right; margin-right:5px;">위치 보기</label></TD>';
+                        '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail='+data[i].toEmail+'" style="float:right">삭제</a>' +
+                        '<label type="button" for="toggle" class="btn btn-secondary location-btn" style="float:right; margin-right:5px;">위치 보기</label></TD>';
                     str += '</TR>';
                 });
                 $('.table_body').html(str);
-                $('.location-btn').click(function(){
-                  var str="";
-                  var tdArr = new Array();
-                  var locBtn = $(this);
-
-                  var tr = locBtn.parent().parent();
-                  var td = tr.children();
-
-                  $('#neighbor-location').html(td.eq(1).text() + '님의 위치 : ');
-              });
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("통신 실패");
@@ -622,22 +613,35 @@
     </script>
 
     <script>
-        $('.location-btn').click(function(){
-            var str="";
-            var tdArr = new Array();
-            var locBtn = $(this);
+        $(document).on('click', '.location-btn', function(){
+            $.ajax({
+                type: "POST",
+                url: "/find",
+                dataType: "json",
+                context: this,
+                data:{
+                    email : $(this).parent().prev().val()
+                },
+                success: function (data) {
+                    var str = "";
+                    var tdArr = new Array();
+                    var locBtn = $(this);
 
-            var tr = locBtn.parent().parent();
-            var td = tr.children();
-
-            $('#neighbor-location').html(td.eq(1).text() + '님의 위치 : ');
+                    var tr = locBtn.parent().parent();
+                    var td = tr.children();
+                    $('#neighbor-location').text(td.eq(1).text() + '님의 위치 : ' + data.x + ", " + data.y);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("통신 실패");
+                }
+            })
         });
     </script>
 
     <script>
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/friends/add/count",
+            url: "/friends/add/count",
             dataType: "json",
             success: function(data) {
                 $('#friend_add_count').text(data);
@@ -651,7 +655,7 @@
     <script>
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/setting/name",
+            url: "/setting/name",
             dataType: "json",
             success: function(data) {
                 $('.userName').text(data.name);

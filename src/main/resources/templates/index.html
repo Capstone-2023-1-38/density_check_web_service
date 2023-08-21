@@ -652,7 +652,7 @@
 <script>
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/setting/name",
+            url: "/setting/name",
             dataType: "json",
             success: function(data) {
                 $('.userName').text(data.name);
@@ -663,7 +663,7 @@
                 alert("통신 실패");
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:8080/logout",
+                    url: "/logout",
                     success: function (result) {
                         console.log(result);
                     },

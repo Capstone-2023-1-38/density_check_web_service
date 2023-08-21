@@ -396,15 +396,12 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">사용자 찾기</h1>
-                <form action="/find", method="post">
-                    <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input name="email" type="text" class="form-control" placeholder="Useremail" aria-label="Useremail" aria-describedby="basic-addon1">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
-                    </div>
-                </form>
-                <div style="text-align:center">
-                    <label id="location" th:if = "${x != null && y != null}" th:text="|위치: (${x}, ${y})|"></label>
+                <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <input name="email" type="text" class="form-control" placeholder="Useremail" aria-label="Useremail" aria-describedby="basic-addon1">
+                    <button class="btn btn-outline-secondary location-btn" type="button" id="button-addon2">검색</button>
+                </div>
+                <div class="location" style="text-align:center">
                 </div>
                 <div style="text-align:center">
                     <img src="./img/map.png"/>
@@ -466,9 +463,27 @@
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 <script>
+    $('.location-btn').click(function(){
+        $.ajax({
+            type: "POST",
+            url: "/find",
+            dataType: "json",
+            data:{
+                email : $(this).prev().val()
+            },
+            success: function (data) {
+                $('.location').html("<label> 위치: " + data.x + ", " + data.y + "</label>");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("통신 실패");
+            }
+        })
+    });
+</script>
+<script>
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/setting/name",
+        url: "/setting/name",
         dataType: "json",
         success: function(data) {
             $('.userName').text(data.name);

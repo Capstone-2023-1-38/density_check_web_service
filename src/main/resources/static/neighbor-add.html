@@ -493,7 +493,7 @@
     <script>
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/friends/add/list",
+            url: "/friends/add/list",
             dataType: "json",
             success: function(data) {
                 str = '';
@@ -524,7 +524,7 @@
     <script>
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/setting/name",
+            url: "/setting/name",
             dataType: "json",
             success: function(data) {
                 $('.userName').text(data.name);

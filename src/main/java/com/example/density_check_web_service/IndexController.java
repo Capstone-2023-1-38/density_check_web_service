@@ -30,6 +30,11 @@ public class IndexController {
         return "/camera-location.html";
     }
 
+    @GetMapping(path = "/camera")
+    public String camera() {
+        return "/camera.html";
+    }
+
     @GetMapping(path = "/report")
     public String report() {
         return "/report.html";
