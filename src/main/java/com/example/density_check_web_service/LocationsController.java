@@ -59,6 +59,6 @@ public class LocationsController {
     public String findUserByArea(@RequestParam int x, @RequestParam int y, @RequestParam(defaultValue = "1") int duration, Model model) {
         List<LocationListResponseDto> locationListResponseDto = locationService.findUserByArea(x, y, duration);
         model.addAttribute("list", locationListResponseDto);
-        return "/specific-area-user";
+        return "specific-area-user";
     }
 }

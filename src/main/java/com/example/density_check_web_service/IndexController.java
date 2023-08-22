@@ -12,67 +12,67 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class IndexController {
     @GetMapping(path = "/current-location")
     public String currentLocation() {
-        return "/current-location.html";
+        return "current-location.html";
     }
 
     @GetMapping(path = "/density-check")
     public String densityCheck() {
-        return "/density-check.html";
+        return "density-check.html";
     }
 
     @GetMapping(path = "/building")
     public String building() {
-        return "/building.html";
+        return "building.html";
     }
 
     @GetMapping(path = "/camera-location")
     public String cameraLocation() {
-        return "/camera-location.html";
+        return "camera-location.html";
     }
 
     @GetMapping(path = "/camera")
     public String camera() {
-        return "/camera.html";
+        return "camera.html";
     }
 
     @GetMapping(path = "/report")
     public String report() {
-        return "/report.html";
+        return "report.html";
     }
 
     @GetMapping(path = "/report-board")
     public String reportBoard() {
-        return "/report-board.html";
+        return "report-board.html";
     }
 
     @GetMapping(path = "/neighbor")
     public String neighbor() {
-        return "/neighbor.html";
+        return "neighbor.html";
     }
 
     @GetMapping(path = "/neighbor-add")
     public String neighborAdd() {
-        return "/neighbor-add.html";
+        return "neighbor-add.html";
     }
 
     @GetMapping(path = "/user-find")
     public String userFind() {
-        return "/user-find.html";
+        return "user-find.html";
     }
 
     @GetMapping(path = "/specific-area-user-find")
     public String specificAreaUserFind() {
-        return "/specific-area-user-find.html";
+        return "specific-area-user-find.html";
     }
 
     @GetMapping(path = "/user-management")
     public String userManagement() {
-        return "/user-management.html";
+        return "user-management.html";
     }
 
     @GetMapping(path = "/setting")
     public String setting() {
-        return "/setting.html";
+        return "setting.html";
     }
 
     @GetMapping(path = "/logout")
