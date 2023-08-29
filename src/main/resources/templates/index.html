@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
+    <link rel="icon" href="img/favicon.png">
 
     <title>다중 밀집지역에서의 밀집도</title>
 
@@ -41,6 +41,10 @@
 
         #wrapper {
           min-height: calc(100% - 120px);
+        }
+
+        .index-box:hover{
+            transform: translateY(-20px);
         }
 
     </style>
@@ -162,53 +166,61 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: 'NanumSquareNeoExtraBold'; color:#FFF; font-size:18px;">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                                    위치 및 밀집도
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
-                                    <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
-                                    <li><a class="dropdown-item" href="/density-check">실시간 밀집도 및 통계</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="/building">건물 정보 및 대피로</a></li>
-                                    <li><a class="dropdown-item" href="/camera-location">카메라</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    제보
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
-                                    <li><a class="dropdown-item" href="/report">제보하기</a></li>
-                                    <li><a class="dropdown-item" href="/report-board">제보 게시판</a></li>
-                                </ul>
-                            </li>
-                            <!--                            <li class="nav-item dropdown">-->
-                            <!--                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-                            <!--                                    이웃-->
-                            <!--                                </a>-->
-                            <!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-                            <!--                                    <li><a class="dropdown-item" href="#">Action</a></li>-->
-                            <!--                                    <li><a class="dropdown-item" href="#">Another action</a></li>-->
-                            <!--                                    <li><hr class="dropdown-divider"></li>-->
-                            <!--                                    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-                            <!--                                </ul>-->
-                            <!--                            </li>-->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    찾기
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
-                                    <li><a class="dropdown-item" href="/user-find">사용자 찾기</a></li>
-                                    <li><a class="dropdown-item" href="/specific-area-user-find">특정 구역 사용자 찾기</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <div id="menu-div">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: 'NanumSquareNeoExtraBold'; color:#FFF; font-size:18px;">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                                        위치 및 밀집도
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                        <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="/situation">실시간 밀집도 및 통계</a></li>
+                                        <ul style="list-style-type: square;">
+                                            <li><a class="dropdown-item" href="/density-check">라즈베리파이 기반 밀집도</a></li>
+                                            <li><a class="dropdown-item" href="/camera-location">카메라 기반 밀집도</a></li>
+                                        </ul>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        제보
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                        <li><a class="dropdown-item" href="/report">제보하기</a></li>
+                                        <li><a class="dropdown-item" href="/report-board">제보 게시판</a></li>
+                                    </ul>
+                                </li>
+                                <!--                            <li class="nav-item dropdown">-->
+                                <!--                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+                                <!--                                    이웃-->
+                                <!--                                </a>-->
+                                <!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Action</a></li>-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Another action</a></li>-->
+                                <!--                                    <li><hr class="dropdown-divider"></li>-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                                <!--                                </ul>-->
+                                <!--                            </li>-->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        찾기
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                        <li><a class="dropdown-item" href="/user-find">사용자 찾기</a></li>
+                                        <li><a class="dropdown-item" href="/specific-area-user-find">특정 구역 사용자 찾기</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <span class="underbar"></span>
+                        </div>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align:center">
                             <a>팀 네카라쿠배</a>
                         </ul>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item mx-1" style="padding-top:21px; font-size:24px">
+                                <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>
+                            </li>
                             <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">
                                 <a href="/neighbor"><i class="bi bi-person-fill"></i></a>
                             </li>
@@ -412,23 +424,23 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <div>
-                    <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="font-family: 'NanumSquareNeoExtraBold';font-size:40px; text-align:center; margin-top:50px;">인파 밀집도 계산 및 실시간 위치 추적 웹서비스</h1>
+                    <a href="/" style="text-decoration-line:none;"><h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="font-family: 'NanumSquareNeoExtraBold';font-size:40px; text-align:center; margin-top:50px;">인파 밀집도 계산 및 실시간 위치 추적 웹서비스</h1></a>
                     <!--          <h5 style="font-family: 'Orbit', sans-serif; font-weight: 600; text-align:right; padding-right:80px; font-size:23px">팀 네카라쿠배</h5>-->
                 </div>
-                <div style="height:350px; pointer-events : none;">
+                <div style="height:350px;">
                     <div style="float:left">
                         <img src="/img/description.gif" loop="infinite" style="padding-left:100px;width:630px; height:360px"/>
                     </div>
-                    <div style="font-family:'NanumSquareNeo'; display:inline-block;font-size:20px; padding-top:50px; letter-spacing:-1px; text-align:center; vertical-align:middle; height:330px;">
-                        <div style="float:left; border:5px solid #4e73df; border-radius: 30px; height:300px; background-color:#FFF">
+                    <div style="font-family:'NanumSquareNeo'; display:inline-block;font-size:20px; padding-top:50px; letter-spacing:-1px; text-align:center; vertical-align:middle; height:330px;float:left;">
+                        <div class="index-box" style="float:left; border:5px solid #4e73df; border-radius: 30px; height:300px; background-color:#FFF">
                             <img src="img/index_icon1.png" style="width:150px; height:220px"/>
                             <div style="padding:8px;"><a>현재 위치 및 밀집도 등급 확인</a></div>
                         </div>
-                        <div style="margin-left:20px; float:left; border:5px solid #4e73df; border-radius: 30px; width:260px; height:300px; background-color:#FFF">
+                        <div class="index-box" style="margin-left:20px; float:left; border:5px solid #4e73df; border-radius: 30px; width:260px; height:300px; background-color:#FFF">
                             <img src="img/index_icon2.png" style="width:190px; height:220px"/>
                             <div style="padding:8px;"><a>제보를 통한 사용자 참여</a></div>
                         </div>
-                        <div style="margin-left:20px;float:left; border:5px solid #4e73df; border-radius: 30px; height:300px; background-color:#FFF">
+                        <div class="index-box" style="margin-left:20px;float:left; border:5px solid #4e73df; border-radius: 30px; height:300px; background-color:#FFF">
                             <img src="img/index_icon3.png" style="width:200px; height:150px; margin-bottom:35px; margin-top:35px;"/>
                             <div style="padding:8px;"><a>이웃 추가 기능을 통한 위치 확인</a></div>
                         </div>
@@ -583,10 +595,11 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="fixed-bottom sticky-footer bg-white">
+        <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
+                    <span>Copyright &copy; 네카라쿠배 2023<br></span>
+                    <span style="color:#bbbbbd"><br>천주희 장은서</span>
                 </div>
             </div>
         </footer>
