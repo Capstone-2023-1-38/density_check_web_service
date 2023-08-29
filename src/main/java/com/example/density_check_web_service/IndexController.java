@@ -71,7 +71,7 @@ public class IndexController {
     }
 
     @GetMapping(path = "/situation")
-    public String situation() {return "/situation.html";}
+    public String situation() {return "situation.html";}
 
     @GetMapping(path = "/setting")
     public String setting() {
