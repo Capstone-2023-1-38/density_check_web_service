@@ -252,52 +252,131 @@
                                             제보게시판에 새로운 제보가 등록되었습니다.
                                         </div>
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                        <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
+                                        <li><a class="dropdown-item" href="/density-check">실시간 밀집도 및 통계</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="/building">건물 정보 및 대피로</a></li>
+                                        <li><a class="dropdown-item" href="/camera-location">카메라</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        제보
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                        <li><a class="dropdown-item" href="/report">제보하기</a></li>
+                                        <li><a class="dropdown-item" href="/report-board">제보 게시판</a></li>
+                                    </ul>
+                                </li>
+                                <!--                            <li class="nav-item dropdown">-->
+                                <!--                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+                                <!--                                    이웃-->
+                                <!--                                </a>-->
+                                <!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Action</a></li>-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Another action</a></li>-->
+                                <!--                                    <li><hr class="dropdown-divider"></li>-->
+                                <!--                                    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                                <!--                                </ul>-->
+                                <!--                            </li>-->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        찾기
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                        <li><a class="dropdown-item" href="/user-find">사용자 찾기</a></li>
+                                        <li><a class="dropdown-item" href="/specific-area-user-find">특정 구역 사용자 찾기</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align:center">
+                                <a>팀 네카라쿠배</a>
+                            </ul>
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">
+                                    <a href="/neighbor"><i class="bi bi-person-fill"></i></a>
+                                </li>
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bell fa-fw"></i>
+                                        <!-- Counter - Alerts -->
+                                        <span class="badge badge-danger badge-counter">3+</span>
+                                    </a>
+                                    <!-- Dropdown - Alerts -->
+                                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                         aria-labelledby="alertsDropdown">
+                                        <h4 class="dropdown-header">
+                                            알림
+                                        </h4>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-warning">
+                                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">23/07/02 21:34:11</div>
-                                            제보게시판에 새로운 제보가 등록되었습니다.
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>
-                                </div>
-                            </li>
+                                            <div>
+                                                <div class="small text-gray-500">23/07/05 13:49:07</div>
+                                                제보게시판에 새로운 제보가 등록되었습니다.
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-warning">
+                                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">23/07/05 11:23:45</div>
+                                                제보게시판에 새로운 제보가 등록되었습니다.
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-warning">
+                                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">23/07/02 21:34:11</div>
+                                                제보게시판에 새로운 제보가 등록되었습니다.
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>
+                                    </div>
+                                </li>
 
-                            <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow" >
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>
-                                    <img class="img-profile rounded-circle"
-                                         src="img/undraw_profile.svg"/>
-                                </a>
-                                <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
-                                    <a class="dropdown-item" href="/setting">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        설정
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow" >
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>
+                                        <img class="img-profile rounded-circle"
+                                             src="img/undraw_profile.svg"/>
                                     </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        로그아웃
-                                    </a>
-                                </div>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
-                                    <a class="dropdown-item" href="login.html">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        로그인
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                         aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
+                                        <a class="dropdown-item" href="/setting">
+                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            설정
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            로그아웃
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                         aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
+                                        <a class="dropdown-item" href="login.html">
+                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            로그인
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
                     </div>
                 </div>
             </nav>
@@ -431,10 +510,143 @@
                             </svg>
                         </div>
                     </div>
-                    <div style="display: flex; justify-content:center">
-                        <button class="btn btn-secondary" type="button" style="width:622px;" onclick="location.href='camera.html'">건물 내 카메라 전체 화면</button>
+                </nav>
+                <!--        <ul class="navbar-nav ml-auto">-->
+
+                <!--          &lt;!&ndash; Nav Item - Search Dropdown (Visible Only XS) &ndash;&gt;-->
+                <!--          <li class="nav-item dropdown no-arrow d-sm-none">-->
+                <!--            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"-->
+                <!--               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--              <i class="fas fa-search fa-fw"></i>-->
+                <!--            </a>-->
+                <!--            &lt;!&ndash; Dropdown - Messages &ndash;&gt;-->
+                <!--            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated&#45;&#45;grow-in"-->
+                <!--                 aria-labelledby="searchDropdown">-->
+                <!--              <form class="form-inline mr-auto w-100 navbar-search">-->
+                <!--                <div class="input-group">-->
+                <!--                  <input type="text" class="form-control bg-light border-0 small"-->
+                <!--                         placeholder="Search for..." aria-label="Search"-->
+                <!--                         aria-describedby="basic-addon2">-->
+                <!--                  <div class="input-group-append">-->
+                <!--                    <button class="btn btn-primary" type="button">-->
+                <!--                      <i class="fas fa-search fa-sm"></i>-->
+                <!--                    </button>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--              </form>-->
+                <!--            </div>-->
+                <!--          </li>-->
+
+                <!--          &lt;!&ndash; Nav Item - Alerts &ndash;&gt;-->
+                <!--          <li class="nav-item dropdown no-arrow mx-1">-->
+                <!--            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"-->
+                <!--               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--              <i class="fas fa-bell fa-fw"></i>-->
+                <!--              &lt;!&ndash; Counter - Alerts &ndash;&gt;-->
+                <!--              <span class="badge badge-danger badge-counter">3+</span>-->
+                <!--            </a>-->
+                <!--            &lt;!&ndash; Dropdown - Alerts &ndash;&gt;-->
+                <!--            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+                <!--                 aria-labelledby="alertsDropdown">-->
+                <!--              <h4 class="dropdown-header">-->
+                <!--                알림-->
+                <!--              </h4>-->
+                <!--              <a class="dropdown-item d-flex align-items-center" href="#">-->
+                <!--                <div class="mr-3">-->
+                <!--                  <div class="icon-circle bg-warning">-->
+                <!--                    <i class="fas fa-exclamation-triangle text-white"></i>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--                <div>-->
+                <!--                  <div class="small text-gray-500">23/07/05 13:49:07</div>-->
+                <!--                  제보게시판에 새로운 제보가 등록되었습니다.-->
+                <!--                </div>-->
+                <!--              </a>-->
+                <!--              <a class="dropdown-item d-flex align-items-center" href="#">-->
+                <!--                <div class="mr-3">-->
+                <!--                  <div class="icon-circle bg-warning">-->
+                <!--                    <i class="fas fa-exclamation-triangle text-white"></i>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--                <div>-->
+                <!--                  <div class="small text-gray-500">23/07/05 11:23:45</div>-->
+                <!--                  제보게시판에 새로운 제보가 등록되었습니다.-->
+                <!--                </div>-->
+                <!--              </a>-->
+                <!--              <a class="dropdown-item d-flex align-items-center" href="#">-->
+                <!--                <div class="mr-3">-->
+                <!--                  <div class="icon-circle bg-warning">-->
+                <!--                    <i class="fas fa-exclamation-triangle text-white"></i>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--                <div>-->
+                <!--                  <div class="small text-gray-500">23/07/02 21:34:11</div>-->
+                <!--                  제보게시판에 새로운 제보가 등록되었습니다.-->
+                <!--                </div>-->
+                <!--              </a>-->
+                <!--              <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>-->
+                <!--            </div>-->
+                <!--          </li>-->
+
+                <!--          &lt;!&ndash; Nav Item - User Information &ndash;&gt;-->
+                <!--          <li class="nav-item dropdown no-arrow">-->
+                <!--            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"-->
+                <!--               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--              <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>-->
+                <!--              <img class="img-profile rounded-circle"-->
+                <!--                   src="img/undraw_profile.svg"/>-->
+                <!--            </a>-->
+                <!--            &lt;!&ndash; Dropdown - User Information &ndash;&gt;-->
+                <!--            <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+                <!--                 aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">-->
+                <!--              <a class="dropdown-item" href="setting.html">-->
+                <!--                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+                <!--                설정-->
+                <!--              </a>-->
+                <!--              <div class="dropdown-divider"></div>-->
+                <!--              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">-->
+                <!--                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>-->
+                <!--                로그아웃-->
+                <!--              </a>-->
+                <!--            </div>-->
+                <!--            <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+                <!--                 aria-labelledby="userDropdown" sec:authorize="isAnonymous()">-->
+                <!--              <a class="dropdown-item" href="login.html">-->
+                <!--                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+                <!--                로그인-->
+                <!--              </a>-->
+                <!--            </div>-->
+                <!--          </li>-->
+
+                <!--        </ul>-->
+
+                <!--      </nav>-->
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">카메라</h1>
+                    <div style="display:flex; flex-direction:column;">
+                        <div style="display: flex; justify-content:center; padding:15px">
+                            <div style="text-align:center; position:relative; width:622px; height:720px;">
+                                <svg id="svg" width="622" height="730">
+                                    <image href="./img/2floor.png"/>
+                                    <div>
+                                        <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:30%; left:30%; font-size: 50px;" onclick="location.href='/camera'"></i>
+                                        <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:50%; left:60%; font-size: 50px;" onclick="location.href='/camera'"></i>
+                                        <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:80%; left:45%; font-size: 50px;" onclick="location.href='/camera'"></i>
+                                    </div>
+                                </svg>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content:center">
+                            <button class="btn btn-secondary" type="button" style="width:622px;" onclick="location.href='camera.html'">건물 내 카메라 전체 화면</button>
+                        </div>
                     </div>
+
                 </div>
+                <!-- /.container-fluid -->
 
             </div>
 
@@ -450,46 +662,45 @@
                     <span>Copyright &copy; 네카라쿠배 2023<br></span>
                     <span style="color:#bbbbbd"><br>천주희 장은서</span>
                 </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Page Wrapper -->
 
-</div>
-<!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h6>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
-                <a class="btn btn-primary btn-sm" href="/logout">로그아웃</a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h6>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary btn-sm" href="/logout">로그아웃</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
@@ -499,11 +710,11 @@
             function () {
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost:8080/getCameraLocation",
+                    url: "/getCameraLocation",
                     dataType: "json",
                     success: function(data) {
                         var svg = d3.select("#svg");
-                        d3.selectAll('circle').remove()
+                        d3.selectAll('circle').remove();
                         $.each(data , function(i) {
                             var circles = svg.append("circle")
                                 .attr("cx", data[i].x)
@@ -513,15 +724,14 @@
                         });
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){
-
                     }
                 })
-            },1000);
+            },100);
     </script>
     <script>
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/setting/name",
+            url: "/setting/name",
             dataType: "json",
             success: function(data) {
                 $('.userName').text(data.name);

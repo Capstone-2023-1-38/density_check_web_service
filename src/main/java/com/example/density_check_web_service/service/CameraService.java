@@ -49,6 +49,7 @@ public class CameraService {
     public CameraFrameRequestDto getCameraFrame(String ip) throws IOException {
         CameraFrame cameraFrame = cameraFrameRepository.findByIp(ip).orElse(null);
         CameraFrameRequestDto cameraFrameRequestDto = CameraFrameRequestDto.builder().cameraFrame(cameraFrame).build();
+//        CameraFrameRequestDto cameraFrameRequestDto = new CameraFrameRequestDto(new CameraFrame(ip, "\00".getBytes()));
         return cameraFrameRequestDto;
     }
 }

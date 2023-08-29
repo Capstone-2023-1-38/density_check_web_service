@@ -4,9 +4,10 @@ import com.example.density_check_web_service.domain.CameraFrame.dto.CameraFrameR
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-
+@Setter
 @Getter
 @NoArgsConstructor
 @Entity
@@ -18,7 +19,7 @@ public class CameraFrame {
     @Column(nullable = false)
     private String ip;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, length = 1000000)
     private byte[] frame;
 
     @Builder

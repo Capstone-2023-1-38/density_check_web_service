@@ -70,8 +70,11 @@ public class LocationService {
     @Transactional
     public LocationResponseDto findLocationByEmail(String email) {
         if(piAddressRepository.findByEmail(email).isEmpty()) {
-            Users users = new Users("아무개3", email, null, Role.USER);
-            usersRepository.saveAndFlush(users);
+            Users users = usersRepository.findByEmail(email).orElse(null);
+            if(users == null) {
+                users = new Users("아무개3", email, null, Role.USER);
+                usersRepository.saveAndFlush(users);
+            }
             PiAddress piAddress = new PiAddress("111.111.111.111");
             piAddress.setUsers(users);
             piAddress = piAddressRepository.saveAndFlush(piAddress);

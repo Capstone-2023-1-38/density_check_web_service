@@ -540,7 +540,7 @@
   <script>
     $.ajax({
       type: "GET",
-      url: "http://localhost:8080/piAddress",
+      url: "/piAddress",
       dataType: "json",
       success: function(data) {
         str = '';
@@ -573,7 +573,7 @@
   <script>
     $.ajax({
       type: "GET",
-      url: "http://localhost:8080/setting/name",
+      url: "/setting/name",
       dataType: "json",
       success: function(data) {
         $('.userName').text(data.name);
@@ -598,7 +598,7 @@
       var now = $(this);
       $.ajax({
         type: "POST",
-        url: "http://localhost:8080/piAddress/userRegist",
+        url: "/piAddress/userRegist",
         data: {
           id: $(this).parent().parent().prev().text(),
           email: $(this).prev().val()

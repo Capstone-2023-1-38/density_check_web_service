@@ -19,7 +19,7 @@ public class CameraLocationRequestDto {
 
     @Builder
     public CameraLocationRequestDto(CameraLocation cameraLocation) {
-        this.x = cameraLocation.getY();
+        this.x = cameraLocation.getX();
         this.y = cameraLocation.getY();
     }
 }

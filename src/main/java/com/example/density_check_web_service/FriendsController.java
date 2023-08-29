@@ -80,6 +80,6 @@ public class FriendsController {
     @GetMapping(path = "/redirectNeighborAdd")
     public String redirectNeighborAdd(Model model) {
 
-        return "/neighbor-add";
+        return "neighbor-add";
     }
 }

@@ -462,7 +462,7 @@
         const page = urlParams.get('page');
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/posts/list",
+            url: "/posts/list",
             data: {"page" : page},
             dataType: "text",
         // })
@@ -494,7 +494,7 @@
     <script>
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/setting/name",
+            url: "/setting/name",
             dataType: "json",
             success: function(data) {
                 $('.userName').text(data.name);

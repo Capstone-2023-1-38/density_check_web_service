@@ -42,22 +42,23 @@ public class LocationsController {
         return eachLocation;
     }
 
+    @ResponseBody
     @PostMapping(consumes = "application/x-www-form-urlencoded", path="/find")
-    public String findByEmail(String email, Authentication authentication, Model model) {
+    public LocationResponseDto findByEmail(String email, Authentication authentication) {
         if(email == null) {
             OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
             email = oAuth2User.getAttribute("email");
         }
-        LocationResponseDto locationRequestDto = locationService.findLocationByEmail(email);
-        model.addAttribute("x", locationRequestDto.getX());
-        model.addAttribute("y", locationRequestDto.getY());
-        return "/user-find";
+        LocationResponseDto locationResponseDto = locationService.findLocationByEmail(email);
+//        model.addAttribute("x", locationRequestDto.getX());
+//        model.addAttribute("y", locationRequestDto.getY());
+        return locationResponseDto;
     }
 
     @GetMapping(path = "/area")
     public String findUserByArea(@RequestParam int x, @RequestParam int y, @RequestParam(defaultValue = "1") int duration, Model model) {
         List<LocationListResponseDto> locationListResponseDto = locationService.findUserByArea(x, y, duration);
         model.addAttribute("list", locationListResponseDto);
-        return "/specific-area-user";
+        return "specific-area-user";
     }
 }

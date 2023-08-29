@@ -415,7 +415,7 @@
                     <div style="display:inline-block">
                         <img style="width:500px; height:500px" src="img/current_location.png"/>
                     </div>
-                    <div class="col-lg-5" style="display:inline-block;font-size:21px;">
+                    <div class="col-lg-5 location" style="display:inline-block;font-size:21px;">
                         <p>현재 위치 : 2층 6202 강의실</p>
                         <p>현재 위치에서의 밀집도 등급 : 안전</p>
                     </div>
@@ -631,9 +631,28 @@
         });
 </script>
 <script>
+    // setInterval(
+    //     function () {
+            $.ajax({
+                type: "POST",
+                url: "/find",
+                dataType: "json",
+                data: {
+                    email: null
+                },
+                success: function (data) {
+                    $('.location').children().eq(0).text("현재 위치 : " + data.x + ", " + data.y);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("통신 실패");
+                }
+            });
+        // })
+</script>
+<script>
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/setting/name",
+        url: "/setting/name",
         dataType: "json",
         success: function(data) {
             $('.userName').text(data.name);

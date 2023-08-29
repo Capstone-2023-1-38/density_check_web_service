@@ -31,8 +31,8 @@ public class CameraController {
 
     @ResponseBody
     @PostMapping(path = "/cameraFrame/{ip}")
-    public ResponseEntity<?> cameraFrame(@PathVariable String ip, @RequestBody byte[] data) {
-        cameraService.cameraFrame(ip, data);
+    public ResponseEntity<?> cameraFrame(@PathVariable String ip, @RequestBody byte[] framedata) {
+        cameraService.cameraFrame(ip, framedata);
         return ResponseEntity.ok(null);
     }
 
