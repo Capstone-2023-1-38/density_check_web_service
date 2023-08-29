@@ -4,9 +4,9 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">제보 게시판</h1>
-    <table class="table col-md-10" style="margin-left: auto; margin-right: auto; background-color:#FFF">
+    <table class="table col-md-8" style="margin-left: auto; margin-right: auto; background-color:#FFF;text-align:center;">
         <thead>
-        <tr class="table-active">
+        <tr class="table-active" style="background-color: #858796;color: #FFF;">
             <th scope="col">#</th>
             <th scope="col">위치</th>
             <th scope="col">제목</th>
@@ -14,11 +14,11 @@
             <th scope="col">작성일자</th>
         </tr>
         </thead>
-        <tbody class="table_body">
+        <tbody id="table_body" class="table_body">
         <tr th:each="post, loop : ${paging}" th:onclick="|location.href='/posts/${post.id}'|">
             <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
             <td th:text="${post.location}"></td>
-            <td><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></td>
+            <td style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></td>
             <td th:text="${post.author}"></td>
             <td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
         </tr>

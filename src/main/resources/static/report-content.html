@@ -29,6 +29,18 @@
         body{
           font-family: 'NanumSquareNeoExtraBold'
         }
+
+        .table th{
+           background-color: #858796;
+           color: #FFF;
+           text-align:center;
+        }
+
+        .table td{
+          background-color: #FFF;
+
+        }
+
     </style>
 </head>
 
@@ -154,10 +166,12 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
                     <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
-                    <li><a class="dropdown-item" href="/density-check">실시간 밀집도 및 통계</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/building">건물 정보 및 대피로</a></li>
-                    <li><a class="dropdown-item" href="/camera-location">카메라</a></li>
+                    <li><a class="dropdown-item" href="/situation">실시간 밀집도 및 통계</a></li>
+                    <ul style="list-style-type: square;">
+                      <li><a class="dropdown-item" href="/density-check">무선 통신 기반 밀집도</a></li>
+                      <li><a class="dropdown-item" href="/camera-location">비전 기반 밀집도</a></li>
+                    </ul>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -194,6 +208,9 @@
                 <a>팀 네카라쿠배</a>
               </ul>
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item mx-1" style="padding-top:21px; font-size:24px">
+                  <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>
+                </li>
                 <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">
                   <a href="/neighbor"><i class="bi bi-person-fill"></i></a>
                 </li>
@@ -394,23 +411,43 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid col-lg-10">
+        <div class="container-fluid col-lg-8">
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800" style="text-align: center">제보 게시판</h1>
-          <div class="input-group mb-3">
-            <span class="input-group-text">위치</span>
-            <input th:value="${post.location}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">
-            <span class="input-group-text">작성자</span>
-            <input th:value="${post.author}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">
-          </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text">제목</span>
-            <input th:value="${post.title}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">
-          </div>
+<!--          <div class="col-sm-7 input-group mb-3">-->
+<!--            <span class="input-group-text">위치</span>-->
+<!--            <input th:value="${post.location}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">-->
+<!--            <span class="input-group-text">작성자</span>-->
+<!--            <input th:value="${post.author}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">-->
+<!--          </div>-->
+<!--          <div class="input-group mb-3">-->
+<!--            <span class="input-group-text">제목</span>-->
+<!--            <input th:value="${post.title}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">-->
+<!--          </div>-->
 
-          <div class="mb-3">
-            <textarea th:text="${post.content}" class="form-control" id="exampleFormControlTextarea1" rows="10" style="background-color:#FFF" readonly onfocus="this.blur();"></textarea>
-          </div>
+<!--          <div class="mb-3">-->
+<!--            <textarea th:text="${post.content}" class="form-control" id="exampleFormControlTextarea1" rows="10" style="background-color:#FFF" readonly onfocus="this.blur();"></textarea>-->
+<!--          </div>-->
+          <table class="table table-bordered">
+            <tr>
+              <th scope="row">위치</th>
+              <td><input th:value="${post.location}" type="text" class="form-control" style="background-color:#FFF;border:none;" readonly onfocus="this.blur();"></td>
+              <th>작성자</th>
+              <td><input th:value="${post.author}" type="text" class="form-control" style="background-color:#FFF;border:none;" readonly onfocus="this.blur();"></td>
+            </tr>
+            <tr>
+              <th scope="row">제목</th>
+              <td colspan="3">
+                  <input th:value="${post.title}" type="text" class="form-control" style="background-color:#FFF;border:none;" readonly onfocus="this.blur();">
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">내용</th>
+              <td colspan="3">
+                  <textarea th:text="${post.content}" class="form-control" id="exampleFormControlTextarea1" rows="10" style="border:none;background-color:#FFF" readonly onfocus="this.blur();"></textarea>
+              </td>
+            </tr>
+          </table>
 
 
         </div>
@@ -423,7 +460,8 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
+            <span>Copyright &copy; 네카라쿠배 2023<br></span>
+            <span style="color:#bbbbbd"><br>천주희 장은서</span>
           </div>
         </div>
       </footer>

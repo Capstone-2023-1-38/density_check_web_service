@@ -1,928 +1,975 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <style>
+        .map {
+            margin: 0 auto;
+        }
 
+        body {
+            margin: 0;
+        }
+        #wrapper {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #coordinate_info thead{
+            position: sticky;
+            top: 0px;
+            background-color:#b3b3b3;
+        }
+
+        #coordinate_info tfoot{
+            position:sticky;
+            bottom:0;
+            background-color:#b3b3b3;
+        }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-    <title>SB Admin 2 - Tables</title>
+    <title>건물 전체의 밀집도</title>
 
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
+        body{
+          font-family: 'NanumSquareNeoExtraBold'
+        }
+    </style>
 </head>
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar -->
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
+    <!--  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" style="font-family: 'NanumSquareNeo';background-color:#1f2c54">-->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+    <!--    &lt;!&ndash; Sidebar - Brand &ndash;&gt;-->
+    <!--    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">-->
+    <!--      <div>MENU</div>-->
+    <!--    </a>-->
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>실시간 밀집도 및 통계 확인</span></a>
-            </li>
+    <!--    &lt;!&ndash; Divider &ndash;&gt;-->
+    <!--    <hr class="sidebar-divider my-0">-->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+    <!--    &lt;!&ndash; Nav Item - Dashboard &ndash;&gt;-->
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" href="/current-location.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>현재 위치에서의 밀집도</span></a>-->
+    <!--    </li>-->
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" href="/density-check.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>실시간 밀집도 및 통계 확인</span></a>-->
+    <!--    </li>-->
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" href="/building.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>건물 정보 및 대피로</span></a>-->
+    <!--    </li>-->
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" href="/camera-location.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>카메라</span></a>-->
+    <!--    </li>-->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+    <!--    &lt;!&ndash; Divider &ndash;&gt;-->
+    <!--    <hr class="sidebar-divider my-0">-->
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
+    <!--    &lt;!&ndash; Nav Item - Pages Collapse Menu &ndash;&gt;-->
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" href="/report.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>제보하기</span></a>-->
+    <!--    </li>-->
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" href="/report-board.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>제보 게시판</span></a>-->
+    <!--    </li>-->
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
+    <!--    &lt;!&ndash; Divider &ndash;&gt;-->
+    <!--    <hr class="sidebar-divider">-->
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" href="/neighbor.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>이웃</span></a>-->
+    <!--    </li>-->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" href="/user-find.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>사용자 찾기</span></a>-->
+    <!--    </li>-->
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+    <!--    <li class="nav-item">-->
+    <!--      <a class="nav-link" href="/specific-area-user-find.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>특정 구역 사용자 찾기</span></a>-->
+    <!--    </li>-->
 
-        </ul>
-        <!-- End of Sidebar -->
+    <!--    <li class="nav-item" sec:authorize="isAuthenticated()">-->
+    <!--      <a class="nav-link" href="/user-management.html">-->
+    <!--        <i class="bi bi-caret-right"></i>-->
+    <!--        <span>회원 관리</span></a>-->
+    <!--    </li>-->
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+    <!--    &lt;!&ndash; Divider &ndash;&gt;-->
+    <!--    <hr class="sidebar-divider">-->
 
-            <!-- Main Content -->
-            <div id="content">
+    <!--    &lt;!&ndash; Sidebar Toggler (Sidebar) &ndash;&gt;-->
+    <!--    <div class="text-center d-none d-md-inline">-->
+    <!--      <button class="rounded-circle border-0" id="sidebarToggle"></button>-->
+    <!--    </div>-->
+    <!--  </ul>-->
+    <!-- End of Sidebar -->
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
+        <!-- Main Content -->
+        <div id="content">
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+            <!-- Topbar -->
+            <!--      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">-->
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+            <!-- Sidebar Toggle (Topbar) -->
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
+            <!-- Topbar Navbar -->
+            <nav class="navbar navbar-expand topbar mb-4 static-top" style="background-color:#FFF; border-bottom:solid 1px #d7d9de">
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2012/12/02</td>
-                                            <td>$372,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herrod Chandler</td>
-                                            <td>Sales Assistant</td>
-                                            <td>San Francisco</td>
-                                            <td>59</td>
-                                            <td>2012/08/06</td>
-                                            <td>$137,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rhona Davidson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>Tokyo</td>
-                                            <td>55</td>
-                                            <td>2010/10/14</td>
-                                            <td>$327,900</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colleen Hurst</td>
-                                            <td>Javascript Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>39</td>
-                                            <td>2009/09/15</td>
-                                            <td>$205,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sonya Frost</td>
-                                            <td>Software Engineer</td>
-                                            <td>Edinburgh</td>
-                                            <td>23</td>
-                                            <td>2008/12/13</td>
-                                            <td>$103,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jena Gaines</td>
-                                            <td>Office Manager</td>
-                                            <td>London</td>
-                                            <td>30</td>
-                                            <td>2008/12/19</td>
-                                            <td>$90,560</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Quinn Flynn</td>
-                                            <td>Support Lead</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2013/03/03</td>
-                                            <td>$342,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Charde Marshall</td>
-                                            <td>Regional Director</td>
-                                            <td>San Francisco</td>
-                                            <td>36</td>
-                                            <td>2008/10/16</td>
-                                            <td>$470,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Haley Kennedy</td>
-                                            <td>Senior Marketing Designer</td>
-                                            <td>London</td>
-                                            <td>43</td>
-                                            <td>2012/12/18</td>
-                                            <td>$313,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tatyana Fitzpatrick</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td>19</td>
-                                            <td>2010/03/17</td>
-                                            <td>$385,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michael Silva</td>
-                                            <td>Marketing Designer</td>
-                                            <td>London</td>
-                                            <td>66</td>
-                                            <td>2012/11/27</td>
-                                            <td>$198,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Paul Byrd</td>
-                                            <td>Chief Financial Officer (CFO)</td>
-                                            <td>New York</td>
-                                            <td>64</td>
-                                            <td>2010/06/09</td>
-                                            <td>$725,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gloria Little</td>
-                                            <td>Systems Administrator</td>
-                                            <td>New York</td>
-                                            <td>59</td>
-                                            <td>2009/04/10</td>
-                                            <td>$237,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                            <td>2012/10/13</td>
-                                            <td>$132,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dai Rios</td>
-                                            <td>Personnel Lead</td>
-                                            <td>Edinburgh</td>
-                                            <td>35</td>
-                                            <td>2012/09/26</td>
-                                            <td>$217,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jenette Caldwell</td>
-                                            <td>Development Lead</td>
-                                            <td>New York</td>
-                                            <td>30</td>
-                                            <td>2011/09/03</td>
-                                            <td>$345,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Yuri Berry</td>
-                                            <td>Chief Marketing Officer (CMO)</td>
-                                            <td>New York</td>
-                                            <td>40</td>
-                                            <td>2009/06/25</td>
-                                            <td>$675,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>21</td>
-                                            <td>2011/12/12</td>
-                                            <td>$106,450</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Doris Wilder</td>
-                                            <td>Sales Assistant</td>
-                                            <td>Sidney</td>
-                                            <td>23</td>
-                                            <td>2010/09/20</td>
-                                            <td>$85,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer (CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2009/10/09</td>
-                                            <td>$1,200,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gavin Joyce</td>
-                                            <td>Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>42</td>
-                                            <td>2010/12/22</td>
-                                            <td>$92,575</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jennifer Chang</td>
-                                            <td>Regional Director</td>
-                                            <td>Singapore</td>
-                                            <td>28</td>
-                                            <td>2010/11/14</td>
-                                            <td>$357,650</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                            <td>2011/06/07</td>
-                                            <td>$206,850</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fiona Green</td>
-                                            <td>Chief Operating Officer (COO)</td>
-                                            <td>San Francisco</td>
-                                            <td>48</td>
-                                            <td>2010/03/11</td>
-                                            <td>$850,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shou Itou</td>
-                                            <td>Regional Marketing</td>
-                                            <td>Tokyo</td>
-                                            <td>20</td>
-                                            <td>2011/08/14</td>
-                                            <td>$163,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michelle House</td>
-                                            <td>Integration Specialist</td>
-                                            <td>Sidney</td>
-                                            <td>37</td>
-                                            <td>2011/06/02</td>
-                                            <td>$95,400</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Suki Burks</td>
-                                            <td>Developer</td>
-                                            <td>London</td>
-                                            <td>53</td>
-                                            <td>2009/10/22</td>
-                                            <td>$114,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Prescott Bartlett</td>
-                                            <td>Technical Author</td>
-                                            <td>London</td>
-                                            <td>27</td>
-                                            <td>2011/05/07</td>
-                                            <td>$145,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gavin Cortez</td>
-                                            <td>Team Leader</td>
-                                            <td>San Francisco</td>
-                                            <td>22</td>
-                                            <td>2008/10/26</td>
-                                            <td>$235,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Martena Mccray</td>
-                                            <td>Post-Sales support</td>
-                                            <td>Edinburgh</td>
-                                            <td>46</td>
-                                            <td>2011/03/09</td>
-                                            <td>$324,050</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Unity Butler</td>
-                                            <td>Marketing Designer</td>
-                                            <td>San Francisco</td>
-                                            <td>47</td>
-                                            <td>2009/12/09</td>
-                                            <td>$85,675</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Howard Hatfield</td>
-                                            <td>Office Manager</td>
-                                            <td>San Francisco</td>
-                                            <td>51</td>
-                                            <td>2008/12/16</td>
-                                            <td>$164,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hope Fuentes</td>
-                                            <td>Secretary</td>
-                                            <td>San Francisco</td>
-                                            <td>41</td>
-                                            <td>2010/02/12</td>
-                                            <td>$109,850</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vivian Harrell</td>
-                                            <td>Financial Controller</td>
-                                            <td>San Francisco</td>
-                                            <td>62</td>
-                                            <td>2009/02/14</td>
-                                            <td>$452,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Timothy Mooney</td>
-                                            <td>Office Manager</td>
-                                            <td>London</td>
-                                            <td>37</td>
-                                            <td>2008/12/11</td>
-                                            <td>$136,200</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jackson Bradshaw</td>
-                                            <td>Director</td>
-                                            <td>New York</td>
-                                            <td>65</td>
-                                            <td>2008/09/26</td>
-                                            <td>$645,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Olivia Liang</td>
-                                            <td>Support Engineer</td>
-                                            <td>Singapore</td>
-                                            <td>64</td>
-                                            <td>2011/02/03</td>
-                                            <td>$234,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bruno Nash</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>38</td>
-                                            <td>2011/05/03</td>
-                                            <td>$163,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sakura Yamamoto</td>
-                                            <td>Support Engineer</td>
-                                            <td>Tokyo</td>
-                                            <td>37</td>
-                                            <td>2009/08/19</td>
-                                            <td>$139,575</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Thor Walton</td>
-                                            <td>Developer</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2013/08/11</td>
-                                            <td>$98,540</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Finn Camacho</td>
-                                            <td>Support Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>47</td>
-                                            <td>2009/07/07</td>
-                                            <td>$87,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Serge Baldwin</td>
-                                            <td>Data Coordinator</td>
-                                            <td>Singapore</td>
-                                            <td>64</td>
-                                            <td>2012/04/09</td>
-                                            <td>$138,575</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Zenaida Frank</td>
-                                            <td>Software Engineer</td>
-                                            <td>New York</td>
-                                            <td>63</td>
-                                            <td>2010/01/04</td>
-                                            <td>$125,250</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Zorita Serrano</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>56</td>
-                                            <td>2012/06/01</td>
-                                            <td>$115,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jennifer Acosta</td>
-                                            <td>Junior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>43</td>
-                                            <td>2013/02/01</td>
-                                            <td>$75,650</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06</td>
-                                            <td>$145,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hermione Butler</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2011/03/21</td>
-                                            <td>$356,250</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lael Greer</td>
-                                            <td>Systems Administrator</td>
-                                            <td>London</td>
-                                            <td>21</td>
-                                            <td>2009/02/27</td>
-                                            <td>$103,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jonas Alexander</td>
-                                            <td>Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>30</td>
-                                            <td>2010/07/14</td>
-                                            <td>$86,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Shad Decker</td>
-                                            <td>Regional Director</td>
-                                            <td>Edinburgh</td>
-                                            <td>51</td>
-                                            <td>2008/11/13</td>
-                                            <td>$183,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michael Bruce</td>
-                                            <td>Javascript Developer</td>
-                                            <td>Singapore</td>
-                                            <td>29</td>
-                                            <td>2011/06/27</td>
-                                            <td>$183,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                    <a class="navbar-brand" href="/" >MENU</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: 'NanumSquareNeoExtraBold'; color:#FFF; font-size:18px;">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                                    위치 및 밀집도
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                    <li><a class="dropdown-item" href="current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
+                                    <li><a class="dropdown-item" href="density-check">실시간 밀집도 및 통계</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="building">건물 정보 및 대피로</a></li>
+                                    <li><a class="dropdown-item" href="camera-location">카메라</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    제보
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                    <li><a class="dropdown-item" href="report">제보하기</a></li>
+                                    <li><a class="dropdown-item" href="report-board">제보 게시판</a></li>
+                                </ul>
+                            </li>
+                            <!--                            <li class="nav-item dropdown">-->
+                            <!--                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+                            <!--                                    이웃-->
+                            <!--                                </a>-->
+                            <!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                            <!--                                    <li><a class="dropdown-item" href="#">Action</a></li>-->
+                            <!--                                    <li><a class="dropdown-item" href="#">Another action</a></li>-->
+                            <!--                                    <li><hr class="dropdown-divider"></li>-->
+                            <!--                                    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                            <!--                                </ul>-->
+                            <!--                            </li>-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    찾기
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
+                                    <li><a class="dropdown-item" href="user-find">사용자 찾기</a></li>
+                                    <li><a class="dropdown-item" href="specific-area-user-find">특정 구역 사용자 찾기</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align:center">
+                            <a>팀 네카라쿠배</a>
+                        </ul>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">
+                                <a href="/neighbor"><i class="bi bi-person-fill"></i></a>
+                            </li>
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell fa-fw"></i>
+                                    <!-- Counter - Alerts -->
+                                    <span class="badge badge-danger badge-counter">3+</span>
+                                </a>
+                                <!-- Dropdown - Alerts -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                     aria-labelledby="alertsDropdown">
+                                    <h4 class="dropdown-header">
+                                        알림
+                                    </h4>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-warning">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">23/07/05 13:49:07</div>
+                                            제보게시판에 새로운 제보가 등록되었습니다.
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-warning">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">23/07/05 11:23:45</div>
+                                            제보게시판에 새로운 제보가 등록되었습니다.
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-warning">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">23/07/02 21:34:11</div>
+                                            제보게시판에 새로운 제보가 등록되었습니다.
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>
+                                </div>
+                            </li>
+
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow" >
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>
+                                    <img class="img-profile rounded-circle"
+                                         src="img/undraw_profile.svg"/>
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                     aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
+                                    <a class="dropdown-item" href="/setting">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        설정
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        로그아웃
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                     aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
+                                    <a class="dropdown-item" href="login.html">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        로그인
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+            </nav>
+            <!--        <ul class="navbar-nav ml-auto">-->
+
+            <!--          &lt;!&ndash; Nav Item - Search Dropdown (Visible Only XS) &ndash;&gt;-->
+            <!--          <li class="nav-item dropdown no-arrow d-sm-none">-->
+            <!--            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"-->
+            <!--               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--              <i class="fas fa-search fa-fw"></i>-->
+            <!--            </a>-->
+            <!--            &lt;!&ndash; Dropdown - Messages &ndash;&gt;-->
+            <!--            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated&#45;&#45;grow-in"-->
+            <!--                 aria-labelledby="searchDropdown">-->
+            <!--              <form class="form-inline mr-auto w-100 navbar-search">-->
+            <!--                <div class="input-group">-->
+            <!--                  <input type="text" class="form-control bg-light border-0 small"-->
+            <!--                         placeholder="Search for..." aria-label="Search"-->
+            <!--                         aria-describedby="basic-addon2">-->
+            <!--                  <div class="input-group-append">-->
+            <!--                    <button class="btn btn-primary" type="button">-->
+            <!--                      <i class="fas fa-search fa-sm"></i>-->
+            <!--                    </button>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--              </form>-->
+            <!--            </div>-->
+            <!--          </li>-->
+
+            <!--          &lt;!&ndash; Nav Item - Alerts &ndash;&gt;-->
+            <!--          <li class="nav-item dropdown no-arrow mx-1">-->
+            <!--            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"-->
+            <!--               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--              <i class="fas fa-bell fa-fw"></i>-->
+            <!--              &lt;!&ndash; Counter - Alerts &ndash;&gt;-->
+            <!--              <span class="badge badge-danger badge-counter">3+</span>-->
+            <!--            </a>-->
+            <!--            &lt;!&ndash; Dropdown - Alerts &ndash;&gt;-->
+            <!--            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+            <!--                 aria-labelledby="alertsDropdown">-->
+            <!--              <h4 class="dropdown-header">-->
+            <!--                알림-->
+            <!--              </h4>-->
+            <!--              <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--                <div class="mr-3">-->
+            <!--                  <div class="icon-circle bg-warning">-->
+            <!--                    <i class="fas fa-exclamation-triangle text-white"></i>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--                <div>-->
+            <!--                  <div class="small text-gray-500">23/07/05 13:49:07</div>-->
+            <!--                  제보게시판에 새로운 제보가 등록되었습니다.-->
+            <!--                </div>-->
+            <!--              </a>-->
+            <!--              <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--                <div class="mr-3">-->
+            <!--                  <div class="icon-circle bg-warning">-->
+            <!--                    <i class="fas fa-exclamation-triangle text-white"></i>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--                <div>-->
+            <!--                  <div class="small text-gray-500">23/07/05 11:23:45</div>-->
+            <!--                  제보게시판에 새로운 제보가 등록되었습니다.-->
+            <!--                </div>-->
+            <!--              </a>-->
+            <!--              <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--                <div class="mr-3">-->
+            <!--                  <div class="icon-circle bg-warning">-->
+            <!--                    <i class="fas fa-exclamation-triangle text-white"></i>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--                <div>-->
+            <!--                  <div class="small text-gray-500">23/07/02 21:34:11</div>-->
+            <!--                  제보게시판에 새로운 제보가 등록되었습니다.-->
+            <!--                </div>-->
+            <!--              </a>-->
+            <!--              <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>-->
+            <!--            </div>-->
+            <!--          </li>-->
+
+            <!--          &lt;!&ndash; Nav Item - User Information &ndash;&gt;-->
+            <!--          <li class="nav-item dropdown no-arrow">-->
+            <!--            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"-->
+            <!--               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--              <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>-->
+            <!--              <img class="img-profile rounded-circle"-->
+            <!--                   src="img/undraw_profile.svg"/>-->
+            <!--            </a>-->
+            <!--            &lt;!&ndash; Dropdown - User Information &ndash;&gt;-->
+            <!--            <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+            <!--                 aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">-->
+            <!--              <a class="dropdown-item" href="setting.html">-->
+            <!--                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+            <!--                설정-->
+            <!--              </a>-->
+            <!--              <div class="dropdown-divider"></div>-->
+            <!--              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">-->
+            <!--                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>-->
+            <!--                로그아웃-->
+            <!--              </a>-->
+            <!--            </div>-->
+            <!--            <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+            <!--                 aria-labelledby="userDropdown" sec:authorize="isAnonymous()">-->
+            <!--              <a class="dropdown-item" href="login.html">-->
+            <!--                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+            <!--                로그인-->
+            <!--              </a>-->
+            <!--            </div>-->
+            <!--          </li>-->
+
+            <!--        </ul>-->
+
+            <!--      </nav>-->
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div>
+                    <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align:center">건물 전체의 밀집도 <button type="button" class="btn btn-secondary btn-sm" data-bs-container="body" onclick="btn()" style="vertical-align:middle">?</button></h1>
+
                 </div>
+
+                <!--                    <div class="row">-->
+                <!--                        <div class="col-lg-12" style="text-align:center">-->
+                <!--                            <img src="./img/second_floor.png"/>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+
+                <!--                    <div class="row justify-content-center">-->
+                <script>
+                            var j = 0;
+                            var arr = new Array(6);
+
+                            for (var i = 0; i < arr.length; i++) {
+                                arr[i] = new Array(4).fill(0);
+                            }
+                            arr[0][0] = 7;
+                            arr[0][1] = 5;
+                            arr[0][2] = 24;
+                            arr[0][3] = 6;
+                            arr[1][0] = 3;
+                            arr[1][1] = 1;
+                            arr[1][2] = 9;
+                            arr[1][3] = 10;
+                            arr[2][0] = 7;
+                            arr[2][1] = 5;
+                            arr[2][3] = 6;
+                            arr[3][0] = 3;
+                            arr[3][1] = 1;
+                            arr[3][3] = 2;
+                            arr[4][0] = 8;
+                            arr[4][1] = 5;
+                            arr[4][2] = 0;
+                            arr[4][3] = 6;
+                            arr[5][0] = 3;
+                            arr[5][1] = 1;
+                            arr[5][2] = 4;
+                            arr[5][3] = 1;
+
+                            setInterval(
+                                function () {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "http://localhost:8080/getLocationsEach",
+                                        dataType: "json",
+                                        success: function(data) {
+                                            str = '';
+
+                                            // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
+                                            $.each(data , function(i) {
+                                                ++arr[data[i].x][data[i].y];
+                                            });
+                                            sum = 0;
+                                            for(var i = 0; i < arr.length; i++) {
+                                                for(var j = 0; j < arr[i].length; j++) {
+                                                    var count = arr[i][j];
+                                                    var grade = null;
+                                                    if(count > 7) {
+                                                        grade = "고위험";
+                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#ff0000");
+
+                                                    }else if(count > 4) {
+                                                        grade = "위험";
+                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#e3d430");
+
+                                                    }else if(count > 2) {
+                                                        grade = "주의";
+                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#008000");
+
+                                                    }else {
+                                                        grade = "안전";
+                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#808080");
+
+                                                    }
+
+                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(1).html(count.toString()+"명");
+                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).html(grade);
+                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').css("opacity",1);
+
+                                                    sum += count;
+
+                                                }
+                                            $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(sum + "명");
+                                            }
+                                            //     str += '<TD>' + data[i].address + '</TD>' +
+                                            //         '<TD>' + data[i].distance + '</TD>' +
+                                            //         '<TD>' + data[i].x + '</TD>' +
+                                            //         '<TD>' + data[i].y + '</TD>';
+                                            //     str+= '</TR>';
+                                            //
+                                            //     var loc = data[i].x * 2 + data[i].y;
+                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);
+                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");
+                                            // });
+                                            // $('.table_body').html(str);
+                                        },
+                                        error: function(XMLHttpRequest, textStatus, errorThrown){
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: '통신 실패',
+                                                text: '통신에 실패하였습니다.',
+                                            })
+                                        }
+                                    })
+                                },1000);
+                        </script>
+                <!--                        <table class="table table-striped">-->
+                <!--                            <thead>-->
+                <!--                            <tr>-->
+                <!--                                <td>Address</td>-->
+                <!--                                <td>Distance</td>-->
+                <!--                                <td>x</td>-->
+                <!--                                <td>y</td>-->
+                <!--                            </tr>-->
+                <!--                            </thead>-->
+                <!--                            <tbody class="table_body">-->
+                <!--                            </tbody>-->
+                <!--                        </table>-->
+                <!--                        <table class="table table-striped" id="coordinate_info">-->
+                <!--                            <thead>-->
+                <!--                            <tr>-->
+                <!--                                <td>x</td>-->
+                <!--                                <td>y</td>-->
+                <!--                                <td>Count</td>-->
+                <!--                                <td>Addresses</td>-->
+                <!--                            </tr>-->
+                <!--                            </thead>-->
+                <!--                            <tbody class="table_body2">-->
+                <!--                            <tr>-->
+                <!--                                <td>0</td>-->
+                <!--                                <td>0</td>-->
+                <!--                                <td>0</td>-->
+                <!--                                <td></td>-->
+                <!--                            </tr>-->
+                <!--                            <tr>-->
+                <!--                                <td>0</td>-->
+                <!--                                <td>1</td>-->
+                <!--                                <td>0</td>-->
+                <!--                                <td></td>-->
+                <!--                            </tr>-->
+                <!--                            <tr>-->
+                <!--                                <td>1</td>-->
+                <!--                                <td>0</td>-->
+                <!--                                <td>0</td>-->
+                <!--                                <td></td>-->
+                <!--                            </tr>-->
+                <!--                            <tr>-->
+                <!--                                <td>1</td>-->
+                <!--                                <td>1</td>-->
+                <!--                                <td>0</td>-->
+                <!--                                <td></td>-->
+                <!--                            </tr>-->
+                <!--                            </tbody>-->
+                <!--                        </table>-->
+                <!--                    </div>-->
+                <div class="col-md-6" style="margin-left:10px;position:relative; float:left;">
+                    <div style="position:relative; padding-left:7%;">
+                    <!-- Image Map Generated by http://www.image-map.net/ -->
+                        <img class="map" src="img/2floor.png" usemap="#image-map">
+                        <map name="image-map">
+                            <area target="_self" alt="0,0" title="A0" href="#" coords="181,43,65,160" shape="rect" onmouseover="changePopupText(0, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',0);">
+                            <area target="_self" alt="0,1" title="A1" href="#" coords="181,160,298,43" shape="rect" onmouseover="changePopupText(0, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',1);">
+                            <area target="_self" alt="0,2" title="A2" href="#" coords="298,43,416,160" shape="rect" onmouseover="changePopupText(0, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',2);">
+                            <area target="_self" alt="0,3" title="A3" href="#" coords="416,43,571,160" shape="rect" onmouseover="changePopupText(0, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',3);">
+                            <area target="_self" alt="1,0" title="B0" href="#" coords="64,160,181,277" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',0);">
+                            <area target="_self" alt="1,1" title="B1" href="#" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',1);">
+                            <area target="_self" alt="1,2" title="B2" href="#" coords="298,160,416,197" shape="rect" onmouseover="changePopupText(1, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',2);">
+                            <area target="_self" alt="1,3" title="B3" href="#" coords="416,161,571,277" shape="rect" onmouseover="changePopupText(1, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',3);">
+                            <area target="_self" alt="2,0" title="C0" href="#" coords="64,278,181,395" shape="rect" onmouseover="changePopupText(2, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('C',0);">
+                            <area target="_self" alt="2,1" title="C1" href="#" coords="181,278,219,394" shape="rect" onmouseover="changePopupText(2, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('C',1);">
+                            <area target="_self" alt="2,2" title="C2" coords="" shape="rect" onclick="tableFocus('C',2);">
+                            <area target="_self" alt="2,3" title="C3" href="#" coords="416,277,571,394" shape="rect" onmouseover="changePopupText(2, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('C',3);">
+                            <area target="_self" alt="3,0" title="D0" href="#" coords="64,395,181,511" shape="rect" onmouseover="changePopupText(3, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('D',0);">
+                            <area target="_self" alt="3,1" title="D1" href="#" coords="181,395,219,511" shape="rect" onmouseover="changePopupText(3, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('D',1);">
+                            <area target="_self" alt="3,2" title="D2" coords="" shape="rect" onclick="tableFocus('D',2);">
+                            <area target="_self" alt="3,3" title="D3" href="#" coords="416,395,571,511" shape="rect" onmouseover="changePopupText(3, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('D',3);">
+                            <area target="_self" alt="4,0" title="E0" href="#" coords="64,511,181,628" shape="rect" onmouseover="changePopupText(4, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',0);">
+                            <area target="_self" alt="4,1" title="E1" href="#" coords="219,560,219,512,182,511,182,628,298,628,298,560,269,560" shape="poly" onmouseover="changePopupText(4, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',1);">
+                            <area target="_self" alt="4,2" title="E2" href="#" coords="298,560,416,628" shape="rect" onmouseover="changePopupText(4, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',2);">
+                            <area target="_self" alt="4,3" title="E3" href="#" coords="416,511,571,628" shape="rect" onmouseover="changePopupText(4, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',3);">
+                            <area target="_self" alt="5,0" title="F0" href="#" coords="64,629,181,710" shape="rect" onmouseover="changePopupText(5, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',0);">
+                            <area target="_self" alt="5,1" title="F1" href="#" coords="181,628,298,710" shape="rect" onmouseover="changePopupText(5, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',1);">
+                            <area target="_self" alt="5,2" title="F2" href="#" coords="298,628,416,710" shape="rect" onmouseover="changePopupText(5, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',2);">
+                            <area target="_self" alt="5,3" title="F3" href="#" coords="416,628,571,710" shape="rect" onmouseover="changePopupText(5, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',3);">
+                        </map>
+
+                        <div id="popup" style="background-color:white;position:relative;opacity:0;border:2px solid black;padding:5px 12px;z-index: 1;height:5%;width:15%;"
+                             onmouseover="showPopup();" onmouseout="hidePopup();">
+                            <a id="popup_addr" href="#" style="text-decoration:none;color:black;" target="_blank">
+                                <p id="popup_title" style="margin:0;padding:0;font-size:15px;line-height:20px;text-align:center;">test</p>
+                                <p id="popup_description" style="margin:0;padding:0;font-size:12px;line-height:12px;text-align:center;">test</p>
+                            </a>
+                        </div>
+                        <div>
+                            <p style="position:absolute;top:10%; left:14%; font-size:25px;">A</p>
+                            <p style="position:absolute;top:25%; left:14%; font-size:25px;">B</p>
+                            <p style="position:absolute;top:41%; left:14%; font-size:25px;">C</p>
+                            <p style="position:absolute;top:54%; left:14%; font-size:25px;">D</p>
+                            <p style="position:absolute;top:70%; left:14%; font-size:25px;">E</p>
+                            <p style="position:absolute;top:83%; left:14%; font-size:25px;">F</p>
+                            <p style="position:absolute;top:1%; left:24%; font-size:25px;">0</p>
+                            <p style="position:absolute;top:1%; left:42%; font-size:25px;">1</p>
+                            <p style="position:absolute;top:1%; left:60%; font-size:25px;">2</p>
+                            <p style="position:absolute;top:1%; left:80%; font-size:25px;">3</p>
+                        </div>
+                    </div>
+                    <script>
+                            function changePopupText(locx, locy, addr, x, y) {
+                                var loc = locx.toString() + "," + locy.toString();
+                                var data = {};
+                                if(arr[locx][locy] > 6) {
+                                    data.fillColor = "ff0000";
+                                }else if(arr[locx][locy] > 4) {
+                                    data.fillColor = "FFFF00";
+                                }else if(arr[locx][locy] > 2) {
+                                    data.fillColor = "008000";
+                                }else {
+                                    data.fillColor = "808080";
+                                }
+                                $('area[alt="' + loc + '"]').data('maphilight', data);
+
+                                document.getElementById('popup_title').innerHTML = "(" + String.fromCharCode(locx+65) + "," + locy.toString() + ")";
+                                document.getElementById('popup_description').innerHTML = "실시간 인원 수: " + arr[locx][locy];
+                                document.getElementById('popup_addr').href = addr;
+
+                                document.getElementById('popup').style.left = x + "px";
+                                document.getElementById('popup').style.top = y + "px";
+                                document.getElementById('popup').style.opacity = 1;
+                            }
+
+                            // 마우스오버 상자 숨기기
+                            function hidePopup() {
+                                document.getElementById('popup').style.opacity = 0;
+                            }
+
+                            // 마우스오버 상자 보이기
+                            function showPopup() {
+                                document.getElementById('popup').style.opacity = 1;
+                            }
+
+                            //구역 선택 시 포커싱
+                                function tableFocus(alpha, x){
+                                    var focus = x;
+                                    if(alpha == 'B') {
+                                        focus += 4;
+                                    }else if(alpha == 'C') {
+                                        focus += 8;
+                                        if(x >= 3) focus -= 1;
+                                    }else if(alpha == 'D') {
+                                        focus += 11;
+                                        if(x >= 3) focus -= 1;
+                                    }else if(alpha == 'E') {
+                                        focus += 14;
+                                    }else if(alpha == 'F') {
+                                        focus += 18;
+                                    }
+                                    $('#coordinate_info tbody').find('tr').css("backgroundColor","#FFF");
+                                    var grade = $('#coordinate_info tbody').find('tr').eq(focus).find('td').eq(2).text();
+                                    var targetTop = $('#coordinate_info tbody').find('tr').eq(focus-1).position().top;
+                                    if(focus == 0) targetTop = 0;
+                                    var imgTop = $('.map').offset().top;
+
+                                    if(grade == "고위험") {
+                                        $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(255, 0, 0, 0.2)");
+
+                                    }else if(grade == "위험") {
+                                         $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(227, 212, 48, 0.2)");
+
+                                    }else if(grade == "주의") {
+                                        $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(0, 128, 0, 0.2)");
+
+                                    }else {
+                                        $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(128, 128, 128, 0.2)");
+                                    }
+                                    $('#content-wrapper').animate( { scrollTop : 166 }, 500 );
+                                    $('#building').animate( { scrollTop : targetTop }, 500 );
+                                }
+                        </script>
+                </div>
+
+                <div class="col-md-5" id="building" style="height:714px; overflow:auto">
+                    <table class="table" style="color:#595959; float:right; margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF" id="coordinate_info">
+                        <thead>
+                        <tr class="table-active">
+                            <th scope="col">위치</th>
+                            <th scope="col">인원수</th>
+                            <th scope="col">밀집도 등급</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>(A,0)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(A,1)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(A,2)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(A,3)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(B,0)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(B,1)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(B,2)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(B,3)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(C,0)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(C,1)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(C,3)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(D,0)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(D,1)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(D,3)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(E,0)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(E,1)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(E,2)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(E,3)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(F,0)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(F,1)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(F,2)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>(F,3)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <!--                                <tr>-->
+                        <!--                                  <td>6202</td>-->
+                        <!--                                  <td>40명</td>-->
+                        <!--                                  <td>주의</td>-->
+                        <!--                                </tr>-->
+                        <!--                                <tr>-->
+                        <!--                                  <td>6203</td>-->
+                        <!--                                  <td>10명</td>-->
+                        <!--                                  <td>안전</td>-->
+                        <!--                                </tr>-->
+                        <!--                                <tr>-->
+                        <!--                                    <td>6208</td>-->
+                        <!--                                    <td>65명</td>-->
+                        <!--                                    <td>위험</td>-->
+                        <!--                                </tr>-->
+                        <!--                                <tr>-->
+                        <!--                                    <td>6209</td>-->
+                        <!--                                    <td>44명</td>-->
+                        <!--                                    <td>주의</td>-->
+                        <!--                                </tr>-->
+                        <!--                                <tr>-->
+                        <!--                                    <td>6210</td>-->
+                        <!--                                    <td>78명</td>-->
+                        <!--                                    <td>고위험</td>-->
+                        <!--                                </tr>-->
+                        </tbody>
+                        <tfoot>
+                        <tr class="table-active">
+                            <th>총 인원</th>
+                            <th>237명</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h6>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">취소</button>
+                <a class="btn btn-primary btn-sm" href="/logout">로그아웃</a>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+        $.fn.popover.Constructor.Default.whiteList.table=[];
+        $.fn.popover.Constructor.Default.whiteList.th=[];
+        $.fn.popover.Constructor.Default.whiteList.tr=[];
+        $.fn.popover.Constructor.Default.whiteList.td=[];
+        $.fn.popover.Constructor.Default.whiteList.div=[];
+        $.fn.popover.Constructor.Default.whiteList.tbody=[];
+        $.fn.popover.Constructor.Default.whiteList.thead=[];
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover({
+                placement : 'bottom',
+                trigger : 'hover',
+                html : true,
+                content : '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
+                //content : '<div class="media"><img src="img/density_level.png" class="mr-3" alt="Sample Image"><div class="media-body"><h5 class="media-heading">kk</h5><p>kk</p></div></div>'
+            });
+        });
+        </script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
+<script type="text/javascript">
+        $(function(){
+            $('.map').maphilight();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+<script>
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/setting/name",
+            dataType: "json",
+            success: function(data) {
+                $('.userName').text(data.name);
+                if (data.picture)
+                    $('.img-profile').attr("src", data.picture);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                Swal.fire({
+                  icon: 'error',
+                  title: '통신 실패',
+                  text: '통신에 실패하였습니다.',
+                })
+            }
+        });
+    </script>
+<script>
+        function btn(){
+            Swal.fire({
+              title: '<strong>밀집도 등급</strong>',
+              html:
+                '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
+
+            })
+        }
+    </script>
 
 </body>
 

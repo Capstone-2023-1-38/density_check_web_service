@@ -65,6 +65,9 @@ public class IndexController {
         return "/user-management.html";
     }
 
+    @GetMapping(path = "/situation")
+    public String situation() {return "/situation.html";}
+
     @GetMapping(path = "/setting")
     public String setting() {
         return "/setting.html";

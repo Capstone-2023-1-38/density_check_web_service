@@ -169,10 +169,12 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
                                     <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
-                                    <li><a class="dropdown-item" href="/density-check">실시간 밀집도 및 통계</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="/building">건물 정보 및 대피로</a></li>
-                                    <li><a class="dropdown-item" href="/camera-location">카메라</a></li>
+                                    <li><a class="dropdown-item" href="/situation">실시간 밀집도 및 통계</a></li>
+                                    <ul style="list-style-type: square;">
+                                        <li><a class="dropdown-item" href="/density-check">무선 통신 기반 밀집도</a></li>
+                                        <li><a class="dropdown-item" href="/camera-location">비전 기반 밀집도</a></li>
+                                    </ul>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -209,6 +211,9 @@
                             <a>팀 네카라쿠배</a>
                         </ul>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item mx-1" style="padding-top:21px; font-size:24px">
+                                <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>
+                            </li>
                             <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">
                                 <a href="/neighbor"><i class="bi bi-person-fill"></i></a>
                             </li>
@@ -418,9 +423,10 @@
                             <svg id="svg" width="622" height="730">
                                 <image href="./img/2floor.png"/>
                                 <div>
-                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:30%; left:30%; font-size: 50px;" onclick="location.href='camera.html'"></i>
-                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:50%; left:60%; font-size: 50px;" onclick="location.href='camera.html'"></i>
-                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:80%; left:45%; font-size: 50px;" onclick="location.href='camera.html'"></i>
+                                    <img src="img/camera.png" type="button" style="position: absolute; top:23%; left:30%; width:10%; height:10%;">
+<!--                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:30%; left:30%; font-size: 50px;" onclick="location.href='camera.html'"></i>-->
+<!--                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:50%; left:60%; font-size: 50px;" onclick="location.href='camera.html'"></i>-->
+<!--                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:80%; left:45%; font-size: 50px;" onclick="location.href='camera.html'"></i>-->
                                 </div>
                             </svg>
                         </div>
@@ -431,6 +437,7 @@
                 </div>
 
             </div>
+
             <!-- /.container-fluid -->
 
         </div>
@@ -440,7 +447,8 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
+                    <span>Copyright &copy; 네카라쿠배 2023<br></span>
+                    <span style="color:#bbbbbd"><br>천주희 장은서</span>
                 </div>
             </div>
         </footer>

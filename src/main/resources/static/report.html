@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
+    <link rel="icon" href="img/favicon.png">
     <title>제보하기</title>
 
     <!-- Custom fonts for this template-->
@@ -26,6 +26,32 @@
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
         body{
           font-family: 'NanumSquareNeoExtraBold'
+        }
+
+        table th{
+            background-color: #858796;
+            color: #FFF;
+            text-align:center;
+            width:20%;
+        }
+
+        #location-button{
+            position: relative;
+        }
+
+        #location-button button{
+            position:absolute;
+            top: 0;
+            bottom: 0;
+            right: 15px;
+            margin: auto 0;
+            width: 25%;
+            height: 80%;
+        }
+        .container img {
+          max-width: 100%;
+          height: auto;
+          display: block;
         }
     </style>
 </head>
@@ -152,10 +178,12 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
                                         <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
-                                        <li><a class="dropdown-item" href="/density-check">실시간 밀집도 및 통계</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="/building">건물 정보 및 대피로</a></li>
-                                        <li><a class="dropdown-item" href="/camera-location">카메라</a></li>
+                                        <li><a class="dropdown-item" href="/situation">실시간 밀집도 및 통계</a></li>
+                                        <ul style="list-style-type: square;">
+                                            <li><a class="dropdown-item" href="/density-check">무선 통신 기반 밀집도</a></li>
+                                            <li><a class="dropdown-item" href="/camera-location">비전 기반 밀집도</a></li>
+                                        </ul>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -192,6 +220,9 @@
                                 <a>팀 네카라쿠배</a>
                             </ul>
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item mx-1" style="padding-top:21px; font-size:24px">
+                                    <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>
+                                </li>
                                 <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">
                                     <a href="/neighbor"><i class="bi bi-person-fill"></i></a>
                                 </li>
@@ -395,33 +426,138 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">제보하기</h1>
+                    <h3 class="h5 mb-4 text-gray-500" style="text-align:center;">위급한 상황을 제보해주세요.</h3>
                     <form name="loc" action="/posts/new", method="post" onsubmit="return btn();">
-                        <div class="col-sm-10 mb-3 row" style="margin-left: auto; margin-right:auto;">
-                            <label class="col-sm-3 col-form-label">위치</label>
-                            <div class="col-sm-2">
-                                <select name="location" class="form-select" aria-label="Default select example" style="margin-bottom: 10px">
-                                    <option selected value="">위치</option>
-                                    <option value="6202강의실">6202강의실</option>
-                                    <option value="6203강의실">6203강의실</option>
-                                    <option value="6208강의실">6208강의실</option>
-                                    <option value="6210강의실">6210강의실</option>
-                                </select>
+                        <div class="col-sm-8 mb-3 row" style="margin-left: auto; margin-right:auto;">
+                            <table class="table table-bordered" style="table-layout:fixed">
+                                <tr>
+                                    <th scope="row">위치</th>
+                                    <td>
+                                        <div class="col-sm-6" id="location-button" style="padding-left:0px;">
+                                            <input id="location" name="location" type="text" class="form-control" value="" placeholder="위치를 선택하세요" style="color:#000;background-color:#FFF" readonly>
+                                            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" data-bs-parent="#selector" aria-expanded="false" aria-controls="collapseExample" style="font-size:90%;">
+                                                위치 선택
+                                            </button>
+                                        </div>
+                                        <div class="collapse" id="collapseExample" style="margin-top:2%;">
+                                            <div class="card card-body">
+                                                <div style="position:relative;margin-left:auto;margin-right:auto;" id="selector">
+                                                    <!-- Image Map Generated by http://www.image-map.net/ -->
+                                                    <img class="map" src="img/2floor.png" usemap="#image-map">
+                                                    <map name="image-map">
+                                                        <area target="_self" alt="0,0" title="A0" href="#" coords="181,43,65,160" shape="rect" onmouseover="mapHilight(0,0);" onmouseout="offHilight(0,0);" onclick="chooseLocation('A',0);">
+                                                        <area target="_self" alt="0,1" title="A1" href="#" coords="181,160,298,43" shape="rect" onmouseover="mapHilight(0,1);" onmouseout="offHilight(0,1);"onclick="chooseLocation('A',1);">
+                                                        <area target="_self" alt="0,2" title="A2" href="#" coords="298,43,416,160" shape="rect" onmouseover="mapHilight(0,2);" onmouseout="offHilight(0,2);"onclick="chooseLocation('A',2);">
+                                                        <area target="_self" alt="0,3" title="A3" href="#" coords="416,43,571,160" shape="rect" onmouseover="mapHilight(0,3);" onmouseout="offHilight(0,3);"onclick="chooseLocation('A',3);">
+                                                        <area target="_self" alt="1,0" title="B0" href="#" coords="64,160,181,277" shape="rect" onmouseover="mapHilight(1,0);" onmouseout="offHilight(1,0);"onclick="chooseLocation('B',0);">
+                                                        <area target="_self" alt="1,1" title="B1" href="#" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onmouseover="mapHilight(1,1);" onmouseout="offHilight(1,1);"onclick="chooseLocation('B',1);">
+                                                        <area target="_self" alt="1,2" title="B2" href="#" coords="298,160,416,197" shape="rect" onmouseover="mapHilight(1,2);" onmouseout="offHilight(1,2);"onclick="chooseLocation('B',2);">
+                                                        <area target="_self" alt="1,3" title="B3" href="#" coords="416,161,571,277" shape="rect" onmouseover="mapHilight(1,3);" onmouseout="offHilight(1,3);"onclick="chooseLocation('B',3);">
+                                                        <area target="_self" alt="2,0" title="C0" href="#" coords="64,278,181,395" shape="rect" onmouseover="mapHilight(2,0);" onmouseout="offHilight(2,0);"onclick="chooseLocation('C',0);">
+                                                        <area target="_self" alt="2,1" title="C1" href="#" coords="181,278,219,394" shape="rect" onmouseover="mapHilight(2,1);" onmouseout="offHilight(2,1);"onclick="chooseLocation('C',1);">
+                                                        <area target="_self" alt="2,2" title="C2" coords="" shape="rect" onclick="chooseLocation('C',2);">
+                                                        <area target="_self" alt="2,3" title="C3" href="#" coords="416,277,571,394" shape="rect" onmouseover="mapHilight(2,3);" onmouseout="offHilight(2,3);"onclick="chooseLocation('C',3);">
+                                                        <area target="_self" alt="3,0" title="D0" href="#" coords="64,395,181,511" shape="rect" onmouseover="mapHilight(3,0);" onmouseout="offHilight(3,0);"onclick="chooseLocation('D',0);">
+                                                        <area target="_self" alt="3,1" title="D1" href="#" coords="181,395,219,511" shape="rect" onmouseover="mapHilight(3,1);" onmouseout="offHilight(3,1);"onclick="chooseLocation('D',1);">
+                                                        <area target="_self" alt="3,2" title="D2" coords="" shape="rect" onclick="chooseLocation('D',2);">
+                                                        <area target="_self" alt="3,3" title="D3" href="#" coords="416,395,571,511" shape="rect" onmouseover="mapHilight(3,3);" onmouseout="offHilight(3,3);"onclick="chooseLocation('D',3);">
+                                                        <area target="_self" alt="4,0" title="E0" href="#" coords="64,511,181,628" shape="rect" onmouseover="mapHilight(4,0);" onmouseout="offHilight(4,0);"onclick="chooseLocation('E',0);">
+                                                        <area target="_self" alt="4,1" title="E1" href="#" coords="219,560,219,512,182,511,182,628,298,628,298,560,269,560" shape="poly" onmouseover="mapHilight(4,1);" onmouseout="offHilight(4,1);"onclick="chooseLocation('E',1);">
+                                                        <area target="_self" alt="4,2" title="E2" href="#" coords="298,560,416,628" shape="rect" onmouseover="mapHilight(4,2);" onmouseout="offHilight(4,2);" onclick="chooseLocation('E',2);">
+                                                        <area target="_self" alt="4,3" title="E3" href="#" coords="416,511,571,628" shape="rect" onmouseover="mapHilight(4,3);" onmouseout="offHilight(4,3);" onclick="chooseLocation('E',3);">
+                                                        <area target="_self" alt="5,0" title="F0" href="#" coords="64,629,181,710" shape="rect" onmouseover="mapHilight(5,0);" onmouseout="offHilight(5,0);" onclick="chooseLocation('F',0);">
+                                                        <area target="_self" alt="5,1" title="F1" href="#" coords="181,628,298,710" shape="rect" onmouseover="mapHilight(5,1);" onmouseout="offHilight(5,1);" onclick="chooseLocation('F',1);">
+                                                        <area target="_self" alt="5,2" title="F2" href="#" coords="298,628,416,710" shape="rect" onmouseover="mapHilight(5,2);" onmouseout="offHilight(5,2);" onclick="chooseLocation('F',2);">
+                                                        <area target="_self" alt="5,3" title="F3" href="#" coords="416,628,571,710" shape="rect" onmouseover="mapHilight(5,3);" onmouseout="offHilight(5,3);" onclick="chooseLocation('F',3);">
+                                                    </map>
+                                                    <div>
+                                                        <p style="position:absolute;top:10%; left:6%; font-size:25px;">A</p>
+                                                        <p style="position:absolute;top:28%; left:6%; font-size:25px;">B</p>
+                                                        <p style="position:absolute;top:43%; left:6%; font-size:25px;">C</p>
+                                                        <p style="position:absolute;top:60%; left:6%; font-size:25px;">D</p>
+                                                        <p style="position:absolute;top:75%; left:6%; font-size:25px;">E</p>
+                                                        <p style="position:absolute;top:91%; left:6%; font-size:25px;">F</p>
+                                                        <p style="position:absolute;top:1%; left:20%; font-size:25px;">0</p>
+                                                        <p style="position:absolute;top:1%; left:38%; font-size:25px;">1</p>
+                                                        <p style="position:absolute;top:1%; left:56%; font-size:25px;">2</p>
+                                                        <p style="position:absolute;top:1%; left:75%; font-size:25px;">3</p>
+                                                    </div>
+                                                    <script>
+                                                        function chooseLocation(x, y){
+                                                            $('input[name=location]').attr('value',x+y.toString());
+                                                            $('input[name=location]').focus();
+                                                        }
+
+                                                        function mapHilight(x, y){
+                                                            var loc = x+","+y;
+                                                            var data = {};
+
+                                                             data.fillColor = "4e73df";
+                                                             data.alwaysOn = true;
+                                                             $('area[alt="' + loc + '"]').data('maphilight', data).trigger('alwaysOn.maphilight');
+                                                        }
+
+                                                        function offHilight(x, y){
+                                                            var loc = x+","+y;
+                                                            var data = {};
+                                                            data.alwaysOn = false;
+                                                            $('area[alt="' + loc + '"]').data('maphilight', data).trigger('alwaysOn.maphilight');
+                                                        }
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">제목</th>
+                                    <td>
+                                        <div >
+                                            <input name="title" type="text" class="form-control" id="title" placeholder="제목을 입력하세요" style="color:#000">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">내용</th>
+                                    <td>
+                                        <div>
+                                            <textarea name="content" class="form-control" rows="10" placeholder="내용을 입력하세요" style="color:#000"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+<!--                            <label class="col-sm-3 col-form-label" style="text-align:right">위치</label>-->
+<!--                            <div class="col-sm-2">-->
+<!--                                <select name="location" class="form-select" aria-label="Default select example" style="margin-bottom: 10px">-->
+<!--                                    <option selected value="">위치</option>-->
+<!--                                    <option value="6202강의실">6202강의실</option>-->
+<!--                                    <option value="6203강의실">6203강의실</option>-->
+<!--                                    <option value="6208강의실">6208강의실</option>-->
+<!--                                    <option value="6210강의실">6210강의실</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-10" style="margin-left: auto; margin-right: auto;">-->
+<!--                            <div class="mb-3 row">-->
+<!--                                <label class="col-sm-3 col-form-label" style="text-align:right">제목</label>-->
+<!--                                <div class="col-sm-9">-->
+<!--                                    <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="제목을 입력하세요">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="mb-3 row">-->
+<!--                                <label class="col-sm-3 col-form-label" style="text-align:right; height:38px;">제보 내용</label>-->
+<!--                                <div class="col-sm-9">-->
+<!--                                    <textarea name="content" class="form-control col-sm-10" rows="10" placeholder="내용을 입력하세요"></textarea>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                            <button class="btn btn-secondary btn-sm col-sm-2 float-right" style="margin-left:700px;">제출</button>
+
                             </div>
-                        </div>
-                        <div class="col-sm-10" style="margin-left: auto; margin-right: auto;">
-                            <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">제목</label>
-                                <div class="col-sm-9">
-                                    <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="제목을 입력하세요">
-                                </div>
-                                <label class="col-sm-3 col-form-label">제보 내용</label>
-                                <div class="col-sm-9">
-                                    <textarea name="content" class="form-control col-sm-10" rows="10" placeholder="내용을 입력하세요"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn btn-secondary btn-sm col-sm-2 float-right">제출</button>
+
                         <!--                    <button type="submit" class="btn btn-secondary btn-sm col-sm-2 float-right" onclick="javascript:btn()">제출</button>-->
+
                     </form>
 
 
@@ -435,7 +571,8 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; 네카라쿠배 2023<br></span>
+                        <span style="color:#bbbbbd"><br>천주희 장은서</span>
                     </div>
                 </div>
             </footer>
@@ -497,12 +634,33 @@
             }
         });
     </script>
+    <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.map').maphilight();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('[data-rel=popover]').popover({
+              html: true,
+              trigger: "hover"
+            });
+        })
+    </script>
 
     <script>
     function btn(){
         if(loc.location.value == ""){
             Swal.fire('위치를 선택해주세요');
             loc.location.focus();
+            return false;
+        }
+
+        if(loc.title.value == ""){
+            Swal.fire('제목을 입력해주세요');
+            loc.title.focus();
             return false;
         }
         return true;
