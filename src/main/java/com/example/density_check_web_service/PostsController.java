@@ -1,5 +1,6 @@
 package com.example.density_check_web_service;
 
+import com.example.density_check_web_service.config.auth.PrincipalDetails;
 import com.example.density_check_web_service.domain.Posts.dto.PostsListResponseDto;
 import com.example.density_check_web_service.domain.Posts.dto.PostsResponseDto;
 import com.example.density_check_web_service.domain.Posts.dto.PostsSaveRequestDto;
@@ -8,13 +9,17 @@ import com.example.density_check_web_service.service.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @RequiredArgsConstructor
 @Controller
@@ -26,7 +31,8 @@ public class PostsController {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getAttribute("email");
         postsService.save(requestDto, email);
-        return "redirect:/report-board.html";
+
+        return "redirect:/report-board";
     }
     @ResponseBody
     @PutMapping("/api/v1/posts/{id}")

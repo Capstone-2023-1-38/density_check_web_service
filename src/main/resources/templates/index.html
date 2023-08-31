@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -158,156 +159,7 @@
             <!-- Sidebar Toggle (Topbar) -->
 
 
-            <!-- Topbar Navbar -->
-            <nav class="navbar navbar-expand topbar mb-4 static-top" style="background-color:#FFF; border-bottom:solid 1px #d7d9de">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="/" >MENU</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-                        <div id="menu-div">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: 'NanumSquareNeoExtraBold'; color:#FFF; font-size:18px;">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                                        위치 및 밀집도
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
-                                        <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="/situation">실시간 밀집도 및 통계</a></li>
-                                        <ul style="list-style-type: square;">
-                                            <li><a class="dropdown-item" href="/density-check">라즈베리파이 기반 밀집도</a></li>
-                                            <li><a class="dropdown-item" href="/camera-location">카메라 기반 밀집도</a></li>
-                                        </ul>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        제보
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
-                                        <li><a class="dropdown-item" href="/report">제보하기</a></li>
-                                        <li><a class="dropdown-item" href="/report-board">제보 게시판</a></li>
-                                    </ul>
-                                </li>
-                                <!--                            <li class="nav-item dropdown">-->
-                                <!--                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-                                <!--                                    이웃-->
-                                <!--                                </a>-->
-                                <!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-                                <!--                                    <li><a class="dropdown-item" href="#">Action</a></li>-->
-                                <!--                                    <li><a class="dropdown-item" href="#">Another action</a></li>-->
-                                <!--                                    <li><hr class="dropdown-divider"></li>-->
-                                <!--                                    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-                                <!--                                </ul>-->
-                                <!--                            </li>-->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        찾기
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
-                                        <li><a class="dropdown-item" href="/user-find">사용자 찾기</a></li>
-                                        <li><a class="dropdown-item" href="/specific-area-user-find">특정 구역 사용자 찾기</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <span class="underbar"></span>
-                        </div>
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align:center">
-                            <a>팀 네카라쿠배</a>
-                        </ul>
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item mx-1" style="padding-top:21px; font-size:24px">
-                                <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>
-                            </li>
-                            <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">
-                                <a href="/neighbor"><i class="bi bi-person-fill"></i></a>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell fa-fw"></i>
-                                    <!-- Counter - Alerts -->
-                                    <span class="badge badge-danger badge-counter">3+</span>
-                                </a>
-                                <!-- Dropdown - Alerts -->
-                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="alertsDropdown">
-                                    <h4 class="dropdown-header">
-                                        알림
-                                    </h4>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">23/07/05 13:49:07</div>
-                                            제보게시판에 새로운 제보가 등록되었습니다.
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">23/07/05 11:23:45</div>
-                                            제보게시판에 새로운 제보가 등록되었습니다.
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">23/07/02 21:34:11</div>
-                                            제보게시판에 새로운 제보가 등록되었습니다.
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>
-                                </div>
-                            </li>
-
-                            <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow" >
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>
-                                    <img class="img-profile rounded-circle"
-                                         src="img/undraw_profile.svg"/>
-                                </a>
-                                <!-- Dropdown - User Information -->
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
-                                    <a class="dropdown-item" href="/setting">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        설정
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        로그아웃
-                                    </a>
-                                </div>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
-                                    <a class="dropdown-item" href="login.html">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        로그인
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-            </nav>
+            <header th:replace="fragments/header::header"></header>
             <!--        <ul class="navbar-nav ml-auto">-->
 
             <!--          &lt;!&ndash; Nav Item - Search Dropdown (Visible Only XS) &ndash;&gt;-->
@@ -595,14 +447,7 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; 네카라쿠배 2023<br></span>
-                    <span style="color:#bbbbbd"><br>천주희 장은서</span>
-                </div>
-            </div>
-        </footer>
+        <footer th:replace="fragments/footer::footer"></footer>
         <!-- End of Footer -->
 
     </div>
@@ -635,59 +480,35 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!--<script src="/static/js/bootstrap.bundle.js"></script>-->
-<!--<script src="./resources/js/jquery-3.5.1.min.js"></script>-->
-<!--<script src="./resources/js/bootstrap.bundle.min.js"></script>-->
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="/static/js/bootstrap.bundle.js"></script>-->
+    <!--<script src="./resources/js/jquery-3.5.1.min.js"></script>-->
+    <!--<script src="./resources/js/bootstrap.bundle.min.js"></script>-->
 
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-<!--&lt;!&ndash; Page level plugins &ndash;&gt;-->
-<!--<script src="vendor/chart.js/Chart.min.js"></script>-->
+    <!--&lt;!&ndash; Page level plugins &ndash;&gt;-->
+    <!--<script src="vendor/chart.js/Chart.min.js"></script>-->
 
-<!--&lt;!&ndash; Page level custom scripts &ndash;&gt;-->
-<!--<script src="js/demo/chart-area-demo.js"></script>-->
-<!--<script src="js/demo/chart-pie-demo.js"></script>-->
+    <!--&lt;!&ndash; Page level custom scripts &ndash;&gt;-->
+    <!--<script src="js/demo/chart-area-demo.js"></script>-->
+    <!--<script src="js/demo/chart-pie-demo.js"></script>-->
 
-<script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
-<script type="text/javascript">
-        $(function(){
-            $('.map').maphilight();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-<script>
-        $.ajax({
-            type: "GET",
-            url: "/setting/name",
-            dataType: "json",
-            success: function(data) {
-                $('.userName').text(data.name);
-                if (data.picture)
-                    $('.img-profile').attr("src", data.picture);
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("통신 실패");
-                $.ajax({
-                    type: "POST",
-                    url: "/logout",
-                    success: function (result) {
-                        console.log(result);
-                    },
-                    error: function (error) {
-                        console.log(`Error ${error}`);
-                    }
-                });
-            }
-        });
+    <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
+    <script type="text/javascript">
+            $(function(){
+                $('.map').maphilight();
+                $('[data-toggle="tooltip"]').tooltip();
+            });
     </script>
 
+    <th:block th:replace="fragments/script::script"></th:block>
 </body>
 
 </html>

@@ -1,5 +1,10 @@
 package com.example.density_check_web_service.service;
 
+import com.example.density_check_web_service.NotifyController;
+import com.example.density_check_web_service.PostsController;
+import com.example.density_check_web_service.domain.Notify.Notify;
+import com.example.density_check_web_service.domain.Notify.NotifyRepository;
+import com.example.density_check_web_service.domain.Notify.dto.NotifyDto;
 import com.example.density_check_web_service.domain.Posts.Posts;
 import com.example.density_check_web_service.domain.Posts.PostsRepository;
 import com.example.density_check_web_service.domain.Posts.dto.PostsListResponseDto;
@@ -17,7 +22,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import javax.servlet.http.Cookie;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,13 +34,28 @@ import java.util.stream.Collectors;
 public class PostsService {
     private final PostsRepository postsRepository;
     private final UsersRepository usersRepository;
+    private final NotifyRepository notifyRepository;
 
     @Transactional
-    public Long save(PostsSaveRequestDto requestDto, String email)
+    public void save(PostsSaveRequestDto requestDto, String email)
     {
         Users users = usersRepository.findByEmail(email).orElseThrow();
         requestDto.setAuthor(users);
-        return postsRepository.save(requestDto.toEntity()).getId();
+        Posts posts = postsRepository.save(requestDto.toEntity());
+
+        List<Users> subsToList = usersRepository.findAll();
+        for (Users user : subsToList) {
+            if (user.getId() != users.getId()) {
+                Notify notify = new Notify(posts, false, user);
+                notifyRepository.save(notify);
+                SseEmitter sseEmitter = NotifyController.sseEmitters.get(user.getId());
+                try {
+                    sseEmitter.send(SseEmitter.event().name("notification").data(new NotifyDto(notify)));
+                } catch (Exception e) {
+                    NotifyController.sseEmitters.remove(user.getId());
+                }
+            }
+        }
     }
 
     @Transactional
