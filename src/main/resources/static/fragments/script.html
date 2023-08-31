@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <th:block th:fragment="script">
+        <script>
+            $(document).ready(function() {
+                notification();
+            })
+        </script>
+        <script type="text/javascript">
+            function notification() {
+                let eventSource = new EventSource("/sub");
+                eventSource.addEventListener("notification", function(event) {
+                    let message = JSON.parse(event.data);
+                    var count = $("#count").text();
+                    count = parseInt(count.slice(0,-1));
+                    count++;
+                    $("#count").text(count.toString() + "+");
+                    $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"#\">" +
+                        "                                    <div class=\"mr-3\">" +
+                        "                                        <div class=\"icon-circle bg-warning\">" +
+                        "                                            <i class=\"fas fa-exclamation-triangle text-white\"></i>" +
+                        "                                        </div>" +
+                        "                                    </div>" +
+                        "                                    <div>" +
+                        "                                        <div class=\"small text-gray-500\">" +
+                                                                    message.createdDate + "</div>" +
+                        "                                        제보게시판에 새로운 제보가 등록되었습니다.\n" +
+                        "                                    </div>\n" +
+                        "                                </a>");
+                    // let notification_content = document.getElementById('notification-content');
+                    // let notification_container = document.getElementById('notification-container');
+                    // notification_content.textContent = message;
+                    // notification_container.classList.add('show');
+                    // setTimeout(() => {
+                    //     notification_container.classList.remove('show');
+                    //     }, 2000);
+                });
+                eventSource.addEventListener("error", function(event) {
+                    eventSource.close();
+                });
+            }
+        </script>
+        <script>
+            $.ajax({
+                type: "GET",
+                url: "/notify",
+                dataType: "json",
+                success: function(data) {
+                    if (data) {
+                        $("#count").text(data.length.toString() + "+");
+                        $.each(data , function(i) {
+                            $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"#\">" +
+                                "                                    <div class=\"mr-3\">" +
+                                "                                        <div class=\"icon-circle bg-warning\">" +
+                                "                                            <i class=\"fas fa-exclamation-triangle text-white\"></i>" +
+                                "                                        </div>" +
+                                "                                    </div>" +
+                                "                                    <div>" +
+                                "                                        <div class=\"small text-gray-500\">" +
+                                                                            data[i].createdDate + "</div>" +
+                                "                                        제보게시판에 새로운 제보가 등록되었습니다.\n" +
+                                "                                    </div>\n" +
+                                "                                </a>");
+                        });
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '통신 실패',
+                        text: '통신에 실패하였습니다.',
+                    })
+                }
+            });
+        </script>
+        <script>
+            $.ajax({
+                type: "GET",
+                url: "/setting/name",
+                dataType: "json",
+                success: function(data) {
+                    $('.userName').text(data.name);
+                    if (data.picture)
+                        $('.img-profile').attr("src", data.picture);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '통신 실패',
+                        text: '통신에 실패하였습니다.',
+                    })
+                }
+            });
+        </script>
+    </th:block>
+</html>
