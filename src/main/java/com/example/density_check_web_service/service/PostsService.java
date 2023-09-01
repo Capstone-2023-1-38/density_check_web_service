@@ -48,11 +48,11 @@ public class PostsService {
             if (user.getId() != users.getId()) {
                 Notify notify = new Notify(posts, false, user);
                 notifyRepository.save(notify);
-                SseEmitter sseEmitter = NotifyController.sseEmitters.get(user.getId());
+                SseEmitter sseEmitter = NotifyService.sseEmitters.get(user.getEmail());
                 try {
                     sseEmitter.send(SseEmitter.event().name("notification").data(new NotifyDto(notify)));
                 } catch (Exception e) {
-                    NotifyController.sseEmitters.remove(user.getId());
+                    NotifyService.sseEmitters.remove(user.getEmail());
                 }
             }
         }
