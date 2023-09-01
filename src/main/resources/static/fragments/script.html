@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <th:block th:fragment="script">
-        <script>
+        <script sec:authorize="isAuthenticated()">
             $(document).ready(function() {
                 notification();
             })
         </script>
-        <script type="text/javascript">
+        <script type="text/javascript" sec:authorize="isAuthenticated()">
             function notification() {
                 let eventSource = new EventSource("/sub");
                 eventSource.addEventListener("notification", function(event) {
@@ -41,7 +42,7 @@
                 });
             }
         </script>
-        <script>
+        <script sec:authorize="isAuthenticated()">
             $.ajax({
                 type: "GET",
                 url: "/notify",
