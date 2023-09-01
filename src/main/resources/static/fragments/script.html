@@ -17,7 +17,7 @@
                     count = parseInt(count.slice(0,-1));
                     count++;
                     $("#count").text(count.toString() + "+");
-                    $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"#\">" +
+                    $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + message.posts.id + "\">" +
                         "                                    <div class=\"mr-3\">" +
                         "                                        <div class=\"icon-circle bg-warning\">" +
                         "                                            <i class=\"fas fa-exclamation-triangle text-white\"></i>" +
@@ -43,15 +43,20 @@
             }
         </script>
         <script sec:authorize="isAuthenticated()">
+            var current_url = window.location.pathname.split("/");
+            var id = 0;
+            if (current_url[1] == "posts") {
+                id = current_url[2];
+            }
             $.ajax({
                 type: "GET",
-                url: "/notify",
+                url: "/notify/" + id,
                 dataType: "json",
                 success: function(data) {
                     if (data) {
                         $("#count").text(data.length.toString() + "+");
                         $.each(data , function(i) {
-                            $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"#\">" +
+                            $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + data[i].posts.id + "\">" +
                                 "                                    <div class=\"mr-3\">" +
                                 "                                        <div class=\"icon-circle bg-warning\">" +
                                 "                                            <i class=\"fas fa-exclamation-triangle text-white\"></i>" +
