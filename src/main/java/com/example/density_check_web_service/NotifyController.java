@@ -23,6 +23,7 @@ public class NotifyController {
 
     public static Map<Long, SseEmitter> sseEmitters = new ConcurrentHashMap<>();
 
+    @ResponseBody
     @GetMapping(value = "/sub", produces = "text/event-stream")
     public SseEmitter subscribe(Authentication authentication,
                                 @RequestHeader(value = "Last-Event-ID", required = false, defaultValue = "") String lastEventId) {

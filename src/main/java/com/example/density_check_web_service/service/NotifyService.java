@@ -34,6 +34,7 @@ public class NotifyService {
         }
     }
 
+    @Transactional
     public SseEmitter subscribe(String email) {
 
         long userId = usersRepository.findByEmail(email).get().getId();
@@ -50,7 +51,6 @@ public class NotifyService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         // user의 pk값을 key값으로 해서 SseEmitter를 저장
         NotifyController.sseEmitters.put(userId, sseEmitter);
