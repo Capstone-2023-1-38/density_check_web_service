@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 
     <meta charset="utf-8">
@@ -42,14 +43,6 @@
             height: 100vh;
         }
 
-        #wrapper #content-wrapper{
-            background-color: #20293A;
-
-        }
-
-        .sticky-footer{
-            background-color:rgb(0,0,0,0.3);
-        }
     </style>
 
 </head>
@@ -162,7 +155,154 @@
             <!-- Sidebar Toggle (Topbar) -->
 
 
+            <!-- Topbar Navbar -->
             <header th:replace="fragments/header::header"></header>
+<!--            <nav class="navbar navbar-expand topbar mb-4 static-top" style="border-bottom:solid 1px #d7d9de; margin-bottom:10px;">-->
+<!--                <div class="container-fluid">-->
+<!--                    <a class="navbar-brand" href="/" >MENU</a>-->
+<!--                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                        <span class="navbar-toggler-icon"></span>-->
+<!--                    </button>-->
+<!--                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">-->
+<!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: 'NanumSquareNeoExtraBold'; color:#FFF; font-size:18px;">-->
+<!--                            <li class="nav-item dropdown">-->
+<!--                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >-->
+<!--                                    위치 및 밀집도-->
+<!--                                </a>-->
+<!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">-->
+<!--                                    <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>-->
+<!--                                    <li><hr class="dropdown-divider"></li>-->
+<!--                                    <li><a class="dropdown-item" href="/situation">실시간 밀집도 및 통계</a></li>-->
+<!--                                    <ul style="list-style-type: square;">-->
+<!--                                        <li><a class="dropdown-item" href="/density-check">무선 통신 기반 밀집도</a></li>-->
+<!--                                        <li><a class="dropdown-item" href="/camera-location">비전 기반 밀집도</a></li>-->
+<!--                                    </ul>-->
+<!--                                </ul>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item dropdown">-->
+<!--                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                                    제보-->
+<!--                                </a>-->
+<!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">-->
+<!--                                    <li><a class="dropdown-item" href="/report">제보하기</a></li>-->
+<!--                                    <li><a class="dropdown-item" href="/report-board">제보 게시판</a></li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
+<!--                            &lt;!&ndash;                            <li class="nav-item dropdown">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    이웃&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <li><a class="dropdown-item" href="#">Action</a></li>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <li><a class="dropdown-item" href="#">Another action</a></li>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <li><hr class="dropdown-divider"></li>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <li><a class="dropdown-item" href="#">Something else here</a></li>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                </ul>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </li>&ndash;&gt;-->
+<!--                            <li class="nav-item dropdown">-->
+<!--                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                                    찾기-->
+<!--                                </a>-->
+<!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">-->
+<!--                                    <li><a class="dropdown-item" href="/user-find">사용자 찾기</a></li>-->
+<!--                                    <li><a class="dropdown-item" href="/specific-area-user-find">특정 구역 사용자 찾기</a></li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align:center">-->
+<!--                            <a>팀 네카라쿠배</a>-->
+<!--                        </ul>-->
+<!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--                            <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">-->
+<!--                                <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">-->
+<!--                                <a href="/neighbor"><i class="bi bi-person-fill"></i></a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item dropdown no-arrow mx-1">-->
+<!--                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"-->
+<!--                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                    <i class="fas fa-bell fa-fw"></i>-->
+<!--                                    &lt;!&ndash; Counter - Alerts &ndash;&gt;-->
+<!--                                    <span class="badge badge-danger badge-counter">3+</span>-->
+<!--                                </a>-->
+<!--                                &lt;!&ndash; Dropdown - Alerts &ndash;&gt;-->
+<!--                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+<!--                                     aria-labelledby="alertsDropdown">-->
+<!--                                    <h4 class="dropdown-header">-->
+<!--                                        알림-->
+<!--                                    </h4>-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item d-flex align-items-center" href="#">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="mr-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="icon-circle bg-warning">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <i class="fas fa-exclamation-triangle text-white"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="small text-gray-500">23/07/05 13:49:07</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            제보게시판에 새로운 제보가 등록되었습니다.&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item d-flex align-items-center" href="#">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="mr-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="icon-circle bg-warning">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <i class="fas fa-exclamation-triangle text-white"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="small text-gray-500">23/07/05 11:23:45</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            제보게시판에 새로운 제보가 등록되었습니다.&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item d-flex align-items-center" href="#">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div class="mr-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="icon-circle bg-warning">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <i class="fas fa-exclamation-triangle text-white"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="small text-gray-500">23/07/02 21:34:11</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            제보게시판에 새로운 제보가 등록되었습니다.&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </li>-->
+
+<!--                            &lt;!&ndash; Nav Item - User Information &ndash;&gt;-->
+<!--                            <li class="nav-item dropdown no-arrow" >-->
+<!--                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"-->
+<!--                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>-->
+<!--                                    <img class="img-profile rounded-circle"-->
+<!--                                         src="img/undraw_profile.svg"/>-->
+<!--                                </a>-->
+<!--                                &lt;!&ndash; Dropdown - User Information &ndash;&gt;-->
+<!--                                <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+<!--                                     aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">-->
+<!--                                    <a class="dropdown-item" href="/setting">-->
+<!--                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+<!--                                        설정-->
+<!--                                    </a>-->
+<!--                                    <div class="dropdown-divider"></div>-->
+<!--                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">-->
+<!--                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>-->
+<!--                                        로그아웃-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                                <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+<!--                                     aria-labelledby="userDropdown" sec:authorize="isAnonymous()">-->
+<!--                                    <a class="dropdown-item" href="login.html">-->
+<!--                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+<!--                                        로그인-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </nav>-->
             <!--        <ul class="navbar-nav ml-auto">-->
 
             <!--          &lt;!&ndash; Nav Item - Search Dropdown (Visible Only XS) &ndash;&gt;-->
@@ -278,25 +418,33 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <div id="divClock" class="clock" style="color: #f7d865; text-align:right; font-size:70%; margin-top:3px;">
+                <div id="divClock" class="clock" style="color: #1f345c; text-align:right; font-size:70%; margin-top:3px;">
                 </div>
-                <hr class="col-sm-12" style="border: solid 1px #f7d865; margin:1px;"/>
-                <div class="col-lg-5" style="float:left;">
+                <hr class="col-sm-12" style="border: solid 1px #1f345c; margin:1px;"/>
+                <div style="float:left;position:relative;">
                     <!-- Image Map Generated by http://www.image-map.net/ -->
+                    <div style="position:relative;">
                     <img src="img/2floor.png" usemap="#image-map" id="secondFloor" style="opacity:0.5;">
-                    <map name="image-map" class="image-map">
-                        <area target="_self" alt="0,0" title="0,0" href="#" coords="65,43,299,44,298,197,219,197,219,394,65,395" shape="poly">
-                        <area target="_self" alt="0,1" title="0,1" href="#" coords="299,44,299,197,415,197,415,394,571,394,571,44" shape="poly">
-                        <area target="_self" alt="1,0" title="1,0" href="#" coords="65,395,219,395,220,559,299,560,298,710,65,709" shape="poly">
-                        <area target="_self" alt="1,1" title="1,1" href="#" coords="298,560,416,560,415,395,571,394,574,709,298,710" shape="poly">
-                    </map>
+                        <map name="image-map" class="image-map">
+                            <area target="_self" alt="0,0" title="0,0" href="#" coords="65,43,299,44,298,197,219,197,219,394,65,395" shape="poly">
+                            <area target="_self" alt="0,1" title="0,1" href="#" coords="299,44,299,197,415,197,415,394,571,394,571,44" shape="poly">
+                            <area target="_self" alt="1,0" title="1,0" href="#" coords="65,395,219,395,220,559,299,560,298,710,65,709" shape="poly">
+                            <area target="_self" alt="1,1" title="1,1" href="#" coords="298,560,416,560,415,395,571,394,574,709,298,710" shape="poly">
+                        </map>
+                        <div>
+                            <p style="position:absolute;left:20%;top:30%;font-size:1.4rem;font-weight:200;color:#1f345c;background-color:#FFF;border:solid 1px #20293A">A</p>
+                            <p style="position:absolute;left:76%;top:30%;font-size:1.4rem;font-weight:200;color:#1f345c;background-color:#FFF;border:solid 1px #20293A">B</p>
+                            <p style="position:absolute;left:20%;top:70%;font-size:1.4rem;font-weight:200;color:#1f345c;background-color:#FFF;border:solid 1px #20293A">C</p>
+                            <p style="position:absolute;left:76%;top:70%;font-size:1.4rem;font-weight:200;color:#1f345c;background-color:#FFF;border:solid 1px #20293A">D</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-3" style="margin-left:20px; float:left">
-                    <p style="color:#FFF; text-align:center">각 구역별 총 인원과 밀집도 등급</p>
-                    <div id="building" style="width:100%; height:714px; overflow:auto;">
-                        <table class="table" style="background-color:rgb(255,255,255,0.1);color:#FFF;text-align:center;" id="coordinate_info">
+                <div class="col-sm-6" style="margin-left:20px; float:left; background-color: white;">
+                    <p style="color:#1f345c; text-align:center">각 구역별 총 인원과 밀집도 등급</p>
+                    <div id="building" style="width:100%; overflow:auto;">
+                        <table class="table" style="background-color:rgb(255,255,255,0.1);color:#1f345c;text-align:center;" id="coordinate_info">
                             <thead>
-                            <tr>
+                            <tr class="table-active">
                                 <th scope="col">위치</th>
                                 <th scope="col">인원수</th>
                                 <th scope="col">밀집도 등급</th>
@@ -304,22 +452,22 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>(0,0)</td>
+                                <td>A</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>(0,1)</td>
+                                <td>B</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>(1,0)</td>
+                                <td>C</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>(1,1)</td>
+                                <td>D</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -417,49 +565,94 @@
                                 },1000);
                         </script>
 
-                        <div style="float:right;width:450px;">
-                            <div style="width:400px;">
-                                <canvas id="myChart"></canvas>
+                        <div class="col-sm-6" style="float:right;margin-top:15px;background-color:white;">
+                            <div class="col-sm-5" style="width:700px;color:#1f345c;">
+                               <canvas id="myChart" style="width:650px;"></canvas>
                             </div>
-                            <div class="column">
-                                <button type="button" class="btn btn-light" style="float:left;opacity:0.2">(0,0)</button>
-                                <button type="button" class="btn btn-light" style="float:left;opacity:0.2;margin-left:15px;">(0,1)</button>
-                                <button type="button" class="btn btn-light" style="float:left;opacity:0.2;margin-left:15px;">(1,0)</button>
-                                <button type="button" class="btn btn-light" style="float:left;opacity:0.2;margin-left:15px;">(1,1)</button>
+                            <div class="column" style="margin-left:auto;margin-right:auto;">
+                                <button type="button" class="btn btn-secondary" style="float:left;">A</button>
+                                <button type="button" class="btn btn-secondary" style="float:left;opacity:0.2;margin-left:15px;">B</button>
+                                <button type="button" class="btn btn-secondary" style="float:left;opacity:0.2;margin-left:15px;">C</button>
+                                <button type="button" class="btn btn-secondary" style="float:left;opacity:0.2;margin-left:15px;">D</button>
                             </div>
                         </div>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
                 <script>
+                    //그래프 x축 시간
                     function getCurrentWeek() {
+                      var result = new Array();
                       var day = new Date();
-                      var sunday = day.getTime();
 
-                      day.setTime(sunday);
-                      var result = [];
 
-                      for (let i = 1; i < 6; i++) {
-                        result.push(day.getHours()-i+":00");
+                      var hour = day.getHours();
+                      var minute = day.getMinutes();
+
+
+                      if(minute < 30) {
+                        for (let i = 1; i < 8; i++) {
+                            hour = hour<0?hour+24:hour;
+                            if(i%2){
+                                result.push(hour%24+":30");
+                            }
+                            else{
+                                result.push(hour%24+":00");
+                                hour -= 1;
+                            }
+                        }
                       }
 
+                      else{
+                        hour += 1;
+                        for (let i = 1; i < 8; i++) {
+                            hour = hour<0?hour+24:hour;
+                            if(i%2){
+                                result.push(hour+":00");
+                                hour -= 1;
+                            }
+                            else{
+                                result.push(hour+":30");
+                            }
+                        }
+                      }
                       return result;
                     }
 
-                    var dateArr = getCurrentWeek().reverse();
+                    function predictLater(a,b,c){
+                        return (a+b+c)/3;
+                    }
+
+                    var dateLabel = getCurrentWeek().reverse();
+                    var dataArr = [1, 19, 3, 5, 3, 13];
+                    var dataArr2 = [1, 19, 3, 5, 3, 13];
+                    dataArr2.push(predictLater(dataArr[3], dataArr[4], dataArr[5]));
 
 
                     // 차트 데이터
                     var data = {
-                      labels: dateArr,
+                      labels: dateLabel,
                       datasets: [{
                         label: '인원 수',
-                        data: [1, 19, 3, 5, 2, 3, 13],
+                        type: 'line',
+                        data: dataArr,
                         borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
+                        borderWidth: 2
+                      },{
+                        label: '인원 수',
+                        type: 'line',
+                        data: dataArr2,
+                        borderColor: 'rgba(0, 0, 0, 0.2)',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        borderCapStyle: 'round',
+                        tooltips: {
+                            enabled: false // 데이터셋 2에서 툴팁 비활성화
+                        },
                       }]
                     };
 
                     // 차트 옵션 (여기서 배경색을 설정합니다.)
                     var options = {
+                      responsive: false,
                       scales: {
                         y: {
                           beginAtZero: true
@@ -473,7 +666,8 @@
                         },
                         legend:{
                             display: false
-                        }
+                        },
+                        tooltips:false
                       }
                     };
 
@@ -486,19 +680,27 @@
                           let ctx = chart.ctx;
                           ctx.save();
                           let yAxis = chart.scales.y;
+                          let xAxis = chart.scales.x;
 
                           //기준값을 넣어준다
-                          let ymaxValue = yAxis.getPixelForValue(10);
+                          let ymaxValue = yAxis.getPixelForValue(10)-yAxis.top;
                           let gradient = ctx.createLinearGradient(0, yAxis.top, 0, yAxis.bottom);
+                          let xGradient = ctx.createLinearGradient(0, xAxis.left, 0, xAxis.right);
 
                           //기준선 넘었을 때 색상은 #dc0e0e (빨간색)
-                          gradient.addColorStop(0,'#dc0e0e');
-                          let offset = 1 / yAxis.bottom * ymaxValue;
-                          gradient.addColorStop(offset, '#dc0e0e');
-                          gradient.addColorStop(offset, '#6fba2c');
+                          gradient.addColorStop(0,'#fd7e14');
+                          xGradient.addColorStop(0,'#000');
+                          let offset = (1 / (yAxis.bottom - yAxis.top)) * ymaxValue;
+                          let xOffset = (1 / (xAxis.right - xAxis.left));
+
+                          gradient.addColorStop(offset, '#fd7e14');
+                          gradient.addColorStop(offset, '#4e73df');
+                          xGradient.addColorStop(xOffset, '#000');
+
 
                           //기준값 아래의 색상은 #6fba2c (연두색)
                           chart.data.datasets[0].borderColor = gradient;
+
                           ctx.restore();
                         }
                       }],
@@ -511,69 +713,69 @@
                   </script>
 
 
-                        <script>
-                                function showDensityLevel(){
-                                    var j = 0;
+                <script>
+                        function showDensityLevel(){
+                            var j = 0;
 
-                                    var loc = "";
+                            var loc = "";
 
-                                    for(j=0; j<arr.length; j++){
-                                        for (var i = 0; i < arr[j].length; i++) {
-                                            var data={};
-                                            loc = j.toString() + "," + i.toString();
-                                            if(arr[j][i] > 6) {
-                                                data.fillColor = "ff0000";
-                                            }else if(arr[j][i] > 4) {
-                                                data.fillColor = "FFFF00";
-                                            }else if(arr[j][i] > 2) {
-                                                data.fillColor = "008000";
-                                            }else {
-                                                data.fillColor = "808080";
-                                            }
-                                            data.alwaysOn = true;
-                                            $('area[alt="' + loc + '"]').data('maphilight', data).trigger('alwaysOn.maphilight');
-                                        }
-                                    }
-                                }
-
-                                //구역 선택 시 포커싱
-                                function tableFocus(alpha, x){
-                                    var focus = x;
-                                    if(alpha == 'B') {
-                                        focus += 4;
-                                    }else if(alpha == 'C') {
-                                        focus += 8;
-                                        if(x >= 3) focus -= 1;
-                                    }else if(alpha == 'D') {
-                                        focus += 11;
-                                        if(x >= 3) focus -= 1;
-                                    }else if(alpha == 'E') {
-                                        focus += 14;
-                                    }else if(alpha == 'F') {
-                                        focus += 18;
-                                    }
-                                    $('#coordinate_info tbody').find('tr').css("backgroundColor","#FFF");
-                                    var grade = $('#coordinate_info tbody').find('tr').eq(focus).find('td').eq(2).text();
-                                    var targetTop = $('#coordinate_info tbody').find('tr').eq(focus-1).position().top;
-                                    if(focus == 0) targetTop = 0;
-                                    var imgTop = $('.map').offset().top;
-
-                                    if(grade == "고위험") {
-                                        $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(255, 0, 0, 0.2)");
-
-                                    }else if(grade == "위험") {
-                                         $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(227, 212, 48, 0.2)");
-
-                                    }else if(grade == "주의") {
-                                        $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(0, 128, 0, 0.2)");
-
+                            for(j=0; j<arr.length; j++){
+                                for (var i = 0; i < arr[j].length; i++) {
+                                    var data={};
+                                    loc = j.toString() + "," + i.toString();
+                                    if(arr[j][i] > 6) {
+                                        data.fillColor = "ff0000";
+                                    }else if(arr[j][i] > 4) {
+                                        data.fillColor = "FFFF00";
+                                    }else if(arr[j][i] > 2) {
+                                        data.fillColor = "008000";
                                     }else {
-                                        $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(128, 128, 128, 0.2)");
+                                        data.fillColor = "808080";
                                     }
-                                    $('#content-wrapper').animate( { scrollTop : 166 }, 500 );
-                                    $('#building').animate( { scrollTop : targetTop }, 500 );
-                                 }
-                            </script>
+                                    data.alwaysOn = true;
+                                    $('area[alt="' + loc + '"]').data('maphilight', data).trigger('alwaysOn.maphilight');
+                                }
+                            }
+                        }
+
+                        //구역 선택 시 포커싱
+                        function tableFocus(alpha, x){
+                            var focus = x;
+                            if(alpha == 'B') {
+                                focus += 4;
+                            }else if(alpha == 'C') {
+                                focus += 8;
+                                if(x >= 3) focus -= 1;
+                            }else if(alpha == 'D') {
+                                focus += 11;
+                                if(x >= 3) focus -= 1;
+                            }else if(alpha == 'E') {
+                                focus += 14;
+                            }else if(alpha == 'F') {
+                                focus += 18;
+                            }
+                            $('#coordinate_info tbody').find('tr').css("backgroundColor","#FFF");
+                            var grade = $('#coordinate_info tbody').find('tr').eq(focus).find('td').eq(2).text();
+                            var targetTop = $('#coordinate_info tbody').find('tr').eq(focus-1).position().top;
+                            if(focus == 0) targetTop = 0;
+                            var imgTop = $('.map').offset().top;
+
+                            if(grade == "고위험") {
+                                $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(255, 0, 0, 0.2)");
+
+                            }else if(grade == "위험") {
+                                 $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(227, 212, 48, 0.2)");
+
+                            }else if(grade == "주의") {
+                                $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(0, 128, 0, 0.2)");
+
+                            }else {
+                                $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(128, 128, 128, 0.2)");
+                            }
+                            $('#content-wrapper').animate( { scrollTop : 166 }, 500 );
+                            $('#building').animate( { scrollTop : targetTop }, 500 );
+                         }
+                    </script>
 
             </div>
             <!-- /.container-fluid -->
@@ -639,7 +841,21 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
 </script>
-
+<script>
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/setting/name",
+        dataType: "json",
+        success: function(data) {
+            $('.userName').text(data.name);
+            if (data.picture)
+                $('.img-profile').attr("src", data.picture);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("통신 실패");
+        }
+    });
+</script>
 <script>
         var Target = document.getElementById("divClock");
         function clock() {
@@ -649,15 +865,15 @@
             var month = time.getMonth()+1;
             var date = time.getDate();
             var day = time.getDay();
-            var hours = time.getHours();
-            var minutes = time.getMinutes();
-            var seconds = time.getSeconds();
+            var hours = String(time.getHours()).padStart(2,"0");
+            var minutes = String(time.getMinutes()).padStart(2,"0");
+            var seconds = String(time.getSeconds()).padStart(2,"0");;
             Target.innerText = year + "년 " + month + "월 " + date + "일 (" + week[day] + ") " + hours + ":" + minutes + ":" + seconds;
         }
         clock();
         setInterval(clock, 1000);
-</script>
-<th:block th:replace="fragments/script::script"></th:block>
+    </script>
+    <th:block th:replace="fragments/script::script"></th:block>
 
 </body>
 
