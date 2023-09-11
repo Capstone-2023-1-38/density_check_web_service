@@ -10,14 +10,18 @@ import com.example.density_check_web_service.domain.Location.LocationRepository;
 import com.example.density_check_web_service.domain.Location.dto.LocationListResponseDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationRequestDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationResponseDto;
+import com.example.density_check_web_service.domain.Notify.Notify;
+import com.example.density_check_web_service.domain.Notify.dto.NotifyDto;
 import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import com.example.density_check_web_service.domain.PiAddress.PiAddressRepository;
 import com.example.density_check_web_service.domain.Users.Role;
 import com.example.density_check_web_service.domain.Users.Users;
 import com.example.density_check_web_service.domain.Users.UsersRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,7 +37,7 @@ public class LocationService {
     private final UsersRepository usersRepository;
 
     @Transactional
-    public void saveLocation(LocationRequestDto locationRequestDto) {
+    public void saveLocation(LocationRequestDto locationRequestDto, String email) {
         PiAddress tmp = piAddressRepository.findByAddress(locationRequestDto.getAddress())
                 .orElse(piAddressRepository.save(new PiAddress(locationRequestDto.getAddress())));
         if (locationRepository.countByPiAddress(tmp) > 1000) {
@@ -44,6 +48,25 @@ public class LocationService {
         }
         else {
             locationRepository.save(locationRequestDto.toEntity(tmp));
+        }
+
+        if (email == null)
+            return;
+
+        PiAddress user = piAddressRepository.findByEmail(email).orElse(null);
+
+        if (user == null)
+            return;
+
+        Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(user);
+        List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
+        if (locations.size() > 4) {
+            SseEmitter sseEmitter = NotifyService.sseEmitters.get(email);
+            try {
+                sseEmitter.send(SseEmitter.event().name("warning").data(""));
+            } catch (Exception e) {
+                NotifyService.sseEmitters.remove(email);
+            }
         }
     }
 

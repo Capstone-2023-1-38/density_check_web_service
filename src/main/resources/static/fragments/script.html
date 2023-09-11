@@ -13,11 +13,11 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(document).ready(function(){
-            $('.toast').toast('show');
-        });
-    </script>
+<!--    <script>-->
+<!--        $(document).ready(function(){-->
+<!--            $('.toast').toast('show');-->
+<!--        });-->
+<!--    </script>-->
 
     <script>
         toastShow("title", "content");
@@ -53,7 +53,7 @@
             eventSource.addEventListener("notification", function(event) {
                 let message = JSON.parse(event.data);
                 var count = $("#count").text();
-                count = parseInt(count.slice(0,-1));
+                count = parseInt(count.slice(0, -1));
                 count++;
                 $("#count").show();
                 $("#zeroNotify").hide();
@@ -67,7 +67,7 @@
                     "                                    <div>" +
                     "                                        <div class=\"small text-gray-500\">" +
                     dateFormat(message.createdDate) + "</div>" +
-                    "                                           새로운 제보가 등록되었습니다.\n"+
+                    "                                           새로운 제보가 등록되었습니다.\n" +
                     "                                           <div class=\"text-gray-600\">" +
                     "                                                       &nbsp;《" + message.posts.title + "》</div>" +
                     "                                           <div class=\"text-gray-600\" style=\"max-width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;\">" +
@@ -82,6 +82,11 @@
                 //     notification_container.classList.remove('show');
                 //     }, 2000);
             });
+
+            eventSource.addEventListener("warning", function(event) {
+                $('.toast').toast('show');
+            });
+
             eventSource.addEventListener("error", function(event) {
                 eventSource.close();
             });
