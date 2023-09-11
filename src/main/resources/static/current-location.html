@@ -267,10 +267,11 @@
                 </div>
                 <div style="text-align:center">
                     <div style="display:inline-block">
-                        <img style="width:500px; height:500px" src="img/current_location.png"/>
+                        <img style="width:500px; height:500px" src="img/2floor.png"/>
                     </div>
                     <div class="col-lg-5 location" style="display:inline-block;font-size:21px;">
                         <p>현재 위치 : 2층 6202 강의실</p>
+                        <p>기록 시간 : </p>
                         <p>현재 위치에서의 밀집도 등급 : 안전</p>
                     </div>
                 </div>
@@ -478,8 +479,17 @@
         });
 </script>
 <script>
-    // setInterval(
-    //     function () {
+    function dateFormat(date){
+        var year = date.substring(0,4);
+        var month = date.substring(5,7);
+        var day = date.substring(8,10);
+        var time = date.substring(11,19);
+
+        return year+"/"+month+"/"+day+" "+time;
+    }
+
+    setInterval(
+        function () {
             $.ajax({
                 type: "POST",
                 url: "/find",
@@ -489,12 +499,13 @@
                 },
                 success: function (data) {
                     $('.location').children().eq(0).text("현재 위치 : " + data.x + ", " + data.y);
+                    $('.location').children().eq(1).text("기록 시간 : " + dateFormat(data.modifiedDate));
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("통신 실패");
                 }
             });
-        // })
+        }, 1000);
 </script>
 <th:block th:replace="fragments/script::script"></th:block>
 
