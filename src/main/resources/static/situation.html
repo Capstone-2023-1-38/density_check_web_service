@@ -842,21 +842,6 @@
     });
 </script>
 <script>
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/setting/name",
-        dataType: "json",
-        success: function(data) {
-            $('.userName').text(data.name);
-            if (data.picture)
-                $('.img-profile').attr("src", data.picture);
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert("통신 실패");
-        }
-    });
-</script>
-<script>
     var Target = document.getElementById("divClock");
     function clock() {
         var week = new Array('일', '월', '화', '수', '목', '금', '토');
