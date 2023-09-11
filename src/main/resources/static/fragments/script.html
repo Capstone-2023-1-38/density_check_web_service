@@ -3,163 +3,164 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <!-- Toastr -->
     <script sec:authorize="isAuthenticated()">
-            $(document).ready(function() {
-                notification();
+        $(document).ready(function() {
+            notification();
 
-            });
+        });
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function(){
-          $('.toast').toast('show');
+            $('.toast').toast('show');
         });
     </script>
 
     <script>
         toastShow("title", "content");
 
-    	/* [이벤트 수행 함수] */
-    	function toastShow(title, content){
-              var toastDiv='';
-              toastDiv += '<div id="g_toast_container" style="position:fixed;bottom:0;right:0;">';
-              toastDiv += '<div id="g_toast" class="toast">';
-              toastDiv += '  <div class="toast-header bg-primary text-white">';
-              toastDiv += '    <i class="fas fa-bell"></i>';
-              toastDiv += '    <strong class="mr-auto ml-3">경고</strong>';
-              toastDiv += '    <small class="text-muted ml-3" id="clock"></small>';
-              toastDiv += '    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">';
-              toastDiv += '      <span aria-hidden="true">&times;</span>';
-              toastDiv += '    </button>';
-              toastDiv += '  </div>';
-              toastDiv += '  <div class="toast-body bg-white" style="min-height:100px"> 현재 위치의 밀집도 등급이 위험으로 변경되었습니다. 위험 상황이 발생할 수 있으니 대피해주시기 바랍니다.</div>';
-              toastDiv += '</div>';
-              toastDiv += '</div>';
-              $("#warningToast").append(toastDiv);
+        /* [이벤트 수행 함수] */
+        function toastShow(title, content){
+            var toastDiv='';
+            toastDiv += '<div id="g_toast_container" style="position:fixed;bottom:0;right:0;">';
+            toastDiv += '<div id="g_toast" class="toast">';
+            toastDiv += '  <div class="toast-header bg-primary text-white">';
+            toastDiv += '    <i class="fas fa-bell"></i>';
+            toastDiv += '    <strong class="mr-auto ml-3">경고</strong>';
+            toastDiv += '    <small class="text-muted ml-3" id="clock"></small>';
+            toastDiv += '    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">';
+            toastDiv += '      <span aria-hidden="true">&times;</span>';
+            toastDiv += '    </button>';
+            toastDiv += '  </div>';
+            toastDiv += '  <div class="toast-body bg-white" style="min-height:100px"> 현재 위치의 밀집도 등급이 위험으로 변경되었습니다. 위험 상황이 발생할 수 있으니 대피해주시기 바랍니다.</div>';
+            toastDiv += '</div>';
+            toastDiv += '</div>';
+            $("#warningToast").append(toastDiv);
 
-              $("#g_toast").toast({"animation": true, "autohide": false});
-              $("#g_toast").toast('show');
+            $("#g_toast").toast({"animation": true, "autohide": false});
+            $("#g_toast").toast('show');
         }
 
     </script>
 
 
     <script type="text/javascript" sec:authorize="isAuthenticated()">
-            function notification() {
-                let eventSource = new EventSource("/sub");
-                eventSource.addEventListener("notification", function(event) {
-                    let message = JSON.parse(event.data);
-                    var count = $("#count").text();
-                    count = parseInt(count.slice(0,-1));
-                    count++;
-                    $("#count").show();
-                    $("#zeroNotify").hide();
-                    $("#count").text(count.toString() + "+");
-                    $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + message.posts.id + "\">" +
-                        "                                    <div class=\"mr-3\">" +
-                        "                                        <div class=\"icon-circle bg-warning\">" +
-                        "                                            <i class=\"fas fa-exclamation-triangle text-white\"></i>" +
-                        "                                        </div>" +
-                        "                                    </div>" +
-                        "                                    <div>" +
-                        "                                        <div class=\"small text-gray-500\">" +
-                                                                    dateFormat(message.createdDate) + "</div>" +
-                        "                                           새로운 제보가 등록되었습니다.\n"+
-                        "                                           <div class=\"text-gray-600\">" +
-                        "                                                       &nbsp;《" + message.posts.title + "》</div>" +
-                        "                                           <div class=\"text-gray-600\" style=\"max-width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;\">" +
-                                                                                "&nbsp;&nbsp;" + message.posts.content + "</div>" +
-                        "                                    </div>\n" +
-                        "                                </a>");
-                    // let notification_content = document.getElementById('notification-content');
-                    // let notification_container = document.getElementById('notification-container');
-                    // notification_content.textContent = message;
-                    // notification_container.classList.add('show');
-                    // setTimeout(() => {
-                    //     notification_container.classList.remove('show');
-                    //     }, 2000);
-                });
-                eventSource.addEventListener("error", function(event) {
-                    eventSource.close();
-                });
-            }
+        function notification() {
+            let eventSource = new EventSource("/sub");
+            eventSource.addEventListener("notification", function(event) {
+                let message = JSON.parse(event.data);
+                var count = $("#count").text();
+                count = parseInt(count.slice(0,-1));
+                count++;
+                $("#count").show();
+                $("#zeroNotify").hide();
+                $("#count").text(count.toString() + "+");
+                $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + message.posts.id + "\">" +
+                    "                                    <div class=\"mr-3\">" +
+                    "                                        <div class=\"icon-circle bg-warning\">" +
+                    "                                            <i class=\"fas fa-exclamation-triangle text-white\"></i>" +
+                    "                                        </div>" +
+                    "                                    </div>" +
+                    "                                    <div>" +
+                    "                                        <div class=\"small text-gray-500\">" +
+                    dateFormat(message.createdDate) + "</div>" +
+                    "                                           새로운 제보가 등록되었습니다.\n"+
+                    "                                           <div class=\"text-gray-600\">" +
+                    "                                                       &nbsp;《" + message.posts.title + "》</div>" +
+                    "                                           <div class=\"text-gray-600\" style=\"max-width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;\">" +
+                    "&nbsp;&nbsp;" + message.posts.content + "</div>" +
+                    "                                    </div>\n" +
+                    "                                </a>");
+                // let notification_content = document.getElementById('notification-content');
+                // let notification_container = document.getElementById('notification-container');
+                // notification_content.textContent = message;
+                // notification_container.classList.add('show');
+                // setTimeout(() => {
+                //     notification_container.classList.remove('show');
+                //     }, 2000);
+            });
+            eventSource.addEventListener("error", function(event) {
+                eventSource.close();
+            });
+        }
 
-            function dateFormat(date){
-                var year = date.substring(0,4);
-                var month = date.substring(5,7);
-                var day = date.substring(8,10);
-                var time = date.substring(11,19);
+        function dateFormat(date){
+            var year = date.substring(0,4);
+            var month = date.substring(5,7);
+            var day = date.substring(8,10);
+            var time = date.substring(11,19);
 
-                return year+"/"+month+"/"+day+" "+time;
-            }
+            return year+"/"+month+"/"+day+" "+time;
+        }
 
     </script>
     <script sec:authorize="isAuthenticated()">
-            var current_url = window.location.pathname.split("/");
-            var id = 0;
-            if (current_url[1] == "posts") {
-                id = current_url[2];
-            }
-            $.ajax({
-                type: "GET",
-                url: "/notify/" + id,
-                dataType: "json",
-                success: function(data) {
-                    if (data) {
-                        if(data.length == 0){
-                            $("#count").hide();
-                            $("#zeroNotify").text("새로운 알림이 없습니다.");
-                        }
-                        $("#count").text(data.length.toString() + "+");
-                        $.each(data , function(i) {
-                            $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + data[i].posts.id + "\">" +
-                                "                                    <div class=\"mr-3\">" +
-                                "                                        <div class=\"icon-circle bg-warning\">" +
-                                "                                            <i class=\"fas fa-exclamation-triangle text-white\"></i>" +
-                                "                                        </div>" +
-                                "                                    </div>" +
-                                "                                    <div>" +
-                                "                                        <div class=\"small text-gray-500\">" +
-                                                                            dateFormat(data[i].createdDate) + "</div>" +
-                                "                                           새로운 제보가 등록되었습니다.\n" +
-                                "                                           <div class=\"text-gray-600\">" +
-                                "                                               &nbsp;&nbsp;《" + data[i].posts.title + "》</div>" +
-                                "                                    <div class=\"text-gray-600\" style=\"max-width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;\">" +
-                                                                                "&nbsp;&nbsp;" + data[i].posts.content + "</div>"+
-                                "                                    </div>\n" +
-                                "                                </a>");
-                        });
+        var current_url = window.location.pathname.split("/");
+        var id = 0;
+        if (current_url[1] == "posts") {
+            id = current_url[2];
+        }
+        $.ajax({
+            type: "GET",
+            url: "/notify/" + id,
+            dataType: "json",
+            success: function(data) {
+                if (data) {
+                    if(data.length == 0){
+                        $("#count").hide();
+                        $("#zeroNotify").text("새로운 알림이 없습니다.");
                     }
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '통신 실패',
-                        text: '통신에 실패하였습니다.',
-                    })
+                    $("#count").text(data.length.toString() + "+");
+                    $.each(data , function(i) {
+                        $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + data[i].posts.id + "\">" +
+                            "                                    <div class=\"mr-3\">" +
+                            "                                        <div class=\"icon-circle bg-warning\">" +
+                            "                                            <i class=\"fas fa-exclamation-triangle text-white\"></i>" +
+                            "                                        </div>" +
+                            "                                    </div>" +
+                            "                                    <div>" +
+                            "                                        <div class=\"small text-gray-500\">" +
+                            dateFormat(data[i].createdDate) + "</div>" +
+                            "                                           새로운 제보가 등록되었습니다.\n" +
+                            "                                           <div class=\"text-gray-600\">" +
+                            "                                               &nbsp;&nbsp;《" + data[i].posts.title + "》</div>" +
+                            "                                    <div class=\"text-gray-600\" style=\"max-width:200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;\">" +
+                            "&nbsp;&nbsp;" + data[i].posts.content + "</div>"+
+                            "                                    </div>\n" +
+                            "                                </a>");
+                    });
                 }
-            });
-        </script>
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '통신 실패',
+                    text: '통신에 실패하였습니다.',
+                })
+            }
+        });
+    </script>
     <script>
-            $.ajax({
-                type: "GET",
-                url: "/setting/name",
-                dataType: "json",
-                success: function(data) {
-                    $('.userName').text(data.name);
-                    if (data.picture)
-                        $('.img-profile').attr("src", data.picture);
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '통신 실패',
-                        text: '통신에 실패하였습니다.',
-                    })
-                }
-            });
-        </script>
+        $.ajax({
+            type: "GET",
+            url: "/setting/name",
+            dataType: "json",
+            success: function(data) {
+                $('.userName').text(data.name);
+                if (data.picture)
+                    $('.img-profile').attr("src", data.picture);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '통신 실패',
+                    text: '통신에 실패하였습니다.',
+                })
+            }
+        });
+    </script>
 </th:block>
 </html>
