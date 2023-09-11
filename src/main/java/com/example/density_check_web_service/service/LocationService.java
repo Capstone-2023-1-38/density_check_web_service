@@ -60,7 +60,9 @@ public class LocationService {
         List<PiAddress> allAddress = piAddressRepository.findAll();
         List<Location> entity = new ArrayList<>();
         for(PiAddress tmp : allAddress) {
-            entity.add(locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(tmp));
+            Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(tmp);
+            if (location.getModifiedDate().isAfter(LocalDateTime.now().minusMinutes(1)))
+                entity.add(location);
         }
         return entity.stream()
                 .map(LocationResponseDto::new)
