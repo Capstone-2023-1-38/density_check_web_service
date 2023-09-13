@@ -37,7 +37,7 @@ public class LocationService {
     private final UsersRepository usersRepository;
 
     @Transactional
-    public void saveLocation(LocationRequestDto locationRequestDto, String email) {
+    public void saveLocation(LocationRequestDto locationRequestDto) {
         PiAddress tmp = piAddressRepository.findByAddress(locationRequestDto.getAddress())
                 .orElse(piAddressRepository.save(new PiAddress(locationRequestDto.getAddress())));
         if (locationRepository.countByPiAddress(tmp) > 1000) {
@@ -49,7 +49,10 @@ public class LocationService {
         else {
             locationRepository.save(locationRequestDto.toEntity(tmp));
         }
-
+    }
+    
+    @Transactional
+    public void warning(String email) {
         if (email == null)
             return;
 

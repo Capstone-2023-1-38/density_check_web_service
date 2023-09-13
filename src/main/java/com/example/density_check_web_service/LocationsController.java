@@ -4,6 +4,7 @@ import com.example.density_check_web_service.domain.Location.dto.LocationListRes
 import com.example.density_check_web_service.domain.Location.dto.LocationRequestDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationResponseDto;
 import com.example.density_check_web_service.service.LocationService;
+import com.example.density_check_web_service.service.SituationsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -12,13 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
 public class LocationsController {
     private final LocationService locationService;
-
+    private final SituationsService situationsService;
+    private static boolean check0030 = true;
     @RequestMapping(path = "/")
     public String dashboard() {
         return "../templates/index.html";
@@ -32,7 +35,16 @@ public class LocationsController {
             OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
             email = oAuth2User.getAttribute("email");
         }
-        locationService.saveLocation(locationRequestDto, email);
+        locationService.saveLocation(locationRequestDto);
+        locationService.warning(email);
+        int minute = LocalDateTime.now().getMinute();
+        if(check0030 && (minute == 0 || minute == 30)) {
+            situationsService.situations();
+            check0030 = false;
+        }
+        else if(!check0030 && (minute == 1 || minute == 31)) {
+            check0030 = true;
+        }
     }
     @ResponseBody
     @GetMapping(path = "/getLocations")
