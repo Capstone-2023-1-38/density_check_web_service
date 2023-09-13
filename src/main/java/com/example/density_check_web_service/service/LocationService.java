@@ -63,7 +63,10 @@ public class LocationService {
 
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(user);
         List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
-        if (locations.size() > 4) {
+        Set<PiAddress> set = locations.stream().map(loc -> {
+            return loc.getPiAddress();
+        }).collect(Collectors.toSet());
+        if (set.size() > 4) {
             SseEmitter sseEmitter = NotifyService.sseEmitters.get(email);
             try {
                 sseEmitter.send(SseEmitter.event().name("warning").data(""));
