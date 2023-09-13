@@ -22,4 +22,5 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
 
     List<Location> findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(int x, int y, LocalDateTime modifiedDate);
 
+    int countByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(int x, int y, LocalDateTime modifiedDate);
 }
