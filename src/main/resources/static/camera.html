@@ -346,22 +346,22 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script type="text/javascript"></script>
 
-    <script>
-        setInterval(
-            function () {
-            $.ajax({
-                type: "GET",
-                url: "/cameraFrame/172.30.1.10",
-                dataType: 'json',
-                success: function(data) {
-                    $("#img").attr("src", data.framedata);
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown){
+<!--    <script>-->
+<!--        setInterval(-->
+<!--            function () {-->
+<!--            $.ajax({-->
+<!--                type: "GET",-->
+<!--                url: "/cameraFrame/172.30.1.10",-->
+<!--                dataType: 'json',-->
+<!--                success: function(data) {-->
+<!--                    $("#img").attr("src", data.framedata);-->
+<!--                },-->
+<!--                error: function(XMLHttpRequest, textStatus, errorThrown){-->
 
-                }
-            })
-        },50);
-    </script>
+<!--                }-->
+<!--            })-->
+<!--        },50);-->
+<!--    </script>-->
 
     <th:block th:replace="fragments/script::script"></th:block>
 
