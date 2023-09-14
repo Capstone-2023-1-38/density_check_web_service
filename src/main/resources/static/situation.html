@@ -457,7 +457,8 @@
                             <thead>
                             <tr class="table-active">
                                 <th scope="col">위치</th>
-                                <th scope="col">인원수</th>
+                                <th scope="col">무선 신호 기반 인원 수</th>
+                                <th scope="col">비전 기반 인원 수</th>
                                 <th scope="col">밀집도 등급</th>
                             </tr>
                             </thead>
@@ -466,9 +467,11 @@
                                 <td>가</td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>나</td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -476,9 +479,11 @@
                                 <td>다</td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>라</td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -486,6 +491,7 @@
                             <tr class="table-active">
                                 <th>총 인원</th>
                                 <th>237명</th>
+                                <th>&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>
                             </tbody>
@@ -496,63 +502,48 @@
 
                 <script>
                     var j = 0;
-                    var arr = new Array(2);
-
-                    for (var i = 0; i < arr.length; i++) {
-                        arr[i] = new Array(2).fill(0);
-                    }
-                    arr[0][0] = 7;
-                    arr[0][1] = 5;
-                    arr[1][0] = 3;
-                    arr[1][1] = 1;
+                    var arr = new Array(4);
 
                     setInterval(
                         function () {
                             $.ajax({
                                 type: "GET",
-                                url: "http://localhost:8080/getLocationsEach",
+                                url: "/situations",
                                 dataType: "json",
                                 success: function(data) {
                                     str = '';
-
+                                    sum = 0;
                                     // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
                                     $.each(data , function(i) {
-                                        arr[data[i].x][data[i].y];
-                                    });
-                                    sum = 0;
-                                    for(var i = 0; i < arr.length; i++) {
-                                        for(var j = 0; j < arr[i].length; j++) {
-                                            var count = arr[i][j];
-                                            //if((i==2 && j>=2)||(i==3 && j>=2)) count = arr[i][j+1];
-                                            var grade = null;
-                                            if(count > 7) {
-                                                grade = "고위험";
-                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#ff0000");
+                                        arr[data[i].loc] = data[i].pi + data[i].camera;
 
+                                        var grade = null;
+                                        if (arr[data[i].loc] > 7) {
+                                            grade = "고위험";
+                                            $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(3).css("color", "#ff0000");
 
-                                            }else if(count > 4) {
-                                                grade = "위험";
-                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#e3d430");
+                                        } else if (arr[data[i].loc] > 4) {
+                                            grade = "위험";
+                                            $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(3).css("color", "#e3d430");
 
-                                            }else if(count > 2) {
-                                                grade = "주의";
-                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#008000");
+                                        } else if (arr[data[i].loc] > 2) {
+                                            grade = "주의";
+                                            $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(3).css("color", "#008000");
 
-                                            }else {
-                                                grade = "안전";
-                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#808080");
-
-                                            }
-
-                                            $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(1).html(count.toString()+"명");
-                                            $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).html(grade);
-                                            $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').css("opacity",1);
-
-                                            sum += count;
-
+                                        } else {
+                                            grade = "안전";
+                                            $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(3).css("color", "#808080");
                                         }
-                                        $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(sum + "명");
-                                    }
+
+                                        $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(1).html(data[i].pi.toString() + "명");
+                                        $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(2).html(data[i].camera.toString() + "명");
+                                        $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(3).html(grade);
+                                        $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').css("opacity", 1);
+
+                                        sum += arr[data[i].loc];
+                                    });
+
+                                    $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(sum + "명");
                                     //     str += '<TD>' + data[i].address + '</TD>' +
                                     //         '<TD>' + data[i].distance + '</TD>' +
                                     //         '<TD>' + data[i].x + '</TD>' +
@@ -573,7 +564,7 @@
                                     })
                                 }
                             })
-                        },1000);
+                        }, 1000);
                 </script>
 
                 <div class="col-sm-6" style="position:relative;float:left;margin-top:15px;background-color:white;margin-left:20px;padding-bottom:5px;">

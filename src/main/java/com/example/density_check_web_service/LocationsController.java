@@ -39,7 +39,7 @@ public class LocationsController {
         locationService.warning(email);
         int minute = LocalDateTime.now().getMinute();
         if(check0030 && (minute == 0 || minute == 30)) {
-            situationsService.situations();
+            situationsService.saveSituations();
             check0030 = false;
         }
         else if(!check0030 && (minute == 1 || minute == 31)) {
