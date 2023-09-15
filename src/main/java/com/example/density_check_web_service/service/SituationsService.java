@@ -10,6 +10,7 @@ import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import com.example.density_check_web_service.domain.PiAddress.PiAddressRepository;
 import com.example.density_check_web_service.domain.Situations.Situations;
 import com.example.density_check_web_service.domain.Situations.SituationsRepository;
+import com.example.density_check_web_service.domain.Situations.dto.SituationsListResponseDto;
 import com.example.density_check_web_service.domain.Situations.dto.SituationsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -69,7 +70,7 @@ public class SituationsService {
     @Transactional
     public List<SituationsResponseDto> findAll() {
         List<SituationsResponseDto> situations = new ArrayList<>();
-        int[] cameras = {0, 0, 0, 0};
+        int[] cameras = {9, 6, 3, 0};
         List<CameraLocation> cameraLocations = cameraLocationRepository.findAll();
         for (CameraLocation c:cameraLocations) {
             int x = c.getX();
@@ -109,8 +110,11 @@ public class SituationsService {
     }
 
     @Transactional
-    public List<SituationsResponseDto> findAllByLoc(int loc) {
+    public SituationsListResponseDto findAllByLoc(int loc) {
+        for (int i=0; i<6; i++)
+            situationsRepository.save(new Situations(loc, 1, 2));
+        situationsRepository.flush();
         List<Situations> situations = situationsRepository.findAllByLoc(loc);
-        return situations.stream().map(s -> SituationsResponseDto.builder().entity(s).build()).collect(Collectors.toList());
+        return SituationsListResponseDto.builder().entity(situations).loc(loc).build();
     }
 }

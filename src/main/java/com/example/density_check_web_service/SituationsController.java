@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -25,10 +26,10 @@ public class SituationsController {
         return situationsService.findAll();
     }
 
-    @ResponseBody
     @GetMapping("/situations/{loc}")
-    public List<SituationsResponseDto> findAllByLoc(@PathVariable int loc, Model model)
+    public String findAllByLoc(@PathVariable int loc, RedirectAttributes redirectAttributes)
     {
-        return situationsService.findAllByLoc(loc);
+        redirectAttributes.addFlashAttribute("graphData", situationsService.findAllByLoc(loc));
+        return "redirect:/situation";
     }
 }

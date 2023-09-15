@@ -437,16 +437,16 @@
                     <div style="position:relative;">
                         <img src="img/2floor.png" usemap="#image-map" id="secondFloor" style="opacity:0.5;">
                         <map name="image-map" class="image-map">
-                            <area target="_self" alt="0,0" title="0,0" href="#" coords="65,43,299,44,298,197,219,197,219,394,65,395" shape="poly">
-                            <area target="_self" alt="0,1" title="0,1" href="#" coords="299,44,299,197,415,197,415,394,571,394,571,44" shape="poly">
-                            <area target="_self" alt="1,0" title="1,0" href="#" coords="65,395,219,395,220,559,299,560,298,710,65,709" shape="poly">
-                            <area target="_self" alt="1,1" title="1,1" href="#" coords="298,560,416,560,415,395,571,394,574,709,298,710" shape="poly">
+                            <area target="_self" alt="0" title="0" href="#" coords="65,43,299,44,298,197,219,197,219,394,65,395" shape="poly" onclick="location.href='/situations/0';">
+                            <area target="_self" alt="1" title="1" href="#" coords="299,44,299,197,415,197,415,394,571,394,571,44" shape="poly" onclick="location.href='/situations/1';">
+                            <area target="_self" alt="2" title="2" href="#" coords="65,395,219,395,220,559,299,560,298,710,65,709" shape="poly" onclick="location.href='/situations/2';">
+                            <area target="_self" alt="3" title="3" href="#" coords="298,560,416,560,415,395,571,394,574,709,298,710" shape="poly" onclick="location.href='/situations/3';">
                         </map>
                         <div>
-                            <p class="section" style="left:20%;top:30%;">가</p>
-                            <p class="section" style="left:76%;top:30%;">나</p>
-                            <p class="section" style="left:20%;top:70%;">다</p>
-                            <p class="section" style="left:76%;top:70%;">라</p>
+                            <p style="position:absolute;left:20%;top:30%;font-size:1.4rem;font-weight:200;color:#1f345c;background-color:#FFF;border:solid 1px #20293A">A</p>
+                            <p style="position:absolute;left:76%;top:30%;font-size:1.4rem;font-weight:200;color:#1f345c;background-color:#FFF;border:solid 1px #20293A">B</p>
+                            <p style="position:absolute;left:20%;top:70%;font-size:1.4rem;font-weight:200;color:#1f345c;background-color:#FFF;border:solid 1px #20293A">C</p>
+                            <p style="position:absolute;left:76%;top:70%;font-size:1.4rem;font-weight:200;color:#1f345c;background-color:#FFF;border:solid 1px #20293A">D</p>
                         </div>
                     </div>
                 </div>
@@ -513,11 +513,13 @@
                                 success: function(data) {
                                     str = '';
                                     sum = 0;
+
                                     // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
                                     $.each(data , function(i) {
                                         arr[data[i].loc] = data[i].pi + data[i].camera;
+                                        let map={};
 
-                                        var grade = null;
+                                        let grade = null;
                                         if (arr[data[i].loc] > 7) {
                                             grade = "고위험";
                                             $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(3).css("color", "#ff0000");
@@ -580,7 +582,13 @@
 <!--                    </div>-->
                 </div>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
-                <script>
+                <script th:inline="javascript">
+                    var graphData = [[${graphData}]];
+                    var cnt = new Array();
+                    graphData.situationsDtos.forEach(function(i) {
+                        cnt.push(i.cnt);
+                    });
+                    var locName = new Array('A','B','C','D');
                     //그래프 x축 시간
                     function getCurrentWeek() {
                         var result = new Array();
@@ -625,8 +633,8 @@
                     }
 
                     var dateLabel = getCurrentWeek().reverse();
-                    var dataArr = [1, 26, 3, 17, 2, 5];
-                    var dataArr2 = [1, 26, 3, 17, 2, 5];
+                    var dataArr = cnt.slice(-6);
+                    var dataArr2 = cnt.slice(-6);
                     dataArr2.push(predictLater(dataArr[3], dataArr[4], dataArr[5]));
 
 
@@ -668,7 +676,7 @@
 
                             title: {
                                 display: true,
-                                text: '<가>에서의 인원수'
+                                text: locName[graphData.loc] + '에서의 인원수'
                             },
                             legend:{
                                 display: false

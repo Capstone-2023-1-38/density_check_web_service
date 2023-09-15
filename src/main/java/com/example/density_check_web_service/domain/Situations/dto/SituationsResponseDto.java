@@ -11,13 +11,11 @@ public class SituationsResponseDto {
     private int loc;
     private int pi;
     private int camera;
-    private LocalDateTime createdDate;
 
     @Builder
     public SituationsResponseDto(Situations entity) {
         this.loc = entity.getLoc();
         this.pi = entity.getPi();
         this.camera = entity.getCamera();
-        this.createdDate = entity.getCreatedDate();
     }
 }

@@ -342,7 +342,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+    <th:block th:replace="fragments/script::script"></th:block>
     <script>
         $.ajax({
             type: "GET",
@@ -374,7 +374,7 @@
             Swal.fire(result);
         }
     </script>
-    <th:block th:replace="fragments/script::script"></th:block>
+
 </body>
 
 </html>
