@@ -1,5 +1,6 @@
 package com.example.density_check_web_service.service;
 
+import com.example.density_check_web_service.config.ExcelColumnName;
 import com.example.density_check_web_service.domain.CameraFrame.CameraFrame;
 import com.example.density_check_web_service.domain.CameraFrame.CameraFrameRepository;
 import com.example.density_check_web_service.domain.CameraLocation.CameraLocation;
@@ -10,6 +11,7 @@ import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import com.example.density_check_web_service.domain.PiAddress.PiAddressRepository;
 import com.example.density_check_web_service.domain.Situations.Situations;
 import com.example.density_check_web_service.domain.Situations.SituationsRepository;
+import com.example.density_check_web_service.domain.Situations.dto.SituationsDto;
 import com.example.density_check_web_service.domain.Situations.dto.SituationsListResponseDto;
 import com.example.density_check_web_service.domain.Situations.dto.SituationsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -117,4 +120,11 @@ public class SituationsService {
         List<Situations> situations = situationsRepository.findAllByLoc(loc);
         return SituationsListResponseDto.builder().entity(situations).loc(loc).build();
     }
+
+    @Transactional
+    public List<SituationsDto> findAllByLocForExcel(int loc) {
+        List<Situations> situations = situationsRepository.findAllByLoc(loc);
+        return situations.stream().map(SituationsDto::new).collect(Collectors.toList());
+    }
+
 }
