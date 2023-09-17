@@ -37,3 +37,4 @@ out/
 .vscode/
 
 application-oauth.properties
+/src/main/resources/static/img/profile/
