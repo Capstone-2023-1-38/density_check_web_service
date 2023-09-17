@@ -50,31 +50,6 @@ public class LocationService {
             locationRepository.save(locationRequestDto.toEntity(tmp));
         }
     }
-    
-    @Transactional
-    public void warning(String email) {
-        if (email == null)
-            return;
-
-        PiAddress user = piAddressRepository.findByEmail(email).orElse(null);
-
-        if (user == null)
-            return;
-
-        Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(user);
-        List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
-        Set<PiAddress> set = locations.stream().map(loc -> {
-            return loc.getPiAddress();
-        }).collect(Collectors.toSet());
-        if (set.size() > 4) {
-            SseEmitter sseEmitter = NotifyService.sseEmitters.get(email);
-            try {
-                sseEmitter.send(SseEmitter.event().name("warning").data(""));
-            } catch (Exception e) {
-                NotifyService.sseEmitters.remove(email);
-            }
-        }
-    }
 
     @Transactional
     public List<LocationResponseDto> allLocationToJson(){
@@ -101,15 +76,16 @@ public class LocationService {
     @Transactional
     public LocationResponseDto findLocationByEmail(String email) {
         if(piAddressRepository.findByEmail(email).isEmpty()) {
-            Users users = usersRepository.findByEmail(email).orElse(null);
-            if(users == null) {
-                users = new Users("아무개3", email, null, Role.USER);
-                usersRepository.saveAndFlush(users);
-            }
-            PiAddress piAddress = new PiAddress("111.111.111.111");
-            piAddress.setUsers(users);
-            piAddress = piAddressRepository.saveAndFlush(piAddress);
-            locationRepository.saveAndFlush(new Location(piAddress, 0, 0, 0));
+            return new LocationResponseDto(new Location(null, 0, 0, 0));
+//            Users users = usersRepository.findByEmail(email).orElse(null);
+//            if(users == null) {
+//                users = new Users("아무개3", email, null, Role.USER);
+//                usersRepository.saveAndFlush(users);
+//            }
+//            PiAddress piAddress = new PiAddress("111.111.111.111");
+//            piAddress.setUsers(users);
+//            piAddress = piAddressRepository.saveAndFlush(piAddress);
+//            locationRepository.saveAndFlush(new Location(piAddress, 0, 0, 0));
         }
         PiAddress piAddress = piAddressRepository.findByEmail(email).orElseThrow();
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateAsc(piAddress);

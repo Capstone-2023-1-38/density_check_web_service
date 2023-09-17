@@ -2,9 +2,13 @@ package com.example.density_check_web_service.service;
 
 import com.example.density_check_web_service.NotifyController;
 import com.example.density_check_web_service.PostsController;
+import com.example.density_check_web_service.domain.Location.Location;
+import com.example.density_check_web_service.domain.Location.LocationRepository;
 import com.example.density_check_web_service.domain.Notify.Notify;
 import com.example.density_check_web_service.domain.Notify.NotifyRepository;
 import com.example.density_check_web_service.domain.Notify.dto.NotifyDto;
+import com.example.density_check_web_service.domain.PiAddress.PiAddress;
+import com.example.density_check_web_service.domain.PiAddress.PiAddressRepository;
 import com.example.density_check_web_service.domain.Posts.dto.PostsListResponseDto;
 import com.example.density_check_web_service.domain.Users.Users;
 import com.example.density_check_web_service.domain.Users.UsersRepository;
@@ -18,9 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -28,7 +34,8 @@ import java.util.stream.Collectors;
 @Service
 public class NotifyService {
     private final NotifyRepository notifyRepository;
-    private final UsersRepository usersRepository;
+    private final LocationRepository locationRepository;
+    private final PiAddressRepository piAddressRepository;
     public static Map<String, SseEmitter> sseEmitters = new ConcurrentHashMap<>();
 
     public List<NotifyDto> notify(String email, Long id) {
@@ -68,6 +75,31 @@ public class NotifyService {
         sseEmitter.onError((e) -> sseEmitters.remove(email));
 
         return sseEmitter;
+    }
+
+    @Transactional
+    public void warning(String email) {
+        if (email == null)
+            return;
+
+        PiAddress user = piAddressRepository.findByEmail(email).orElse(null);
+
+        if (user == null)
+            return;
+
+        Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(user);
+        List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
+        Set<PiAddress> set = locations.stream().map(loc -> {
+            return loc.getPiAddress();
+        }).collect(Collectors.toSet());
+        if (set.size() > 4) {
+            SseEmitter sseEmitter = NotifyService.sseEmitters.get(email);
+            try {
+                sseEmitter.send(SseEmitter.event().name("warning").data(""));
+            } catch (Exception e) {
+                NotifyService.sseEmitters.remove(email);
+            }
+        }
     }
 
 //    @Async

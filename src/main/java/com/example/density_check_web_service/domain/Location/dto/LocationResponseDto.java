@@ -16,7 +16,8 @@ public class LocationResponseDto {
 
     @Builder
     public LocationResponseDto(Location entity) {
-        this.address = entity.getPiAddress().getAddress();
+        if (entity.getPiAddress() != null)
+            this.address = entity.getPiAddress().getAddress();
         this.distance = entity.getDistance();
         this.x = entity.getX();
         this.y = entity.getY();

@@ -168,5 +168,14 @@
             }
         });
     </script>
+    <script type="text/javascript" sec:authorize="isAuthenticated()">
+        setInterval(
+            function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/warning",
+                });
+            }, 5000);
+    </script>
 </th:block>
 </html>

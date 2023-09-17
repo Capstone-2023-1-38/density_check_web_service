@@ -510,6 +510,7 @@
 <!--<script src="js/demo/chart-pie-demo.js"></script>-->
 
 <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
+<th:block th:replace="fragments/script::script"></th:block>
 <script type="text/javascript">
         $(function(){
             $('.map').maphilight();
@@ -526,7 +527,7 @@
         return year+"/"+month+"/"+day+" "+time;
     }
 
-    setInterval(
+    var interval = setInterval(
         function () {
             $.ajax({
                 type: "POST",
@@ -536,27 +537,44 @@
                     email: null
                 },
                 success: function (data) {
-                    var loc="";
-                    var arr={};
-                    $('.location').children().eq(0).text("현재 위치 : " + data.x + ", " + data.y);
-                    $('.location').children().eq(1).text("기록 시간 : " + dateFormat(data.modifiedDate));
-                    loc = data.x + "," + data.y;
-                    arr.fillOpacity=0.2;
-                    arr.fillColor = "4e73df";
-                    arr.stroke=true;
-                    arr.strokeColor = "4e73df";
-                    arr.strokeOpacity = 1;
-                    arr.alwaysOn = true;
-                    $('area[alt="' + loc + '"]').data('maphilight', arr).trigger('alwaysOn.maphilight');
-                    $('#secondFloor').maphilight();
+                    if (data.address !== null) {
+                        var loc="";
+                        var arr={};
+                        $('.location').children().eq(0).text("현재 위치 : " + data.x + ", " + data.y);
+                        $('.location').children().eq(1).text("기록 시간 : " + dateFormat(data.modifiedDate));
+                        loc = data.x + "," + data.y;
+                        arr.fillOpacity=0.2;
+                        arr.fillColor = "4e73df";
+                        arr.stroke=true;
+                        arr.strokeColor = "4e73df";
+                        arr.strokeOpacity = 1;
+                        arr.alwaysOn = true;
+                        $('area[alt="' + loc + '"]').data('maphilight', arr).trigger('alwaysOn.maphilight');
+                        $('#secondFloor').maphilight();
+                    }
+                    else {
+                        clearInterval(interval);
+                        Swal.fire({
+                            icon: 'question',
+                            title: '소유 장비 없음',
+                            text: '해당 이메일 정보를 가진 라즈베리파이가 존재하지 않습니다.\n무선 통신 기반 밀집도 페이지로 이동합니다.',
+                            closeOnClickOutside : false
+                        }).then(function(){
+                            window.location.href = "/density-check";
+                        })
+                    }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("통신 실패");
+                    Swal.fire({
+                        icon: 'error',
+                        title: '통신 실패',
+                        text: '통신에 실패하였습니다.'
+                    })
                 }
             });
         }, 1000);
 </script>
-<th:block th:replace="fragments/script::script"></th:block>
+
 
 </body>
 

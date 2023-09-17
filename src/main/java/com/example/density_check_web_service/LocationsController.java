@@ -29,14 +29,8 @@ public class LocationsController {
 
     @ResponseBody
     @PostMapping(path = "/sendLocations")
-    public void sendLocations(@RequestBody LocationRequestDto locationRequestDto, Authentication authentication) {
-        String email = null;
-        if (authentication != null) {
-            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-            email = oAuth2User.getAttribute("email");
-        }
+    public void sendLocations(@RequestBody LocationRequestDto locationRequestDto) {
         locationService.saveLocation(locationRequestDto);
-        locationService.warning(email);
         int minute = LocalDateTime.now().getMinute();
         if(check0030 && (minute == 0 || minute == 30)) {
             situationsService.saveSituations();
