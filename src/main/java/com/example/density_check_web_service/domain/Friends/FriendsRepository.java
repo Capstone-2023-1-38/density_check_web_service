@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FriendsRepository extends JpaRepository<Friends, Long> {
-    @Query("SELECT f FROM Friends f INNER JOIN Friends tof ON f.to.id = tof.from.id and f.mutual = tof.mutual WHERE f.from.email = :email")
+    @Query("SELECT f FROM Friends f WHERE f.from.email = :email and f.mutual = true")
     List<Friends> findMutualByFrom(@Param("email") String email);
 
     @Query("SELECT f FROM Friends f WHERE f.from.email = :email and f.mutual = false")
