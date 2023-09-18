@@ -352,8 +352,15 @@
                 str = '';
 
                 $.each(data , function(i) {
+                    var imgsrc;
+                    if(data[i].toPicture === null) {
+                        imgsrc = "img/undraw_profile.svg";
+                    }
+                    else {
+                        imgsrc = data[i].toPicture;
+                    }
                     str += '<TR>' +
-                        '<TD><i class="bi bi-person-circle"></i></TD>' +
+                        '<TD><img class="rounded-circle" src="'+imgsrc+'"/></TD>' +
                         '<TD>' + data[i].toName + '</TD>' +
                         '<TD><a class="btn btn-secondary" style="float:right" href="friends/accept?toEmail=' + data[i].toEmail + '" >수락</a></TD>' +
                         '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail=' + data[i].toEmail + '">거절</a></TD>';
