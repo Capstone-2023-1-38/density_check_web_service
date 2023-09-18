@@ -3,6 +3,7 @@ package com.example.density_check_web_service;
 import com.example.density_check_web_service.domain.Location.dto.LocationListResponseDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationRequestDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationResponseDto;
+import com.example.density_check_web_service.domain.Location.dto.LocationResponseForUserDto;
 import com.example.density_check_web_service.service.LocationService;
 import com.example.density_check_web_service.service.SituationsService;
 import lombok.RequiredArgsConstructor;
@@ -55,15 +56,15 @@ public class LocationsController {
 
     @ResponseBody
     @PostMapping(consumes = "application/x-www-form-urlencoded", path="/find")
-    public LocationResponseDto findByEmail(String email, Authentication authentication) {
+    public LocationResponseForUserDto findByEmail(String email, Authentication authentication) {
         if(email == null) {
             OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
             email = oAuth2User.getAttribute("email");
         }
-        LocationResponseDto locationResponseDto = locationService.findLocationByEmail(email);
+        LocationResponseForUserDto locationResponseForUserDto = locationService.findLocationByEmail(email);
 //        model.addAttribute("x", locationRequestDto.getX());
 //        model.addAttribute("y", locationRequestDto.getY());
-        return locationResponseDto;
+        return locationResponseForUserDto;
     }
 
     @GetMapping(path = "/area")
