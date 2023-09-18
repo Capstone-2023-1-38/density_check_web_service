@@ -533,6 +533,7 @@
                         var arr={};
                         $('.location').children().eq(0).text("현재 위치 : " + data.x + ", " + data.y);
                         $('.location').children().eq(1).text("기록 시간 : " + dateFormat(data.modifiedDate));
+                        $('.location').children().eq(2).text("현재 위치에서의 밀집도 등급 : " + data.grade);
                         loc = data.x + "," + data.y;
                         arr.fillOpacity=0.2;
                         arr.fillColor = "4e73df";

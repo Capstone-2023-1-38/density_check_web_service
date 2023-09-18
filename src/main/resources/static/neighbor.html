@@ -388,6 +388,7 @@
                         <img src="img/current_location.png" style="width:450px; height:400px; text-align:center"/>
                         <p id="neighbor-location" style="text-align:center"></p>
                         <p id="datetime" style="text-align:center"></p>
+                        <p id="grade" style="text-align:center"></p>
                     </div>
 
 
@@ -450,8 +451,15 @@
                 str = '';
 
                 $.each(data , function(i) {
+                    var imgsrc;
+                    if(data[i].toPicture === null) {
+                        imgsrc = "img/undraw_profile.svg";
+                    }
+                    else {
+                        imgsrc = data[i].toPicture;
+                    }
                     str += '<TR>' +
-                        '<TD><i class="bi bi-person-circle"></i></TD>' +
+                        '<TD><img class="rounded-circle" src="'+imgsrc+'"/></TD>' +
                         '<TD>' + data[i].toName + '</TD>' +
                         '<TD>' + data[i].toEmail + '</TD>' +
                         '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail='+data[i].toEmail+'" style="float:right">삭제</a>' +
@@ -485,7 +493,8 @@
                         var tr = locBtn.parent().parent();
                         var td = tr.children();
                         $('#neighbor-location').text(td.eq(1).text() + '님의 위치 : ' + data.x + ", " + data.y);
-                        $('#datetime').text("기록 시간: " + dateFormat(data.modifiedDate));
+                        $('#datetime').text("기록 시간 : " + dateFormat(data.modifiedDate));
+                        $('#grade').text("현재 위치에서의 밀집도 등급 : " + data.grade);
                     }else {
                         clearInterval(interval);
                         Swal.fire({

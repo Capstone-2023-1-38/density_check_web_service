@@ -379,8 +379,9 @@
                 if (data.address !== null) {
                     var loc="";
                     var arr={};
-                    $('.location').html("<label>" + data.name + "님의 위치: " + data.x + ", " + data.y + "</label> <br>" +
-                                            "<label> 기록 시간: " + dateFormat(data.modifiedDate)+"</label>");
+                    $('.location').html("<label>" + data.name + "님의 위치 : " + data.x + ", " + data.y + "</label> <br>" +
+                                            "<label> 기록 시간 : " + dateFormat(data.modifiedDate)+"</label> <br>" +
+                                            "<label> 현재 위치에서의 밀집도 등급 : " + data.grade +"</label>");
                     loc = data.x + "," + data.y;
                     arr.fillOpacity=0.2;
                     arr.fillColor = "4e73df";
