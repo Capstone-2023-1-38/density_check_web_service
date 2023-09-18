@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 public class LocationResponseDto {
     private String address;
+    private String name;
     private int distance;
     private int x;
     private int y;
@@ -16,8 +17,10 @@ public class LocationResponseDto {
 
     @Builder
     public LocationResponseDto(Location entity) {
-        if (entity.getPiAddress() != null)
+        if (entity.getPiAddress() != null) {
             this.address = entity.getPiAddress().getAddress();
+            this.name = entity.getPiAddress().getUsers().getName();
+        }
         this.distance = entity.getDistance();
         this.x = entity.getX();
         this.y = entity.getY();

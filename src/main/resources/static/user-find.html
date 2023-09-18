@@ -376,18 +376,30 @@
                 email : $(this).prev().val()
             },
             success: function (data) {
-                var loc="";
-                var arr={};
-                $('.location').html("<label> 위치: " + data.x + ", " + data.y + "</label>");
-                loc = data.x + "," + data.y;
-                arr.fillOpacity=0.2;
-                arr.fillColor = "4e73df";
-                arr.stroke=true;
-                arr.strokeColor = "4e73df";
-                arr.strokeOpacity = 1;
-                arr.alwaysOn = true;
-                $('area[alt="' + loc + '"]').data('maphilight', arr).trigger('alwaysOn.maphilight');
-                $('#secondFloor').maphilight();
+                if (data.address !== null) {
+                    var loc="";
+                    var arr={};
+                    $('.location').html("<label>" + data.name + "님의 위치: " + data.x + ", " + data.y + "</label> <br>" +
+                                            "<label> 기록 시간: " + dateFormat(data.modifiedDate)+"</label>");
+                    loc = data.x + "," + data.y;
+                    arr.fillOpacity=0.2;
+                    arr.fillColor = "4e73df";
+                    arr.stroke=true;
+                    arr.strokeColor = "4e73df";
+                    arr.strokeOpacity = 1;
+                    arr.alwaysOn = true;
+                    $('area[alt="' + loc + '"]').data('maphilight', arr).trigger('alwaysOn.maphilight');
+                    $('#secondFloor').maphilight();
+                }else {
+                    Swal.fire({
+                        icon: 'question',
+                        title: '소유 장비 없음',
+                        text: '해당 이메일 정보를 가진 라즈베리파이가 존재하지 않습니다.',
+                        closeOnClickOutside : false
+                    }).then(function(){
+                        window.location.href = "/user-find";
+                    })
+                }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 alert("통신 실패");
