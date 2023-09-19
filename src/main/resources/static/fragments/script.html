@@ -20,8 +20,6 @@
 <!--    </script>-->
 
     <script>
-        toastShow("title", "content");
-
         /* [이벤트 수행 함수] */
         function toastShow(title, content){
             var toastDiv='';
@@ -91,16 +89,6 @@
                 eventSource.close();
             });
         }
-
-        function dateFormat(date){
-            var year = date.substring(0,4);
-            var month = date.substring(5,7);
-            var day = date.substring(8,10);
-            var time = date.substring(11,19);
-
-            return year+"/"+month+"/"+day+" "+time;
-        }
-
     </script>
     <script sec:authorize="isAuthenticated()">
         var current_url = window.location.pathname.split("/");
@@ -148,10 +136,11 @@
             }
         });
     </script>
+
     <script>
         $.ajax({
             type: "GET",
-            url: "/setting/name",
+            url: "/setting/info",
             dataType: "json",
             success: function(data) {
                 $('.userName').text(data.name);
@@ -161,11 +150,33 @@
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 Swal.fire({
                     icon: 'error',
-                    title: '통신 실패',
-                    text: '통신에 실패하였습니다.',
+                    title: '로그인 만료',
+                    html: '로그인 정보가 만료되었습니다.<br>로그인 페이지로 이동합니다.',
+                    closeOnClickOutside : false
+                }).then(function(){
+                    window.location.href = "/logout";
                 })
             }
         });
+    </script>
+    <script type="text/javascript" sec:authorize="isAuthenticated()">
+        setInterval(
+            function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/warning",
+                });
+            }, 5000);
+    </script>
+    <script>
+        function dateFormat(date){
+            var year = date.substring(0,4);
+            var month = date.substring(5,7);
+            var day = date.substring(8,10);
+            var time = date.substring(11,19);
+
+            return year+"/"+month+"/"+day+" "+time;
+        }
     </script>
 </th:block>
 </html>

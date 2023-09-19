@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Setter
 @Getter
 @NoArgsConstructor
 @Entity
@@ -39,8 +38,18 @@ public class Users extends BaseTimeEntity {
         this.role = role;
     }
 
-    public Users update(String name) {
+    public Users updateName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Users updatePicture(String picture) {
+        this.picture = picture;
+        return this;
+    }
+
+    public Users deletePicture() {
+        this.picture = null;
         return this;
     }
 

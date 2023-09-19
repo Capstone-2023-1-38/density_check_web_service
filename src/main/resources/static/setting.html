@@ -262,9 +262,13 @@
                             <tr>
                                 <th>프로필 수정</th>
                                 <td>
-                                        <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="width:150px; height:150px; margin:20px"/>
-                                        <button type="submit" class="btn btn-secondary" style="margin-right:10px">사진 변경</button><button type="button" class="btn btn-secondary">삭제</button>
-
+                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="width:150px; height:150px; margin:20px"/>
+                                    <form name="form" method="post" action="/setting/image" enctype="multipart/form-data">
+                                        <input type="file" id="image" name="image" style="margin-bottom:10px" onchange="readURL(this);"/>
+                                        <br>
+                                        <button type="button" class="btn btn-secondary" onclick="readURL(this);">이미지 삭제</button>
+                                        <button type="submit" class="btn btn-secondary" style="margin-right:10px" onclick="">저장</button>
+                                    </form>
                                 </td>
                             </tr>
                             <tr></tr>
@@ -366,6 +370,20 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <th:block th:replace="fragments/script::script"></th:block>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('.img-profile').attr("src", e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                $('.img-profile').attr("src", "img/undraw_profile.svg");
+            }
+        }
+    </script>
 
 </body>
 

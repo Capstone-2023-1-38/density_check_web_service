@@ -78,9 +78,14 @@ public class IndexController {
         return "setting.html";
     }
 
-    @GetMapping(path = "/logout")
-    public String logout() {
-        return "../templates/index.html";
+//    @GetMapping(path = "/logout")
+//    public String logout() {
+//        return "../templates/index.html";
+//    }
+
+    @GetMapping(path = "/customLogin")
+    public String login() {
+        return "login.html";
     }
 
 

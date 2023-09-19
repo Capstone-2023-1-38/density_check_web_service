@@ -27,28 +27,171 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
-        body{
-          font-family: 'NanumSquareNeoExtraBold'
-        }
-        html,
-        body {
-          height: 100%;
-          padding: 0px;
-          margin: 0px;
-        }
 
-        header {
-          height: 60px;
-          background-color: #e9eaed;
+        body{
+          font-family: 'NanumSquareNeoExtraBold';
+          margin: 0;
         }
 
         #wrapper {
-          min-height: calc(100% - 120px);
+            width: 100vw;
+            height: 100vh;
+        }
+        .index-box{
+            cursor: pointer;
+            float:left;
+            border:0.1rem solid #4e73df;
+            border-radius: 1rem;
+            width:27.5vw;
+            height:54vw;
+            background-color:#FFF;
+            margin-left:0.3rem;
+            margin-right:auto;
+            margin-bottom:5vw;
+        }
+        #gif{
+            width:95vw;
+            height:70vw;
+            text-align:center;
+            padding-left:2rem;
+        }
+        #boxImg1{
+            width:23vw;
+            height:30vw;
+        }
+        #boxImg2{
+            width:25vw;
+            height:30vw;
+        }
+        #boxImg3{
+            width:25vw;
+            height:20vw;
+            margin-top:5vw;
+            margin-bottom:5vw;
+        }
+
+        #building-text{
+            font-size:5.3vw;
+        }
+        .indexText{
+            padding:8px;
+            font-size:4vw;
         }
 
         .index-box:hover{
             transform: translateY(-20px);
+
         }
+
+        @media screen and (min-width:576px){
+          .index{
+            margin-left:auto;
+            margin-right:auto;
+          }
+
+          .index-box{
+            border:0.2rem solid #4e73df;
+          }
+          .indexText{
+            font-size:3.5vw;
+          }
+        }
+        @media screen and (min-width:768px){
+          .index{
+            margin-left:auto;
+            margin-right:auto;
+          }
+          .index-box{
+            width:29vw;
+            height:52vw;
+          }
+          .indexText{
+            font-size:3.2vw;
+          }
+        }
+        @media screen and (min-width:992px){
+          .index{
+            margin-left:auto;
+            margin-right:auto;
+            font-size:3vw;
+          }
+
+          #gifDiv{
+            width:100vw;
+            margin-left:auto;
+            margin-right:auto;
+          }
+
+          #gif{
+            width:70vw;
+            height:55vw;
+
+          }
+          .index-box{
+            width:27vw;
+            height:52vw;
+            margin-left:2rem;
+            margin-right:auto;
+            margin-bottom:3rem;
+          }
+          .indexText{
+            font-size:3vw;
+          }
+        }
+        @media screen and (min-width:1200px){
+          .index{
+            font-size:3vw;
+          }
+
+          .index-box{
+            width:16.8vw;
+            height:22vw;
+            margin-left:1rem;
+            margin-right:auto;
+            margin-bottom:3rem;
+          }
+
+          #container-fluid{
+            margin-bottom: 3vw;
+          }
+
+          #gif{
+            width:38vw;
+            height:26vw;
+            text-align:center;
+            padding-left:2rem;
+          }
+          #boxImg1{
+            width:11vw;
+            height:15vw;
+          }
+          #boxImg2{
+            width:12vw;
+            height:15vw;
+          }
+          #boxImg3{
+            width:12vw;
+            height:10vw;
+            margin-bottom:2.5vw;
+            margin-top:2.5vw;
+          }
+          .indexText{
+            font-size:1.2vw;
+          }
+          #building-text{
+            font-size:3vw;
+          }
+
+          #gifDiv{
+            width:40vw;
+            float:left;
+          }
+
+        }
+
+         @media screen and (min-width:1800px){
+
+         }
 
     </style>
 
@@ -275,34 +418,34 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div id="container-fluid" class="container-fluid" style="margin-left:auto; margin-right:auto;text-align:center;">
                 <!-- Page Heading -->
-                <div>
-                    <a href="/" style="text-decoration-line:none;"><h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="font-family: 'NanumSquareNeoExtraBold';font-size:40px; text-align:center; margin-top:50px;">인파 밀집도 계산 및 실시간 위치 추적 웹서비스</h1></a>
+                <div class="col-lg-10" style="text-align:center;margin-left:auto;margin-right:auto;">
+                    <a href="/" style="text-decoration-line:none;"><p id="building-text" class="display-4 mb-4 text-gray-800" style="font-family: 'NanumSquareNeoExtraBold'; text-align:center; margin-top:50px;">인파 밀집도 계산 및 실시간 위치 추적 웹서비스</p></a>
                     <!--          <h5 style="font-family: 'Orbit', sans-serif; font-weight: 600; text-align:right; padding-right:80px; font-size:23px">팀 네카라쿠배</h5>-->
                 </div>
-                <div style="height:350px;">
-                    <div style="float:left">
-                        <img src="/img/description.gif" loop="infinite" style="padding-left:100px;width:630px; height:360px"/>
+                <div>
+                    <div id="gifDiv" style="float:left;">
+                        <img id="gif" src="/img/description.gif" loop="infinite">
                     </div>
-                    <div style="font-family:'NanumSquareNeo'; display:inline-block;font-size:20px; padding-top:50px; letter-spacing:-1px; text-align:center; vertical-align:middle; height:330px;float:left;">
-                        <div class="index-box" onclick="location.href='/current-location';" style="cursor: pointer;float:left; border:5px solid #4e73df; border-radius: 30px; height:300px; background-color:#FFF">
-                            <img src="img/index_icon1.png" style="width:150px; height:220px"/>
-                            <div style="padding:8px;">현재 위치 및 밀집도 등급 확인</div>
+                    <div class="index" style="font-family:'NanumSquareNeo'; display:inline-block;padding-top:50px; letter-spacing:-1px; text-align:center;">
+                        <div class="index-box" onclick="location.href='/current-location';">
+                            <img id="boxImg1" src="img/index_icon1.png"/>
+                            <div class="indexText">현재 위치 및 밀집도 등급 확인</div>
                         </div>
-                        <div class="index-box" onclick="location.href='/report';" style="cursor: pointer;margin-left:20px; float:left; border:5px solid #4e73df; border-radius: 30px; width:260px; height:300px; background-color:#FFF">
-                            <img src="img/index_icon2.png" style="width:190px; height:220px"/>
-                            <div style="padding:8px;"><a>제보를 통한 사용자 참여</a></div>
+                        <div class="index-box" onclick="location.href='/report';">
+                            <img id="boxImg2" src="img/index_icon2.png"/>
+                            <div class="indexText"><a>제보를 통한 사용자 참여</a></div>
                         </div>
-                        <div class="index-box" onclick="location.href='/neighbor';" style="cursor: pointer;margin-left:20px;float:left; border:5px solid #4e73df; border-radius: 30px; height:300px; background-color:#FFF">
-                            <img src="img/index_icon3.png" style="width:200px; height:150px; margin-bottom:35px; margin-top:35px;"/>
-                            <div style="padding:8px;"><a>이웃 추가 기능을 통한 위치 확인</a></div>
+                        <div class="index-box" onclick="location.href='/neighbor';">
+                            <img id="boxImg3" src="img/index_icon3.png"/>
+                            <div class="indexText"><a>이웃 추가 기능을 통한 위치 확인</a></div>
                         </div>
 
                         <!--            <p>특정 기기를 소지하고 있는 사용자들의 현재 위치를 기반으로 다중 밀집 지역에서의 밀집도를 계산합니다.</p>-->
                         <!--            <p>이 웹서비스는 현재 위치와 밀집도 등급을 알려드립니다.</p>-->
-                    </div>
                 </div>
+            </div>
                 <div id="g_toast" th:insert="~{fragments/warningAlert :: warning}"></div>
 
 <!--                <script>-->

@@ -45,4 +45,16 @@ public class NotifyController {
 
         return notifyService.notify(email, id);
     }
+
+    @ResponseBody
+    @GetMapping("/warning")
+    public void warning(Authentication authentication)
+    {
+        String email = null;
+        if (authentication != null) {
+            OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+            email = oAuth2User.getAttribute("email");
+        }
+        notifyService.warning(email);
+    }
 }

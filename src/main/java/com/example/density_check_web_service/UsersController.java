@@ -7,7 +7,9 @@ import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @Controller
@@ -15,7 +17,7 @@ public class UsersController {
     private final UsersService usersService;
 
     @ResponseBody
-    @GetMapping("/setting/name")
+    @GetMapping("/setting/info")
     public UsersResponseDto findByEmail(Authentication authentication) {
         if (authentication == null)
             return new UsersResponseDto("로그인이 필요합니다.");
@@ -23,6 +25,14 @@ public class UsersController {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getAttribute("email");
         return usersService.findByEmail(email);
+    }
+
+    @PostMapping("/setting/image")
+    public String updateImage(@Validated @RequestParam("image") MultipartFile file, Authentication authentication) throws Exception {
+        OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+        String email = oAuth2User.getAttribute("email");
+        usersService.updatePicture(email, file);
+        return "redirect:/setting";
     }
 
     @PostMapping(consumes = "application/x-www-form-urlencoded", path = "/setting/name")

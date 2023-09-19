@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <style>
+        img {width: 100%;}
         .map {
             margin: 0 auto;
         }
@@ -785,26 +786,52 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
+<script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
 <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
-<script type="text/javascript">
-        $(function(){
-            $('.map').maphilight();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-</script>
 
 <th:block th:replace="fragments/script::script"></th:block>
 <script>
-        function btn(){
-            Swal.fire({
-              title: '<strong>밀집도 등급</strong>',
-              html:
-                '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
+    var resizeEvt;
 
-            })
-        }
-    </script>
+    (function($) {
+        // $(document).on('ready.usemaps', function(){
+        //     $('img[usemap]').rwdImageMaps();
+        //     $('img[usemap]').maphilight();
+        //     $('[data-toggle="tooltip"]').tooltip();
+        //     $('map').imageMapResize();
+        // });
+
+        $(window).on('resize.usemaps', function(){
+            clearTimeout(resizeEvt);
+            resizeEvt = setTimeout(function(){
+                $('img[usemap]').maphilight();
+                $('[data-toggle="tooltip"]').tooltip();
+                $('map').imageMapResize();
+            }, 200);
+        });
+
+    })(jQuery);
+</script>
+<script type="text/javascript">
+    $(function(){
+        $('img[usemap]').rwdImageMaps();
+        $('img[usemap]').maphilight();
+        $('[data-toggle="tooltip"]').tooltip();
+        $('map').imageMapResize();
+    });
+</script>
+<script>
+    function btn(){
+        Swal.fire({
+          title: '<strong>밀집도 등급</strong>',
+          html:
+            '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
+
+        })
+    }
+</script>
 
 </body>
 

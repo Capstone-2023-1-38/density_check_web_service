@@ -387,6 +387,8 @@
                         <h1>이웃 위치 확인</h1>
                         <img src="img/current_location.png" style="width:450px; height:400px; text-align:center"/>
                         <p id="neighbor-location" style="text-align:center"></p>
+                        <p id="datetime" style="text-align:center"></p>
+                        <p id="grade" style="text-align:center"></p>
                     </div>
 
 
@@ -449,8 +451,15 @@
                 str = '';
 
                 $.each(data , function(i) {
+                    var imgsrc;
+                    if(data[i].toPicture === null) {
+                        imgsrc = "img/undraw_profile.svg";
+                    }
+                    else {
+                        imgsrc = data[i].toPicture;
+                    }
                     str += '<TR>' +
-                        '<TD><i class="bi bi-person-circle"></i></TD>' +
+                        '<TD><img class="rounded-circle" src="'+imgsrc+'"/></TD>' +
                         '<TD>' + data[i].toName + '</TD>' +
                         '<TD>' + data[i].toEmail + '</TD>' +
                         '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail='+data[i].toEmail+'" style="float:right">삭제</a>' +
@@ -476,13 +485,27 @@
                     email : $(this).parent().prev().val()
                 },
                 success: function (data) {
-                    var str = "";
-                    var tdArr = new Array();
-                    var locBtn = $(this);
+                    if (data.address !== null) {
+                        var str = "";
+                        var tdArr = new Array();
+                        var locBtn = $(this);
 
-                    var tr = locBtn.parent().parent();
-                    var td = tr.children();
-                    $('#neighbor-location').text(td.eq(1).text() + '님의 위치 : ' + data.x + ", " + data.y);
+                        var tr = locBtn.parent().parent();
+                        var td = tr.children();
+                        $('#neighbor-location').text(td.eq(1).text() + '님의 위치 : ' + data.x + ", " + data.y);
+                        $('#datetime').text("기록 시간 : " + dateFormat(data.modifiedDate));
+                        $('#grade').text("현재 위치에서의 밀집도 등급 : " + data.grade);
+                    }else {
+                        clearInterval(interval);
+                        Swal.fire({
+                            icon: 'question',
+                            title: '소유 장비 없음',
+                            text: "해당 이메일 정보를 가진 라즈베리파이가 존재하지 않습니다.",
+                            closeOnClickOutside : false
+                        }).then(function(){
+                            window.location.href = "/neighbor";
+                        })
+                    }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert("통신 실패");
