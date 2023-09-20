@@ -49,7 +49,7 @@ public class SituationsController {
     public void poiTest(HttpServletResponse response) throws Exception{
 
         Workbook wb = new SXSSFWorkbook(); // 엑셀파일 객체 생성
-        String[] loc = {"A", "B", "C", "D"};
+        String[] loc = {"가", "나", "다", "라"};
         for (int i=0; i<loc.length; i++) {
             Sheet sheet = wb.createSheet(loc[i]); //시트 생성
             sheet.setDefaultColumnWidth(22);   // 디폴트 너비 설정
