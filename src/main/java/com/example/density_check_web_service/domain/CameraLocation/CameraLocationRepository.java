@@ -9,7 +9,8 @@ import java.util.Optional;
 
 public interface CameraLocationRepository extends JpaRepository<CameraLocation, Long> {
 
-    List<CameraLocation> findByIp(String ip);
-
+    @Query("select distinct c.ip from CameraLocation c")
+    List<String> findDistinctByIp();
+    List<CameraLocation> findAllByIp(String ip);
     void deleteAllByIp(String ip);
 }

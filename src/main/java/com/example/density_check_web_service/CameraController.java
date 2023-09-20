@@ -25,7 +25,7 @@ public class CameraController {
 
     @ResponseBody
     @GetMapping(path = "/getCameraLocation")
-    public List<CameraLocationRequestDto> getCameraLocation() {
+    public List<CameraLocationRequestListDto> getCameraLocation() {
         return cameraService.getCameraLocation();
     }
 
