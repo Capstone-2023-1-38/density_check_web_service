@@ -288,7 +288,7 @@
                             <tr>
                                 <th>프로필 수정</th>
                                 <td>
-                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="width:150px; height:150px; margin:20px"/>
+                                    <img class="img-profile rounded-circle" id="img-profile" src="img/undraw_profile.svg" style="width:150px; height:150px; margin:20px"/>
                                     <form name="form" method="post" action="/setting/image" enctype="multipart/form-data">
                                         <input type="file" id="image" name="image" style="margin-bottom:10px" onchange="readURL(this);"/>
                                         <br>
@@ -402,11 +402,11 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $('.img-profile').attr("src", e.target.result);
+                    $('#img-profile').attr("src", e.target.result);
                 };
                 reader.readAsDataURL(input.files[0]);
             } else {
-                $('.img-profile').attr("src", "img/undraw_profile.svg");
+                $('#img-profile').attr("src", "img/undraw_profile.svg");
             }
         }
     </script>
