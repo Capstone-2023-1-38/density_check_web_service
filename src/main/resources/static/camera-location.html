@@ -421,9 +421,9 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">비전 기반 실시간 위치</h1>
                 <div class="col-md-6" style="margin-left:10px;position:relative; float:left;">
-                    <div style="display:flex;float:right">
-                        <div style="text-align:center; position:relative; width:622px; height:720px;">
-                            <svg id="svg" width="622" height="730">
+<!--                    <div style="display:flex;float:right">-->
+                        <div style="text-align:center; position:relative;">
+                            <svg id="svg" viewBox="0 0 622 730">
                                 <image href="./img/2floor.png"/>
                                 <div>
                                     <img src="img/camera.png" class="camera" id="camera2" type="button" style="position: absolute; top:21%; left:36%; width:8%; height:8%;" onmouseover="this.style.scale=1.1" onmouseout="this.style.scale=1.0" data-toggle="tooltip" data-bs-placement="top" data-html="true" title="Camera2"/>
@@ -436,9 +436,9 @@
                                 </div>
                             </svg>
                         </div>
-                    </div>
-                    <div style="margin-top:1rem; float:right">
-                        <button class="btn btn-secondary" type="button" style="width:622px;">건물 내 카메라 전체 화면</button>
+<!--                    </div>-->
+                    <div class="col-md-12" style="margin-top:1rem;">
+                        <button class="btn btn-secondary" type="button" style="width:100%">건물 내 카메라 전체 화면</button>
                     </div>
                 </div>
                 <div class="col-md-5" id="building" style="overflow:auto;">
@@ -447,28 +447,23 @@
                         <tr class="table-active">
                             <th scope="col">위치</th>
                             <th scope="col">인원수</th>
-                            <th scope="col">밀집도 등급</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>Camera1</td>
                             <td></td>
-                            <td></td>
                         </tr>
                         <tr>
                             <td>Camera2</td>
-                            <td></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>Camera3</td>
                             <td></td>
-                            <td></td>
                         </tr>
                         <tr>
                             <td>Camera4</td>
-                            <td></td>
                             <td></td>
                         </tr>
 
@@ -477,17 +472,16 @@
                         <tr class="table-active">
                             <th>총 인원</th>
                             <th>237명</th>
-                            <th>&nbsp;</th>
                         </tr>
                         </tfoot>
                     </table>
                 </div>
-                <div id="container" class="row col-md-5" style="padding:0">
+                <div id="container" class="row col-md-5">
                     <!--                            <video autoplay="true" id="videoElement">-->
 
                     <!--                            </video>-->
-                    <img id="img" src="" height="480" style="float:right"/>
-                    <!--                            <iframe src="http://172.30.1.63:5000" id="videoElement" allowfullscreen> </iframe>-->
+<!--                    <img id="img" src="" height="480" style="float:right"/>-->
+                    <iframe src="http://172.30.1.63:5000" id="videoElement" style="width:100%;height:100%;"allowfullscreen> </iframe>
                 </div>
             </div>
 
