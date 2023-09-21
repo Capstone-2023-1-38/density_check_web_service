@@ -18,7 +18,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">
                                 <li><a class="dropdown-item" href="/current-location" style="font-size:0.9rem;">현재 위치에서의 밀집도</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/situations/0">실시간 밀집도 및 통계</a></li>
+                                <li><a class="dropdown-item" href="/situation">실시간 밀집도 및 통계</a></li>
                                 <ul style="list-style-type: square;">
                                     <li><a class="dropdown-item" href="/density-check">무선 통신 기반 밀집도</a></li>
                                     <li><a class="dropdown-item" href="/camera-location">비전 기반 밀집도</a></li>
@@ -55,14 +55,14 @@
                             </ul>
                         </li>
                     </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none d-lg-inline" style="text-align:center;font-size:1rem;">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none d-md-inline" style="text-align:center;font-size:1rem;">
                         <a>팀 네카라쿠배</a>
                     </ul>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item mx-1" style="padding-top:0.21rem; font-size:3rem" sec:authorize="isAuthenticated()">
+                        <li class="nav-item mx-1" style="padding-top:21px; font-size:24px" sec:authorize="isAuthenticated()">
                             <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>
                         </li>
-                        <li class="nav-item mx-1" style="padding-top:0.2rem; font-size:3rem" sec:authorize="isAuthenticated()">
+                        <li class="nav-item mx-1" style="padding-top:20px; font-size:24px" sec:authorize="isAuthenticated()">
                             <a href="/neighbor"><i class="bi bi-person-fill"></i></a>
                         </li>
                         <li class="nav-item dropdown no-arrow mx-1" sec:authorize="isAuthenticated()">
@@ -105,7 +105,7 @@
                             </div>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
-                                <a class="dropdown-item" href="/customLogin">
+                                <a class="dropdown-item" href="login.html">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     로그인
                                 </a>

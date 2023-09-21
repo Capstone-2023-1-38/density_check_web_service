@@ -256,13 +256,13 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">이웃 추가</h1>
                     <form action="/friends/add/new" method="get">
-                        <div class="col-md-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
+                        <div class="col-md-7 input-group mb-3" style="margin-left: auto; margin-right: auto;">
                             <span class="input-group-text" id="basic-addon1">@</span>
                             <input name="toEmail" type="text" class="form-control" placeholder="UserEmail" aria-label="Useremail" aria-describedby="basic-addon1">
-                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2" onclick="" style="float:right">검색</button>
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2" onclick="" style="float:right">추가</button>
                         </div>
                     </form>
-                    <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto; padding-top:50px">
+                    <div class="col-md-7" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto; padding-top:50px">
                         <table class="table" style="border: 3px solid #4e73df;">
                             <thead bgcolor="#4e73df" style="color:#FFF">
                                 <th>이웃 신청 목록</th>
@@ -360,8 +360,8 @@
                         imgsrc = data[i].toPicture;
                     }
                     str += '<TR>' +
-                        '<TD><img class="rounded-circle" src="'+imgsrc+'"/></TD>' +
-                        '<TD>' + data[i].toName + '</TD>' +
+                        '<TD style="width:30%"><img class="rounded-circle" src="'+imgsrc+'" style="width:15%;height:15%;"/></TD>' +
+                        '<TD style="text-align:center;width:30%;">' + data[i].toName + '</TD>' +
                         '<TD><a class="btn btn-secondary" style="float:right" href="friends/accept?toEmail=' + data[i].toEmail + '" >수락</a></TD>' +
                         '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail=' + data[i].toEmail + '">거절</a></TD>';
                     str += '</TR>';
