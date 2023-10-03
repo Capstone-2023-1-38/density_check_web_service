@@ -85,7 +85,7 @@ public class LocationService {
                 usersRepository.saveAndFlush(users);
             }
             piAddress = new PiAddress("111.111.111.111");
-            piAddress.setUsers(users);
+            piAddress.update(users);
             piAddress = piAddressRepository.saveAndFlush(piAddress);
             locationRepository.saveAndFlush(new Location(piAddress, 0, 0, 0));
         }
@@ -104,7 +104,7 @@ public class LocationService {
                 Users users = new Users("아무개" + String.valueOf(i), "email@email.com" + String.valueOf(i), null, Role.USER);
                 usersRepository.saveAndFlush(users);
                 PiAddress piAddress = new PiAddress(String.valueOf(i * 111));
-                piAddress.setUsers(users);
+                piAddress.update(users);
                 piAddressRepository.saveAndFlush(piAddress);
                 locationRepository.saveAndFlush(new Location(piAddress, 0, x, y));
                 locationRepository.saveAndFlush(new Location(piAddress, 0, x, y));
