@@ -33,18 +33,39 @@
             filter: invert(41%) sepia(90%) saturate(2251%) hue-rotate(211deg) brightness(92%) contrast(89%);
         }
         body{
-            font-family: 'NanumSquareNeoExtraBold'
-        }
-        body {
+            font-family: 'NanumSquareNeoExtraBold';
             margin: 0;
         }
         #wrapper {
             width: 100vw;
             height: 100vh;
         }
-        .custom-tooltip {
-          --bs-tooltip-bg: var(--bd-white-bg);
-          --bs-tooltip-color: var(--bs-black);
+        #building-text{
+            font-size:4vw;
+        }
+        @media screen and (min-width:576px){
+
+        }
+        @media screen and (min-width:768px){
+
+            #building-text{
+                font-size:3vw;
+            }
+
+        }
+        @media screen and (min-width:992px){
+
+        }
+
+        @media screen and (min-width:1200px){
+            #building-text{
+                font-size:2.5vw;
+            }
+
+        }
+
+        @media screen and (min-width:1800px){
+
         }
 
     </style>
@@ -419,7 +440,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">비전 기반 실시간 위치</h1>
+                <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">비전 기반 실시간 위치</h1>
                 <div class="col-md-6" style="margin-left:10px;position:relative; float:left;">
 <!--                    <div style="display:flex;float:right">-->
                         <div style="text-align:center; position:relative;">

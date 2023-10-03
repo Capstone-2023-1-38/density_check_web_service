@@ -29,14 +29,72 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
         body{
-          font-family: 'NanumSquareNeoExtraBold'
+            font-family: 'NanumSquareNeoExtraBold'
         }
-
+        img{
+            width:100%;
+        }
         table th{
             background-color: #858796;
             color: #FFF;
             text-align:center;
             width:20%;
+        }
+        #building-text{
+            font-size:4.5vw;
+        }
+        #message{
+            font-size:4vw;
+        }
+        .table{
+            font-size:2.5vw;
+        }
+        ::placeholder {
+            font-size: 2vw;
+        }
+        @media screen and (min-width:576px){
+            #building-text{
+                font-size:4vw;
+            }
+            #message{
+                font-size:3vw;
+            }
+        }
+        @media screen and (min-width:768px){
+            .table{
+                font-size:2vw;
+            }
+            #building-text{
+                font-size:3vw;
+            }
+        }
+        @media screen and (min-width:992px){
+            #message{
+                font-size:2vw;
+            }
+            .table{
+                font-size:1.3vw;
+            }
+            ::placeholder {
+                font-size: 1.5vw;
+            }
+        }
+        @media screen and (min-width:1200px){
+            #building-text{
+                font-size:2.8vw;
+            }
+            #message{
+                font-size:1.7vw;
+            }
+            ::placeholder {
+                font-size: 1.2vw;
+            }
+        }
+
+        @media screen and (min-width:1800px){
+            #building-text{
+                font-size:2.5vw;
+            }
         }
 
         #location-button{
@@ -49,8 +107,12 @@
             bottom: 0;
             right: 15px;
             margin: auto 0;
-            width: 25%;
+            width: 30%;
             height: 80%;
+        }
+
+        .position{
+            font-size:2vw;
         }
 
 
@@ -283,23 +345,23 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">제보하기</h1>
-                    <h3 class="h5 mb-4 text-gray-500" style="text-align:center;">위급한 상황을 제보해주세요.</h3>
+                    <h1 id="building-text" class="h3 mb-4 text-gray-800" style="font-weight: 700;text-align: center">제보하기</h1>
+                    <h3 id="message" class="h5 mb-4 text-gray-500 building-text" style="text-align:center;">위급한 상황을 제보해주세요.</h3>
                     <form name="loc" action="/posts/new", method="post" onsubmit="return btn();">
-                        <div class="col-sm-8 mb-3 row" style="margin-left: auto; margin-right:auto;">
+                        <div class="col-md-8 col-xs-10 mb-3 row" style="margin-left: auto; margin-right:auto;">
                             <table class="table table-bordered" style="table-layout:fixed">
                                 <tr>
                                     <th scope="row">위치</th>
                                     <td>
-                                        <div class="col-md-6" id="location-button" style="padding-left:0px;">
+                                        <div class="col-lg-8 col-xs-10" id="location-button" style="padding-left:0px;">
                                             <input id="location" name="location" type="text" class="form-control" value="" placeholder="위치를 선택하세요" style="color:#000;background-color:#FFF" readonly>
-                                            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" data-bs-parent="#selector" aria-expanded="false" aria-controls="collapseExample" style="font-size:0.8em;float:right;">
+                                            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" data-bs-parent="#selector" aria-expanded="false" aria-controls="collapseExample" style="font-size:0.8vw;float:right;">
                                                 위치 선택
                                             </button>
                                         </div>
                                         <div class="collapse" id="collapseExample" style="margin-top:2%;">
-                                            <div class="card card-body" style="position:relative;">
-                                                <div style="position:relative;left:0;top:0;">
+                                            <div class="card card-body">
+                                                <div id="collapse-div" style="position:relative;left:0;top:0;">
                                                     <div style="position:relative;margin-left:2rem;margin-right:auto;" id="selector">
                                                         <!-- Image Map Generated by http://www.image-map.net/ -->
                                                         <img id="second_floor" class="map" src="img/2floor.png" usemap="#image-map">
@@ -309,7 +371,7 @@
                                                             <area target="_self" alt="0,2" title="A2" href="#" coords="298,43,416,160" shape="rect" onmouseover="mapHilight(0,2);" onmouseout="offHilight(0,2);"onclick="chooseLocation('A',2);">
                                                             <area target="_self" alt="0,3" title="A3" href="#" coords="416,43,571,160" shape="rect" onmouseover="mapHilight(0,3);" onmouseout="offHilight(0,3);"onclick="chooseLocation('A',3);">
                                                             <area target="_self" alt="1,0" title="B0" href="#" coords="64,160,181,277" shape="rect" onmouseover="mapHilight(1,0);" onmouseout="offHilight(1,0);"onclick="chooseLocation('B',0);">
-                                                            <area target="_self" alt="1,1" title="B1" href="#" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onmouseover="mapHilight(1,1);" onmouseout="offHilight(1,1);"onclick="chooseLocation('B',1);">
+                                                            <area target="_self" alt="1,1" title="B1" href="#" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onmouseover="mapHilight(1,1);" onmouseout="offHilight(1,1);" onclick="chooseLocation('B',1);">
                                                             <area target="_self" alt="1,2" title="B2" href="#" coords="298,160,416,197" shape="rect" onmouseover="mapHilight(1,2);" onmouseout="offHilight(1,2);"onclick="chooseLocation('B',2);">
                                                             <area target="_self" alt="1,3" title="B3" href="#" coords="416,161,571,277" shape="rect" onmouseover="mapHilight(1,3);" onmouseout="offHilight(1,3);"onclick="chooseLocation('B',3);">
                                                             <area target="_self" alt="2,0" title="C0" href="#" coords="64,278,181,395" shape="rect" onmouseover="mapHilight(2,0);" onmouseout="offHilight(2,0);"onclick="chooseLocation('C',0);">
@@ -330,23 +392,24 @@
                                                             <area target="_self" alt="5,3" title="F3" href="#" coords="416,628,571,710" shape="rect" onmouseover="mapHilight(5,3);" onmouseout="offHilight(5,3);" onclick="chooseLocation('F',3);">
                                                         </map>
 
-                                                        <div>
-                                                            <p style="position:absolute;top:10%; left:5%; font-size:25px;">A</p>
-                                                            <p style="position:absolute;top:28%; left:5%; font-size:25px;">B</p>
-                                                            <p style="position:absolute;top:43%; left:5%; font-size:25px;">C</p>
-                                                            <p style="position:absolute;top:60%; left:5%; font-size:25px;">D</p>
-                                                            <p style="position:absolute;top:75%; left:5%; font-size:25px;">E</p>
-                                                            <p style="position:absolute;top:91%; left:5%; font-size:25px;">F</p>
-                                                            <p style="position:absolute;top:1%; left:18%; font-size:25px;">0</p>
-                                                            <p style="position:absolute;top:1%; left:36%; font-size:25px;">1</p>
-                                                            <p style="position:absolute;top:1%; left:54%; font-size:25px;">2</p>
-                                                            <p style="position:absolute;top:1%; left:73%; font-size:25px;">3</p>
+                                                        <div class="position">
+                                                            <p style="position:absolute;top:10%; left:5%;">A</p>
+                                                            <p style="position:absolute;top:28%; left:5%;">B</p>
+                                                            <p style="position:absolute;top:43%; left:5%;">C</p>
+                                                            <p style="position:absolute;top:60%; left:5%;">D</p>
+                                                            <p style="position:absolute;top:75%; left:5%;">E</p>
+                                                            <p style="position:absolute;top:91%; left:5%;">F</p>
+                                                            <p style="position:absolute;top:1%; left:18%;">0</p>
+                                                            <p style="position:absolute;top:1%; left:36%;">1</p>
+                                                            <p style="position:absolute;top:1%; left:54%;">2</p>
+                                                            <p style="position:absolute;top:1%; left:73%;">3</p>
                                                         </div>
                                                     </div>
                                                     <script>
                                                         function chooseLocation(x, y){
                                                             $('input[name=location]').attr('value',x+y.toString());
                                                             $('input[name=location]').focus();
+                                                            //$('.collapse').attr('display', 'none');
                                                         }
 
                                                         function mapHilight(x, y){
@@ -473,19 +536,43 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-<!--    <script>-->
-<!--        $(function() {-->
-<!--          $('img[usemap]').rwdImageMaps();-->
-<!--          $('area').on('click', function () {-->
-<!--            alert($(this).attr('alt') + ' 입니다.');-->
-<!--          });-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
+    <script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
+    <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
+
+    <th:block th:replace="fragments/script::script"></th:block>
+    <script>
+        var resizeEvt;
+
+        (function($) {
+            $(document).on('click', function(){
+                $('img[usemap]').rwdImageMaps();
+                $('img[usemap]').maphilight();
+                $('[data-toggle="tooltip"]').tooltip();
+                $('map').imageMapResize();
+            });
+
+            $(window).on('resize.usemaps', function(){
+                clearTimeout(resizeEvt);
+                resizeEvt = setTimeout(function(){
+                    $('img[usemap]').maphilight();
+                    //$('[data-toggle="tooltip"]').tooltip();
+                    $('map').imageMapResize();
+                }, 200);
+            });
+
+        })(jQuery);
+    </script>
+<!--    <script type="text/javascript">-->
+<!--        $(function(){-->
+<!--            //$('img[usemap]').rwdImageMaps();-->
+<!--            $('img[usemap]').maphilight();-->
+<!--            //$('[data-toggle="tooltip"]').tooltip();-->
+<!--            $('map').imageMapResize();-->
 <!--        });-->
 <!--    </script>-->
 
-    <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
-    <script type="text/javascript">
-        $('map').imageMapResize();
-    </script>
     <script>
         $.fn.maphilight.defaults = {
             fill: true,
@@ -496,14 +583,6 @@
             strokeOpacity:1
         }
     </script>
-    <script type="text/javascript">
-        $(function(){
-            $('.map').maphilight();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
-
     <script>
         $(document).ready(function() {
             $('[data-rel=popover]').popover({
@@ -529,9 +608,6 @@
         return true;
     }
     </script>
-
-
-    <th:block th:replace="fragments/script::script"></th:block>
 
 
 </body>

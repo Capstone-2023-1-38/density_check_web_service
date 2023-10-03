@@ -29,6 +29,32 @@
         body{
           font-family: 'NanumSquareNeoExtraBold'
         }
+        #building-text{
+            font-size:4.5vw;
+        }
+        @media screen and (min-width:576px){
+            #building-text{
+                font-size:4vw;
+            }
+        }
+        @media screen and (min-width:768px){
+            #building-text{
+                font-size:3vw;
+            }
+        }
+        @media screen and (min-width:992px){
+
+        }
+        @media screen and (min-width:1200px){
+            #building-text{
+                font-size:2.8vw;
+            }
+        }
+        @media screen and (min-width:1800px){
+            #building-text{
+                font-size:2.5vw;
+            }
+        }
     </style>
 </head>
 
@@ -255,7 +281,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">설정</h1>
+                    <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">설정</h1>
                     <div class="col-lg-8" style="margin-left: auto; margin-right: auto;">
                         <table class="table">
                             <tbody>

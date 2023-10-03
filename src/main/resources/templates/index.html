@@ -43,7 +43,7 @@
             border:0.1rem solid #4e73df;
             border-radius: 1rem;
             width:27.5vw;
-            height:54vw;
+            height:50vw;
             background-color:#FFF;
             margin-left:0.3rem;
             margin-right:auto;
@@ -75,12 +75,15 @@
         }
         .indexText{
             padding:8px;
-            font-size:4vw;
+            font-size:2.7vw;
         }
 
         .index-box:hover{
             transform: translateY(-20px);
 
+        }
+        #building-text{
+            font-size:4.5vw;
         }
 
         @media screen and (min-width:576px){
@@ -88,13 +91,31 @@
             margin-left:auto;
             margin-right:auto;
           }
-
           .index-box{
             border:0.2rem solid #4e73df;
+            margin-left:2vw;
+            height:40vw;
           }
           .indexText{
-            font-size:3.5vw;
+            font-size:2.5vw;
           }
+            #boxImg1{
+                width:20vw;
+                height:27vw;
+            }
+            #boxImg2{
+                width:23vw;
+                height:27vw;
+            }
+            #boxImg3 {
+                width:23vw;
+                height:19vw;
+                margin-bottom:3vw;
+            }
+            #building-text{
+                font-size:4vw;
+            }
+
         }
         @media screen and (min-width:768px){
           .index{
@@ -102,41 +123,83 @@
             margin-right:auto;
           }
           .index-box{
-            width:29vw;
-            height:52vw;
+            width:25vw;
+            height:37vw;
+            margin-left:2vw;
           }
           .indexText{
-            font-size:3.2vw;
+            font-size:1.8vw;
           }
+            #boxImg1{
+                width:20vw;
+                height:27vw;
+            }
+            #boxImg2{
+                width:23vw;
+                height:27vw;
+            }
+            #boxImg3 {
+                width:23vw;
+                height:19vw;
+                margin-bottom:3vw;
+            }
+            #gif{
+                width:60vw;
+                height:48vw;
+                text-align:center;
+                padding-left:2rem;
+            }
+            #building-text{
+                font-size:4vw;
+            }
         }
         @media screen and (min-width:992px){
-          .index{
-            margin-left:auto;
-            margin-right:auto;
-            font-size:3vw;
-          }
+            .index{
+                font-size:3vw;
+            }
+            .index-box{
+                width:16.8vw;
+                height:22vw;
+                margin-left:1rem;
+                margin-right:auto;
+                margin-bottom:3rem;
+            }
 
-          #gifDiv{
-            width:100vw;
-            margin-left:auto;
-            margin-right:auto;
-          }
+            #container-fluid{
+                margin-bottom: 3vw;
+            }
 
-          #gif{
-            width:70vw;
-            height:55vw;
+            #gif{
+                width:38vw;
+                height:26vw;
+                text-align:center;
+                padding-left:2rem;
+            }
+            #boxImg1{
+                width:11vw;
+                height:15vw;
+            }
+            #boxImg2{
+                width:12vw;
+                height:15vw;
+            }
+            #boxImg3{
+                width:12vw;
+                height:10vw;
+                margin-bottom:2.5vw;
+                margin-top:2.5vw;
+            }
+            .indexText{
+                font-size:1.2vw;
+            }
+            #building-text{
+                font-size:3vw;
+            }
 
-          }
-          .index-box{
-            width:27vw;
-            height:52vw;
-            margin-left:2rem;
-            margin-right:auto;
-            margin-bottom:3rem;
-          }
-          .indexText{
-            font-size:3vw;
-          }
+            #gifDiv{
+                width:36vw;
+                float:left;
+            }
         }
         @media screen and (min-width:1200px){
           .index{
@@ -179,18 +242,19 @@
             font-size:1.2vw;
           }
           #building-text{
-            font-size:3vw;
+            font-size:2.8vw;
           }
 
           #gifDiv{
             width:40vw;
             float:left;
           }
-
         }
 
          @media screen and (min-width:1800px){
-
+             #building-text{
+                 font-size:2.5vw;
+             }
          }
 
     </style>
@@ -425,7 +489,7 @@
                     <!--          <h5 style="font-family: 'Orbit', sans-serif; font-weight: 600; text-align:right; padding-right:80px; font-size:23px">팀 네카라쿠배</h5>-->
                 </div>
                 <div>
-                    <div id="gifDiv" style="float:left;">
+                    <div id="gifDiv" style="margin-right:auto;margin-left:auto;">
                         <img id="gif" src="/img/description.gif" loop="infinite">
                     </div>
                     <div class="index" style="font-family:'NanumSquareNeo'; display:inline-block;padding-top:50px; letter-spacing:-1px; text-align:center;">
