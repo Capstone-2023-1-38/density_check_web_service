@@ -1,65 +1,124 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <style>
+        #building-text{
+            font-size:4.5vw;
+        }
+        .table{
+            font-size:2.2vw;
+        }
+        .paging{
+            font-size:2.3vw;
+        }
+        @media screen and (min-width:576px){
+            #building-text{
+                font-size:4vw;
+            }
+            .table{
+                font-size:2vw;
+            }
+            .paging{
+                font-size:2.1vw;
+            }
+        }
+        @media screen and (min-width:768px){
+            #building-text{
+                font-size:3vw;
+            }
+            .table{
+                font-size:1.5vw;
+            }
+            .paging{
+                font-size:1.6vw;
+            }
+        }
+        @media screen and (min-width:992px){
+            #building-text{
+                font-size:3vw;
+            }
+            .table{
+                font-size:1.3vw;
+            }
+            .paging{
+                font-size:1.4vw;
+            }
+        }
+        @media screen and (min-width:1200px){
+            #building-text{
+                font-size:2.8vw;
+            }
+            .table{
+                font-size:1.3vw;
+            }
+        }
 
+        @media screen and (min-width:1800px){
+            #building-text{
+                font-size:2.5vw;
+            }
+        }
+    </style>
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">제보 게시판</h1>
-    <table class="table col-md-8" style="margin-left: auto; margin-right: auto; background-color:#FFF;text-align:center;">
-        <thead>
-        <tr class="table-active" style="background-color: #858796;color: #FFF;">
-            <th scope="col">#</th>
-            <th scope="col">위치</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성자</th>
-            <th scope="col">작성일자</th>
-        </tr>
-        </thead>
-        <tbody id="table_body" class="table_body">
-        <tr th:each="post, loop : ${paging}" th:onclick="|location.href='/posts/${post.id}'|">
-            <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
-            <td th:text="${post.location}"></td>
-            <td style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></td>
-            <td th:text="${post.author}"></td>
-            <td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
-        </tr>
-        <!--                            <tr>-->
-        <!--                                <th scope="row">6</th>-->
-        <!--                                <td>6203 강의실</td>-->
-        <!--                                <td>제보합니다.</td>-->
-        <!--                                <td>user</td>-->
-        <!--                              </tr>-->
-        <!--                              <tr>-->
-        <!--                                <th scope="row">5</th>-->
-        <!--                                <td>6203 강의실</td>-->
-        <!--                                <td>제보합니다.</td>-->
-        <!--                                <td>user</td>-->
-        <!--                              </tr>-->
-        <!--                              <tr>-->
-        <!--                                <th scope="row">4</th>-->
-        <!--                                <td>6209 강의실</td>-->
-        <!--                                <td>제보합니다.</td>-->
-        <!--                                <td>user</td>-->
-        <!--                              </tr>-->
-        <!--                              <tr>-->
-        <!--                                <th scope="row">3</th>-->
-        <!--                                <td>6208 강의실</td>-->
-        <!--                                <td>제보합니다.</td>-->
-        <!--                                <td>user</td>-->
-        <!--                              </tr>-->
-        <!--                            <tr>-->
-        <!--                              <th scope="row">2</th>-->
-        <!--                              <td>6202 강의실</td>-->
-        <!--                              <td>제보 합니다.</td>-->
-        <!--                              <td>user</td>-->
-        <!--                            </tr>-->
-        <!--                            <tr>-->
-        <!--                              <th scope="row">1</th>-->
-        <!--                              <td>6208 강의실</td>-->
-        <!--                              <td>제보합니다.</td>-->
-        <!--                              <td>user</td>-->
-        <!--                            </tr>-->
-        </tbody>
-    </table>
+    <h1 id="building-text" class="h3 mb-4 text-gray-800" style="font-weight: 700;text-align: center">제보 게시판</h1>
+    <div class="col-xs-10 col-md-8" style="margin-right:auto;margin-left:auto;">
+        <table class="table" style="margin-left: auto; margin-right: auto; background-color:#FFF;text-align:center;">
+            <thead>
+            <tr class="table-active" style="background-color: #858796;color: #FFF;">
+                <th scope="col">#</th>
+                <th scope="col">위치</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">작성일자</th>
+            </tr>
+            </thead>
+            <tbody id="table_body" class="table_body">
+            <tr th:each="post, loop : ${paging}" th:onclick="|location.href='/posts/${post.id}'|">
+                <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+                <td th:text="${post.location}"></td>
+                <td style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a></td>
+                <td th:text="${post.author}"></td>
+                <td th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+            </tr>
+            <!--                            <tr>-->
+            <!--                                <th scope="row">6</th>-->
+            <!--                                <td>6203 강의실</td>-->
+            <!--                                <td>제보합니다.</td>-->
+            <!--                                <td>user</td>-->
+            <!--                              </tr>-->
+            <!--                              <tr>-->
+            <!--                                <th scope="row">5</th>-->
+            <!--                                <td>6203 강의실</td>-->
+            <!--                                <td>제보합니다.</td>-->
+            <!--                                <td>user</td>-->
+            <!--                              </tr>-->
+            <!--                              <tr>-->
+            <!--                                <th scope="row">4</th>-->
+            <!--                                <td>6209 강의실</td>-->
+            <!--                                <td>제보합니다.</td>-->
+            <!--                                <td>user</td>-->
+            <!--                              </tr>-->
+            <!--                              <tr>-->
+            <!--                                <th scope="row">3</th>-->
+            <!--                                <td>6208 강의실</td>-->
+            <!--                                <td>제보합니다.</td>-->
+            <!--                                <td>user</td>-->
+            <!--                              </tr>-->
+            <!--                            <tr>-->
+            <!--                              <th scope="row">2</th>-->
+            <!--                              <td>6202 강의실</td>-->
+            <!--                              <td>제보 합니다.</td>-->
+            <!--                              <td>user</td>-->
+            <!--                            </tr>-->
+            <!--                            <tr>-->
+            <!--                              <th scope="row">1</th>-->
+            <!--                              <td>6208 강의실</td>-->
+            <!--                              <td>제보합니다.</td>-->
+            <!--                              <td>user</td>-->
+            <!--                            </tr>-->
+            </tbody>
+        </table>
+    </div>
     <!--                    <nav aria-label="Page navigation example">-->
     <!--                        <ul class="pagination justify-content-center">-->
     <!--                        <li class="page-item">-->
@@ -78,7 +137,7 @@
     <!--                        </ul>-->
     <!--                    </nav>-->
     <!-- 페이징처리 시작 -->
-    <div th:if="${!paging.isEmpty()}">
+    <div class="paging" th:if="${!paging.isEmpty()}">
         <ul class="pagination justify-content-center">
             <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
                 <a class="page-link"

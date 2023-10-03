@@ -26,7 +26,13 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
         body{
-          font-family: 'NanumSquareNeoExtraBold'
+            font-family: 'NanumSquareNeoExtraBold'
+        }
+        img {
+            width:100%;
+        }
+        .map{
+            margin:0 auto;
         }
         body {
             margin: 0;
@@ -35,8 +41,89 @@
             width: 100vw;
             height: 100vh;
         }
+        .location{
+            font-size:3vw;
+            margin-top:2%;
+            background-color:#FFF;
+            border-radius:10%;
+            padding:5%;
+        }
         .position{
-            font-size:1.5rem;
+            font-size:4vw;
+        }
+        #building-text{
+            font-size:4.5vw;
+        }
+        #secondFloor{
+            margin-right:5vw;
+        }
+        #img_div{
+            padding:0;
+        }
+        @media screen and (min-width:576px){
+            .position{
+                font-size:3vw;
+            }
+            .location {
+                font-size:2.3vw;
+            }
+            #building-text{
+                font-size:4vw;
+            }
+        }
+        @media screen and (min-width:768px){
+            .position{
+                font-size:2.7vw;
+            }
+            .location {
+                font-size:2vw;
+                margin-left:auto;
+                margin-right:auto;
+            }
+            #building-text{
+                font-size:3vw;
+            }
+
+        }
+        @media screen and (min-width:992px){
+            #building-text{
+                font-size:3vw;
+            }
+            .position{
+                font-size:2vw;
+            }
+            .location {
+                font-size:1.7vw;
+                margin-top:18%;
+                float:left;
+                margin-left:5vw;
+            }
+            #img_div{
+                float:left;
+                margin-right:1vw;
+            }
+        }
+
+        @media screen and (min-width:1200px){
+            #building-text{
+                font-size:2.5vw;
+            }
+            .position{
+                font-size:1.8vw;
+            }
+
+            .location {
+                font-size:1.5vw;
+                float:left;
+
+            }
+        }
+
+        @media screen and (min-width:1800px){
+            #building-text{
+                font-size:2.5vw;
+            }
+
         }
     </style>
 
@@ -263,63 +350,59 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div class="container-fluid" >
                 <!-- Page Heading -->
                 <div>
-                    <h1 id="buildling-text" class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px; text-align:center">현재 위치에서의 밀집도</h1>
+                    <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
                 </div>
-                <div style="text-align:center">
-                    <div class="col-md-6" style="display:inline-block;float:left">
-                        <div style="float:right">
-                            <img id="secondFloor" src="img/2floor.png" usemap="#image-map" onfocus="this.blur();">
-                            <map name="image-map">
-                                <area target="_self" alt="0,0" title="A0" coords="181,43,65,160" shape="rect" onfocus="blur();">
-                                <area target="_self" alt="0,1" title="A1" coords="181,160,298,43" shape="rect" onfocus="blur();">
-                                <area target="_self" alt="0,2" title="A2" coords="298,43,416,160" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="0,3" title="A3" coords="416,43,571,160" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="1,0" title="B0" coords="64,160,181,277" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="1,1" title="B1" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onfocus="blur()">
-                                <area target="_self" alt="1,2" title="B2" coords="298,160,416,197" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="1,3" title="B3" coords="416,161,571,277" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="2,0" title="C0" coords="64,278,181,395" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="2,1" title="C1" coords="181,278,219,394" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="2,2" title="C2" coords="" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="2,3" title="C3" coords="416,277,571,394" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="3,0" title="D0" coords="64,395,181,511" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="3,1" title="D1" coords="181,395,219,511" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="3,2" title="D2" coords="" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="3,3" title="D3" coords="416,395,571,511" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="4,0" title="E0" coords="64,511,181,628" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="4,1" title="E1" coords="219,560,219,512,182,511,182,628,298,628,298,560,269,560" shape="poly" onfocus="blur()">
-                                <area target="_self" alt="4,2" title="E2" coords="298,560,416,628" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="4,3" title="E3" coords="416,511,571,628" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="5,0" title="F0" coords="64,629,181,710" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="5,1" title="F1" coords="181,628,298,710" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="5,2" title="F2" coords="298,628,416,710" shape="rect" onfocus="blur()">
-                                <area target="_self" alt="5,3" title="F3" coords="416,628,571,710" shape="rect" onfocus="blur()">
-                            </map>
-                            <div class="position">
-                                <p style="position:absolute;top:11%; left:18%;">A</p>
-                                <p style="position:absolute;top:27%; left:18%;">B</p>
-                                <p style="position:absolute;top:43%; left:18%;">C</p>
-                                <p style="position:absolute;top:60%; left:18%;">D</p>
-                                <p style="position:absolute;top:75%; left:18%;">E</p>
-                                <p style="position:absolute;top:90%; left:18%;">F</p>
-                                <p style="position:absolute;top:1%; left:28%;">0</p>
-                                <p style="position:absolute;top:1%; left:45%;">1</p>
-                                <p style="position:absolute;top:1%; left:62%;">2</p>
-                                <p style="position:absolute;top:1%; left:80%;">3</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5" style="float:left;">
-                        <div class="location" style="display:inline-block;font-size:1.2rem;background-color:#FFF;border-radius:20%;padding:10%;margin-right:auto;margin-left:auto;margin-top:30%;">
-                            <p>현재 위치 : 2층 6202 강의실</p>
-                            <p>기록 시간 : </p>
-                            <p>현재 위치에서의 밀집도 등급 : 안전</p>
-                        </div>
+                <div id="img_div" class="col-lg-6 col-md-8" style="position:relative;margin-left:auto;margin-right:auto;">
+                    <img id="secondFloor" src="img/2floor.png" usemap="#image-map" onfocus="this.blur();">
+                    <map name="image-map">
+                        <area target="_self" alt="0,0" title="A0" coords="181,43,65,160" shape="rect" onfocus="blur();">
+                        <area target="_self" alt="0,1" title="A1" coords="181,160,298,43" shape="rect" onfocus="blur();">
+                        <area target="_self" alt="0,2" title="A2" coords="298,43,416,160" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="0,3" title="A3" coords="416,43,571,160" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="1,0" title="B0" coords="64,160,181,277" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="1,1" title="B1" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onfocus="blur()">
+                        <area target="_self" alt="1,2" title="B2" coords="298,160,416,197" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="1,3" title="B3" coords="416,161,571,277" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="2,0" title="C0" coords="64,278,181,395" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="2,1" title="C1" coords="181,278,219,394" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="2,2" title="C2" coords="" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="2,3" title="C3" coords="416,277,571,394" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="3,0" title="D0" coords="64,395,181,511" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="3,1" title="D1" coords="181,395,219,511" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="3,2" title="D2" coords="" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="3,3" title="D3" coords="416,395,571,511" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="4,0" title="E0" coords="64,511,181,628" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="4,1" title="E1" coords="219,560,219,512,182,511,182,628,298,628,298,560,269,560" shape="poly" onfocus="blur()">
+                        <area target="_self" alt="4,2" title="E2" coords="298,560,416,628" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="4,3" title="E3" coords="416,511,571,628" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="5,0" title="F0" coords="64,629,181,710" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="5,1" title="F1" coords="181,628,298,710" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="5,2" title="F2" coords="298,628,416,710" shape="rect" onfocus="blur()">
+                        <area target="_self" alt="5,3" title="F3" coords="416,628,571,710" shape="rect" onfocus="blur()">
+                    </map>
+                    <div class="position">
+                        <p style="position:absolute;top:11%; left:4%;">A</p>
+                        <p style="position:absolute;top:27%; left:4%;">B</p>
+                        <p style="position:absolute;top:43%; left:4%;">C</p>
+                        <p style="position:absolute;top:60%; left:4%;">D</p>
+                        <p style="position:absolute;top:75%; left:4%;">E</p>
+                        <p style="position:absolute;top:90%; left:4%;">F</p>
+                        <p style="position:absolute;top:1%; left:19%;">0</p>
+                        <p style="position:absolute;top:1%; left:38%;">1</p>
+                        <p style="position:absolute;top:1%; left:57%;">2</p>
+                        <p style="position:absolute;top:1%; left:76%;">3</p>
                     </div>
                 </div>
+                <div class="col-lg-5 col-xs-12 col-md-8 location" style="text-align:center;">
+                        <p>현재 위치 : 2층 6202 강의실</p>
+                        <p>기록 시간 : </p>
+                        <p>현재 위치에서의 밀집도 등급 : 안전</p>
+                </div>
+            </div>
+        </div>
 
                 <!--                    <div id="container" class="row justify-content-center">-->
                 <!--                        &lt;!&ndash;                            <video autoplay="true" id="videoElement">&ndash;&gt;-->
@@ -515,21 +598,58 @@
 <!--&lt;!&ndash; Page level custom scripts &ndash;&gt;-->
 <!--<script src="js/demo/chart-area-demo.js"></script>-->
 <!--<script src="js/demo/chart-pie-demo.js"></script>-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
+<script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
 <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
+
 <th:block th:replace="fragments/script::script"></th:block>
 <script>
+    var resizeEvt;
+
+    (function($) {
+        // $(document).on('ready.usemaps', function(){
+        //     $('img[usemap]').rwdImageMaps();
+        //     $('img[usemap]').maphilight();
+        //     $('[data-toggle="tooltip"]').tooltip();
+        //     $('map').imageMapResize();
+        // });
+
+        $(window).on('resize.usemaps', function(){
+            clearTimeout(resizeEvt);
+            resizeEvt = setTimeout(function(){
+                $('img[usemap]').maphilight();
+                //$('[data-toggle="tooltip"]').tooltip();
+                $('map').imageMapResize();
+            }, 200);
+        });
+
+    })(jQuery);
+</script>
+<script type="text/javascript">
+    $(function(){
+        $('img[usemap]').rwdImageMaps();
+        $('img[usemap]').maphilight();
+        //$('[data-toggle="tooltip"]').tooltip();
+        $('map').imageMapResize();
+    });
+</script>
+
+<script type="text/javascript">
     $.fn.maphilight.defaults = {
         fill: true,
+        fillColor: '4e73df',
         fillOpacity: 0,
         stroke: true,
-        strokeOpacity: 0
+        strokeColor: '4e73df',
+        strokeOpacity: 0,
+        strokeWidth: 1
     }
 </script>
 <script type="text/javascript">
-        $(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 <script>
     var interval = setInterval(
@@ -545,18 +665,32 @@
                     if (data.address !== null) {
                         var loc="";
                         var arr={};
-                        $('.location').children().eq(0).text("현재 위치 : " + data.x + ", " + data.y);
+                        $('.location').children().eq(0).text("현재 위치 : " + String.fromCharCode(data.x + 65) + ", " + data.y);
                         $('.location').children().eq(1).text("기록 시간 : " + dateFormat(data.modifiedDate));
                         $('.location').children().eq(2).text("현재 위치에서의 밀집도 등급 : " + data.grade);
                         loc = data.x + "," + data.y;
                         arr.fillOpacity=0.2;
-                        arr.fillColor = "4e73df";
+                        if(data.grade == "고위험") {
+                            arr.fillColor = "ff0000";
+                            arr.strokeColor = "ff0000";
+
+                        }else if(data.grade == "위험") {
+                            arr.fillColor = "FFFF00";
+                            arr.strokeColor = "FFFF00";
+
+                        }else if(data.grade == "주의") {
+                            arr.fillColor = "008000";
+                            arr.strokeColor = "008000";
+
+                        }else {
+                            arr.fillColor = "808080";
+                            arr.strokeColor = "808080";
+                        }
                         arr.stroke=true;
-                        arr.strokeColor = "4e73df";
                         arr.strokeOpacity = 1;
                         arr.alwaysOn = true;
                         $('area[alt="' + loc + '"]').data('maphilight', arr).trigger('alwaysOn.maphilight');
-                        $('#secondFloor').maphilight();
+                        $('img[usemap]').maphilight();
                     }
                     else {
                         clearInterval(interval);
