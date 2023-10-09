@@ -2,32 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <style>
-        img {width: 100%;}
-        .map {
-            margin: 0 auto;
-        }
-
-        body {
-            margin: 0;
-        }
-        #wrapper {
-            width: 100vw;
-            height: 100vh;
-        }
-
-        #coordinate_info thead{
-            position: sticky;
-            top: 0px;
-            background-color:#b3b3b3;
-        }
-
-        #coordinate_info tfoot{
-            position:sticky;
-            bottom:0;
-            background-color:#b3b3b3;
-        }
-    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,6 +28,148 @@
         body{
           font-family: 'NanumSquareNeoExtraBold'
         }
+        img {width: 100%;}
+        .map {
+            margin: 0 auto;
+        }
+        #popup{
+            background-color:white;
+            position:relative;
+            opacity:0;
+            border:1.5px solid black;
+            padding-top:2%;
+            z-index: 1;
+            height:15vw;
+            width:18vw;
+        }
+        #popup_title{
+            margin:0;
+            padding:0;
+            font-size:3vw;
+            text-align:center;
+        }
+        #popup_description{
+            margin:0;
+            padding:0;
+            font-size:2.5vw;
+            text-align:center;
+        }
+        body {
+            margin: 0;
+        }
+        #wrapper {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #coordinate_info thead{
+            position: sticky;
+            top: 0px;
+            background-color:rgba(255,255,255,1);
+        }
+
+        #coordinate_info tfoot{
+            position:sticky;
+            bottom:0;
+            background-color:rgba(255,255,255,1);
+        }
+        .position{
+            font-size:4vw;
+        }
+        .table{
+            font-size:3vw;
+        }
+        #building{
+            margin-top:3%;
+        }
+        #img-div{
+            padding:0;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        #building-text{
+            font-size:4.5vw;
+        }
+        strong{
+            font-size:4vw;
+        }
+        @media screen and (min-width:576px){
+            #building-text {
+                font-size: 4vw;
+            }
+            strong{
+                font-size:3.8vw;
+            }
+        }
+        @media screen and (min-width:768px){
+            .position{
+                font-size:2.8vw;
+            }
+            #popup{
+                width:15vw;
+                height:10vw;
+            }
+            #popup_title{
+                font-size:2vw;
+            }
+            #popup_description{
+                font-size:1.8vw;
+            }
+            .table{
+                font-size:2vw;
+            }
+            #building{
+                margin-left:auto;
+                margin-right:auto;
+            }
+            strong{
+                font-size: 2.8vw;
+            }
+
+
+        }
+        @media screen and (min-width:992px){
+            #building-text{
+                font-size:3vw;
+            }
+            .position{
+                font-size:2vw;
+            }
+            #popup{
+                width:8vw;
+                height:7vw;
+            }
+            #popup_title{
+                font-size:1.2vw;
+            }
+            #popup_description{
+                font-size:1.1vw;
+            }
+            #img-div{
+                float:left;
+                margin-left:3vw;
+            }
+            .table{
+                font-size:1.5vw;
+            }
+            #building{
+                margin-top:0;
+            }
+        }
+        @media screen and (min-width:1200px){
+            #building-text{
+                font-size:2.8vw;
+            }
+        }
+
+         @media screen and (min-width:1800px){
+            #building-text{
+                font-size:2.5vw;
+            }
+             strong{
+                 font-size:2.3vw;
+             }
+         }
     </style>
 </head>
 
@@ -281,7 +397,7 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <div>
-                    <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align:center">무선 통신 기반 건물 전체의 밀집도 <button type="button" class="btn btn-secondary btn-sm" data-bs-container="body" onclick="btn()" style="vertical-align:middle">?</button></h1>
+                    <h1 id="building-text" class="h3 mb-4 text-gray-800" style="font-weight: 700;text-align:center">무선 통신 기반 건물 전체의 밀집도 <button type="button" class="btn btn-secondary btn-sm" data-bs-container="body" onclick="btn()" style="vertical-align:middle">?</button></h1>
 
                 </div>
 
@@ -438,69 +554,71 @@
                 <!--                            </tbody>-->
                 <!--                        </table>-->
                 <!--                    </div>-->
-                <div class="col-md-6" style="margin-left:10px;position:relative; float:left;">
-                    <div style="position:relative; padding-left:7%;">
-                        <!-- Image Map Generated by http://www.image-map.net/ -->
-                        <img class="map" src="img/2floor.png" usemap="#image-map">
-                        <map name="image-map">
-                            <area target="_self" alt="0,0" title="A0" href="#" coords="181,43,65,160" shape="rect" onmouseover="changePopupText(0, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',0);">
-                            <area target="_self" alt="0,1" title="A1" href="#" coords="181,160,298,43" shape="rect" onmouseover="changePopupText(0, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',1);">
-                            <area target="_self" alt="0,2" title="A2" href="#" coords="298,43,416,160" shape="rect" onmouseover="changePopupText(0, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',2);">
-                            <area target="_self" alt="0,3" title="A3" href="#" coords="416,43,571,160" shape="rect" onmouseover="changePopupText(0, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',3);">
-                            <area target="_self" alt="1,0" title="B0" href="#" coords="64,160,181,277" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',0);">
-                            <area target="_self" alt="1,1" title="B1" href="#" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',1);">
-                            <area target="_self" alt="1,2" title="B2" href="#" coords="298,160,416,197" shape="rect" onmouseover="changePopupText(1, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',2);">
-                            <area target="_self" alt="1,3" title="B3" href="#" coords="416,161,571,277" shape="rect" onmouseover="changePopupText(1, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',3);">
-                            <area target="_self" alt="2,0" title="C0" href="#" coords="64,278,181,395" shape="rect" onmouseover="changePopupText(2, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('C',0);">
-                            <area target="_self" alt="2,1" title="C1" href="#" coords="181,278,219,394" shape="rect" onmouseover="changePopupText(2, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('C',1);">
-                            <area target="_self" alt="2,2" title="C2" coords="" shape="rect" onclick="tableFocus('C',2);">
-                            <area target="_self" alt="2,3" title="C3" href="#" coords="416,277,571,394" shape="rect" onmouseover="changePopupText(2, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('C',3);">
-                            <area target="_self" alt="3,0" title="D0" href="#" coords="64,395,181,511" shape="rect" onmouseover="changePopupText(3, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('D',0);">
-                            <area target="_self" alt="3,1" title="D1" href="#" coords="181,395,219,511" shape="rect" onmouseover="changePopupText(3, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('D',1);">
-                            <area target="_self" alt="3,2" title="D2" coords="" shape="rect" onclick="tableFocus('D',2);">
-                            <area target="_self" alt="3,3" title="D3" href="#" coords="416,395,571,511" shape="rect" onmouseover="changePopupText(3, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('D',3);">
-                            <area target="_self" alt="4,0" title="E0" href="#" coords="64,511,181,628" shape="rect" onmouseover="changePopupText(4, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',0);">
-                            <area target="_self" alt="4,1" title="E1" href="#" coords="219,560,219,512,182,511,182,628,298,628,298,560,269,560" shape="poly" onmouseover="changePopupText(4, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',1);">
-                            <area target="_self" alt="4,2" title="E2" href="#" coords="298,560,416,628" shape="rect" onmouseover="changePopupText(4, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',2);">
-                            <area target="_self" alt="4,3" title="E3" href="#" coords="416,511,571,628" shape="rect" onmouseover="changePopupText(4, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',3);">
-                            <area target="_self" alt="5,0" title="F0" href="#" coords="64,629,181,710" shape="rect" onmouseover="changePopupText(5, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',0);">
-                            <area target="_self" alt="5,1" title="F1" href="#" coords="181,628,298,710" shape="rect" onmouseover="changePopupText(5, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',1);">
-                            <area target="_self" alt="5,2" title="F2" href="#" coords="298,628,416,710" shape="rect" onmouseover="changePopupText(5, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',2);">
-                            <area target="_self" alt="5,3" title="F3" href="#" coords="416,628,571,710" shape="rect" onmouseover="changePopupText(5, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',3);">
-                        </map>
+                <div id="img-div" class="col-lg-6 col-md-8" style="position:relative;">
+                    <!-- Image Map Generated by http://www.image-map.net/ -->
+                    <img class="map" src="img/2floor.png" usemap="#image-map">
+                    <map name="image-map">
+                        <area target="_self" alt="0,0" title="A0" href="#" coords="181,43,65,160" shape="rect" onmouseover="changePopupText(0, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',0);">
+                        <area target="_self" alt="0,1" title="A1" href="#" coords="181,160,298,43" shape="rect" onmouseover="changePopupText(0, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',1);">
+                        <area target="_self" alt="0,2" title="A2" href="#" coords="298,43,416,160" shape="rect" onmouseover="changePopupText(0, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',2);">
+                        <area target="_self" alt="0,3" title="A3" href="#" coords="416,43,571,160" shape="rect" onmouseover="changePopupText(0, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('A',3);">
+                        <area target="_self" alt="1,0" title="B0" href="#" coords="64,160,181,277" shape="rect" onmouseover="changePopupText(1, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',0);">
+                        <area target="_self" alt="1,1" title="B1" href="#" coords="181,159,181,278,219,278,218,197,298,197,298,160,181,160" shape="poly" onmouseover="changePopupText(1, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',1);">
+                        <area target="_self" alt="1,2" title="B2" href="#" coords="298,160,416,197" shape="rect" onmouseover="changePopupText(1, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',2);">
+                        <area target="_self" alt="1,3" title="B3" href="#" coords="416,161,571,277" shape="rect" onmouseover="changePopupText(1, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('B',3);">
+                        <area target="_self" alt="2,0" title="C0" href="#" coords="64,278,181,395" shape="rect" onmouseover="changePopupText(2, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('C',0);">
+                        <area target="_self" alt="2,1" title="C1" href="#" coords="181,278,219,394" shape="rect" onmouseover="changePopupText(2, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('C',1);">
+                        <area target="_self" alt="2,2" title="C2" coords="" shape="rect" onclick="tableFocus('C',2);">
+                        <area target="_self" alt="2,3" title="C3" href="#" coords="416,277,571,394" shape="rect" onmouseover="changePopupText(2, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('C',3);">
+                        <area target="_self" alt="3,0" title="D0" href="#" coords="64,395,181,511" shape="rect" onmouseover="changePopupText(3, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('D',0);">
+                        <area target="_self" alt="3,1" title="D1" href="#" coords="181,395,219,511" shape="rect" onmouseover="changePopupText(3, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('D',1);">
+                        <area target="_self" alt="3,2" title="D2" coords="" shape="rect" onclick="tableFocus('D',2);">
+                        <area target="_self" alt="3,3" title="D3" href="#" coords="416,395,571,511" shape="rect" onmouseover="changePopupText(3, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('D',3);">
+                        <area target="_self" alt="4,0" title="E0" href="#" coords="64,511,181,628" shape="rect" onmouseover="changePopupText(4, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',0);">
+                        <area target="_self" alt="4,1" title="E1" href="#" coords="219,560,219,512,182,511,182,628,298,628,298,560,269,560" shape="poly" onmouseover="changePopupText(4, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',1);">
+                        <area target="_self" alt="4,2" title="E2" href="#" coords="298,560,416,628" shape="rect" onmouseover="changePopupText(4, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',2);">
+                        <area target="_self" alt="4,3" title="E3" href="#" coords="416,511,571,628" shape="rect" onmouseover="changePopupText(4, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('E',3);">
+                        <area target="_self" alt="5,0" title="F0" href="#" coords="64,629,181,710" shape="rect" onmouseover="changePopupText(5, 0, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',0);">
+                        <area target="_self" alt="5,1" title="F1" href="#" coords="181,628,298,710" shape="rect" onmouseover="changePopupText(5, 1, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',1);">
+                        <area target="_self" alt="5,2" title="F2" href="#" coords="298,628,416,710" shape="rect" onmouseover="changePopupText(5, 2, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',2);">
+                        <area target="_self" alt="5,3" title="F3" href="#" coords="416,628,571,710" shape="rect" onmouseover="changePopupText(5, 3, 'http://gachiofficial.com/shop/item.php?it_id=HG9STS20WH', 290, -365);" onmouseout="hidePopup();" onclick="tableFocus('F',3);">
+                    </map>
 
-                        <div id="popup" style="background-color:white;position:relative;opacity:0;border:2px solid black;padding:5px 12px;z-index: 1;height:5%;width:15%;"
-                             onmouseover="showPopup();" onmouseout="hidePopup();">
-                            <a id="popup_addr" href="#" style="text-decoration:none;color:black;" target="_blank">
-                                <p id="popup_title" style="margin:0;padding:0;font-size:15px;line-height:20px;text-align:center;">test</p>
-                                <p id="popup_description" style="margin:0;padding:0;font-size:12px;line-height:12px;text-align:center;">test</p>
-                            </a>
-                        </div>
-                        <div>
-                            <p style="position:absolute;top:10%; left:14%; font-size:25px;">A</p>
-                            <p style="position:absolute;top:25%; left:14%; font-size:25px;">B</p>
-                            <p style="position:absolute;top:41%; left:14%; font-size:25px;">C</p>
-                            <p style="position:absolute;top:54%; left:14%; font-size:25px;">D</p>
-                            <p style="position:absolute;top:70%; left:14%; font-size:25px;">E</p>
-                            <p style="position:absolute;top:83%; left:14%; font-size:25px;">F</p>
-                            <p style="position:absolute;top:1%; left:24%; font-size:25px;">0</p>
-                            <p style="position:absolute;top:1%; left:42%; font-size:25px;">1</p>
-                            <p style="position:absolute;top:1%; left:60%; font-size:25px;">2</p>
-                            <p style="position:absolute;top:1%; left:80%; font-size:25px;">3</p>
-                        </div>
+                    <div id="popup" onmouseover="showPopup();" onmouseout="hidePopup();" style="position:absolute;top:47%;left:39%;">
+                        <a id="popup_addr" href="#" style="text-decoration:none;color:black;" target="_blank">
+                            <p id="popup_title" style="">test</p>
+                            <p id="popup_description" style="">test</p>
+                        </a>
                     </div>
+                    <div class="position">
+                        <p style="position:absolute;top:10%; left:6%;">A</p>
+                        <p style="position:absolute;top:27%; left:6%;">B</p>
+                        <p style="position:absolute;top:42%; left:6%;">C</p>
+                        <p style="position:absolute;top:59%; left:6%;">D</p>
+                        <p style="position:absolute;top:75%; left:6%;">E</p>
+                        <p style="position:absolute;top:90%; left:6%;">F</p>
+                        <p style="position:absolute;top:1%; left:21%;">0</p>
+                        <p style="position:absolute;top:1%; left:40%;">1</p>
+                        <p style="position:absolute;top:1%; left:58%;">2</p>
+                        <p style="position:absolute;top:1%; left:78%;">3</p>
+                    </div>
+
                     <script>
                             function changePopupText(locx, locy, addr, x, y) {
                                 var loc = locx.toString() + "," + locy.toString();
                                 var data = {};
                                 if(arr[locx][locy] > 6) {
                                     data.fillColor = "ff0000";
+                                    data.strokeColor = "ff0000";
                                 }else if(arr[locx][locy] > 4) {
                                     data.fillColor = "FFFF00";
+                                    data.strokeColor = "FFFF00";
                                 }else if(arr[locx][locy] > 2) {
                                     data.fillColor = "008000";
+                                    data.strokeColor = "008000";
                                 }else {
                                     data.fillColor = "808080";
+                                    data.strokeColor = "808080";
                                 }
                                 $('area[alt="' + loc + '"]').data('maphilight', data);
 
@@ -508,8 +626,8 @@
                                 document.getElementById('popup_description').innerHTML = "실시간 인원 수: " + arr[locx][locy];
                                 document.getElementById('popup_addr').href = addr;
 
-                                document.getElementById('popup').style.left = x + "px";
-                                document.getElementById('popup').style.top = y + "px";
+                                //document.getElementById('popup').style.left = x + "px";
+                                //document.getElementById('popup').style.top = y + "px";
                                 document.getElementById('popup').style.opacity = 1;
                             }
 
@@ -563,8 +681,8 @@
                         </script>
                 </div>
 
-                <div class="col-md-5" id="building" style="height:714px; overflow:auto">
-                    <table class="table" style="color:#595959; float:right; margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF" id="coordinate_info">
+                <div class="col-lg-5 col-md-8" id="building" style="overflow:auto">
+                    <table class="table" style="color:#595959;float:right; margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF" id="coordinate_info">
                         <thead>
                         <tr class="table-active">
                             <th scope="col">위치</th>
@@ -789,12 +907,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
 <script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
-<script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
+<script src="vendor/jquery/jquery.maphilight.min.js"></script>
 
 <th:block th:replace="fragments/script::script"></th:block>
 <script>
     var resizeEvt;
-
+    var height;
     (function($) {
         // $(document).on('ready.usemaps', function(){
         //     $('img[usemap]').rwdImageMaps();
@@ -809,11 +927,14 @@
                 $('img[usemap]').maphilight();
                 $('[data-toggle="tooltip"]').tooltip();
                 $('map').imageMapResize();
+                height = $('#img-div').height();
+                $('#building').css("height", height);
             }, 200);
         });
 
     })(jQuery);
 </script>
+
 <script type="text/javascript">
     $(function(){
         $('img[usemap]').rwdImageMaps();
@@ -825,9 +946,10 @@
 <script>
     function btn(){
         Swal.fire({
+          className: 'alert',
           title: '<strong>밀집도 등급</strong>',
           html:
-            '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
+            '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>8명 이상</td><tr></table></div></div>'
 
         })
     }

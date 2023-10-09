@@ -76,19 +76,19 @@ public class LocationService {
 
     @Transactional
     public LocationResponseForUserDto findLocationByEmail(String email) {
-        if(piAddressRepository.findByEmail(email).isEmpty()) {
+        PiAddress piAddress = piAddressRepository.findByEmail(email).orElse(null);
+        if(piAddress == null) {
 //            return new LocationResponseDto(new Location(null, 0, 0, 0));
             Users users = usersRepository.findByEmail(email).orElse(null);
             if(users == null) {
                 users = new Users("아무개3", email, null, Role.USER);
                 usersRepository.saveAndFlush(users);
             }
-            PiAddress piAddress = new PiAddress("111.111.111.111");
-            piAddress.setUsers(users);
+            piAddress = new PiAddress("111.111.111.111");
+            piAddress.update(users);
             piAddress = piAddressRepository.saveAndFlush(piAddress);
             locationRepository.saveAndFlush(new Location(piAddress, 0, 0, 0));
         }
-        PiAddress piAddress = piAddressRepository.findByEmail(email).orElseThrow();
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateAsc(piAddress);
         List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), location.getModifiedDate().minusMinutes(1));
         Set<PiAddress> set = locations.stream().map(l -> {
@@ -104,7 +104,7 @@ public class LocationService {
                 Users users = new Users("아무개" + String.valueOf(i), "email@email.com" + String.valueOf(i), null, Role.USER);
                 usersRepository.saveAndFlush(users);
                 PiAddress piAddress = new PiAddress(String.valueOf(i * 111));
-                piAddress.setUsers(users);
+                piAddress.update(users);
                 piAddressRepository.saveAndFlush(piAddress);
                 locationRepository.saveAndFlush(new Location(piAddress, 0, x, y));
                 locationRepository.saveAndFlush(new Location(piAddress, 0, x, y));

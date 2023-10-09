@@ -29,6 +29,50 @@
         body{
           font-family: 'NanumSquareNeoExtraBold'
         }
+        input{
+          font-size:3vw;
+        }
+        #building-text{
+          font-size: 4.5vw;
+        }
+        @media screen and (min-width:576px){
+          #building-text{
+            font-size:4vw;
+          }
+          .table{
+            font-size:2vw;
+          }
+          .form-control{
+            font-size:1.5vw;
+          }
+        }
+        @media screen and (min-width:768px){
+          #building-text{
+            font-size:3vw;
+          }
+          .table{
+            font-size:1.5vw;
+          }
+        }
+        @media screen and (min-width:992px){
+          .table{
+            font-size:1.3vw;
+          }
+        }
+        @media screen and (min-width:1200px){
+          #building-text{
+            font-size:2.8vw;
+          }
+          .table{
+            font-size:1.3vw;
+          }
+        }
+
+        @media screen and (min-width:1800px){
+          #building-text{
+            font-size:2.5vw;
+          }
+        }
     </style>
 </head>
 
@@ -255,7 +299,7 @@
       <!-- Begin Page Content -->
       <div class="container-fluid">
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800" style="font-weight: 700; font-size:40px;text-align: center">회원 관리</h1>
+        <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">회원 관리</h1>
         <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto;">
           <table class="table" style="text-align:center; background-color:#FFF">
             <thead>

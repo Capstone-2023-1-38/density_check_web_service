@@ -7,12 +7,16 @@ import com.example.density_check_web_service.domain.CameraLocation.CameraLocatio
 import com.example.density_check_web_service.domain.CameraLocation.CameraLocationRepository;
 import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationRequestDto;
 import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationRequestListDto;
+import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -30,10 +34,16 @@ public class CameraService {
     }
 
     @Transactional
-    public List<CameraLocationRequestDto> getCameraLocation() {
-        List<CameraLocation> cameraLocations = cameraLocationRepository.findAll();
-        List<CameraLocationRequestDto> cameraLocationResponseDtos = cameraLocations.stream().map(CameraLocationRequestDto::new).collect(Collectors.toList());
-        return cameraLocationResponseDtos;
+    public List<CameraLocationRequestListDto> getCameraLocation() {
+        List<String> ips = cameraLocationRepository.findDistinctByIp();
+        List<CameraLocationRequestListDto> cameraLocationRequestListDtos = new ArrayList<>();
+        for (String ip: ips) {
+            List<CameraLocation> cameraLocations = cameraLocationRepository.findAllByIp(ip);
+            List<CameraLocationRequestDto> cameraLocationResponseDtos = cameraLocations.stream().map(CameraLocationRequestDto::new).collect(Collectors.toList());
+            CameraLocationRequestListDto cameraLocationRequestListDto = new CameraLocationRequestListDto(ip, cameraLocationResponseDtos);
+            cameraLocationRequestListDtos.add(cameraLocationRequestListDto);
+        }
+        return cameraLocationRequestListDtos;
     }
 
     @Transactional

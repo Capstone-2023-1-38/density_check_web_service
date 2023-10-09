@@ -29,6 +29,24 @@
         body{
           font-family: 'NanumSquareNeoExtraBold'
         }
+        .table{
+          font-size: 1.3vw;
+        }
+        #duration{
+          font-size:1.2vw;
+        }
+        @media screen and (min-width:576px){
+
+        }
+        @media screen and (min-width:768px){
+        }
+        @media screen and (min-width:992px){
+        }
+        @media screen and (min-width:1200px){
+        }
+
+        @media screen and (min-width:1800px){
+        }
     </style>
 </head>
 
@@ -253,10 +271,10 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" style="font-size:2vw;">
           <!-- Page Heading -->
           <div class="row">
-            <div class="col-md-10 col-sm-10">
+            <div class="col-md-10 col-xs-12">
               <select id="duration" onchange="location.href=this.value" class="form-select float-right" aria-label="Default select example" style="margin-bottom: 10px">
                 <option th:value="|/area?x=${param.x}&y=${param.y}&duration=1|" name="1">1분 내</option>
                 <option th:value="|/area?x=${param.x}&y=${param.y}&duration=3|" name="3"> 3분 내</option>

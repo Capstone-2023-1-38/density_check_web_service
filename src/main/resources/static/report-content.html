@@ -34,12 +34,54 @@
            background-color: #858796;
            color: #FFF;
            text-align:center;
+           font-size: 2.2vw;
         }
 
         .table td{
           background-color: #FFF;
-
+          font-size: 2.2vw;
         }
+
+        @media screen and (min-width:576px){
+          #building-text{
+            font-size:4vw;
+          }
+          .table{
+            font-size:2vw;
+          }
+        }
+        @media screen and (min-width:768px){
+          #building-text{
+            font-size:3vw;
+          }
+          .table{
+            font-size:1.5vw;
+          }
+        }
+        @media screen and (min-width:992px){
+          #building-text{
+            font-size:2.7vw;
+          }
+          .table{
+            font-size:1.3vw;
+          }
+        }
+        @media screen and (min-width:1200px){
+          #building-text{
+            font-size:2.7vw;
+          }
+          .table{
+            font-size:1.3vw;
+          }
+        }
+
+        @media screen and (min-width:1800px){
+          #building-text{
+            font-size:2.5vw;
+          }
+        }
+
+
 
     </style>
 </head>
@@ -265,7 +307,7 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid col-lg-8">
+        <div class="container-fluid">
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800" style="text-align: center">제보 게시판</h1>
 <!--          <div class="col-sm-7 input-group mb-3">-->
@@ -282,7 +324,7 @@
 <!--          <div class="mb-3">-->
 <!--            <textarea th:text="${post.content}" class="form-control" id="exampleFormControlTextarea1" rows="10" style="background-color:#FFF" readonly onfocus="this.blur();"></textarea>-->
 <!--          </div>-->
-          <table class="table table-bordered">
+          <table class="table table-bordered col-lg-8 col-xs-10" style="margin-left:auto;margin-right:auto;">
             <tr>
               <th scope="row">위치</th>
               <td><input th:value="${post.location}" type="text" class="form-control" style="background-color:#FFF;border:none;" readonly onfocus="this.blur();"></td>

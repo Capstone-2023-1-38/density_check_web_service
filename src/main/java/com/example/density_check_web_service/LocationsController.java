@@ -57,7 +57,7 @@ public class LocationsController {
     @ResponseBody
     @PostMapping(consumes = "application/x-www-form-urlencoded", path="/find")
     public LocationResponseForUserDto findByEmail(String email, Authentication authentication) {
-        if(email == null) {
+        if(email.isEmpty()) {
             OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
             email = oAuth2User.getAttribute("email");
         }
