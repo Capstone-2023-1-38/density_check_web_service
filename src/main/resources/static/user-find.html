@@ -437,11 +437,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
 <script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
-<script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
+<script src="vendor/jquery/jquery.maphilight.min.js"></script>
+
 <th:block th:replace="fragments/script::script"></th:block>
 <script>
     var resizeEvt;
-
     (function($) {
         // $(document).on('ready.usemaps', function(){
         //     $('img[usemap]').rwdImageMaps();
@@ -454,8 +454,17 @@
             clearTimeout(resizeEvt);
             resizeEvt = setTimeout(function(){
                 $('img[usemap]').maphilight();
-                //$('[data-toggle="tooltip"]').tooltip();
                 $('map').imageMapResize();
+                if(loc!=="") {
+                    var arr = {}
+                    arr.fillOpacity = 0.2;
+                    arr.fillColor = "4e73df";
+                    arr.stroke = true;
+                    arr.strokeColor = "4e73df";
+                    arr.strokeOpacity = 1;
+                    arr.alwaysOn = true;
+                    $('area[alt="' + loc + '"]').data('maphilight', arr).trigger('alwaysOn.maphilight');
+                }
             }, 200);
         });
 
@@ -465,7 +474,7 @@
     $(function(){
         $('img[usemap]').rwdImageMaps();
         $('img[usemap]').maphilight();
-        //$('[data-toggle="tooltip"]').tooltip();
+        // $('[data-toggle="tooltip"]').tooltip();
         $('map').imageMapResize();
     });
 </script>
@@ -480,61 +489,55 @@
     }
 </script>
 <script>
+    var loc="";
     $('.location-btn').click(function(){
         $.ajax({
             type: "POST",
             url: "/find",
             dataType: "json",
-            data:{
-                email : $(this).prev().val()
+            data: {
+                email: $(this).prev().val()
             },
-            success: function (data) {
-                if (data.address !== null) {
-                    var loc="";
-                    var arr={};
-                    $('.location').html("<label><" + data.name + ">님의 위치 : " + data.x + ", " + data.y + "</label> <br>" +
-                                            "<label> 기록 시간 : " + dateFormat(data.modifiedDate)+"</label> <br>" +
-                                            "<label> 현재 위치에서의 밀집도 등급 : " + data.grade +"</label>");
-                    loc = data.x + "," + data.y;
-                    arr.fillOpacity=0.2;
-                    arr.fillColor = "4e73df";
-                    arr.stroke=true;
-                    arr.strokeColor = "4e73df";
-                    arr.strokeOpacity = 1;
-                    arr.alwaysOn = true;
-                    $('area[alt="' + loc + '"]').data('maphilight', arr).trigger('alwaysOn.maphilight');
-                    $('img[usemap]').maphilight();
-                }else {
-                    Swal.fire({
-                        icon: 'question',
-                        title: '소유 장비 없음',
-                        text: '해당 이메일 정보를 가진 라즈베리파이가 존재하지 않습니다.',
-                        closeOnClickOutside : false
-                    }).then(function(){
-                        window.location.href = "/user-find";
-                    })
-                }
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("통신 실패");
+            success:
+                function (data) {
+                    if (data.address !== null) {
+                        var arr = {};
+                        if (loc !== "") {
+                            $('area[alt="' + loc + '"]').data('maphilight', $.fn.maphilight.defaults).trigger('alwaysOn.maphilight');
+                        }
+                        $('.location').html("<label><" + data.name + ">님의 위치 : " + data.x + ", " + data.y + "</label> <br>" +
+                            "<label> 기록 시간 : " + dateFormat(data.modifiedDate) + "</label> <br>" +
+                            "<label> 현재 위치에서의 밀집도 등급 : " + data.grade + "</label>");
+                        loc = data.x + "," + data.y;
+                        arr.fillOpacity = 0.2;
+                        arr.fillColor = "4e73df";
+                        arr.stroke = true;
+                        arr.strokeColor = "4e73df";
+                        arr.strokeOpacity = 1;
+                        arr.alwaysOn = true;
+                        $('area[alt="' + loc + '"]').data('maphilight', arr).trigger('alwaysOn.maphilight');
+                        // maphilight(loc);
+                    } else {
+                        Swal.fire({
+                            icon: 'question',
+                            title: '소유 장비 없음',
+                            text: '해당 이메일 정보를 가진 라즈베리파이가 존재하지 않습니다.',
+                            allowOnClickOutside: false
+                        }).then(function () {
+                            window.location.href = "/user-find";
+                        })
+                    }
+                },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '통신 실패',
+                    text: '통신에 실패하였습니다.'
+                })
             }
-        })
+        });
     });
 </script>
-<script type="text/javascript">
-    $(function(){
-
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
-
-<!--<script>-->
-<!--    window.onload = () => {-->
-<!--        var x = "${x}";-->
-<!--        var y = "{$y}";-->
-<!--        alert(x);-->
-<!--    }-->
-<!--</script>-->
 
 </body>
 

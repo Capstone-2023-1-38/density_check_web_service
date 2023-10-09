@@ -601,7 +601,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
 <script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
-<script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
+<script src="vendor/jquery/jquery.maphilight.min.js"></script>
 
 <th:block th:replace="fragments/script::script"></th:block>
 <script>
@@ -698,7 +698,7 @@
                             icon: 'question',
                             title: '소유 장비 없음',
                             html: "해당 이메일 정보를 가진 라즈베리파이가 존재하지 않습니다.<br>무선 통신 기반 밀집도 페이지로 이동합니다.",
-                            closeOnClickOutside : false
+                            allowOnClickOutside : false
                         }).then(function(){
                             window.location.href = "/density-check";
                         })
