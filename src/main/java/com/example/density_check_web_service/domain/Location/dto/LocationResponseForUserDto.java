@@ -26,7 +26,7 @@ public class LocationResponseForUserDto {
         this.x = entity.getX();
         this.y = entity.getY();
         this.modifiedDate = entity.getModifiedDate();
-        if (count > 9) {
+        if (count > 7) {
             this.grade = "고위험";
         } else if (count > 4) {
             this.grade = "위험";

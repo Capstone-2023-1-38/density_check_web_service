@@ -73,7 +73,7 @@ public class SituationsService {
     @Transactional
     public List<SituationsResponseDto> findAll() {
         List<SituationsResponseDto> situations = new ArrayList<>();
-        int[] cameras = {9, 6, 3, 0};
+        int[] cameras = {0, 0, 0, 0};
         List<CameraLocation> cameraLocations = cameraLocationRepository.findAll();
         for (CameraLocation c:cameraLocations) {
             int x = c.getX();
@@ -114,9 +114,6 @@ public class SituationsService {
 
     @Transactional
     public SituationsListResponseDto findAllByLoc(int loc) {
-        for (int i=0; i<6; i++)
-            situationsRepository.save(new Situations(loc, 1, 2));
-        situationsRepository.flush();
         List<Situations> situations = situationsRepository.findAllByLoc(loc);
         return SituationsListResponseDto.builder().entity(situations).loc(loc).build();
     }
