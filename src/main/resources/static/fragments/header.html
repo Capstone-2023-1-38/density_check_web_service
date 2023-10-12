@@ -45,7 +45,7 @@
                     <!--                                    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                     <!--                                </ul>-->
                     <!--                            </li>-->
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             찾기
                         </a>
@@ -59,7 +59,7 @@
                     <a>팀 네카라쿠배</a>
                 </ul>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-1" style="padding-top:1.2rem; font-size:1.5rem" sec:authorize="isAuthenticated()">
+                    <li class="nav-item mx-1" style="padding-top:1.2rem; font-size:1.5rem" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>
                     </li>
                     <li class="nav-item mx-1" style="padding-top:1.2rem; font-size:1.5rem" sec:authorize="isAuthenticated()">

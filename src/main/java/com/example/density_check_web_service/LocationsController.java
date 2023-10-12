@@ -1,13 +1,13 @@
 package com.example.density_check_web_service;
 
-import com.example.density_check_web_service.domain.Location.dto.LocationListResponseDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationRequestDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationResponseDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationResponseForUserDto;
+import com.example.density_check_web_service.domain.PiAddress.dto.PiAddressResponseDto;
+import com.example.density_check_web_service.domain.Users.dto.UsersResponseDto;
 import com.example.density_check_web_service.service.LocationService;
 import com.example.density_check_web_service.service.SituationsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
@@ -67,10 +67,18 @@ public class LocationsController {
         return locationResponseForUserDto;
     }
 
+    @ResponseBody
+    @GetMapping(path="/findUsers")
+    public List<UsersResponseDto> findUsersByEmail(Authentication authentication) {
+        OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+        String email = oAuth2User.getAttribute("email");
+        return locationService.findUsersByEmail(email);
+    }
+
     @GetMapping(path = "/area")
     public String findUserByArea(@RequestParam int x, @RequestParam int y, @RequestParam(defaultValue = "1") int duration, Model model) {
-        List<LocationListResponseDto> locationListResponseDto = locationService.findUserByArea(x, y, duration);
-        model.addAttribute("list", locationListResponseDto);
+        List<PiAddressResponseDto> piAddressResponseDtos = locationService.findUserByArea(x, y, duration);
+        model.addAttribute("list", piAddressResponseDtos);
         return "specific-area-user";
     }
 }

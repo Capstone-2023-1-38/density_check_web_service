@@ -3,8 +3,6 @@ package com.example.density_check_web_service.service;
 import com.example.density_check_web_service.domain.Friends.Friends;
 import com.example.density_check_web_service.domain.Friends.FriendsRepository;
 import com.example.density_check_web_service.domain.Friends.dto.FriendsListResponseDto;
-import com.example.density_check_web_service.domain.Friends.dto.FriendsSaveRequestDto;
-import com.example.density_check_web_service.domain.Users.Role;
 import com.example.density_check_web_service.domain.Users.Users;
 import com.example.density_check_web_service.domain.Users.UsersRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,16 +21,6 @@ public class FriendsService {
 
     @Transactional
     public List<FriendsListResponseDto> findMutualByFrom(String email) {
-        if(usersRepository.findByEmail("chju0905@naver.com").isEmpty()) {
-            Users user = usersRepository.findById(1L).orElseThrow();
-            Users user2 = usersRepository.saveAndFlush(new Users("아무개", "chju0905@naver.com", null, Role.USER));
-            if(friendsRepository.findByFromAndTo(user.getEmail(), user2.getEmail()).isEmpty()) {
-                List<Friends> tmp = new ArrayList<>();
-                tmp.add(new Friends(user, user2, true));
-                tmp.add(new Friends(user2, user, true));
-                friendsRepository.saveAllAndFlush(tmp);
-            }
-        }
         List<FriendsListResponseDto> friendsListResponseDtoList = friendsRepository.findMutualByFrom(email).stream()
                 .map(FriendsListResponseDto::new).collect(Collectors.toList());
         return friendsListResponseDtoList;
@@ -40,14 +28,6 @@ public class FriendsService {
 
     @Transactional
     public List<FriendsListResponseDto> findByFrom(String email) {
-//        Users user = usersRepository.findById(1L).orElseThrow();
-//        Users user2 = usersRepository.findById(3L).orElse(usersRepository.saveAndFlush(new Users("아무개2", "chju0905@kakao.com", Role.USER)));
-//        if(friendsRepository.findByFromAndTo(user.getEmail(), user2.getEmail()).isEmpty()) {
-//            List<Friends> tmp = new ArrayList<>();
-//            tmp.add(new Friends(user, user2, false));
-//            tmp.add(new Friends(user2, user, true));
-//            friendsRepository.saveAllAndFlush(tmp);
-//        }
         List<FriendsListResponseDto> friendsListResponseDtoList = friendsRepository.findByFrom(email).stream()
                 .map(FriendsListResponseDto::new).collect(Collectors.toList());
         return friendsListResponseDtoList;
@@ -69,25 +49,13 @@ public class FriendsService {
 
     @Transactional
     public int count(String email) {
-        Users user2 = null;
-        if (usersRepository.findById(3L).isEmpty()) {
-            Users user = usersRepository.findById(1L).orElseThrow();
-            user2 = usersRepository.saveAndFlush(new Users("아무개2", "chju0905@kakao.com", null, Role.USER));
-            if(friendsRepository.findByFromAndTo(user.getEmail(), user2.getEmail()).isEmpty()) {
-                List<Friends> tmp = new ArrayList<>();
-                tmp.add(new Friends(user, user2, false));
-                tmp.add(new Friends(user2, user, true));
-                friendsRepository.saveAllAndFlush(tmp);
-            }
-        }
-
         return friendsRepository.countByFrom(email);
     }
 
     @Transactional
     public String save(String fromEmail, String toEmail) {
         if(fromEmail == toEmail) {
-            return "자기자신에게 이웃 신청을 할 수 없습니다.";
+            return "자기 자신에게 이웃 신청을 할 수 없습니다.";
         }
         if(!usersRepository.findByEmail(toEmail).isEmpty()) {
             if(friendsRepository.findByFromAndTo(fromEmail, toEmail).isEmpty()) {
@@ -107,5 +75,22 @@ public class FriendsService {
         else {
             return "이메일이 존재하지 않습니다.";
         }
+    }
+
+    @Transactional
+    public void addFriendsForTest(String email) {
+        Users user = usersRepository.findByEmail(email).orElseThrow();
+        Users user1 = usersRepository.findById(10L).orElseThrow();
+        Users user2 = usersRepository.findById(20L).orElseThrow();
+        Users user3 = usersRepository.findById(30L).orElseThrow();
+
+        List<Friends> tmp = new ArrayList<>();
+        tmp.add(new Friends(user, user1, true));
+        tmp.add(new Friends(user1, user, true));
+        tmp.add(new Friends(user, user2, false));
+        tmp.add(new Friends(user2, user, true));
+        tmp.add(new Friends(user, user3, false));
+        tmp.add(new Friends(user3, user, true));
+        friendsRepository.saveAll(tmp);
     }
 }

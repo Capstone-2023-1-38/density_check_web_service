@@ -468,6 +468,8 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.js"></script>
 
+    <th:block th:replace="fragments/script::script"></th:block>
+
     <script>
         $.ajax({
             type: "GET",
@@ -487,7 +489,7 @@
                     str += '<TR>' +
                         '<TD><img class="rounded-circle" src="'+imgsrc+'"/></TD>' +
                         '<TD>' + data[i].toName + '</TD>' +
-                        '<TD>' + data[i].toEmail + '</TD>' +
+                        '<TD id="email">' + data[i].toEmail + '</TD>' +
                         '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail='+data[i].toEmail+'" style="float:right">삭제</a>' +
                         '<label type="button" for="toggle" class="btn btn-secondary location-btn" style="float:right; margin-right:5px;">위치 보기</label></TD>';
                     str += '</TR>';
@@ -495,7 +497,11 @@
                 $('.table_body').html(str);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("통신 실패");
+                Swal.fire({
+                    icon: 'error',
+                    title: '통신 실패',
+                    text: '통신에 실패하였습니다.'
+                });
             }
         });
     </script>
@@ -508,7 +514,7 @@
                 dataType: "json",
                 context: this,
                 data:{
-                    email : $(this).parent().prev().val()
+                    email : $(this).parent().prev().text()
                 },
                 success: function (data) {
                     if (data.address !== null) {
@@ -522,7 +528,6 @@
                         $('#datetime').text("기록 시간 : " + dateFormat(data.modifiedDate));
                         $('#grade').text("현재 위치에서의 밀집도 등급 : " + data.grade);
                     }else {
-                        clearInterval(interval);
                         Swal.fire({
                             icon: 'question',
                             title: '소유 장비 없음',
@@ -534,7 +539,11 @@
                     }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert("통신 실패");
+                    Swal.fire({
+                        icon: 'error',
+                        title: '통신 실패',
+                        text: '통신에 실패하였습니다.'
+                    });
                 }
             })
         });
@@ -549,12 +558,14 @@
                 $('#friend_add_count').text(data);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                Swal.fire('통신 실패');
+                Swal.fire({
+                    icon: 'error',
+                    title: '통신 실패',
+                    text: '통신에 실패하였습니다.'
+                });
             }
         });
     </script>
-
-    <th:block th:replace="fragments/script::script"></th:block>
 
 </body>
 

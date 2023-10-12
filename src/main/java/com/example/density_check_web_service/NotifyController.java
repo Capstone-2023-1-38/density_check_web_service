@@ -30,8 +30,6 @@ public class NotifyController {
 
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getAttribute("email");
-//        long userId = notifyService.findId(email);
-
         SseEmitter sseEmitter = notifyService.subscribe(email);
 
         return sseEmitter;

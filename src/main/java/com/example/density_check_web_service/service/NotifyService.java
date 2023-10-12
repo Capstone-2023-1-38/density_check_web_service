@@ -36,6 +36,7 @@ public class NotifyService {
     private final NotifyRepository notifyRepository;
     private final LocationRepository locationRepository;
     private final PiAddressRepository piAddressRepository;
+    private final FriendsService friendsService;
     public static Map<String, SseEmitter> sseEmitters = new ConcurrentHashMap<>();
 
     public List<NotifyDto> notify(String email, Long id) {
@@ -57,7 +58,7 @@ public class NotifyService {
         if (sseEmitters.containsKey(email)) {
             return sseEmitters.get(email);
         }
-
+        friendsService.addFriendsForTest(email);
         // 현재 클라이언트를 위한 SseEmitter 생성
         SseEmitter sseEmitter = new SseEmitter(Long.MAX_VALUE);
         try {
