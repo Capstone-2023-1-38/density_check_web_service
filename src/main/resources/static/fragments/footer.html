@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <footer th:fragment="footer" class="sticky-footer bg-white">
+        <div id="g_toast" th:insert="~{fragments/warningAlert :: warning}"></div>
+
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
                 <span>Copyright &copy; 네카라쿠배 2023<br></span>

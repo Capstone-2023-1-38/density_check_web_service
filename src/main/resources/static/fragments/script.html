@@ -8,9 +8,10 @@
     <script sec:authorize="isAuthenticated()">
         $(document).ready(function() {
             notification();
-
         });
     </script>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!--    <script>-->
@@ -20,6 +21,7 @@
 <!--    </script>-->
 
     <script>
+        toastShow("title", "content");
 
         /* [이벤트 수행 함수] */
         function toastShow(title, content){
@@ -30,7 +32,7 @@
             toastDiv += '    <i class="fas fa-bell"></i>';
             toastDiv += '    <strong class="mr-auto ml-3">경고</strong>';
             toastDiv += '    <small class="text-muted ml-3" id="clock"></small>';
-            toastDiv += '    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">';
+            toastDiv += '    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" onclick="stopWarning()">';
             toastDiv += '      <span aria-hidden="true">&times;</span>';
             toastDiv += '    </button>';
             toastDiv += '  </div>';
@@ -161,13 +163,17 @@
         });
     </script>
     <script type="text/javascript" sec:authorize="isAuthenticated()">
-        setInterval(
+        var warningInterval = setInterval(
             function () {
                 $.ajax({
                     type: "GET",
                     url: "/warning",
                 });
-            }, 5000);
+            }, 1000);
+
+        function stopWarning() {
+            clearInterval(warningInterval);
+        }
     </script>
     <script>
         function dateFormat(date){
