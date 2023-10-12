@@ -563,19 +563,19 @@
                                         let map={};
 
                                         let grade = null;
-                                        if (arr[data[i].loc] > 7) {
+                                        if (arr[data[i].loc] > 39) {
                                             grade = "고위험";
                                             map.fillColor = "ff0000";
                                             map.strokeColor = "ff0000";
                                             $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(3).css("color", "#ff0000");
 
-                                        } else if (arr[data[i].loc] > 4) {
+                                        } else if (arr[data[i].loc] > 29) {
                                             grade = "위험";
                                             map.fillColor = "FFFF00";
                                             map.strokeColor = "FFFF00";
                                             $('#coordinate_info tbody').find('tr').eq(data[i].loc).find('td').eq(3).css("color", "#e3d430");
 
-                                        } else if (arr[data[i].loc] > 2) {
+                                        } else if (arr[data[i].loc] > 14) {
                                             grade = "주의";
                                             map.fillColor = "008000";
                                             map.strokeColor = "008000";
