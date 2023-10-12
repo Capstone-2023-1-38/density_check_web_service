@@ -62,7 +62,7 @@
         }
         @media screen and (min-width:576px){
             .position{
-                font-size:3vw;
+                font-size:4vw;
             }
             .location {
                 font-size:2.3vw;
@@ -86,11 +86,12 @@
 
         }
         @media screen and (min-width:992px){
+
             #building-text{
                 font-size:3vw;
             }
             .position{
-                font-size:2vw;
+                font-size:2.2vw;
             }
             .location {
                 font-size:1.7vw;
@@ -102,6 +103,9 @@
                 float:left;
                 margin-right:1vw;
             }
+            .container-fluid{
+                margin-left:1.7vw;
+            }
         }
 
         @media screen and (min-width:1200px){
@@ -109,7 +113,7 @@
                 font-size:2.5vw;
             }
             .position{
-                font-size:1.8vw;
+                font-size:2vw;
             }
 
             .location {
@@ -350,7 +354,7 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid" >
+            <div class="container-fluid">
                 <!-- Page Heading -->
                 <div>
                     <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
@@ -396,10 +400,23 @@
                         <p style="position:absolute;top:1%; left:76%;">3</p>
                     </div>
                 </div>
-                <div class="col-lg-5 col-xs-12 col-md-8 location" style="text-align:center;">
+                <div class="col-lg-5 col-xs-12 col-md-8" style="float:left;margin-left:40px;">
+                    <div class="location" style="text-align:center;">
                         <p>현재 위치 : 2층 6202 강의실</p>
                         <p>기록 시간 : </p>
                         <p>현재 위치에서의 밀집도 등급 : 안전</p>
+                    </div>
+                    <div>
+                        <table class="table" style="color:#595959;float:right; margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF; margin-top:20px;">
+                            <thead>
+                            <tr class="table-active">
+                                <th scope="col" colspan="2">현재 위치에 함께 있는 사용자들</th>
+                            </tr>
+                            </thead>
+                            <tbody class="tbody">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -551,8 +568,8 @@
         <footer th:replace="fragments/footer::footer"></footer>
         <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->
@@ -709,6 +726,35 @@
                         title: '통신 실패',
                         text: '통신에 실패하였습니다.'
                     })
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "/findUsers",
+                dataType: "json",
+                success: function (data) {
+                    str = '';
+                    $.each(data , function(i) {
+                        var imgsrc;
+                        if(data[i].picture === null) {
+                            imgsrc = "img/undraw_profile.svg";
+                        }
+                        else {
+                            imgsrc = data[i].picture;
+                        }
+                        str += '<TR>' +
+                            '<TD><img class="rounded-circle" src="'+imgsrc+'"/></TD>' +
+                            '<TD>' + data[i].name + '</TD>';
+                        str += '</TR>';
+                    });
+                    $('.tbody').html(str);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '통신 실패',
+                        text: '통신에 실패하였습니다.'
+                    });
                 }
             });
         }, 1000);
