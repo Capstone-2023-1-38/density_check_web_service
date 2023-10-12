@@ -1,31 +1,23 @@
 package com.example.density_check_web_service.service;
 
-import com.example.density_check_web_service.domain.CameraLocation.CameraLocation;
-import com.example.density_check_web_service.domain.CameraLocation.CameraLocationRepository;
-import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationRequestDto;
-import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationRequestListDto;
-import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationResponseDto;
 import com.example.density_check_web_service.domain.Location.Location;
 import com.example.density_check_web_service.domain.Location.LocationRepository;
-import com.example.density_check_web_service.domain.Location.dto.LocationListResponseDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationRequestDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationResponseDto;
 import com.example.density_check_web_service.domain.Location.dto.LocationResponseForUserDto;
-import com.example.density_check_web_service.domain.Notify.Notify;
-import com.example.density_check_web_service.domain.Notify.dto.NotifyDto;
 import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import com.example.density_check_web_service.domain.PiAddress.PiAddressRepository;
-import com.example.density_check_web_service.domain.Users.Role;
+import com.example.density_check_web_service.domain.PiAddress.dto.PiAddressResponseDto;
 import com.example.density_check_web_service.domain.Users.Users;
 import com.example.density_check_web_service.domain.Users.UsersRepository;
+import com.example.density_check_web_service.domain.Users.dto.UsersResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -114,18 +106,34 @@ public class LocationService {
     }
 
     @Transactional
-    public List<LocationListResponseDto> findUserByArea(int x, int y, int duration) {
+    public List<UsersResponseDto> findUsersByEmail(String email) {
+        PiAddress piAddress = piAddressRepository.findByEmail(email).orElse(null);
+        if(piAddress == null) {
+            return new ArrayList<>();
+        }
+        Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateAsc(piAddress);
+        List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
+        Set<PiAddress> set = locations.stream().map(l -> {
+            return l.getPiAddress();
+        }).collect(Collectors.toSet());
+        set.remove(piAddress);
+        List<UsersResponseDto> usersResponseDtos = set.stream().map(l->UsersResponseDto.builder().entity(l.getUsers()).build()).collect(Collectors.toList());
+        usersResponseDtos.sort(Comparator.comparing(UsersResponseDto::getName));
+        return usersResponseDtos;
+    }
 
+    @Transactional
+    public List<PiAddressResponseDto> findUserByArea(int x, int y, int duration) {
         List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(x, y, LocalDateTime.now().minusMinutes(duration));
         Set<PiAddress> set = locations.stream().map(location -> {
             return location.getPiAddress();
         }).collect(Collectors.toSet());
-        List<LocationListResponseDto> modifiedLocation = new ArrayList<>();
+        List<PiAddressResponseDto> modifiedLocation = new ArrayList<>();
 
         for (Location location : locations) {
             PiAddress piAddress = location.getPiAddress();
             if (set.contains(piAddress)) {
-                modifiedLocation.add(LocationListResponseDto.builder().entity(location).build());
+                modifiedLocation.add(PiAddressResponseDto.builder().entity(location.getPiAddress()).build());
                 set.remove(piAddress);
             }
         }
