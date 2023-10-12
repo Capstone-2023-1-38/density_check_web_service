@@ -497,7 +497,11 @@
                 $('.table_body').html(str);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("통신 실패");
+                Swal.fire({
+                    icon: 'error',
+                    title: '통신 실패',
+                    text: '통신에 실패하였습니다.'
+                });
             }
         });
     </script>
@@ -535,7 +539,11 @@
                     }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert("통신 실패");
+                    Swal.fire({
+                        icon: 'error',
+                        title: '통신 실패',
+                        text: '통신에 실패하였습니다.'
+                    });
                 }
             })
         });
@@ -550,7 +558,11 @@
                 $('#friend_add_count').text(data);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                Swal.fire('통신 실패');
+                Swal.fire({
+                    icon: 'error',
+                    title: '통신 실패',
+                    text: '통신에 실패하였습니다.'
+                });
             }
         });
     </script>
