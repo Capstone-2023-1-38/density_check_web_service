@@ -1,5 +1,6 @@
 package com.example.density_check_web_service;
 
+import com.example.density_check_web_service.config.auth.PrincipalDetails;
 import com.example.density_check_web_service.domain.Users.dto.UsersResponseDto;
 import com.example.density_check_web_service.service.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Controller
@@ -47,7 +51,8 @@ public class UsersController {
     public String updateRole(Authentication authentication) {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getAttribute("email");
-        usersService.updateRole(email);
+        usersService.updateRole(authentication, email);
+        System.out.println(Arrays.toString(authentication.getAuthorities().toArray()));
         return "redirect:/";
     }
 }
