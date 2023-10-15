@@ -42,4 +42,12 @@ public class UsersController {
         usersService.updateName(email, name);
         return "redirect:/setting";
     }
+
+    @GetMapping(path = "/updateRole")
+    public String updateRole(Authentication authentication) {
+        OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+        String email = oAuth2User.getAttribute("email");
+        usersService.updateRole(email);
+        return "redirect:/";
+    }
 }

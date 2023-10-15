@@ -1,5 +1,6 @@
 package com.example.density_check_web_service.service;
 
+import com.example.density_check_web_service.domain.Users.Role;
 import com.example.density_check_web_service.domain.Users.Users;
 import com.example.density_check_web_service.domain.Users.UsersRepository;
 import com.example.density_check_web_service.domain.Users.dto.UsersResponseDto;
@@ -26,6 +27,15 @@ public class UsersService {
     public void updateName(String email, String name) {
         Users users = usersRepository.findByEmail(email).orElseThrow();
         users.updateName(name);
+    }
+
+    @Transactional
+    public void updateRole(String email) {
+        Users users = usersRepository.findByEmail(email).orElseThrow();
+        if (users.getRole() == Role.USER)
+            users.updateRole(Role.ADMIN);
+        else
+            users.updateRole(Role.USER);
     }
 
     private final String fileDir = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img\\profile\\";
