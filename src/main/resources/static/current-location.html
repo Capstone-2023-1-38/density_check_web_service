@@ -23,10 +23,12 @@
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
         body{
-            font-family: 'NanumSquareNeoExtraBold'
+            font-family: 'NanumSquareNeoExtraBold';
+            overflow: hidden;
         }
         img {
             width:100%;
@@ -47,6 +49,10 @@
             background-color:#FFF;
             border-radius:10%;
             padding:5%;
+        }
+        .location-div{
+            margin-left:auto;
+            margin-right:auto;
         }
         .position{
             font-size:4vw;
@@ -86,7 +92,6 @@
 
         }
         @media screen and (min-width:992px){
-
             #building-text{
                 font-size:3vw;
             }
@@ -95,17 +100,21 @@
             }
             .location {
                 font-size:1.7vw;
-                margin-top:18%;
+            }
+
+            .location-div{
                 float:left;
+                margin-top:15%;
                 margin-left:5vw;
             }
             #img_div{
                 float:left;
-                margin-right:1vw;
             }
-            .container-fluid{
-                margin-left:1.7vw;
-            }
+
+
+            /*.container-fluid{*/
+            /*    margin-left:1.7vw;*/
+            /*}*/
         }
 
         @media screen and (min-width:1200px){
@@ -118,8 +127,6 @@
 
             .location {
                 font-size:1.5vw;
-                float:left;
-
             }
         }
 
@@ -354,7 +361,7 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div class="container-fluid" >
                 <!-- Page Heading -->
                 <div>
                     <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align:center">현재 위치에서의 밀집도</h1>
@@ -400,14 +407,14 @@
                         <p style="position:absolute;top:1%; left:76%;">3</p>
                     </div>
                 </div>
-                <div class="col-lg-5 col-xs-12 col-md-8" style="float:left;margin-left:40px;">
-                    <div class="location" style="text-align:center;">
+                <div class="location-div col-lg-5 col-md-10">
+                    <div class="col-md-10 col-lg-12 location" style="text-align:center;margin-left:auto;margin-right:auto;">
                         <p>현재 위치 : 2층 6202 강의실</p>
                         <p>기록 시간 : </p>
                         <p>현재 위치에서의 밀집도 등급 : 안전</p>
                     </div>
                     <div>
-                        <table class="table" style="color:#595959;float:right; margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF; margin-top:20px;">
+                        <table class="table col-md-10 col-lg-12" style="color:#595959;margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF; margin-top:20px;">
                             <thead>
                             <tr class="table-active">
                                 <th scope="col" colspan="2">현재 위치에 함께 있는 사용자들</th>
@@ -564,12 +571,13 @@
 
         </div>
         <!-- End of Main Content -->
+        <div id="g_toast" th:insert="~{fragments/warningAlert :: warning}"></div>
         <!-- Footer -->
         <footer th:replace="fragments/footer::footer"></footer>
         <!-- End of Footer -->
 
-</div>
-<!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->
