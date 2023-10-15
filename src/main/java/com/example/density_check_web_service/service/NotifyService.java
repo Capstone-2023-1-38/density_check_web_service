@@ -90,6 +90,10 @@ public class NotifyService {
 
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(user);
         List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
+
+        if (locations.isEmpty())
+            return;
+
         Set<PiAddress> set = locations.stream().map(loc -> {
             return loc.getPiAddress();
         }).collect(Collectors.toSet());

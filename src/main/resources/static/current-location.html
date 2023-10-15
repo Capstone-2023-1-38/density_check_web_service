@@ -724,8 +724,11 @@
                     Swal.fire({
                         icon: 'error',
                         title: '통신 실패',
-                        text: '통신에 실패하였습니다.'
-                    })
+                        text: '통신에 실패하였습니다.',
+                        allowOnClickOutside: false
+                    }).then(function () {
+                        window.location.href = "/logout";
+                    });
                 }
             });
             $.ajax({
@@ -753,7 +756,10 @@
                     Swal.fire({
                         icon: 'error',
                         title: '통신 실패',
-                        text: '통신에 실패하였습니다.'
+                        text: '통신에 실패하였습니다.',
+                        allowOnClickOutside: false
+                    }).then(function () {
+                        window.location.href = "/logout";
                     });
                 }
             });

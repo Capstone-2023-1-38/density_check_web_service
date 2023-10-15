@@ -149,6 +149,8 @@
                 $('.userName').text(data.name);
                 if (data.picture)
                     $('.img-profile').attr("src", data.picture);
+                if (window.location.pathname == "/setting")
+                    $('#nickname').val(data.name);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 Swal.fire({

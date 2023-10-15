@@ -7,10 +7,12 @@ import lombok.Getter;
 public class PiAddressResultResponseDto {
     int code;
     String result;
+    String email;
 
     @Builder
-    public PiAddressResultResponseDto(int code, String result) {
+    public PiAddressResultResponseDto(int code, String result, String email) {
         this.code = code;
         this.result = result;
+        this.email = email;
     }
 }

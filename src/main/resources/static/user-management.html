@@ -482,15 +482,29 @@
         },
         dataType: "json",
         success: function(data) {
-          alert(data.result);
-          if(data.code == 200 || data.code == 400) {
-            now.prev().prop("readonly", true);
-            now.attr("class", "btn btn-outline-secondary emailExists")
-            now.text("변경");
-          }
+          if(data.code !== 200)
+            Swal.fire({
+              icon: 'error',
+              title: "변경 실패",
+              text: data.result,
+            });
+          else
+            Swal.fire({
+              icon: 'success',
+              title: "변경 완료",
+              text: data.result,
+            });
+          now.prev().val(data.email);
+          now.prev().prop("readonly", true);
+          now.attr("class", "btn btn-outline-secondary emailExists")
+          now.text("변경");
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("통신 실패");
+          Swal.fire({
+            icon: 'error',
+            title: '통신 실패',
+            text: '통신에 실패하였습니다.',
+          })
         }
       });
     });

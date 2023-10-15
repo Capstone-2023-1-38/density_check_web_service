@@ -29,17 +29,18 @@ public class PiAddressService {
 
     @Transactional
     public PiAddressResultResponseDto registUser(Long id, String email) {
+        String origin = piAddressRepository.findById(id).orElse(null).getUsers().getEmail();
         if(!piAddressRepository.findByEmail(email).isEmpty()) {
-            return new PiAddressResultResponseDto(400, "이미 등록된 사용자 입니다.");
+            return new PiAddressResultResponseDto(400, "이미 등록된 사용자 입니다.", origin);
         }
         Users users = usersRepository.findByEmail(email).orElse(null);
         if(users == null) {
-            return new PiAddressResultResponseDto(404, "존재하지 않는 사용자 입니다.");
+            return new PiAddressResultResponseDto(404, "존재하지 않는 사용자 입니다.", origin);
         }
         else {
             PiAddress piAddress = piAddressRepository.findById(id).orElseThrow();
             piAddress.update(users);
-            return new PiAddressResultResponseDto(200, "저장되었습니다.");
+            return new PiAddressResultResponseDto(200, "저장되었습니다.", email);
         }
     }
 }
