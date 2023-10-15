@@ -23,6 +23,7 @@
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
@@ -32,9 +33,16 @@
         #building-text{
             font-size:4.5vw;
         }
+        .table{
+            font-size:0.8rem;
+        }
+
         @media screen and (min-width:576px){
             #building-text{
                 font-size:4vw;
+            }
+            .table{
+                font-size:1rem;
             }
         }
         @media screen and (min-width:768px){
@@ -48,6 +56,9 @@
         @media screen and (min-width:1200px){
             #building-text{
                 font-size:2.8vw;
+            }
+            .table{
+                font-size:1.2rem;
             }
         }
         @media screen and (min-width:1800px){
@@ -287,8 +298,8 @@
                             <tbody>
                             <tr>
                                 <th>프로필 수정</th>
-                                <td>
-                                    <img class="img-profile rounded-circle" id="img-profile" src="img/undraw_profile.svg" style="width:150px; height:150px; margin:20px"/>
+                                <td >
+                                    <img class="img-profile rounded-circle" id="img-profile" src="img/undraw_profile.svg" style="margin:20px;width:10rem;"/>
                                     <form name="form" method="post" action="/setting/image" enctype="multipart/form-data">
                                         <input type="file" id="image" name="image" style="margin-bottom:10px" onchange="readURL(this);"/>
                                         <br>
