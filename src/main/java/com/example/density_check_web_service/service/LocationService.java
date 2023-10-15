@@ -86,7 +86,7 @@ public class LocationService {
     }
 
     @Transactional
-    public LocationResponseForUserDto findLocationByEmail(String email) {
+    public LocationResponseForUserDto findLocationByEmail(String email, Boolean my) {
         PiAddress piAddress = piAddressRepository.findByEmail(email).orElse(null);
         if(piAddress == null) {
             Users users = usersRepository.findByEmail(email).orElse(null);
@@ -98,7 +98,12 @@ public class LocationService {
 //            return new LocationResponseForUserDto(new Location(null, 0, 0, 0), 0);
         }
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateAsc(piAddress);
-        List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
+        List<Location> locations = new ArrayList<>();
+        if (my)
+            locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
+        else
+            locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), location.getModifiedDate().minusMinutes(1));
+
         Set<PiAddress> set = locations.stream().map(l -> {
             return l.getPiAddress();
         }).collect(Collectors.toSet());

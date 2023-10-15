@@ -57,11 +57,13 @@ public class LocationsController {
     @ResponseBody
     @PostMapping(consumes = "application/x-www-form-urlencoded", path="/find")
     public LocationResponseForUserDto findByEmail(String email, Authentication authentication) {
+        Boolean my = false;
         if(email.isEmpty()) {
             OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
             email = oAuth2User.getAttribute("email");
+            my = true;
         }
-        LocationResponseForUserDto locationResponseForUserDto = locationService.findLocationByEmail(email);
+        LocationResponseForUserDto locationResponseForUserDto = locationService.findLocationByEmail(email, my);
 //        model.addAttribute("x", locationRequestDto.getX());
 //        model.addAttribute("y", locationRequestDto.getY());
         return locationResponseForUserDto;
