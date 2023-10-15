@@ -507,7 +507,7 @@
     </script>
 
     <script>
-        $(document).on('click', '.location-btn', function(){
+        $(document).on('click', '.location-btn', setInterval(function(){
             $.ajax({
                 type: "POST",
                 url: "/find",
@@ -526,7 +526,7 @@
                         var td = tr.children();
                         $('#neighbor-location').text(td.eq(1).text() + '님의 위치 : ' + data.x + ", " + data.y);
                         $('#datetime').text("기록 시간 : " + dateFormat(data.modifiedDate));
-                        $('#grade').text("현재 위치에서의 밀집도 등급 : " + data.grade);
+                        $('#grade').text("밀집도 등급 : " + data.grade);
                     }else {
                         Swal.fire({
                             icon: 'question',
@@ -546,7 +546,7 @@
                     });
                 }
             })
-        });
+        }, 1000));
     </script>
 
     <script>
