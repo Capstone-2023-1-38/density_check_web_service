@@ -23,6 +23,7 @@
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/header.css" rel="stylesheet">
 
   <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
@@ -34,35 +35,40 @@
            background-color: #858796;
            color: #FFF;
            text-align:center;
-           font-size: 2.2vw;
+           font-size: 2.4vw;
+        }
+        #building-text{
+          font-size:4.5vw;
         }
 
         .table td{
           background-color: #FFF;
-          font-size: 2.2vw;
+        }
+        .form-control{
+          font-size:2.4vw;
         }
 
         @media screen and (min-width:576px){
           #building-text{
             font-size:4vw;
           }
-          .table{
-            font-size:2vw;
+          .table th, .form-control{
+            font-size:2.2vw;
           }
         }
         @media screen and (min-width:768px){
           #building-text{
             font-size:3vw;
           }
-          .table{
-            font-size:1.5vw;
+          .table th, .form-control{
+            font-size:1.7vw;
           }
         }
         @media screen and (min-width:992px){
           #building-text{
             font-size:2.7vw;
           }
-          .table{
+          .table th, .form-control{
             font-size:1.3vw;
           }
         }
@@ -70,7 +76,7 @@
           #building-text{
             font-size:2.7vw;
           }
-          .table{
+          .table th, .form-control{
             font-size:1.3vw;
           }
         }
@@ -80,8 +86,6 @@
             font-size:2.5vw;
           }
         }
-
-
 
     </style>
 </head>
@@ -309,7 +313,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800" style="text-align: center">제보 게시판</h1>
+          <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">제보 게시판</h1>
 <!--          <div class="col-sm-7 input-group mb-3">-->
 <!--            <span class="input-group-text">위치</span>-->
 <!--            <input th:value="${post.location}" type="text" class="form-control" style="background-color:#FFF" readonly onfocus="this.blur();">-->
@@ -324,7 +328,7 @@
 <!--          <div class="mb-3">-->
 <!--            <textarea th:text="${post.content}" class="form-control" id="exampleFormControlTextarea1" rows="10" style="background-color:#FFF" readonly onfocus="this.blur();"></textarea>-->
 <!--          </div>-->
-          <table class="table table-bordered col-lg-8 col-xs-10" style="margin-left:auto;margin-right:auto;">
+          <table class="table table-bordered col-lg-8 col-xs-9" style="margin-left:auto;margin-right:auto;">
             <tr>
               <th scope="row">위치</th>
               <td><input th:value="${post.location}" type="text" class="form-control" style="background-color:#FFF;border:none;" readonly onfocus="this.blur();"></td>

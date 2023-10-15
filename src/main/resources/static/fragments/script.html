@@ -57,7 +57,7 @@
                 count = parseInt(count.slice(0, -1));
                 count++;
                 $("#count").show();
-                $("#zeroNotify").hide();
+                $("#zeroNotify").css('display','none');
                 $("#count").text(count.toString() + "+");
                 $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + message.posts.id + "\">" +
                     "                                    <div class=\"mr-3\">" +
