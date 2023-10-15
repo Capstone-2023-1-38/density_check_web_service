@@ -490,7 +490,7 @@
 </script>
 <script>
     var loc="";
-    $('.location-btn').click(function(){
+    $('.location-btn').click(setInterval(function(){
         $.ajax({
             type: "POST",
             url: "/find",
@@ -507,7 +507,7 @@
                         }
                         $('.location').html("<label><" + data.name + ">님의 위치 : " + String.fromCharCode(data.x+65) + ", " + data.y + "</label> <br>" +
                             "<label> 기록 시간 : " + dateFormat(data.modifiedDate)+"</label> <br>" +
-                            "<label> 현재 위치에서의 밀집도 등급 : " + data.grade +"</label>");
+                            "<label> 밀집도 등급 : " + data.grade +"</label>");
                         loc = data.x + "," + data.y;
                         arr.fillOpacity = 0.2;
                         arr.fillColor = "4e73df";
@@ -530,13 +530,16 @@
                 },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 Swal.fire({
-                    icon: 'error',
-                    title: '통신 실패',
-                    text: '통신에 실패하였습니다.'
+                    icon: 'question',
+                    title: '회원 정보 없음',
+                    text: '해당 이메일 정보를 가진 회원 정보가 존재하지 않습니다.',
+                    allowOnClickOutside: false
+                }).then(function () {
+                    window.location.href = "/user-find";
                 })
             }
         });
-    });
+    }), 1000);
 </script>
 
 </body>
