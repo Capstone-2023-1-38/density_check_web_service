@@ -185,6 +185,9 @@
             .table{
                 font-size:1.3vw;
             }
+            strong{
+                font-size:2.5vw;
+            }
         }
 
          @media screen and (min-width:1800px){
@@ -689,7 +692,7 @@
                                     $('#coordinate_info tbody').find('tr').css("backgroundColor","#FFF");
                                     var grade = $('#coordinate_info tbody').find('tr').eq(focus).find('td').eq(2).text();
                                     var targetTop = $('#coordinate_info tbody').find('tr').eq(focus-1).position().top;
-                                    var div = document.getElementById("building");
+                                    var div = document.getElementById("coordinate_info");
                                     var divTop = div.getBoundingClientRect().top;
                                     //var targetTop2 = $('#coordinate_info').offset().top;
                                     //const element = document.getElementById("coordinate_info");
@@ -708,7 +711,7 @@
                                     }else {
                                         $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(128, 128, 128, 0.2)");
                                     }
-                                    $('#content-wrapper').animate( { scrollTop : divTop }, 500 );
+                                    $('#content-wrapper').animate( { scrollTop : 166 }, 500 );
                                     //element.scrollIntoView({ behavior: 'auto' });
                                     $('#building').animate( { scrollTop : targetTop }, 500 );
                                 }

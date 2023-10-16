@@ -40,19 +40,37 @@
             font-size:0.8rem;
             border:2px solid #4e73df;
         }
+        ::placeholder {
+            font-size: 2.8vw;
+        }
+
         .neighbor-btn{
             width:max-content;
             font-size:0.8rem;
         }
+        .neighbor-img{
+            width:40%;
+        }
+        @media screen and (max-width:400px) {
+            .neighbor-img{
+                width:50%;
+            }
+        }
         @media screen and (min-width:576px){
             #building-text{
                 font-size:4vw;
+            }
+            ::placeholder {
+                font-size:2.3vw;
             }
             .search{
                 font-size:2vw;
             }
             .table,.neighbor-btn{
                 font-size:0.8rem;
+            }
+            .neighbor-img{
+                width:30%;
             }
         }
         @media screen and (min-width:768px){
@@ -62,11 +80,21 @@
             .search{
                 font-size:1.8vw;
             }
+            ::placeholder {
+                font-size:2vw;
+            }
             .table,.neighbor-btn{
-
+                font-size:1rem;
             }
             .table{
                 border: 3px solid #4e73df;
+            }
+            .neighbor-img{
+                width:25%;
+            }
+            .neighbor-btn{
+                padding-left: 1.2rem;
+                padding-right: 1.2rem;
             }
 
         }
@@ -74,8 +102,11 @@
             .search{
                 font-size:1.4vw;
             }
+            ::placeholder {
+                font-size:1.4vw;
+            }
             .table,.neighbor-btn{
-                font-size:1.2rem;
+                font-size:1rem;
             }
         }
         @media screen and (min-width:1200px){
@@ -84,6 +115,9 @@
             }
             .location-btn{
                 font-size:1.2vw;
+            }
+            ::placeholder {
+                font-size:1.3vw;
             }
             .table,.neighbor-btn{
                 font-size:1.3vw;
@@ -331,9 +365,7 @@
                     <div class="col-lg-8" style="overflow:auto; margin-left: auto; margin-right: auto; padding-top:5%;">
                         <table class="table">
                             <thead bgcolor="#4e73df" style="color:#FFF">
-                                <th colspan="2">이웃 신청 목록</th>
-                                <th>&nbsp;</th>
-                                <th>&nbsp;</th>
+                                <th colspan="4" style="text-align:center;">이웃 신청 목록</th>
                             </thead>
                             <tbody class="table_body" style="background-color:#FFF">
 <!--                                <tr>-->
@@ -425,7 +457,7 @@
                         imgsrc = data[i].toPicture;
                     }
                     str += '<TR>' +
-                        '<TD style="width:30%"><img class="rounded-circle" src="'+imgsrc+'" style="width:15%;height:15%;"/></TD>' +
+                        '<TD style="width:30%"><img class="rounded-circle neighbor-img" src="'+imgsrc+'"/></TD>' +
                         '<TD style="text-align:center;width:30%;">' + data[i].toName + '</TD>' +
                         '<TD><a class="btn btn-secondary neighbor-btn" style="float:right" href="friends/accept?toEmail=' + data[i].toEmail + '" >수락</a></TD>' +
                         '<TD><a class="btn btn-secondary neighbor-btn" href="/friends/deny?toEmail=' + data[i].toEmail + '">거절</a></TD>';

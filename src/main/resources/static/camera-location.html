@@ -44,18 +44,32 @@
         #building-text{
             font-size:4vw;
         }
+        .iframe-div iframe{
+            width: 80vw;
+            height: 60vw;
+        }
+        .img-div, #building, #container{
+            margin-left:auto;
+            margin-right:auto;
+        }
         @media screen and (min-width:576px){
 
         }
         @media screen and (min-width:768px){
-
             #building-text{
                 font-size:3vw;
             }
 
+
         }
         @media screen and (min-width:992px){
-
+            .img-div, #building, #container{
+                float:left;
+            }
+            .iframe-div iframe{
+                width: 40vw;
+                height: 30vw;
+            }
         }
 
         @media screen and (min-width:1200px){
@@ -441,8 +455,8 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">비전 기반 실시간 위치</h1>
-                <div class="col-md-6" style="margin-left:10px;position:relative; float:left;">
+                <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">비전 기반 실시간 위치 추정</h1>
+                <div class="col-lg-6 col-md-10 img-div" style="position:relative;">
 <!--                    <div style="display:flex;float:right">-->
                         <div style="text-align:center; position:relative;">
                             <svg id="svg" viewBox="0 0 622 730">
@@ -464,17 +478,17 @@
                                     var arr = ["192.168.0.113:5000", "", "192.168.0.169:5000", "192.168.0.109:5000"];
                                     var addr = arr[n-1];
                                     con.style.visibility = "visible";
-                                    document.getElementById("container").innerHTML = "<iframe src=\"http://"+ addr + "\" id=\"videoElement\" style=\"width:640px;height:480px;\" allowfullscreen> </iframe>";
+                                    document.getElementById("container").innerHTML = "<iframe src=\"http://"+ addr + "\" id=\"videoElement\" allowfullscreen> </iframe>";
                                 }
                             </script>
                         </div>
 <!--                    </div>-->
-                    <div class="col-md-12" style="margin-top:1rem;">
-                        <button class="btn btn-secondary" type="button" style="width:100%">건물 내 카메라 전체 화면</button>
+                    <div style="margin-top:1rem;padding:0;">
+                        <button class="btn btn-secondary" type="button" style="width:100%;">건물 내 카메라 전체 화면</button>
                     </div>
                 </div>
-                <div class="col-md-5" id="building" style="overflow:auto;">
-                    <table class="table" style="color:#595959; float:right; text-align:center; background-color:#FFF" id="coordinate_info">
+                <div class="col-lg-5 col-md-10" id="building" style="overflow:auto;">
+                    <table class="table" style="color:#595959; float:right; text-align:center; background-color:#FFF;margin-top:5%;" id="coordinate_info">
                         <thead>
                         <tr class="table-active">
                             <th scope="col">위치</th>
@@ -508,7 +522,7 @@
                         </tfoot>
                     </table>
                 </div>
-                <div id="container" class="row col-md-5" style="visibility:hidden;">
+                <div id="container" class="col-lg-5 col-md-10 iframe-div" style="visibility:hidden;">
                     <!--                            <video autoplay="true" id="videoElement">-->
 
                     <!--                            </video>-->
@@ -567,7 +581,7 @@
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
 <script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
 <script src="vendor/jquery/jquery.maphilight.min.js"></script>

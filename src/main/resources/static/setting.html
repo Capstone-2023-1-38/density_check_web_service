@@ -27,38 +27,87 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
+
         body{
           font-family: 'NanumSquareNeoExtraBold'
         }
         #building-text{
-            font-size:4.5vw;
+            font-size:5vw;
         }
-        .table{
+        .table, .delete-btn, .save-btn, .edit-btn{
             font-size:0.8rem;
+        }
+        table th{
+            background-color: #858796;
+            color: #FFF;
+            text-align:center;
+        }
+        .table td, .table th{
+            text-align:center;
+        }
+        @media screen and (max-width:575px){
+            .container-fluid{
+                padding:0;
+            }
+            #image{
+                padding-left:30%;
+            }
+            .table td, .table th{
+                display:block;
+            }
+        }
+        .img-profile{
+            width:30vw;
+        }
+        #image{
+            padding-left:30%;
+        }
+        .form-control{
+            width:70%;
         }
 
         @media screen and (min-width:576px){
             #building-text{
                 font-size:4vw;
             }
+            .form-control{
+                width:70%;
+            }
             .table{
                 font-size:1rem;
+            }
+            .delete-btn{
+                padding-left:1.5rem;
+                padding-right:1.5rem;
+                margin-right:1rem;
+            }
+            .save-btn, .edit-btn{
+                padding-left:2rem;
+                padding-right:2rem;
+            }
+            .img-profile{
+                width:15vw;
             }
         }
         @media screen and (min-width:768px){
             #building-text{
                 font-size:3vw;
             }
+            .form-control{
+                width:80%;
+            }
         }
         @media screen and (min-width:992px){
-
+            .form-control{
+                width:80%;
+            }
         }
         @media screen and (min-width:1200px){
             #building-text{
                 font-size:2.8vw;
             }
-            .table{
-                font-size:1.2rem;
+            .table, .delete-btn, .save-btn, .edit-btn{
+                font-size:1rem;
             }
         }
         @media screen and (min-width:1800px){
@@ -293,29 +342,28 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">설정</h1>
-                    <div class="col-lg-8" style="margin-left: auto; margin-right: auto;">
-                        <table class="table">
+                    <div class="col-lg-8" style="margin-left: auto; margin-right: auto;padding-left:0.5rem;">
+                        <table class="table table-bordered">
                             <tbody>
                             <tr>
                                 <th>프로필 수정</th>
-                                <td >
-                                    <img class="img-profile rounded-circle" id="img-profile" src="img/undraw_profile.svg" style="margin:20px;width:10rem;"/>
+                                <td>
+                                    <img class="img-profile rounded-circle" id="img-profile" src="img/undraw_profile.svg" style="margin:20px;"/>
                                     <form name="form" method="post" action="/setting/image" enctype="multipart/form-data">
                                         <input type="file" id="image" name="image" style="margin-bottom:10px" onchange="readURL(this);"/>
                                         <br>
-                                        <button type="button" class="btn btn-secondary" onclick="readURL(this);">이미지 삭제</button>
-                                        <button type="submit" class="btn btn-secondary" style="margin-right:10px" onclick="">저장</button>
+                                        <button type="button" class="btn btn-secondary delete-btn" onclick="readURL(this);">이미지 삭제</button>
+                                        <button type="submit" class="btn btn-secondary save-btn" style="margin-right:10px" onclick="">저장</button>
                                     </form>
                                 </td>
                             </tr>
                             <tr></tr>
                             <tr>
                                 <th scope="row">닉네임</th>
-
                                 <td>
                                     <form action="/setting/name", method="post">
-                                      <input id="nickname" name="name" type="text" class="form-control col-lg-6" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" style="float:left; margin-right:10px">
-                                      <button type="submit" class="btn btn-secondary">수정</button>
+                                      <input id="nickname" name="name" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" style="float:left; margin-right:10px">
+                                      <button type="submit" class="btn btn-secondary edit-btn">수정</button>
                                     </form>
                                 </td>
                             </tr>
