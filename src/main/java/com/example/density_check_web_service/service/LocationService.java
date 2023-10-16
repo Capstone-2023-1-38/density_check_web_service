@@ -32,7 +32,10 @@ public class LocationService {
     @Transactional
     public void saveLocation(LocationRequestDto locationRequestDto) {
         PiAddress tmp = piAddressRepository.findByAddress(locationRequestDto.getAddress())
-                .orElse(piAddressRepository.save(new PiAddress(locationRequestDto.getAddress())));
+                .orElse(null);
+        if (tmp == null)
+            tmp = new PiAddress(locationRequestDto.getAddress());
+            piAddressRepository.save(tmp);
         if (locationRepository.countByPiAddress(tmp) > 1000) {
             Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateAsc(tmp);
             location.setX(locationRequestDto.getX());
@@ -89,15 +92,15 @@ public class LocationService {
     public LocationResponseForUserDto findLocationByEmail(String email, Boolean my) {
         PiAddress piAddress = piAddressRepository.findByEmail(email).orElse(null);
         if(piAddress == null) {
-            Users users = usersRepository.findByEmail(email).orElse(null);
-            piAddress = new PiAddress("111.111.111.111");
-            piAddress.update(users);
-            piAddress = piAddressRepository.saveAndFlush(piAddress);
-            locationRepository.saveAndFlush(new Location(piAddress, 0, 0, 0));
+//            Users users = usersRepository.findByEmail(email).orElse(null);
+//            piAddress = new PiAddress("111.111.111.111");
+//            piAddress.update(users);
+//            piAddress = piAddressRepository.saveAndFlush(piAddress);
+//            locationRepository.saveAndFlush(new Location(piAddress, 0, 0, 0));
 
-//            return new LocationResponseForUserDto(new Location(null, 0, 0, 0), 0);
+            return new LocationResponseForUserDto(new Location(null, 0, 0, 0), 0);
         }
-        Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateAsc(piAddress);
+        Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(piAddress);
         List<Location> locations = new ArrayList<>();
         if (my)
             locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
@@ -116,12 +119,15 @@ public class LocationService {
         if(piAddress == null) {
             return new ArrayList<>();
         }
-        Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateAsc(piAddress);
+        Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(piAddress);
         List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
         Set<PiAddress> set = locations.stream().map(l -> {
             return l.getPiAddress();
         }).collect(Collectors.toSet());
         set.remove(piAddress);
+        if(set.isEmpty()) {
+            return new ArrayList<>();
+        }
         List<UsersResponseDto> usersResponseDtos = set.stream().map(l->UsersResponseDto.builder().entity(l.getUsers()).build()).collect(Collectors.toList());
         usersResponseDtos.sort(Comparator.comparing(UsersResponseDto::getName));
         return usersResponseDtos;

@@ -31,4 +31,6 @@ public class PiAddress extends BaseTimeEntity {
     public void update(Users users) {
         this.users = users;
     }
+
+    public void deleteUsers() {this.users = null;}
 }
