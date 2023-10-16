@@ -23,57 +23,98 @@
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/header.css" rel="stylesheet">
 
   <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
-        body{
-          font-family: 'NanumSquareNeoExtraBold'
-        }
-        input{
-          font-size:3vw;
-        }
-        #building-text{
-          font-size: 4.5vw;
-        }
-        @media screen and (min-width:576px){
-          #building-text{
-            font-size:4vw;
-          }
-          .table{
-            font-size:2vw;
-          }
-          .form-control{
-            font-size:1.5vw;
-          }
-        }
-        @media screen and (min-width:768px){
-          #building-text{
-            font-size:3vw;
-          }
-          .table{
-            font-size:1.5vw;
-          }
-        }
-        @media screen and (min-width:992px){
-          .table{
-            font-size:1.3vw;
-          }
-        }
-        @media screen and (min-width:1200px){
-          #building-text{
-            font-size:2.8vw;
-          }
-          .table{
-            font-size:1.3vw;
-          }
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
+    body{
+      font-family: 'NanumSquareNeoExtraBold'
+    }
+    input{
+      font-size:3vw;
+    }
+    #building-text{
+      font-size: 4.5vw;
+    }
+    .form-control, .emailExists, .emailRegist{
+      font-size:2.3vw;
+    }
+    .table{
+      font-size:2.5vw;
+    }
+    .table td{
+      padding-bottom:1%;
+    }
+    .email-td{
+      padding-bottom:1px;
+    }
+    @media screen and (min-width:576px){
+      #building-text{
+        font-size:4vw;
+      }
+    }
+    @media screen and (min-width:768px){
+      #building-text{
+        font-size:3vw;
+      }
 
-        @media screen and (min-width:1800px){
-          #building-text{
-            font-size:2.5vw;
-          }
-        }
-    </style>
+      .table, .form-control, .emailExists, .emailRegist{
+        font-size:1.8vw;
+      }
+      .form-control{
+        width:30%;
+      }
+    }
+    @media screen and (min-width:992px){
+      .table, .form-control, .emailExists, .emailRegist{
+        font-size:1.6vw;
+      }
+    }
+    @media screen and (min-width:1200px){
+      #building-text{
+        font-size:2.8vw;
+      }
+      .table, .form-control, .emailExists, .emailRegist{
+        font-size:1.3vw;
+      }
+    }
+
+    @media screen and (min-width:1800px){
+      #building-text{
+        font-size:2.5vw;
+      }
+    }
+    @media screen and (max-width:768px) {
+      /*block*/
+      .table--block thead {
+        display:none;
+      }
+      .table--block tr {
+        display:block;
+        margin-bottom:10px;
+        border-top:none;
+      }
+      .table--block th, .table--block td {
+        display:block;
+        position:relative;
+        padding:10px 0;
+        padding-left:50%;
+        border-width:0 0 1px 0;
+      }
+      .table--block td:before {
+        display:block;
+        position:absolute;
+        left:0;
+        top:0;
+        width:50%;
+        padding:10px 0;
+        background:#d8d8d8;
+      }
+      .table--block td:nth-child(1):before {content:'라즈베리파이 MAC';}
+      .table--block td:nth-child(2):before {content:'라즈베리파이 ID';}
+      .table--block td:nth-child(3):before {content:'사용자 이메일';}
+    }
+  </style>
 </head>
 
 <body id="page-top">
@@ -300,8 +341,8 @@
       <div class="container-fluid">
         <!-- Page Heading -->
         <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">회원 관리</h1>
-        <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto;">
-          <table class="table" style="text-align:center; background-color:#FFF">
+        <div class="col-md-10" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto;">
+          <table class="table table--block" style="text-align:center; background-color:#FFF">
             <thead>
             <tr class="table-active">
               <th scope="col">라즈베리파이 MAC</th>
@@ -426,90 +467,90 @@
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-  <script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+<script>
+  $.ajax({
+    type: "GET",
+    url: "/piAddress",
+    dataType: "json",
+    success: function(data) {
+      str = '';
+
+      $.each(data , function(i) {
+        str += '<TR>' +
+                '<TD>' + data[i].address + '</TD>' +
+                '<TD>' + data[i].id + '</TD>';
+        if (data[i].email !== null) {
+          str += '<TD class=\"email-td\"> <div class="input-group mb-3">' +
+                  '<input type="text" class="form-control" value="' + data[i].email + '" aria-label="Recipient`s username" aria-describedby="button-addon2" readonly>' +
+                  '<button class="btn btn-outline-secondary emailExists" type="button">변경</button> </div>' +
+                  '</TD>';
+        }
+        else {
+          str += '<TD class=\"email-td\"> <div class="input-group mb-3">' +
+                  '<input type="text" class="form-control" placeholder="userEmail" aria-label="Recipient`s username" aria-describedby="button-addon2">' +
+                  '<button class="btn btn-outline-secondary emailRegist" type="button">등록</button></div>' +
+                  '</TD>';
+        }
+        str += '</TR>';
+      });
+      $('.table_body').html(str);
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      alert("통신 실패");
+    }
+  });
+</script>
+
+<script>
+  $(document).on('click', ".emailExists", function(){
+    $(this).prev().prop("readonly", false);
+    $(this).attr("class", "btn btn-outline-secondary emailRegist")
+    $(this).text("등록");
+  });
+</script>
+
+<script>
+  $(document).on('click', ".emailRegist", function(){
+    var now = $(this);
     $.ajax({
-      type: "GET",
-      url: "/piAddress",
+      type: "POST",
+      url: "/piAddress/userRegist",
+      data: {
+        id: $(this).parent().parent().prev().text(),
+        email: $(this).prev().val()
+      },
       dataType: "json",
       success: function(data) {
-        str = '';
-
-        $.each(data , function(i) {
-          str += '<TR>' +
-                  '<TD>' + data[i].address + '</TD>' +
-                  '<TD>' + data[i].id + '</TD>';
-          if (data[i].email !== null) {
-            str += '<TD> <div class="input-group mb-3">' +
-                    '<input type="text" class="form-control" value="' + data[i].email + '" aria-label="Recipient`s username" aria-describedby="button-addon2" readonly>' +
-                    '<button class="btn btn-outline-secondary emailExists" type="button">변경</button> </div>' +
-                    '</TD>';
-          }
-          else {
-            str += '<TD> <div class="input-group mb-3">' +
-                    '<input type="text" class="form-control" placeholder="userEmail" aria-label="Recipient`s username" aria-describedby="button-addon2">' +
-                    '<button class="btn btn-outline-secondary emailRegist" type="button">등록</button></div>' +
-                    '</TD>';
-          }
-          str += '</TR>';
-        });
-        $('.table_body').html(str);
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-        alert("통신 실패");
-      }
-    });
-  </script>
-
-  <script>
-    $(document).on('click', ".emailExists", function(){
-      $(this).prev().prop("readonly", false);
-      $(this).attr("class", "btn btn-outline-secondary emailRegist")
-      $(this).text("등록");
-    });
-  </script>
-
-  <script>
-    $(document).on('click', ".emailRegist", function(){
-      var now = $(this);
-      $.ajax({
-        type: "POST",
-        url: "/piAddress/userRegist",
-        data: {
-          id: $(this).parent().parent().prev().text(),
-          email: $(this).prev().val()
-        },
-        dataType: "json",
-        success: function(data) {
-          if(data.code !== 200)
-            Swal.fire({
-              icon: 'error',
-              title: "변경 실패",
-              text: data.result,
-            });
-          else
-            Swal.fire({
-              icon: 'success',
-              title: "변경 완료",
-              text: data.result,
-            });
-          now.prev().val(data.email);
-          now.prev().prop("readonly", true);
-          now.attr("class", "btn btn-outline-secondary emailExists")
-          now.text("변경");
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        if(data.code !== 200)
           Swal.fire({
             icon: 'error',
-            title: '통신 실패',
-            text: '통신에 실패하였습니다.',
-          })
-        }
-      });
+            title: "변경 실패",
+            text: data.result,
+          });
+        else
+          Swal.fire({
+            icon: 'success',
+            title: "변경 완료",
+            text: data.result,
+          });
+        now.prev().val(data.email);
+        now.prev().prop("readonly", true);
+        now.attr("class", "btn btn-outline-secondary emailExists")
+        now.text("변경");
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        Swal.fire({
+          icon: 'error',
+          title: '통신 실패',
+          text: '통신에 실패하였습니다.',
+        })
+      }
     });
-  </script>
-  <th:block th:replace="fragments/script::script"></th:block>
+  });
+</script>
+<th:block th:replace="fragments/script::script"></th:block>
 </body>
 
 </html>

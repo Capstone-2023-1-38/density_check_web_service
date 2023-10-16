@@ -66,6 +66,9 @@
         #img_div{
             padding:0;
         }
+        .people-img{
+            width:15%;
+        }
         @media screen and (min-width:576px){
             .position{
                 font-size:4vw;
@@ -104,11 +107,13 @@
 
             .location-div{
                 float:left;
-                margin-top:15%;
                 margin-left:5vw;
             }
             #img_div{
                 float:left;
+            }
+            .table-div{
+                margin-top:10%;
             }
 
 
@@ -128,6 +133,9 @@
             .location {
                 font-size:1.5vw;
             }
+
+
+
         }
 
         @media screen and (min-width:1800px){
@@ -413,7 +421,7 @@
                         <p>기록 시간 : </p>
                         <p>현재 위치에서의 밀집도 등급 : 안전</p>
                     </div>
-                    <div>
+                    <div class="table-div">
                         <table class="table col-md-10 col-lg-12" style="color:#595959;margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF; margin-top:20px;">
                             <thead>
                             <tr class="table-active">
@@ -754,8 +762,8 @@
                             imgsrc = data[i].picture;
                         }
                         str += '<TR>' +
-                            '<TD><img class="rounded-circle" src="'+imgsrc+'"/></TD>' +
-                            '<TD>' + data[i].name + '</TD>';
+                            '<TD style=\"width=50%\"><img class="rounded-circle people-img" src="'+imgsrc+'"/></TD>' +
+                            '<TD style=\"width=50%\">' + data[i].name + '</TD>';
                         str += '</TR>';
                     });
                     $('.tbody').html(str);
