@@ -536,9 +536,11 @@
             text: data.result,
           });
         now.prev().val(data.email);
-        now.prev().prop("readonly", true);
-        now.attr("class", "btn btn-outline-secondary emailExists")
-        now.text("변경");
+        if(data.email!=="") {
+          now.prev().prop("readonly", true);
+          now.attr("class", "btn btn-outline-secondary emailExists")
+          now.text("변경");
+        }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         Swal.fire({

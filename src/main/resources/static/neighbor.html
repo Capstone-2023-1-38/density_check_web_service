@@ -141,7 +141,40 @@
                 font-size:2.5vw;
             }
         }
-
+        @media screen and (max-width:768px) {
+            /*block*/
+            .table--block thead {
+                display:none;
+            }
+            .table--block tr td:first-child {
+                display:none;
+            }
+            .table--block tr {
+                display:block;
+                margin-bottom:10px;
+                border-top:none;
+            }
+            .table--block th, .table--block td {
+                display:block;
+                position:relative;
+                padding:10px 0;
+                padding-left:50%;
+                border-width:0 0 1px 0;
+            }
+            .table--block td:before {
+                display:block;
+                position:absolute;
+                left:0;
+                top:0;
+                width:30%;
+                padding:10px 0;
+                color: #FFF;
+                text-align: center;
+                background:#4e73df;
+            }
+            .table--block td:nth-child(2):before {content:'이름';}
+            .table--block td:nth-child(3):before {content:'이메일';}
+        }
     </style>
 </head>
 
@@ -383,7 +416,7 @@
                         <!--                        </button>-->
                     </h1>
                     <div class="col-md-8" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto;">
-                        <table class="table" style="border: 3px solid #4e73df; background-color:#FFF">
+                        <table class="table table--block" style="border: 3px solid #4e73df; background-color:#FFF">
                             <thead>
                             <tr bgcolor="#4e73df" style="color:#FFF; text-align:center">
                                 <th scope="col">#</th>
@@ -446,7 +479,7 @@
                     </div>
                     <input type="checkbox" id="toggle">
                     <label for="toggle" class="closer"></label>
-                    <div class="offcanvas">
+                    <div class="offcanvas offcanvas--small">
                         <p class="h1">이웃 위치 확인</p>
                         <div style="margin-left:auto;margin-right:auto;position:relative">
                             <!--                    <div style="position:relative;margin-left:auto;margin-right:auto;">-->
@@ -621,7 +654,7 @@
                         '<TD><img class="rounded-circle" src="'+imgsrc+'"/></TD>' +
                         '<TD>' + data[i].toName + '</TD>' +
                         '<TD id="email">' + data[i].toEmail + '</TD>' +
-                        '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail='+data[i].toEmail+'" style="float:right">삭제</a>' +
+                        '<TD style="text-align: center"><a class="btn btn-secondary" href="/friends/deny?toEmail='+data[i].toEmail+'" style="float:right">삭제</a>' +
                         '<label type="button" for="toggle" class="btn btn-secondary location-btn" style="float:right; margin-right:5px;">위치 보기</label></TD>';
                     str += '</TR>';
                 });

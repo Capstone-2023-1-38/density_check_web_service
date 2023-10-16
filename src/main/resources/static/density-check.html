@@ -91,14 +91,14 @@
         #building-text{
             font-size:4.5vw;
         }
-        strong{
+        #strong{
             font-size:4vw;
         }
         @media screen and (min-width:576px){
             #building-text {
                 font-size: 4vw;
             }
-            strong{
+            #strong{
                 font-size:3.8vw;
             }
             .table{
@@ -143,11 +143,9 @@
                 margin-left:auto;
                 margin-right:auto;
             }
-            strong{
+            #strong{
                 font-size: 2.8vw;
             }
-
-
         }
         @media screen and (min-width:992px){
             #building-text{
@@ -185,7 +183,7 @@
             .table{
                 font-size:1.3vw;
             }
-            strong{
+            #strong{
                 font-size:2.5vw;
             }
         }
@@ -194,7 +192,7 @@
             #building-text{
                 font-size:2.5vw;
             }
-             strong{
+             #strong{
                  font-size:2.3vw;
              }
          }
@@ -941,7 +939,7 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
 <script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
 <script src="vendor/jquery/jquery.maphilight.min.js"></script>
@@ -984,7 +982,7 @@
     function btn(){
         Swal.fire({
           className: 'alert',
-          title: '<strong>밀집도 등급</strong>',
+          title: '<strong id="strong">밀집도 등급</strong>',
           html:
             '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>8명 이상</td><tr></table></div></div>'
 
