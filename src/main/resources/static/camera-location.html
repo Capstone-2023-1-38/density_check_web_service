@@ -44,13 +44,53 @@
         #building-text{
             font-size:4vw;
         }
-        .iframe-div iframe{
-            width: 80vw;
-            height: 60vw;
-        }
+        /*.iframe-div iframe, .grid-container{*/
+        /*    width: 75vw;*/
+        /*    height: 60vw;*/
+        /*}*/
         .img-div, #building, #container{
             margin-left:auto;
             margin-right:auto;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            /*height: 100vh;*/
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 각 영역 스타일 설정 */
+        .grid-item {
+            border: 1px solid black;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 각 영역 ID 설정 */
+        #item1, #item2, #item3, #item4 {
+            overflow: hidden;
+        }
+
+        #item1 {
+            grid-row: 1 / 2;
+            grid-column: 1 / 2;
+        }
+
+        #item2 {
+            grid-row: 1 / 2;
+            grid-column: 2 / 3;
+        }
+
+        #item3 {
+            grid-row: 2 / 3;
+            grid-column: 1 / 2;
+        }
+
+        #item4 {
+            grid-row: 2 / 3;
+            grid-column: 2 / 3;
         }
         @media screen and (min-width:576px){
 
@@ -66,9 +106,9 @@
             .img-div, #building, #container{
                 float:left;
             }
-            .iframe-div iframe{
-                width: 40vw;
-                height: 30vw;
+            .iframe-div iframe, .grid-container{
+                width: 38vw;
+                height: 27vw;
             }
         }
 
@@ -82,6 +122,22 @@
         @media screen and (min-width:1800px){
 
         }
+        .grid-container > div {
+            position: relative;
+            padding-top: 75%;
+            width: 100%;
+            height: 0;
+        }
+
+        /* iframe */
+        .grid-container > div > iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
 
     </style>
 </head>
@@ -194,152 +250,152 @@
 
             <header th:replace="fragments/header::header"></header>
             <!-- Topbar Navbar -->
-<!--            <nav class="navbar navbar-expand topbar mb-4 static-top" style="background-color:#FFF; border-bottom:solid 1px #d7d9de">-->
-<!--                <div class="container-fluid">-->
-<!--                    <a class="navbar-brand" href="/" >MENU</a>-->
-<!--                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--                        <span class="navbar-toggler-icon"></span>-->
-<!--                    </button>-->
-<!--                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">-->
-<!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: 'NanumSquareNeoExtraBold'; color:#FFF; font-size:18px;">-->
-<!--                            <li class="nav-item dropdown">-->
-<!--                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >-->
-<!--                                    위치 및 밀집도-->
-<!--                                </a>-->
-<!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">-->
-<!--                                    <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>-->
-<!--                                    <li><hr class="dropdown-divider"></li>-->
-<!--                                    <li><a class="dropdown-item" href="/situation">실시간 밀집도 및 통계</a></li>-->
-<!--                                    <ul style="list-style-type: square;">-->
-<!--                                        <li><a class="dropdown-item" href="/density-check">무선 통신 기반 밀집도</a></li>-->
-<!--                                        <li><a class="dropdown-item" href="/camera-location">비전 기반 밀집도</a></li>-->
-<!--                                    </ul>-->
-<!--                                </ul>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item dropdown">-->
-<!--                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                                    제보-->
-<!--                                </a>-->
-<!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">-->
-<!--                                    <li><a class="dropdown-item" href="/report">제보하기</a></li>-->
-<!--                                    <li><a class="dropdown-item" href="/report-board">제보 게시판</a></li>-->
-<!--                                </ul>-->
-<!--                            </li>-->
-<!--                            &lt;!&ndash;                            <li class="nav-item dropdown">&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                    이웃&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                </a>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                    <li><a class="dropdown-item" href="#">Action</a></li>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                    <li><a class="dropdown-item" href="#">Another action</a></li>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                    <li><hr class="dropdown-divider"></li>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                    <li><a class="dropdown-item" href="#">Something else here</a></li>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                </ul>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                            </li>&ndash;&gt;-->
-<!--                            <li class="nav-item dropdown">-->
-<!--                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                                    찾기-->
-<!--                                </a>-->
-<!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">-->
-<!--                                    <li><a class="dropdown-item" href="/user-find">사용자 찾기</a></li>-->
-<!--                                    <li><a class="dropdown-item" href="/specific-area-user-find">특정 구역 사용자 찾기</a></li>-->
-<!--                                </ul>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align:center">-->
-<!--                            <a>팀 네카라쿠배</a>-->
-<!--                        </ul>-->
-<!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--                            <li class="nav-item mx-1" style="padding-top:21px; font-size:24px">-->
-<!--                                <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">-->
-<!--                                <a href="/neighbor"><i class="bi bi-person-fill"></i></a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item dropdown no-arrow mx-1">-->
-<!--                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"-->
-<!--                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                                    <i class="fas fa-bell fa-fw"></i>-->
-<!--                                    &lt;!&ndash; Counter - Alerts &ndash;&gt;-->
-<!--                                    <span class="badge badge-danger badge-counter">3+</span>-->
-<!--                                </a>-->
-<!--                                &lt;!&ndash; Dropdown - Alerts &ndash;&gt;-->
-<!--                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
-<!--                                     aria-labelledby="alertsDropdown">-->
-<!--                                    <h4 class="dropdown-header">-->
-<!--                                        알림-->
-<!--                                    </h4>-->
-<!--&lt;!&ndash;                                    <a class="dropdown-item d-flex align-items-center" href="#">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div class="mr-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="icon-circle bg-warning">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <i class="fas fa-exclamation-triangle text-white"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="small text-gray-500">23/07/05 13:49:07</div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            제보게시판에 새로운 제보가 등록되었습니다.&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <a class="dropdown-item d-flex align-items-center" href="#">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div class="mr-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="icon-circle bg-warning">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <i class="fas fa-exclamation-triangle text-white"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="small text-gray-500">23/07/05 11:23:45</div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            제보게시판에 새로운 제보가 등록되었습니다.&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <a class="dropdown-item d-flex align-items-center" href="#">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div class="mr-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="icon-circle bg-warning">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <i class="fas fa-exclamation-triangle text-white"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="small text-gray-500">23/07/02 21:34:11</div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            제보게시판에 새로운 제보가 등록되었습니다.&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>&ndash;&gt;-->
-<!--                                </div>-->
-<!--                            </li>-->
+            <!--            <nav class="navbar navbar-expand topbar mb-4 static-top" style="background-color:#FFF; border-bottom:solid 1px #d7d9de">-->
+            <!--                <div class="container-fluid">-->
+            <!--                    <a class="navbar-brand" href="/" >MENU</a>-->
+            <!--                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+            <!--                        <span class="navbar-toggler-icon"></span>-->
+            <!--                    </button>-->
+            <!--                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">-->
+            <!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: 'NanumSquareNeoExtraBold'; color:#FFF; font-size:18px;">-->
+            <!--                            <li class="nav-item dropdown">-->
+            <!--                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >-->
+            <!--                                    위치 및 밀집도-->
+            <!--                                </a>-->
+            <!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">-->
+            <!--                                    <li><a class="dropdown-item" href="/current-location" style="font-size:14px;">현재 위치에서의 밀집도</a></li>-->
+            <!--                                    <li><hr class="dropdown-divider"></li>-->
+            <!--                                    <li><a class="dropdown-item" href="/situation">실시간 밀집도 및 통계</a></li>-->
+            <!--                                    <ul style="list-style-type: square;">-->
+            <!--                                        <li><a class="dropdown-item" href="/density-check">무선 통신 기반 밀집도</a></li>-->
+            <!--                                        <li><a class="dropdown-item" href="/camera-location">비전 기반 밀집도</a></li>-->
+            <!--                                    </ul>-->
+            <!--                                </ul>-->
+            <!--                            </li>-->
+            <!--                            <li class="nav-item dropdown">-->
+            <!--                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+            <!--                                    제보-->
+            <!--                                </a>-->
+            <!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">-->
+            <!--                                    <li><a class="dropdown-item" href="/report">제보하기</a></li>-->
+            <!--                                    <li><a class="dropdown-item" href="/report-board">제보 게시판</a></li>-->
+            <!--                                </ul>-->
+            <!--                            </li>-->
+            <!--                            &lt;!&ndash;                            <li class="nav-item dropdown">&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                                    이웃&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                                </a>&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                                    <li><a class="dropdown-item" href="#">Action</a></li>&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                                    <li><a class="dropdown-item" href="#">Another action</a></li>&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                                    <li><hr class="dropdown-divider"></li>&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                                    <li><a class="dropdown-item" href="#">Something else here</a></li>&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                                </ul>&ndash;&gt;-->
+            <!--                            &lt;!&ndash;                            </li>&ndash;&gt;-->
+            <!--                            <li class="nav-item dropdown">-->
+            <!--                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+            <!--                                    찾기-->
+            <!--                                </a>-->
+            <!--                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: max-content">-->
+            <!--                                    <li><a class="dropdown-item" href="/user-find">사용자 찾기</a></li>-->
+            <!--                                    <li><a class="dropdown-item" href="/specific-area-user-find">특정 구역 사용자 찾기</a></li>-->
+            <!--                                </ul>-->
+            <!--                            </li>-->
+            <!--                        </ul>-->
+            <!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="text-align:center">-->
+            <!--                            <a>팀 네카라쿠배</a>-->
+            <!--                        </ul>-->
+            <!--                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+            <!--                            <li class="nav-item mx-1" style="padding-top:21px; font-size:24px">-->
+            <!--                                <a href="/user-management"><i class="bi bi-person-fill-gear"></i></a>-->
+            <!--                            </li>-->
+            <!--                            <li class="nav-item mx-1" style="padding-top:20px; font-size:24px">-->
+            <!--                                <a href="/neighbor"><i class="bi bi-person-fill"></i></a>-->
+            <!--                            </li>-->
+            <!--                            <li class="nav-item dropdown no-arrow mx-1">-->
+            <!--                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"-->
+            <!--                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--                                    <i class="fas fa-bell fa-fw"></i>-->
+            <!--                                    &lt;!&ndash; Counter - Alerts &ndash;&gt;-->
+            <!--                                    <span class="badge badge-danger badge-counter">3+</span>-->
+            <!--                                </a>-->
+            <!--                                &lt;!&ndash; Dropdown - Alerts &ndash;&gt;-->
+            <!--                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+            <!--                                     aria-labelledby="alertsDropdown">-->
+            <!--                                    <h4 class="dropdown-header">-->
+            <!--                                        알림-->
+            <!--                                    </h4>-->
+            <!--&lt;!&ndash;                                    <a class="dropdown-item d-flex align-items-center" href="#">&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        <div class="mr-3">&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            <div class="icon-circle bg-warning">&ndash;&gt;-->
+            <!--&lt;!&ndash;                                                <i class="fas fa-exclamation-triangle text-white"></i>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        <div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            <div class="small text-gray-500">23/07/05 13:49:07</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            제보게시판에 새로운 제보가 등록되었습니다.&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                    <a class="dropdown-item d-flex align-items-center" href="#">&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        <div class="mr-3">&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            <div class="icon-circle bg-warning">&ndash;&gt;-->
+            <!--&lt;!&ndash;                                                <i class="fas fa-exclamation-triangle text-white"></i>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        <div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            <div class="small text-gray-500">23/07/05 11:23:45</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            제보게시판에 새로운 제보가 등록되었습니다.&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                    <a class="dropdown-item d-flex align-items-center" href="#">&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        <div class="mr-3">&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            <div class="icon-circle bg-warning">&ndash;&gt;-->
+            <!--&lt;!&ndash;                                                <i class="fas fa-exclamation-triangle text-white"></i>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        <div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            <div class="small text-gray-500">23/07/02 21:34:11</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                            제보게시판에 새로운 제보가 등록되었습니다.&ndash;&gt;-->
+            <!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
+            <!--&lt;!&ndash;                                    <a class="dropdown-item text-center small text-gray-500" href="#">알림 펼치기</a>&ndash;&gt;-->
+            <!--                                </div>-->
+            <!--                            </li>-->
 
-<!--                            &lt;!&ndash; Nav Item - User Information &ndash;&gt;-->
-<!--                            <li class="nav-item dropdown no-arrow" >-->
-<!--                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"-->
-<!--                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>-->
-<!--                                    <img class="img-profile rounded-circle"-->
-<!--                                         src="img/undraw_profile.svg"/>-->
-<!--                                </a>-->
-<!--                                &lt;!&ndash; Dropdown - User Information &ndash;&gt;-->
-<!--                                <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
-<!--                                     aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">-->
-<!--                                    <a class="dropdown-item" href="/setting">-->
-<!--                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
-<!--                                        설정-->
-<!--                                    </a>-->
-<!--                                    <div class="dropdown-divider"></div>-->
-<!--                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">-->
-<!--                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>-->
-<!--                                        로그아웃-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                                <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
-<!--                                     aria-labelledby="userDropdown" sec:authorize="isAnonymous()">-->
-<!--                                    <a class="dropdown-item" href="login.html">-->
-<!--                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
-<!--                                        로그인-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                            </li>-->
-<!--                        </ul>-->
+            <!--                            &lt;!&ndash; Nav Item - User Information &ndash;&gt;-->
+            <!--                            <li class="nav-item dropdown no-arrow" >-->
+            <!--                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"-->
+            <!--                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small userName">user</span>-->
+            <!--                                    <img class="img-profile rounded-circle"-->
+            <!--                                         src="img/undraw_profile.svg"/>-->
+            <!--                                </a>-->
+            <!--                                &lt;!&ndash; Dropdown - User Information &ndash;&gt;-->
+            <!--                                <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+            <!--                                     aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">-->
+            <!--                                    <a class="dropdown-item" href="/setting">-->
+            <!--                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+            <!--                                        설정-->
+            <!--                                    </a>-->
+            <!--                                    <div class="dropdown-divider"></div>-->
+            <!--                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">-->
+            <!--                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>-->
+            <!--                                        로그아웃-->
+            <!--                                    </a>-->
+            <!--                                </div>-->
+            <!--                                <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;grow-in"-->
+            <!--                                     aria-labelledby="userDropdown" sec:authorize="isAnonymous()">-->
+            <!--                                    <a class="dropdown-item" href="login.html">-->
+            <!--                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
+            <!--                                        로그인-->
+            <!--                                    </a>-->
+            <!--                                </div>-->
+            <!--                            </li>-->
+            <!--                        </ul>-->
 
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </nav>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </nav>-->
             <!--        <ul class="navbar-nav ml-auto">-->
 
             <!--          &lt;!&ndash; Nav Item - Search Dropdown (Visible Only XS) &ndash;&gt;-->
@@ -457,35 +513,44 @@
                 <!-- Page Heading -->
                 <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">비전 기반 실시간 위치 추정</h1>
                 <div class="col-lg-6 col-md-10 img-div" style="position:relative;">
-<!--                    <div style="display:flex;float:right">-->
-                        <div style="text-align:center; position:relative;">
-                            <svg id="svg" viewBox="0 0 622 730">
-                                <image href="./img/2floor.png"/>
-                                <div>
-                                    <img src="img/camera.png" class="camera" id="camera2" type="button" style="position: absolute; top:21%; left:20%; width:8%; height:8%;" onmouseover="this.style.scale=1.1" onmouseout="this.style.scale=1.0" data-toggle="tooltip" data-bs-placement="top" data-html="true" title="Camera2" onclick="cameraMonitor(2);"/>
-                                    <img src="img/camera.png" class="camera" id="camera3" type="button" style="position: absolute; top:14%; left:66%; width:8%; height:8%;transform:rotate(90deg);" onmouseover="this.style.scale=1.1" onmouseout="this.style.scale=1.0" data-toggle="tooltip" data-bs-placement="right" data-html="true" title="Camera3" onclick="cameraMonitor(3);">
-                                    <img src="img/camera.png" class="camera" id="camera1" type="button" style="position: absolute; top:14%; left:28%; width:8%; height:8%; transform:rotate(-90deg) rotateY(180deg)" onmouseover="this.style.scale=1.1" onmouseout="this.style.scale=1.0" data-toggle="tooltip" data-bs-placement="left" data-html="true" title="Camera1" onclick="cameraMonitor(1);">
-                                    <img src="img/camera.png" class="camera" id="camera4" type="button" style="position: absolute; top:76%; left:20%; width:8%; height:8%; transform:rotateX(180deg);" onmouseover="this.style.scale=1.1" onmouseout="this.style.scale=1.0" data-toggle="tooltip" data-bs-placement="bottom" data-html="true" title="Camera4" onclick="cameraMonitor(4);">
+                    <!--                    <div style="display:flex;float:right">-->
+                    <div style="text-align:center; position:relative;">
+                        <svg id="svg" viewBox="0 0 622 730">
+                            <image href="./img/2floor.png"/>
+                            <div>
+                                <img src="img/camera.png" class="camera" id="camera2" type="button" style="position: absolute; top:21%; left:20%; width:8%; height:8%;" onmouseover="this.style.scale=1.1" onmouseout="this.style.scale=1.0" data-toggle="tooltip" data-bs-placement="top" data-html="true" title="Camera2" onclick="cameraMonitor(2);"/>
+                                <img src="img/camera.png" class="camera" id="camera3" type="button" style="position: absolute; top:14%; left:66%; width:8%; height:8%;transform:rotate(90deg);" onmouseover="this.style.scale=1.1" onmouseout="this.style.scale=1.0" data-toggle="tooltip" data-bs-placement="right" data-html="true" title="Camera3" onclick="cameraMonitor(3);">
+                                <img src="img/camera.png" class="camera" id="camera1" type="button" style="position: absolute; top:14%; left:28%; width:8%; height:8%; transform:rotate(-90deg) rotateY(180deg)" onmouseover="this.style.scale=1.1" onmouseout="this.style.scale=1.0" data-toggle="tooltip" data-bs-placement="left" data-html="true" title="Camera1" onclick="cameraMonitor(1);">
+                                <img src="img/camera.png" class="camera" id="camera4" type="button" style="position: absolute; top:76%; left:20%; width:8%; height:8%; transform:rotateX(180deg);" onmouseover="this.style.scale=1.1" onmouseout="this.style.scale=1.0" data-toggle="tooltip" data-bs-placement="bottom" data-html="true" title="Camera4" onclick="cameraMonitor(4);">
 
-                                    <!--                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:30%; left:30%; font-size: 50px;" onclick="location.href='camera.html'"></i>-->
-                                    <!--                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:50%; left:60%; font-size: 50px;" onclick="location.href='camera.html'"></i>-->
-                                    <!--                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:80%; left:45%; font-size: 50px;" onclick="location.href='camera.html'"></i>-->
-                                </div>
-                            </svg>
-                            <script>
-                                function cameraMonitor(n){
-                                    var con = document.getElementById("container");
-                                    var arr = ["192.168.0.113:5000", "", "192.168.0.169:5000", "192.168.0.109:5000"];
-                                    var addr = arr[n-1];
-                                    con.style.visibility = "visible";
-                                    document.getElementById("container").innerHTML = "<iframe src=\"http://"+ addr + "\" id=\"videoElement\" allowfullscreen> </iframe>";
+                                <!--                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:30%; left:30%; font-size: 50px;" onclick="location.href='camera.html'"></i>-->
+                                <!--                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:50%; left:60%; font-size: 50px;" onclick="location.href='camera.html'"></i>-->
+                                <!--                                    <i class="camera bi bi-camera-fill" type="button" style="position: absolute; top:80%; left:45%; font-size: 50px;" onclick="location.href='camera.html'"></i>-->
+                            </div>
+                        </svg>
+
+                        <script>
+                            function cameraMonitor(n){
+                                var con = document.getElementById("container");
+                                var arr = ["192.168.0.113:5000", "127.0.0.1:5000", "192.168.0.169:5000", "192.168.0.109:5000"];
+                                var addr = arr[n-1];
+                                con.style.visibility = "visible";
+                                // document.getElementById("container").innerHTML = "<video id=\"videoElement\" width=\"640\" src=\"img/people.mp4\" style=\"float:right\" autoplay/>"
+                                if(n == 5) {
+                                    document.getElementById("container").innerHTML = "<div class=\"grid-container\"><div class=\"grid-item\" id=\"item1\"><iframe src=\"http://" + arr[0] + "\"></iframe></div><div class=\"grid-item\" id=\"item2\"><iframe src=\"http://" + arr[1] + "\"></iframe></div><div class=\"grid-item\" id=\"item3\"><iframe src=\"http://" + arr[2] + "\"></iframe></div><div class=\"grid-item\" id=\"item4\"><iframe src=\"http://" + arr[3] + "\"></iframe></div></div>"
                                 }
-                            </script>
-                        </div>
-<!--                    </div>-->
-<!--                    <div style="margin-top:1rem;padding:0;">-->
-<!--                        <button class="btn btn-secondary" type="button" style="width:100%;">건물 내 카메라 전체 화면</button>-->
-<!--                    </div>-->
+                                else{
+                                    document.getElementById("container").innerHTML = "<iframe src=\"http://"+ addr + "\" id=\"videoElement\" allowfullscreen></iframe>";
+                                }
+
+
+                            }
+                        </script>
+                    </div>
+                    <!--                    </div>-->
+                    <div style="margin-top:1rem;padding:0;">
+                        <button class="btn btn-secondary" type="button" style="width:100%;" onclick="cameraMonitor(5)">건물 내 카메라 전체 화면</button>
+                    </div>
                 </div>
                 <div class="col-lg-5 col-md-10" id="building" style="overflow:auto;">
                     <table class="table" style="color:#595959; float:right; text-align:center; background-color:#FFF;margin-top:5%;" id="coordinate_info">
@@ -526,8 +591,8 @@
                     <!--                            <video autoplay="true" id="videoElement">-->
 
                     <!--                            </video>-->
-<!--                    <img id="img" src="" height="480" style="float:right"/>-->
-<!--                    <iframe src="http://172.30.1.63:5000" id="videoElement" style="width:100%;height:100%;"allowfullscreen> </iframe>-->
+
+                    <!--                    <iframe src="http://172.30.1.63:5000" id="videoElement" style="width:100%;height:100%;"allowfullscreen> </iframe>-->
                 </div>
             </div>
 
