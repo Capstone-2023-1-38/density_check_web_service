@@ -787,7 +787,7 @@
 
     <script>
         var loc= "";
-        $(document).on('click', '.location-btn', setInterval(function(){
+        $(document).on('click', '.location-btn', function(){
             $.ajax({
                 type: "POST",
                 url: "/find",
@@ -837,7 +837,7 @@
                     });
                 }
             })
-        }, 1000));
+        });
     </script>
 
     <script>
