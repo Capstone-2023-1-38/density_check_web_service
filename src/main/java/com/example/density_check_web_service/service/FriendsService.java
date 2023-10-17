@@ -23,6 +23,10 @@ public class FriendsService {
     public List<FriendsListResponseDto> findMutualByFrom(String email) {
         List<FriendsListResponseDto> friendsListResponseDtoList = friendsRepository.findMutualByFrom(email).stream()
                 .map(FriendsListResponseDto::new).collect(Collectors.toList());
+
+        if (friendsListResponseDtoList.isEmpty()) {
+            return new ArrayList<>();
+        }
         return friendsListResponseDtoList;
     }
 
