@@ -80,6 +80,8 @@ public class NotifyService {
 
     @Transactional
     public void warning(String email) {
+        testData();
+
         if (email == null)
             return;
 
@@ -105,6 +107,23 @@ public class NotifyService {
                 NotifyService.sseEmitters.remove(email);
             }
         }
+    }
+
+    public void testData() {
+        //Test Data
+        List<Location> locations = new ArrayList<>();
+        int[] distribution = {5, 14, 14, 15, 25, 32, 32, 37, 44, 46, 46, 48, 59, 63, 63, 66, 72, 75, 77, 78, 90, 91, 95, 99};
+        int index = 0;
+        List<PiAddress> piAddresses = piAddressRepository.findAll();
+
+        for(int i = 0; i < 100; i++) {
+            while(distribution[index] < i) {
+                index++;
+            }
+            Location location = Location.builder().piAddress(piAddresses.get(i)).distance(0).x(index/4).y(index%4).build();
+            locations.add(location);
+        }
+        locationRepository.saveAll(locations);
     }
 
 //    @Async
