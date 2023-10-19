@@ -86,6 +86,7 @@
 
             eventSource.addEventListener("warning", function(event) {
                 $('.toast').toast('show');
+                stopWarning();
             });
 
             eventSource.addEventListener("error", function(event) {
