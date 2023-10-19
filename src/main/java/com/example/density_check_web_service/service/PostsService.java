@@ -45,16 +45,16 @@ public class PostsService {
 
         List<Users> subsToList = usersRepository.findAll();
         for (Users user : subsToList) {
-            if (user.getId() != users.getId()) {
-                Notify notify = new Notify(posts, false, user);
-                notifyRepository.save(notify);
-                SseEmitter sseEmitter = NotifyService.sseEmitters.get(user.getEmail());
-                try {
-                    sseEmitter.send(SseEmitter.event().name("notification").data(new NotifyDto(notify)));
-                } catch (Exception e) {
-                    NotifyService.sseEmitters.remove(user.getEmail());
-                }
+//            if (user.getId() != users.getId()) {
+            Notify notify = new Notify(posts, false, user);
+            notifyRepository.save(notify);
+            SseEmitter sseEmitter = NotifyService.sseEmitters.get(user.getEmail());
+            try {
+                sseEmitter.send(SseEmitter.event().name("notification").data(new NotifyDto(notify)));
+            } catch (Exception e) {
+                NotifyService.sseEmitters.remove(user.getEmail());
             }
+//            }
         }
     }
 
