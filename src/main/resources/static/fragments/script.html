@@ -109,6 +109,7 @@
                     if(data.length == 0){
                         $("#count").hide();
                         $("#zeroNotify").text("새로운 알림이 없습니다.");
+                        $("#zeroNotify").attr("style","display: block;");
                     }
                     $("#count").text(data.length.toString() + "+");
                     $.each(data , function(i) {
