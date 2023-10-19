@@ -86,11 +86,11 @@ public class NotifyService {
         if (email == null)
             return;
 
+        userTestData(email);
         PiAddress user = piAddressRepository.findByEmail(email).orElse(null);
 
         if (user == null)
-            userTestData(email);
-//            return;
+            return;
 
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(user);
 
@@ -135,10 +135,13 @@ public class NotifyService {
 
     @Transactional
     public void userTestData(String email) {
-        Users users = usersRepository.findByEmail(email).orElse(null);
-        PiAddress piAddress = new PiAddress("111.111.111.111");
-        piAddress.update(users);
-        piAddress = piAddressRepository.saveAndFlush(piAddress);
+        PiAddress piAddress = piAddressRepository.findByEmail(email).orElse(null);
+        if(piAddress == null) {
+            Users users = usersRepository.findByEmail(email).orElse(null);
+            piAddress = new PiAddress("111.111.111.111");
+            piAddress.update(users);
+            piAddress = piAddressRepository.saveAndFlush(piAddress);
+        }
         locationRepository.saveAndFlush(new Location(piAddress, 0, 1, 1));
     }
 
