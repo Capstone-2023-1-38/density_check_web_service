@@ -738,16 +738,16 @@
             $('map').imageMapResize();
         });
     </script>
-    <script>
-        $.fn.maphilight.defaults = {
-            fill: true,
-            fillOpacity:0,
-            fillColor:"4e73df",
-            stroke: true,
-            strokeColor:"4e73df",
-            strokeOpacity:0
-        }
-    </script>
+<!--    <script>-->
+<!--        $.fn.maphilight.defaults = {-->
+<!--            fill: true,-->
+<!--            fillOpacity:0,-->
+<!--            fillColor:"4e73df",-->
+<!--            stroke: true,-->
+<!--            strokeColor:"4e73df",-->
+<!--            strokeOpacity:0-->
+<!--        }-->
+<!--    </script>-->
     <script>
         $.ajax({
             type: "GET",
@@ -788,6 +788,12 @@
     <script>
         var loc= "";
         $(document).on('click', '.location-btn', function(){
+            if (loc!==null) {
+                reset = {}
+                reset.fillOpacity = 0;
+                reset.strokeOpacity = 0;
+                $('area[alt="' + loc + '"]').data('maphilight', reset);
+            }
             $.ajax({
                 type: "POST",
                 url: "/find",

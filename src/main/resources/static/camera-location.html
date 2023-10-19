@@ -538,10 +538,10 @@
                                 con.style.visibility = "visible";
                                 // document.getElementById("container").innerHTML = "<video id=\"videoElement\" width=\"640\" src=\"img/people.mp4\" style=\"float:right\" autoplay/>"
                                 if(n == 5) {
-                                    document.getElementById("container").innerHTML = "<div class=\"grid-container\"><div class=\"grid-item\" id=\"item1\"><iframe src=\"http://" + arr[0] + "\"></iframe></div><div class=\"grid-item\" id=\"item2\"><iframe src=\"http://" + arr[1] + "\"></iframe></div><div class=\"grid-item\" id=\"item3\"><iframe src=\"http://" + arr[2] + "\"></iframe></div><div class=\"grid-item\" id=\"item4\"><iframe src=\"http://" + arr[3] + "\"></iframe></div></div>"
+                                    document.getElementById("container").innerHTML = "<div class=\"grid-container\"><div class=\"grid-item\" id=\"item1\"><iframe src=" + arr[0] + "\ autoplay loop ></iframe></div><div class=\"grid-item\" id=\"item2\"><iframe src=" + arr[1] + "\ autoplay loop ></iframe></div><div class=\"grid-item\" id=\"item3\"><iframe src=" + arr[2] + "\ autoplay loop></iframe></div><div class=\"grid-item\" id=\"item4\"><iframe src=" + arr[3] + "\ autoplay loop></iframe></div></div>"
                                 }
                                 else{
-                                    document.getElementById("container").innerHTML = "<iframe src=\"http://"+ addr + "\" id=\"videoElement\" allowfullscreen></iframe>";
+                                    document.getElementById("container").innerHTML = "<iframe src=" + addr + "\ id=\"videoElement\" autoplay loop></iframe>";
                                 }
 
 

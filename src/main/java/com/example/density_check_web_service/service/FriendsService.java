@@ -68,7 +68,7 @@ public class FriendsService {
                 List<Friends> tmp = new ArrayList<>();
                 tmp.add(new Friends(user, user2, true));
                 tmp.add(new Friends(user2, user, false));
-                friendsRepository.saveAllAndFlush(tmp);
+                friendsRepository.saveAll(tmp);
 
                 return "이웃 신청이 성공적으로 완료되었습니다.";
             }

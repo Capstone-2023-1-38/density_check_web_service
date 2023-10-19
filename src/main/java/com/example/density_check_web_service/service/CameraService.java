@@ -37,12 +37,41 @@ public class CameraService {
     public List<CameraLocationRequestListDto> getCameraLocation() {
         List<String> ips = cameraLocationRepository.findDistinctByIp();
         List<CameraLocationRequestListDto> cameraLocationRequestListDtos = new ArrayList<>();
-        for (String ip: ips) {
-            List<CameraLocation> cameraLocations = cameraLocationRepository.findAllByIp(ip);
-            List<CameraLocationRequestDto> cameraLocationResponseDtos = cameraLocations.stream().map(CameraLocationRequestDto::new).collect(Collectors.toList());
-            CameraLocationRequestListDto cameraLocationRequestListDto = new CameraLocationRequestListDto(ip, cameraLocationResponseDtos);
-            cameraLocationRequestListDtos.add(cameraLocationRequestListDto);
-        }
+        int random = (int)(Math.random()*10);
+        List<CameraLocationRequestDto> xy1 = new ArrayList<>();
+        xy1.add(new CameraLocationRequestDto(190-random, 200+random));
+        xy1.add(new CameraLocationRequestDto(193, 350+random));
+        xy1.add(new CameraLocationRequestDto(210, 480-random));
+        xy1.add(new CameraLocationRequestDto(213, 530-random));
+        cameraLocationRequestListDtos.add(new CameraLocationRequestListDto("1", xy1));
+
+        List<CameraLocationRequestDto> xy2 = new ArrayList<>();
+        xy2.add(new CameraLocationRequestDto(188-random, 200));
+        xy2.add(new CameraLocationRequestDto(200, 178+random));
+        xy2.add(new CameraLocationRequestDto(310, 165+random));
+        xy2.add(new CameraLocationRequestDto(220-random, 182));
+        xy2.add(new CameraLocationRequestDto(400, 173-random));
+        xy2.add(new CameraLocationRequestDto(380+random, 169));
+        cameraLocationRequestListDtos.add(new CameraLocationRequestListDto("2", xy2));
+
+        List<CameraLocationRequestDto> xy3 = new ArrayList<>();
+        xy3.add(new CameraLocationRequestDto(415-random, 300));
+        xy3.add(new CameraLocationRequestDto(420, 440+random));
+        xy3.add(new CameraLocationRequestDto(440-random, 560));
+        cameraLocationRequestListDtos.add(new CameraLocationRequestListDto("3", xy3));
+
+        List<CameraLocationRequestDto> xy4 = new ArrayList<>();
+        xy4.add(new CameraLocationRequestDto(315, 550+random));
+        xy4.add(new CameraLocationRequestDto(220-random, 570));
+        xy4.add(new CameraLocationRequestDto(340, 566+random));
+        cameraLocationRequestListDtos.add(new CameraLocationRequestListDto("4", xy4));
+
+//        for (String ip: ips) {
+//            List<CameraLocation> cameraLocations = cameraLocationRepository.findAllByIp(ip);
+//            List<CameraLocationRequestDto> cameraLocationResponseDtos = cameraLocations.stream().map(CameraLocationRequestDto::new).collect(Collectors.toList());
+//            CameraLocationRequestListDto cameraLocationRequestListDto = new CameraLocationRequestListDto(ip, cameraLocationResponseDtos);
+//            cameraLocationRequestListDtos.add(cameraLocationRequestListDto);
+//        }
         return cameraLocationRequestListDtos;
     }
 

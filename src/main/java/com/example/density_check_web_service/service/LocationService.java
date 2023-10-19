@@ -78,13 +78,13 @@ public class LocationService {
     public LocationResponseForUserDto findLocationByEmail(String email, Boolean my) {
         PiAddress piAddress = piAddressRepository.findByEmail(email).orElse(null);
         if(piAddress == null) {
-//            Users users = usersRepository.findByEmail(email).orElse(null);
-//            piAddress = new PiAddress("111.111.111.111");
-//            piAddress.update(users);
-//            piAddress = piAddressRepository.saveAndFlush(piAddress);
-//            locationRepository.saveAndFlush(new Location(piAddress, 0, 0, 0));
+            Users users = usersRepository.findByEmail(email).orElse(null);
+            piAddress = new PiAddress("111.111.111.111");
+            piAddress.update(users);
+            piAddress = piAddressRepository.saveAndFlush(piAddress);
+            locationRepository.saveAndFlush(new Location(piAddress, 0, 1, 1));
 
-            return new LocationResponseForUserDto(new Location(null, 0, 0, 0), 0);
+//            return new LocationResponseForUserDto(new Location(null, 0, 0, 0), 0);
         }
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(piAddress);
         List<Location> locations = new ArrayList<>();

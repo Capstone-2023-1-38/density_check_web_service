@@ -37,6 +37,7 @@ public class NotifyService {
     private final LocationRepository locationRepository;
     private final PiAddressRepository piAddressRepository;
     private final FriendsService friendsService;
+    private final UsersRepository usersRepository;
     public static Map<String, SseEmitter> sseEmitters = new ConcurrentHashMap<>();
 
     public List<NotifyDto> notify(String email, Long id) {
@@ -88,9 +89,14 @@ public class NotifyService {
         PiAddress user = piAddressRepository.findByEmail(email).orElse(null);
 
         if (user == null)
-            return;
+            userTestData(email);
+//            return;
 
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(user);
+
+        if(location == null || location.getModifiedDate().isBefore(LocalDateTime.now().minusMinutes(1)))
+            return;
+
         List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
 
         if (locations.isEmpty())
@@ -109,6 +115,7 @@ public class NotifyService {
         }
     }
 
+    @Transactional
     public void testData() {
         //Test Data
         List<Location> locations = new ArrayList<>();
@@ -125,6 +132,17 @@ public class NotifyService {
         }
         locationRepository.saveAll(locations);
     }
+
+    @Transactional
+    public void userTestData(String email) {
+        Users users = usersRepository.findByEmail(email).orElse(null);
+        PiAddress piAddress = new PiAddress("111.111.111.111");
+        piAddress.update(users);
+        piAddress = piAddressRepository.saveAndFlush(piAddress);
+        locationRepository.saveAndFlush(new Location(piAddress, 0, 1, 1));
+    }
+
+
 
 //    @Async
 //    @EventListener
