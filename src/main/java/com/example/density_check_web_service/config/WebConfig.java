@@ -10,6 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        System.out.println(fileDir);
         registry.addResourceHandler("/img/profile/**").addResourceLocations("file:/"+fileDir);
     }
 }
