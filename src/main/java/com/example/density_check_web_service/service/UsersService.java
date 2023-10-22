@@ -81,6 +81,7 @@ public class UsersService {
             multipartFile.transferTo(new File(getFullPath(storeFilename)));
             Users users = usersRepository.findByEmail(email).orElse(null);
             users.updatePicture("img/profile/"+storeFilename);
+            System.out.println(fileDir);
         }
     }
 
