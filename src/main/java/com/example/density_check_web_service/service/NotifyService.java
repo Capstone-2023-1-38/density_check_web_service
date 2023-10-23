@@ -113,7 +113,7 @@ public class NotifyService {
     public void testData() {
         //Test Data
         List<Location> locations = new ArrayList<>();
-        int[] distribution = {5, 14, 14, 15, 25, 32, 32, 37, 44, 46, 46, 48, 59, 63, 63, 66, 72, 75, 77, 78, 90, 91, 95, 99};
+        int[] distribution = {5, 14, 14, 15, 25, 32, 32, 37, 44, 46, 46, 48, 58, 62, 62, 65, 71, 74, 76, 77, 89, 90, 95, 100};
         int index = 0;
         List<PiAddress> piAddresses = piAddressRepository.findAll();
 
