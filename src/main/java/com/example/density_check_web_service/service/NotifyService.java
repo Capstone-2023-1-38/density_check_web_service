@@ -86,8 +86,10 @@ public class NotifyService {
         if (email == null)
             return;
 
+        //test
         if (!email.equals("chju0905@gmail.com"))
             userTestData(email);
+
         PiAddress user = piAddressRepository.findByEmail(email).orElse(null);
 
         if (user == null)
@@ -136,14 +138,20 @@ public class NotifyService {
 
     @Transactional
     public void userTestData(String email) {
+        Users users = usersRepository.findByEmail(email).orElse(null);
+        if (users == null)
+            return;
         PiAddress piAddress = piAddressRepository.findByEmail(email).orElse(null);
         if(piAddress == null) {
-            Users users = usersRepository.findByEmail(email).orElse(null);
-            piAddress = new PiAddress("111.111.111.111");
+            int random1 = (int)(Math.random()*10);
+            int random2 = (int)(Math.random()*10);
+            int random3 = (int)(Math.random()*10);
+            String rdMAC = String.valueOf(random1) + String.valueOf(random2) + String.valueOf(random3);
+            piAddress = new PiAddress(rdMAC+":"+rdMAC+":"+rdMAC+":"+rdMAC);
             piAddress.update(users);
-            piAddress = piAddressRepository.saveAndFlush(piAddress);
+            piAddress = piAddressRepository.save(piAddress);
         }
-        locationRepository.saveAndFlush(new Location(piAddress, 0, 1, 1));
+        locationRepository.save(new Location(piAddress, 0, 1, 1));
     }
 
 

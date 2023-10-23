@@ -421,8 +421,8 @@
                         <p>기록 시간 : </p>
                         <p>현재 위치에서의 밀집도 등급 : 안전</p>
                     </div>
-                    <div class="table-div">
-                        <table class="table col-md-10 col-lg-12" style="color:#595959;margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF; margin-top:20px;">
+                    <div class="table-div" style="overflow:auto">
+                        <table class="table col-md-10 col-lg-12" style="color:#595959;margin-left: auto; margin-right: auto; text-align:center; background-color:#FFF; margin-top:20px;margin-bottom:50vw;">
                             <thead>
                             <tr class="table-active">
                                 <th scope="col" colspan="2">현재 위치에 함께 있는 사용자들</th>
@@ -431,6 +431,8 @@
                             <tbody class="tbody">
                             </tbody>
                         </table>
+                    </div>
+                    <div id="blank" style="visibility:hidden; height:600px;">
                     </div>
                 </div>
             </div>
@@ -762,11 +764,14 @@
                         }
                         str += '<TR>' +
                             '<TD style=\"width=50%\"><img class="rounded-circle people-img" src="'+imgsrc+'"/></TD>' +
-                            '<TD style=\"width=50%\">' + data[i].name + '</TD>';
+                            '<TD style=\"width=50%\">' + data[i].name + '</TD style=\"width=50%\">';
                         str += '</TR>';
                     });
                     $('.tbody').html(str);
-                    $(".tbody").reset();
+                    if(data.length != 0)
+                        $("#blank").attr("style", "display:none;");
+                    else
+                        $("#blank").attr("style", "display:none;");
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     Swal.fire({
