@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <link rel="icon" href="img/favicon.png">
 
-    <title>건물 전체의 밀집도</title>
+    <title>무선 통신 기반 건물 전체의 밀집도</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -91,14 +91,14 @@
         #building-text{
             font-size:4.5vw;
         }
-        strong{
+        #grade{
             font-size:4vw;
         }
         @media screen and (min-width:576px){
             #building-text {
                 font-size: 4vw;
             }
-            strong{
+            #grade{
                 font-size:3.8vw;
             }
             .table{
@@ -143,7 +143,7 @@
                 margin-left:auto;
                 margin-right:auto;
             }
-            strong{
+            #grade{
                 font-size: 2.8vw;
             }
 
@@ -185,7 +185,7 @@
             .table{
                 font-size:1.3vw;
             }
-            strong{
+            #grade{
                 font-size:2.5vw;
             }
         }
@@ -194,7 +194,7 @@
             #building-text{
                 font-size:2.5vw;
             }
-             strong{
+             #grade{
                  font-size:2.3vw;
              }
          }
@@ -984,7 +984,7 @@
     function btn(){
         Swal.fire({
           className: 'alert',
-          title: '<strong>밀집도 등급</strong>',
+          title: '<strong id=\"grade\">밀집도 등급</strong>',
           html:
             '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>8명 이상</td><tr></table></div></div>'
 

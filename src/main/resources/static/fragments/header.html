@@ -97,6 +97,11 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
+                            <a class="dropdown-item" href="/">
+                                <i class="bi-house-door-fill fa-fw mr-2 text-gray-400"></i>
+                                메인페이지
+                            </a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/setting">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 설정
@@ -109,8 +114,12 @@
                         </div>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown" sec:authorize="isAnonymous()">
+                            <a class="dropdown-item" href="/">
+                                <i class="bi-house-door-fill fa-fw mr-2 text-gray-400"></i>
+                                메인페이지
+                            </a>
                             <a class="dropdown-item" href="/customLogin">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 로그인
                             </a>
                         </div>
