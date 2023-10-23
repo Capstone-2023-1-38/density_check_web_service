@@ -788,6 +788,12 @@
     <script>
         var loc= "";
         $(document).on('click', '.location-btn', function(){
+            if (loc!==null) {
+                reset = {}
+                reset.fillOpacity = 0;
+                reset.strokeOpacity = 0;
+                $('area[alt="' + loc + '"]').data('maphilight', reset);
+            }
             $.ajax({
                 type: "POST",
                 url: "/find",

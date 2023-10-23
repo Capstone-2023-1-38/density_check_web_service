@@ -93,7 +93,7 @@ public class NotifyService {
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(user);
         List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
 
-        if (locations.isEmpty())
+        if(location == null || location.getModifiedDate().isBefore(LocalDateTime.now().minusMinutes(1)))
             return;
 
         Set<PiAddress> set = locations.stream().map(loc -> {
@@ -109,6 +109,7 @@ public class NotifyService {
         }
     }
 
+    @Transactional
     public void testData() {
         //Test Data
         List<Location> locations = new ArrayList<>();
