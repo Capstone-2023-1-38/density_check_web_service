@@ -766,6 +766,7 @@
                         str += '</TR>';
                     });
                     $('.tbody').html(str);
+                    $(".tbody").reset();
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     Swal.fire({
