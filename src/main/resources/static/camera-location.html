@@ -536,7 +536,8 @@
                         <script>
                             function cameraMonitor(n){
                                 var con = document.getElementById("container");
-                                var arr = ["192.168.0.169:5000", "192.168.0.109:5000", "192.168.0.113:5000", "192.168.0.156:5000"];
+                                // var arr = ["192.168.0.113:5000", "127.0.0.1:5000", "192.168.0.169:5000", "192.168.0.109:5000"];
+                                var arr = ["img/people.mp4","img/people.mp4","img/people.mp4","img/people.mp4"];
                                 var addr = arr[n-1];
                                 con.style.visibility = "visible";
                                 // document.getElementById("container").innerHTML ="<img src = \"img/camera.jpg\" id=\"videoElement\" style=\"width:100%;\">";
@@ -544,11 +545,11 @@
                                 if(n == 5) {
                                     // document.getElementById("container").innerHTML = "<div class=\"grid-container\"><div class=\"grid-item\" id=\"item1\"><iframe src=\"http://" + arr[0] + "\"></iframe></div><div class=\"grid-item\" id=\"item2\"><iframe src=\"http://" + arr[1] + "\"></iframe></div><div class=\"grid-item\" id=\"item3\"><iframe src=\"http://" + arr[2] + "\"></iframe></div><div class=\"grid-item\" id=\"item4\"><iframe src=\"http://" + arr[3] + "\"></iframe></div></div>"
                                     document.getElementById("container").innerHTML = "<p style=\"background-color:#DADADA;color:#595959;padding:1%;padding-right:0;margin-bottom:0;\">건물 내 카메라 전체 화면</p>"
-                                    document.getElementById("container").innerHTML = "<div class=\"grid-container\"><div class=\"grid-item\" id=\"item1\"><iframe src=\"http://" + arr[0] + "\"autoplay loop></iframe></div><div class=\"grid-item\" id=\"item2\"><iframe src=\"http://" + arr[1] + "\"autoplay loop></iframe></div><div class=\"grid-item\" id=\"item3\"><iframe src=\"http://" + arr[2] + "\"autoplay loop></iframe></div><div class=\"grid-item\" id=\"item4\"><iframe src=\"http://" + arr[3] + "\"autoplay loop></iframe></div></div>"
+                                    document.getElementById("container").innerHTML = "<div class=\"grid-container\"><div class=\"grid-item\" id=\"item1\"><iframe src=" + arr[0] + "\ autoplay loop ></iframe></div><div class=\"grid-item\" id=\"item2\"><iframe src=" + arr[1] + "\ autoplay loop ></iframe></div><div class=\"grid-item\" id=\"item3\"><iframe src=" + arr[2] + "\ autoplay loop></iframe></div><div class=\"grid-item\" id=\"item4\"><iframe src=" + arr[3] + "\ autoplay loop></iframe></div></div>"
                                 }
                                 else{
                                     document.getElementById("container").innerHTML = "<p style=\"background-color:#DADADA;color:#595959;padding:1%;padding-right:0;margin-bottom:0;\">Camera" + n + "</p>"
-                                    document.getElementById("container").innerHTML += "<iframe src=\"http://"+ addr + "\" id=\"videoElement\" autoplay loop></iframe>";
+                                    document.getElementById("container").innerHTML = "<iframe src=" + addr + "\ id=\"videoElement\" autoplay loop></iframe>";
                                 }
 
 
