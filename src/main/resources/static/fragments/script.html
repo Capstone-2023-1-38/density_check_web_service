@@ -105,11 +105,13 @@
             dataType: "json",
             success: function(data) {
                 if (data) {
+                    $("#count").text(data.length.toString() + "+");
+                    $("#zeroNotify").hide();
                     if(data.length == 0){
                         $("#count").hide();
                         $("#zeroNotify").text("새로운 알림이 없습니다.");
+                        $("#zeroNotify").show();
                     }
-                    $("#count").text(data.length.toString() + "+");
                     $.each(data , function(i) {
                         $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + data[i].posts.id + "\">" +
                             "                                    <div class=\"mr-3\">" +
