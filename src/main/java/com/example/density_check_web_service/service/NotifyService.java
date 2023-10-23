@@ -86,7 +86,8 @@ public class NotifyService {
         if (email == null)
             return;
 
-        userTestData(email);
+        if (!email.equals("chju0905@gmail.com"))
+            userTestData(email);
         PiAddress user = piAddressRepository.findByEmail(email).orElse(null);
 
         if (user == null)

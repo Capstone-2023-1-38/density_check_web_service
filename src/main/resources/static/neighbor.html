@@ -94,6 +94,9 @@
             margin-left:auto;
             margin-right:auto;
         }
+        .neighbor-img{
+            width:25%;
+        }
         @media screen and (min-width:320px) and (max-width:400px){
             #toggle:checked ~ .offcanvas {
                 transform: translateY(0);
@@ -765,7 +768,7 @@
                         imgsrc = data[i].toPicture;
                     }
                     str += '<TR>' +
-                        '<TD><img class="rounded-circle" src="'+imgsrc+'"/></TD>' +
+                        '<TD><img class="rounded-circle neighbor-img" src="'+imgsrc+'"/></TD>' +
                         '<TD>' + data[i].toName + '</TD>' +
                         '<TD id="email">' + data[i].toEmail + '</TD>' +
                         '<TD><a class="btn btn-secondary delete-btn" href="/friends/deny?toEmail='+data[i].toEmail+'" style="float:right">삭제</a>' +
