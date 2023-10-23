@@ -48,6 +48,12 @@
     .email-td{
       padding-bottom:1px;
     }
+    .table th{
+      position: sticky;
+      top: 0px;
+      z-index: 1;
+      background-color: #DADADA;
+    }
     @media screen and (min-width:576px){
       #building-text{
         font-size:4vw;
@@ -341,8 +347,8 @@
       <div class="container-fluid">
         <!-- Page Heading -->
         <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">회원 관리</h1>
-        <div class="col-md-10" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto;">
-          <table class="table table--block" style="text-align:center; background-color:#FFF">
+        <div class="col-md-10" style="height:500px;overflow:auto; margin-left: auto; margin-right: auto;">
+          <table class="table table--block" style="color:#595959;text-align:center; background-color:#FFF">
             <thead>
             <tr class="table-active">
               <th scope="col">라즈베리파이 MAC</th>
@@ -355,10 +361,7 @@
             <tr>
               <td>고유1</td>
               <td>1</td>
-              <td><div class="input-group mb-3">
-                <input type="text" class="form-control bg-gray-100" placeholder="userEmail" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button">등록</button>
-              </div></td>
+              <td style="color:white;">ㅇㅇ</td>
             </tr>
             <tr>
               <td>고유2</td>
