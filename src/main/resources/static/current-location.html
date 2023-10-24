@@ -685,6 +685,7 @@
     });
 </script>
 <script>
+    var loc="";
     var interval = setInterval(
         function () {
             $.ajax({
@@ -696,14 +697,14 @@
                 },
                 success: function (data) {
                     if (data.address !== null) {
-                        $('img[usemap]').maphilight({fillOpacity:0, alwaysOn:false});
-                        var loc="";
+                        if(loc == ""){loc = "3,2";}
+                        $('area[alt="' + loc + '"]').data('maphilight', {fillOpacity:0, strokeOpacity:0, alwaysOn:false});
+                        loc = data.x + "," + data.y;
                         var arr={};
 
                         $('.location').children().eq(0).text("현재 위치 : " + String.fromCharCode(data.x + 65) + ", " + data.y);
                         $('.location').children().eq(1).text("기록 시간 : " + dateFormat(data.modifiedDate));
                         $('.location').children().eq(2).text("현재 위치에서의 밀집도 등급 : " + data.grade);
-                        loc = data.x + "," + data.y;
                         arr.fillOpacity=0.2;
                         if(data.grade == "고위험") {
                             arr.fillColor = "ff0000";
