@@ -687,15 +687,6 @@
 <script>
     var interval = setInterval(
         function () {
-            $.fn.maphilight.defaults = {
-                fill: true,
-                fillColor: '4e73df',
-                fillOpacity: 0,
-                stroke: true,
-                strokeColor: '4e73df',
-                strokeOpacity: 0,
-                strokeWidth: 1
-            }
             $.ajax({
                 type: "POST",
                 url: "/find",
@@ -705,6 +696,7 @@
                 },
                 success: function (data) {
                     if (data.address !== null) {
+                        $('img[usemap]').maphilight({fillOpacity:0, alwaysOn:false});
                         var loc="";
                         var arr={};
 
