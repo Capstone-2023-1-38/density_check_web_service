@@ -687,6 +687,15 @@
 <script>
     var interval = setInterval(
         function () {
+            $.fn.maphilight.defaults = {
+                fill: true,
+                fillColor: '4e73df',
+                fillOpacity: 0,
+                stroke: true,
+                strokeColor: '4e73df',
+                strokeOpacity: 0,
+                strokeWidth: 1
+            }
             $.ajax({
                 type: "POST",
                 url: "/find",
@@ -698,6 +707,7 @@
                     if (data.address !== null) {
                         var loc="";
                         var arr={};
+
                         $('.location').children().eq(0).text("현재 위치 : " + String.fromCharCode(data.x + 65) + ", " + data.y);
                         $('.location').children().eq(1).text("기록 시간 : " + dateFormat(data.modifiedDate));
                         $('.location').children().eq(2).text("현재 위치에서의 밀집도 등급 : " + data.grade);
@@ -756,22 +766,19 @@
                     str = '';
                     $.each(data , function(i) {
                         var imgsrc;
-                        if(data[i].picture === null) {
+                        if (data[i].picture === null) {
                             imgsrc = "img/undraw_profile.svg";
-                        }
-                        else {
+                        } else {
                             imgsrc = data[i].picture;
                         }
                         str += '<TR>' +
-                            '<TD style=\"width=50%\"><img class="rounded-circle people-img" src="'+imgsrc+'"/></TD>' +
-                            '<TD style=\"width=50%\">' + data[i].name + '</TD style=\"width=50%\">';
+                            '<TD style=\"width=50%\"><img class="rounded-circle people-img" src="' + imgsrc + '"/></TD>' +
+                            '<TD style=\"width=50%\">' + data[i].name + '</TD>';
                         str += '</TR>';
+
                     });
                     $('.tbody').html(str);
-                    if(data.length != 0)
-                        $("#blank").attr("style", "display:none;");
-                    else
-                        $("#blank").attr("style", "display:none;");
+                    $('.table').css('margin-bottom', '0px');
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     Swal.fire({
