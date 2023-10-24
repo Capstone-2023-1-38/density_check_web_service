@@ -29,7 +29,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
 
         body{
-          font-family: 'NanumSquareNeoExtraBold'
+            font-family: 'NanumSquareNeoExtraBold'
         }
         #building-text{
             font-size:5vw;
@@ -45,7 +45,12 @@
         .table td, .table th{
             text-align:center;
         }
-        @media screen and (max-width:575px){
+        @media screen and (max-width:575px) {
+            .table {
+                table-layout: fixed;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
             .container-fluid{
                 padding:0;
             }
