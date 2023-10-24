@@ -29,7 +29,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
 
         body{
-          font-family: 'NanumSquareNeoExtraBold'
+            font-family: 'NanumSquareNeoExtraBold'
         }
         #building-text{
             font-size:5vw;
@@ -46,26 +46,30 @@
             text-align:center;
         }
         @media screen and (max-width:575px) {
-            .container-fluid {
-                padding: 0;
+            .table {
+                table-layout: fixed;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
-
-            #image {
-                padding-left: 30%;
+            .container-fluid{
+                padding:0;
             }
-
-            .table td, .table th {
-                display: block;
+            #image{
+                padding-left:30%;
             }
-
-            .img-profile {
-                width: 30vw;
-                height: 30vw;
+            .table td, .table th{
+                display:block;
             }
-
-            .form-control {
-                width: 70%;
-            }
+        }
+        .img-profile{
+            width:30vw;
+            height:30vw;
+        }
+        #image{
+            padding-left:30%;
+        }
+        .form-control{
+            width:70%;
         }
 
         @media screen and (min-width:576px){
