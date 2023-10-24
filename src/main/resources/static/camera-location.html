@@ -536,7 +536,7 @@
                         <script>
                             function cameraMonitor(n){
                                 var con = document.getElementById("container");
-                                var arr = ["192.168.0.169:5000", "192.168.0.109:5000", "192.168.0.113:5000", "192.168.0.156:5000"];
+                                var arr = ["192.168.0.168:5000", "192.168.0.109:5000", "192.168.0.113:5000", "192.168.0.156:5000"];
                                 var addr = arr[n-1];
                                 con.style.visibility = "visible";
                                 // document.getElementById("container").innerHTML ="<img src = \"img/camera.jpg\" id=\"videoElement\" style=\"width:100%;\">";
@@ -680,6 +680,9 @@
                     var sum = 0
                     var svg = d3.select("#svg");
                     d3.selectAll('circle').remove()
+                    for(var i=0; i<4; i++) {
+                        $('.cnt').find('tr').eq(i).find('td').eq(1).text("0명");
+                    }
                     $.each(data , function(i) {
                         $('.cnt').find('tr').eq(Number(data[i].ip)-1).find('td').eq(1).text(data[i].xy.length+"명");
                         sum += data[i].xy.length
@@ -698,7 +701,7 @@
 
                 }
             })
-        },1000);
+        },500);
 </script>
 <th:block th:replace="fragments/script::script"></th:block>
 </body>
