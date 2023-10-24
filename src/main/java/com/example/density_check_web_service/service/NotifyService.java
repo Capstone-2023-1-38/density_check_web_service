@@ -10,6 +10,7 @@ import com.example.density_check_web_service.domain.Notify.dto.NotifyDto;
 import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import com.example.density_check_web_service.domain.PiAddress.PiAddressRepository;
 import com.example.density_check_web_service.domain.Posts.dto.PostsListResponseDto;
+import com.example.density_check_web_service.domain.Users.Role;
 import com.example.density_check_web_service.domain.Users.Users;
 import com.example.density_check_web_service.domain.Users.UsersRepository;
 import groovy.util.NodeList;
@@ -99,7 +100,7 @@ public class NotifyService {
         Set<PiAddress> set = locations.stream().map(loc -> {
             return loc.getPiAddress();
         }).collect(Collectors.toSet());
-        if (set.size() > 4) {
+        if (set.size() > 4 && user.getUsers().getRole().equals(Role.USER)) {
             SseEmitter sseEmitter = NotifyService.sseEmitters.get(email);
             try {
                 sseEmitter.send(SseEmitter.event().name("warning").data(""));
