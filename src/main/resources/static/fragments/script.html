@@ -86,7 +86,7 @@
 
             eventSource.addEventListener("warning", function(event) {
                 $('.toast').toast('show');
-                stopWarning();
+                // stopWarning();
             });
 
             eventSource.addEventListener("error", function(event) {
@@ -167,7 +167,7 @@
             }
         });
     </script>
-    <script type="text/javascript" sec:authorize="isAuthenticated()">
+    <script type="text/javascript">
         var warningInterval = setInterval(
             function () {
                 $.ajax({
