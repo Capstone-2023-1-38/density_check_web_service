@@ -639,7 +639,7 @@
                             function changePopupText(locx, locy, addr, x, y) {
                                 var loc = locx.toString() + "," + locy.toString();
                                 var data = {};
-                                if(arr[locx][locy] > 6) {
+                                if(arr[locx][locy] > 7) {
                                     data.fillColor = "ff0000";
                                     data.strokeColor = "ff0000";
                                 }else if(arr[locx][locy] > 4) {
@@ -676,22 +676,25 @@
                             //구역 선택 시 포커싱
                                 function tableFocus(alpha, x){
                                     var focus = x;
+                                    var minus = 1;
                                     if(alpha == 'B') {
                                         focus += 4;
                                     }else if(alpha == 'C') {
                                         focus += 8;
-                                        if(x >= 3) focus -= 1;
+                                        if(x == 3)
+                                            minus++;
                                     }else if(alpha == 'D') {
-                                        focus += 11;
-                                        if(x >= 3) focus -= 1;
+                                        focus += 12;
+                                        if(x==3)
+                                            minus++;
                                     }else if(alpha == 'E') {
-                                        focus += 14;
+                                        focus += 16;
                                     }else if(alpha == 'F') {
-                                        focus += 18;
+                                        focus += 20;
                                     }
                                     $('#coordinate_info tbody').find('tr').css("backgroundColor","#FFF");
                                     var grade = $('#coordinate_info tbody').find('tr').eq(focus).find('td').eq(2).text();
-                                    var targetTop = $('#coordinate_info tbody').find('tr').eq(focus-1).position().top;
+                                    var targetTop = $('#coordinate_info tbody').find('tr').eq(focus-minus).position().top;
                                     var div = document.getElementById("coordinate_info");
                                     var divTop = div.getBoundingClientRect().top;
                                     //var targetTop2 = $('#coordinate_info').offset().top;
@@ -778,6 +781,11 @@
                             <td></td>
                             <td></td>
                         </tr>
+                        <tr style="display: none;">
+                            <td>(C,2)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                         <tr>
                             <td>(C,3)</td>
                             <td></td>
@@ -790,6 +798,11 @@
                         </tr>
                         <tr>
                             <td>(D,1)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr style="display: none;">
+                            <td>(D,2)</td>
                             <td></td>
                             <td></td>
                         </tr>
