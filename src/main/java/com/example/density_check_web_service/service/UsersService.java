@@ -1,15 +1,26 @@
 package com.example.density_check_web_service.service;
 
+import com.example.density_check_web_service.config.auth.PrincipalDetails;
+import com.example.density_check_web_service.domain.Users.Role;
 import com.example.density_check_web_service.domain.Users.Users;
 import com.example.density_check_web_service.domain.Users.UsersRepository;
 import com.example.density_check_web_service.domain.Users.dto.UsersResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -26,6 +37,23 @@ public class UsersService {
     public void updateName(String email, String name) {
         Users users = usersRepository.findByEmail(email).orElseThrow();
         users.updateName(name);
+    }
+
+    @Transactional
+    public void updateRole(Authentication authentication, String email) {
+        Users users = usersRepository.findByEmail(email).orElseThrow();
+        Role role = Role.USER;
+        List<GrantedAuthority> updatedAuthorities = new ArrayList<>(authentication.getAuthorities());
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"))) {
+            role = Role.ADMIN;
+        }
+        updatedAuthorities.add(new SimpleGrantedAuthority(role.getKey())); //add your role here [e.g., new SimpleGrantedAuthority("ROLE_NEW_ROLE")]
+        updatedAuthorities.remove(0);
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), authentication.getCredentials(), updatedAuthorities);
+
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
+
+        users.updateRole(role);
     }
 
     private final String fileDir = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img\\profile\\";

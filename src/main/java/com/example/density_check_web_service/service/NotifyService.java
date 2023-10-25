@@ -10,6 +10,7 @@ import com.example.density_check_web_service.domain.Notify.dto.NotifyDto;
 import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import com.example.density_check_web_service.domain.PiAddress.PiAddressRepository;
 import com.example.density_check_web_service.domain.Posts.dto.PostsListResponseDto;
+import com.example.density_check_web_service.domain.Users.Role;
 import com.example.density_check_web_service.domain.Users.Users;
 import com.example.density_check_web_service.domain.Users.UsersRepository;
 import groovy.util.NodeList;
@@ -80,6 +81,8 @@ public class NotifyService {
 
     @Transactional
     public void warning(String email) {
+//        testData();
+
         if (email == null)
             return;
 
@@ -91,13 +94,13 @@ public class NotifyService {
         Location location = locationRepository.findFirstByPiAddressOrderByModifiedDateDesc(user);
         List<Location> locations = locationRepository.findByXAndYAndModifiedDateIsGreaterThanEqualOrderByModifiedDateDesc(location.getX(), location.getY(), LocalDateTime.now().minusMinutes(1));
 
-        if (locations.isEmpty())
+        if(location == null || location.getModifiedDate().isBefore(LocalDateTime.now().minusMinutes(1)))
             return;
 
         Set<PiAddress> set = locations.stream().map(loc -> {
             return loc.getPiAddress();
         }).collect(Collectors.toSet());
-        if (set.size() > 4) {
+        if (set.size() > 4 && user.getUsers().getRole().equals(Role.USER)) {
             SseEmitter sseEmitter = NotifyService.sseEmitters.get(email);
             try {
                 sseEmitter.send(SseEmitter.event().name("warning").data(""));
@@ -105,6 +108,24 @@ public class NotifyService {
                 NotifyService.sseEmitters.remove(email);
             }
         }
+    }
+
+    @Transactional
+    public void testData() {
+        //Test Data
+        List<Location> locations = new ArrayList<>();
+        int[] distribution = {5, 14, 14, 15, 25, 32, 32, 37, 44, 46, 46, 48, 58, 62, 62, 65, 71, 74, 76, 77, 89, 90, 95, 100};
+        int index = 0;
+        List<PiAddress> piAddresses = piAddressRepository.findAll();
+
+        for(int i = 0; i < 100; i++) {
+            while(distribution[index] < i) {
+                index++;
+            }
+            Location location = Location.builder().piAddress(piAddresses.get(i)).distance(0).x(index/4).y(index%4).build();
+            locations.add(location);
+        }
+        locationRepository.saveAll(locations);
     }
 
 //    @Async

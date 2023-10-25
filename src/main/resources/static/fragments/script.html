@@ -36,7 +36,7 @@
             toastDiv += '      <span aria-hidden="true">&times;</span>';
             toastDiv += '    </button>';
             toastDiv += '  </div>';
-            toastDiv += '  <div class="toast-body bg-white" style="min-height:100px"> 현재 위치의 밀집도 등급이 위험으로 변경되었습니다. 위험 상황이 발생할 수 있으니 대피해주시기 바랍니다.</div>';
+            toastDiv += '  <div class="toast-body bg-white" style="min-height:100px"> 현재 위치의 밀집도 등급이 위험 이상으로 변경되었습니다. 위험 상황이 발생할 수 있으니 대피해주시기 바랍니다.</div>';
             toastDiv += '</div>';
             toastDiv += '</div>';
             $("#warningToast").append(toastDiv);
@@ -57,7 +57,7 @@
                 count = parseInt(count.slice(0, -1));
                 count++;
                 $("#count").show();
-                $("#zeroNotify").hide();
+                $("#zeroNotify").css('display','none');
                 $("#count").text(count.toString() + "+");
                 $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + message.posts.id + "\">" +
                     "                                    <div class=\"mr-3\">" +
@@ -86,6 +86,7 @@
 
             eventSource.addEventListener("warning", function(event) {
                 $('.toast').toast('show');
+                // stopWarning();
             });
 
             eventSource.addEventListener("error", function(event) {
@@ -105,11 +106,13 @@
             dataType: "json",
             success: function(data) {
                 if (data) {
+                    $("#count").text(data.length.toString() + "+");
                     if(data.length == 0){
                         $("#count").hide();
                         $("#zeroNotify").text("새로운 알림이 없습니다.");
+                        return;
                     }
-                    $("#count").text(data.length.toString() + "+");
+                    $("#zeroNotify").attr("style","display: none;");
                     $.each(data , function(i) {
                         $("#notify").append("<a class=\"dropdown-item d-flex align-items-center\" href=\"/posts/" + data[i].posts.id + "\">" +
                             "                                    <div class=\"mr-3\">" +

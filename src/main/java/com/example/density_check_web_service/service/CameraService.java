@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +36,7 @@ public class CameraService {
 
     @Transactional
     public List<CameraLocationRequestListDto> getCameraLocation() {
+        cameraLocationRepository.deleteAll(cameraLocationRepository.findAllByModifiedDateIsBefore(LocalDateTime.now().minusSeconds(3)));
         List<String> ips = cameraLocationRepository.findDistinctByIp();
         List<CameraLocationRequestListDto> cameraLocationRequestListDtos = new ArrayList<>();
         for (String ip: ips) {

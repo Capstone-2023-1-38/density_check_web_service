@@ -49,15 +49,15 @@ public class TestData implements CommandLineRunner {
 
         List<PiAddress> piAddresses = new ArrayList<>();
         for (int i = 0; i < 105; i++) {
-            String strI = String.valueOf(i) + String.valueOf(i);
-            PiAddress piAddress = PiAddress.builder().address(strI+"."+strI+"."+strI).build();
+            String strI = String.valueOf(i);
+            PiAddress piAddress = PiAddress.builder().address(strI+":"+strI+":"+strI+":"+strI).build();
             piAddress.update(users.get(i));
             piAddresses.add(piAddress);
         }
         piAddressRepository.saveAll(piAddresses);
 
         List<Location> locations = new ArrayList<>();
-        int[] distribution = {5, 14, 14, 15, 25, 32, 32, 37, 44, 46, 46, 48, 58, 62, 62, 65, 71, 74, 76, 77, 89, 90, 95, 99};
+        int[] distribution = {5, 14, 14, 15, 25, 32, 32, 37, 44, 46, 46, 48, 58, 62, 62, 65, 71, 74, 76, 77, 89, 90, 95, 100};
         int index = 0;
         for (int i = 0; i < 100; i++) {
             while (distribution[index] < i) {
@@ -66,10 +66,10 @@ public class TestData implements CommandLineRunner {
             Location location = Location.builder().piAddress(piAddresses.get(i)).distance(0).x(index / 4).y(index % 4).build();
             locations.add(location);
         }
-//        for (int i = 100; i < 105; i++) {
-//            Location location = Location.builder().piAddress(piAddresses.get(i)).distance(0).x(4).y(0).build();
-//            locations.add(location);
-//        }
+        for (int i = 100; i < 105; i++) {
+            Location location = Location.builder().piAddress(piAddresses.get(i)).distance(0).x(4).y(0).build();
+            locations.add(location);
+        }
 
         locationRepository.saveAll(locations);
 

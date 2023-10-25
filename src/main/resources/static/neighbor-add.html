@@ -24,31 +24,105 @@
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
         body{
           font-family: 'NanumSquareNeoExtraBold'
         }
+        .search{
+            font-size:2.5vw;
+        }
         #building-text{
             font-size:4.5vw;
+        }
+        .table{
+            font-size:0.8rem;
+            border:2px solid #4e73df;
+        }
+        ::placeholder {
+            font-size: 2.8vw;
+        }
+
+        .neighbor-btn{
+            width:max-content;
+            font-size:0.8rem;
+        }
+        .neighbor-img{
+            width:40%;
+        }
+        @media screen and (max-width:400px) {
+            .neighbor-img{
+                width:50%;
+            }
         }
         @media screen and (min-width:576px){
             #building-text{
                 font-size:4vw;
+            }
+            ::placeholder {
+                font-size:2.3vw;
+            }
+            .search{
+                font-size:2vw;
+            }
+            .table,.neighbor-btn{
+                font-size:0.8rem;
+            }
+            .neighbor-img{
+                width:30%;
             }
         }
         @media screen and (min-width:768px){
             #building-text{
                 font-size:3vw;
             }
+            .search{
+                font-size:1.8vw;
+            }
+            ::placeholder {
+                font-size:2vw;
+            }
+            .table,.neighbor-btn{
+                font-size:1rem;
+            }
+            .table{
+                border: 3px solid #4e73df;
+            }
+            .neighbor-img{
+                width:25%;
+            }
+            .neighbor-btn{
+                padding-left: 1.2rem;
+                padding-right: 1.2rem;
+            }
+
         }
         @media screen and (min-width:992px){
-
+            .search{
+                font-size:1.4vw;
+            }
+            ::placeholder {
+                font-size:1.4vw;
+            }
+            .table,.neighbor-btn{
+                font-size:1rem;
+            }
         }
         @media screen and (min-width:1200px){
             #building-text{
                 font-size:2.8vw;
             }
+            .location-btn{
+                font-size:1.2vw;
+            }
+            ::placeholder {
+                font-size:1.3vw;
+            }
+            .table,.neighbor-btn{
+                font-size:1.3vw;
+            }
+
         }
         @media screen and (min-width:1800px){
             #building-text{
@@ -282,19 +356,16 @@
                     <!-- Page Heading -->
                     <h1 id="building-text" class="h3 mb-4 text-gray-800" style="text-align: center">이웃 추가</h1>
                     <form action="/friends/add/new" method="get">
-                        <div class="col-md-7 input-group mb-3" style="margin-left: auto; margin-right: auto;">
-                            <span class="input-group-text" id="basic-addon1">@</span>
-                            <input name="toEmail" type="text" class="form-control" placeholder="UserEmail" aria-label="Useremail" aria-describedby="basic-addon1">
-                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2" onclick="" style="float:right">추가</button>
+                        <div class="col-lg-8 input-group mb-3" style="margin-left: auto; margin-right: auto;">
+                            <span class="input-group-text search" id="basic-addon1">@</span>
+                            <input name="toEmail" type="text" class="form-control search" placeholder="UserEmail" aria-label="Useremail" aria-describedby="basic-addon1">
+                            <button class="btn btn-outline-secondary location-btn search" type="submit" id="button-addon2" onclick="" style="float:right">추가</button>
                         </div>
                     </form>
-                    <div class="col-md-7" style="height:500px; overflow:auto; margin-left: auto; margin-right: auto; padding-top:50px">
-                        <table class="table" style="border: 3px solid #4e73df;">
+                    <div class="col-lg-8" style="overflow:auto; margin-left: auto; margin-right: auto; padding-top:5%;">
+                        <table class="table">
                             <thead bgcolor="#4e73df" style="color:#FFF">
-                                <th>이웃 신청 목록</th>
-                                <th>&nbsp;</th>
-                                <th>&nbsp;</th>
-                                <th>&nbsp;</th>
+                                <th colspan="4" style="text-align:center;">이웃 신청 목록</th>
                             </thead>
                             <tbody class="table_body" style="background-color:#FFF">
 <!--                                <tr>-->
@@ -386,10 +457,10 @@
                         imgsrc = data[i].toPicture;
                     }
                     str += '<TR>' +
-                        '<TD style="width:30%"><img class="rounded-circle" src="'+imgsrc+'" style="width:15%;height:15%;"/></TD>' +
+                        '<TD style="width:30%"><img class="rounded-circle neighbor-img" src="'+imgsrc+'"/></TD>' +
                         '<TD style="text-align:center;width:30%;">' + data[i].toName + '</TD>' +
-                        '<TD><a class="btn btn-secondary" style="float:right" href="friends/accept?toEmail=' + data[i].toEmail + '" >수락</a></TD>' +
-                        '<TD><a class="btn btn-secondary" href="/friends/deny?toEmail=' + data[i].toEmail + '">거절</a></TD>';
+                        '<TD><a class="btn btn-secondary neighbor-btn" style="float:right" href="friends/accept?toEmail=' + data[i].toEmail + '" >수락</a></TD>' +
+                        '<TD><a class="btn btn-secondary neighbor-btn" href="/friends/deny?toEmail=' + data[i].toEmail + '">거절</a></TD>';
                     str += '</TR>';
                 });
                 $('.table_body').html(str);

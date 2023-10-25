@@ -1,5 +1,6 @@
 package com.example.density_check_web_service.domain.CameraLocation;
 
+import com.example.density_check_web_service.domain.BaseTimeEntity;
 import com.example.density_check_web_service.domain.CameraLocation.dto.CameraLocationRequestDto;
 import com.example.density_check_web_service.domain.PiAddress.PiAddress;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-public class CameraLocation {
+public class CameraLocation extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

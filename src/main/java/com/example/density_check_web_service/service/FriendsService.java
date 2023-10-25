@@ -23,6 +23,10 @@ public class FriendsService {
     public List<FriendsListResponseDto> findMutualByFrom(String email) {
         List<FriendsListResponseDto> friendsListResponseDtoList = friendsRepository.findMutualByFrom(email).stream()
                 .map(FriendsListResponseDto::new).collect(Collectors.toList());
+
+        if (friendsListResponseDtoList.isEmpty()) {
+            return new ArrayList<>();
+        }
         return friendsListResponseDtoList;
     }
 
@@ -54,7 +58,7 @@ public class FriendsService {
 
     @Transactional
     public String save(String fromEmail, String toEmail) {
-        if(fromEmail == toEmail) {
+        if(fromEmail.equals(toEmail)) {
             return "자기 자신에게 이웃 신청을 할 수 없습니다.";
         }
         if(!usersRepository.findByEmail(toEmail).isEmpty()) {

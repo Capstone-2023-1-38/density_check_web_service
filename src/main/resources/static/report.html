@@ -26,6 +26,7 @@
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
         body{
@@ -44,13 +45,36 @@
             font-size:4.5vw;
         }
         #message{
-            font-size:4vw;
+            font-size:3.8vw;
         }
         .table{
-            font-size:2.5vw;
+            font-size:3vw;
         }
         ::placeholder {
-            font-size: 2vw;
+            font-size: 2.8vw;
+        }
+        #title, #report-content, #location{
+            font-size: 3vw;
+        }
+        #location-button button, #submit{
+            font-size:2.5vw;
+        }
+        #selector{
+            font-size:2.8vw;
+        }
+        @media screen and (min-width:500px){
+            .table{
+                font-size:2.8vw;
+            }
+            ::placeholder {
+                font-size:2.5vw;
+            }
+            #location-button button, #submit{
+                font-size:2.3vw;
+            }
+            #title, #report-content, #location{
+                font-size: 2.5vw;
+            }
         }
         @media screen and (min-width:576px){
             #building-text{
@@ -59,13 +83,68 @@
             #message{
                 font-size:3vw;
             }
-        }
-        @media screen and (min-width:768px){
             .table{
+                font-size:2.5vw;
+            }
+            ::placeholder {
+                font-size:2.3vw;
+            }
+            #location-button button, #submit{
+                font-size:2.1vw;
+            }
+            #title, #report-content, #location{
+                font-size: 2.3vw;
+            }
+            #selector{
+                font-size:2.8vw;
+            }
+
+        }
+        @media screen and (min-width:700px){
+            #building-text{
+                font-size:4vw;
+            }
+            #message{
+                font-size:3vw;
+            }
+            .table{
+                font-size:2.3vw;
+            }
+            ::placeholder {
+                font-size:2.2vw;
+            }
+            #location-button button, #submit{
                 font-size:2vw;
             }
+            #title, #report-content, #location{
+                font-size: 2.2vw;
+            }
+            #selector{
+                font-size:3vw;
+            }
+
+        }
+        @media screen and (min-width:768px){
             #building-text{
                 font-size:3vw;
+            }
+            #message{
+                font-size:2.3vw;
+            }
+            .table{
+                font-size:1.8vw;
+            }
+            ::placeholder {
+                font-size:1.7vw;
+            }
+            #location-button button, #submit{
+                font-size:1.5vw;
+            }
+            #title, #report-content, #location{
+                font-size: 1.7vw;
+            }
+            #selector{
+                font-size:2vw;
             }
         }
         @media screen and (min-width:992px){
@@ -73,10 +152,16 @@
                 font-size:2vw;
             }
             .table{
-                font-size:1.3vw;
+                font-size:1.5vw;
             }
             ::placeholder {
-                font-size: 1.5vw;
+                font-size: 1.4vw;
+            }
+            #location-button button, #submit{
+                font-size:1.3vw;
+            }
+            #title, #report-content, #location{
+                font-size: 1.4vw;
             }
         }
         @media screen and (min-width:1200px){
@@ -86,8 +171,17 @@
             #message{
                 font-size:1.7vw;
             }
+            .table{
+                font-size:1.4vw;
+            }
             ::placeholder {
-                font-size: 1.2vw;
+                font-size: 1.3vw;
+            }
+            #location-button button, #submit{
+                font-size:1.2vw;
+            }
+            #title, #report-content, #location{
+                font-size: 1.3vw;
             }
         }
 
@@ -114,10 +208,6 @@
         .position{
             font-size:2vw;
         }
-
-
-
-
 
     </style>
 </head>
@@ -345,6 +435,10 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
+
+
+
+
                     <h1 id="building-text" class="h3 mb-4 text-gray-800" style="font-weight: 700;text-align: center">제보하기</h1>
                     <h3 id="message" class="h5 mb-4 text-gray-500 building-text" style="text-align:center;">위급한 상황을 제보해주세요.</h3>
                     <form name="loc" action="/posts/new", method="post" onsubmit="return btn();">
@@ -355,14 +449,14 @@
                                     <td>
                                         <div class="col-lg-8 col-xs-10" id="location-button" style="padding-left:0px;">
                                             <input id="location" name="location" type="text" class="form-control" value="" placeholder="위치를 선택하세요" style="color:#000;background-color:#FFF" readonly>
-                                            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" data-bs-parent="#selector" aria-expanded="false" aria-controls="collapseExample" style="font-size:0.8vw;float:right;">
+                                            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" data-bs-parent="#selector" aria-expanded="false" aria-controls="collapseExample" style="float:right;padding:0" onclick="test();">
                                                 위치 선택
                                             </button>
                                         </div>
-                                        <div class="collapse" id="collapseExample" style="margin-top:2%;">
-                                            <div class="card card-body">
+                                        <div class="collapse" id="collapseExample" style="margin-top:2%;padding:0">
+                                            <div class="card card-body" style="padding:4%;">
                                                 <div id="collapse-div" style="position:relative;left:0;top:0;">
-                                                    <div style="position:relative;margin-left:2rem;margin-right:auto;" id="selector">
+                                                    <div style="position:relative;margin-left:auto;margin-right:auto;" id="selector">
                                                         <!-- Image Map Generated by http://www.image-map.net/ -->
                                                         <img id="second_floor" class="map" src="img/2floor.png" usemap="#image-map">
                                                         <map name="image-map">
@@ -392,24 +486,33 @@
                                                             <area target="_self" alt="5,3" title="F3" href="#" coords="416,628,571,710" shape="rect" onmouseover="mapHilight(5,3);" onmouseout="offHilight(5,3);" onclick="chooseLocation('F',3);">
                                                         </map>
 
-                                                        <div class="position">
+                                                        <div>
                                                             <p style="position:absolute;top:10%; left:5%;">A</p>
                                                             <p style="position:absolute;top:28%; left:5%;">B</p>
                                                             <p style="position:absolute;top:43%; left:5%;">C</p>
                                                             <p style="position:absolute;top:60%; left:5%;">D</p>
                                                             <p style="position:absolute;top:75%; left:5%;">E</p>
                                                             <p style="position:absolute;top:91%; left:5%;">F</p>
-                                                            <p style="position:absolute;top:1%; left:18%;">0</p>
-                                                            <p style="position:absolute;top:1%; left:36%;">1</p>
-                                                            <p style="position:absolute;top:1%; left:54%;">2</p>
-                                                            <p style="position:absolute;top:1%; left:73%;">3</p>
+                                                            <p style="position:absolute;top:0.5%; left:19%;">0</p>
+                                                            <p style="position:absolute;top:0.5%; left:38%;">1</p>
+                                                            <p style="position:absolute;top:0.5%; left:56%;">2</p>
+                                                            <p style="position:absolute;top:0.5%; left:75%;">3</p>
                                                         </div>
                                                     </div>
                                                     <script>
                                                         function chooseLocation(x, y){
                                                             $('input[name=location]').attr('value',x+y.toString());
                                                             $('input[name=location]').focus();
-                                                            //$('.collapse').attr('display', 'none');
+                                                            $('.collapse').css('display', 'none');
+                                                        }
+
+                                                        function test(){
+                                                            var con = document.getElementById("collapseExample");
+                                                            if(con.style.display=='none'){
+                                                                con.style.display = 'block';
+                                                            }else{
+                                                                con.style.display = 'none';
+                                                            }
                                                         }
 
                                                         function mapHilight(x, y){
@@ -436,7 +539,7 @@
                                 <tr>
                                     <th scope="row">제목</th>
                                     <td>
-                                        <div >
+                                        <div>
                                             <input name="title" type="text" class="form-control" id="title" placeholder="제목을 입력하세요" style="color:#000">
                                         </div>
                                     </td>
@@ -445,7 +548,7 @@
                                     <th scope="row">내용</th>
                                     <td>
                                         <div>
-                                            <textarea name="content" class="form-control" rows="10" placeholder="내용을 입력하세요" style="color:#000"></textarea>
+                                            <textarea name="content" class="form-control" id="report-content" rows="10" placeholder="내용을 입력하세요" style="color:#000"></textarea>
                                         </div>
                                     </td>
                                 </tr>
@@ -475,7 +578,7 @@
 <!--                                </div>-->
 <!--                            </div>-->
 <!--                        </div>-->
-                            <button class="btn btn-secondary float-right col-sm-12">제출</button>
+                            <button id="submit" class="btn btn-secondary float-right col-sm-12">제출</button>
 <!--                            <div class="col-sm-12">-->
 <!--                                <button class="btn btn-secondary float-right">제출</button>-->
 <!--                            </div>-->
@@ -536,7 +639,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
     <script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
     <script src="vendor/jquery/jquery.maphilight.min.js"></script>

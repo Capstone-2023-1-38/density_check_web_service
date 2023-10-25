@@ -23,6 +23,7 @@
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
@@ -42,17 +43,17 @@
             font-size:4vw;
         }
         .search{
-            font-size:3vw;
+            font-size:2.5vw;
         }
         @media screen and (min-width:576px){
             #building-text{
                 font-size:4vw;
             }
             .search{
-                font-size:2.5vw;
+                font-size:2vw;
             }
             .position{
-                font-size:3vw;
+                font-size:2.6vw;
             }
             .location{
                 font-size: 2.3vw;
@@ -61,7 +62,7 @@
         }
         @media screen and (min-width:768px){
             .position{
-                font-size:2.2vw;
+                font-size:2.6vw;
             }
             .location{
                 font-size:1.9vw;
@@ -70,7 +71,7 @@
                 font-size:3vw;
             }
             .search{
-                font-size:1.6vw;
+                font-size:1.8vw;
             }
         }
         @media screen and (min-width:992px){
@@ -79,7 +80,7 @@
                 font-size:2vw;
             }
             .search{
-                font-size:1.6vw;
+                font-size:1.4vw;
             }
             .location{
                 font-size:1.5vw;
@@ -98,7 +99,10 @@
                 font-size:1.3vw;
             }
             .search{
-                font-size:1.5vw;
+                font-size:1.2vw;
+            }
+            .location-btn{
+                font-size:1.2vw;
             }
         }
 
@@ -372,16 +376,16 @@
                             <area target="_self" alt="5,3" title="F3" coords="416,628,571,710" shape="rect" onfocus="blur()">
                         </map>
                         <div class="position">
-                            <p style="position:absolute;top:11%; left:6%;">A</p>
-                            <p style="position:absolute;top:27%; left:6%;">B</p>
-                            <p style="position:absolute;top:43%; left:6%;">C</p>
-                            <p style="position:absolute;top:60%; left:6%;">D</p>
-                            <p style="position:absolute;top:75%; left:6%;">E</p>
-                            <p style="position:absolute;top:90%; left:6%;">F</p>
-                            <p style="position:absolute;top:0.5%; left:21%;">0</p>
-                            <p style="position:absolute;top:0.5%; left:39%;">1</p>
-                            <p style="position:absolute;top:0.5%; left:58%;">2</p>
-                            <p style="position:absolute;top:0.5%; left:78%;">3</p>
+                            <p style="position:absolute;top:11%; left:7%;">A</p>
+                            <p style="position:absolute;top:27%; left:7%;">B</p>
+                            <p style="position:absolute;top:43%; left:7%;">C</p>
+                            <p style="position:absolute;top:60%; left:7%;">D</p>
+                            <p style="position:absolute;top:75%; left:7%;">E</p>
+                            <p style="position:absolute;top:90%; left:7%;">F</p>
+                            <p style="position:absolute;top:0.5%; left:23%;">0</p>
+                            <p style="position:absolute;top:0.5%; left:41%;">1</p>
+                            <p style="position:absolute;top:0.5%; left:60%;">2</p>
+                            <p style="position:absolute;top:0.5%; left:81%;">3</p>
                         </div>
                 </div>
 
@@ -434,7 +438,7 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
 <script src="vendor/jquery/jquery.imageMapResizer.min.js"></script>
 <script src="vendor/jquery/jquery.maphilight.min.js"></script>
@@ -456,7 +460,7 @@
                 $('img[usemap]').maphilight();
                 $('map').imageMapResize();
                 if(loc!=="") {
-                    var arr = {}
+                    var arr = {};
                     arr.fillOpacity = 0.2;
                     arr.fillColor = "4e73df";
                     arr.stroke = true;
@@ -490,7 +494,7 @@
 </script>
 <script>
     var loc="";
-    $('.location-btn').click(setInterval(function(){
+    $('.location-btn').click(function(){
         $.ajax({
             type: "POST",
             url: "/find",
@@ -539,7 +543,7 @@
                 })
             }
         });
-    }), 1000);
+    });
 </script>
 
 </body>
