@@ -82,6 +82,7 @@ public class NotifyService {
     @Transactional
     public void warning(String email) {
         testData();
+        additionalTestData();
 
         if (email == null)
             return;
@@ -127,6 +128,20 @@ public class NotifyService {
         }
         locationRepository.saveAll(locations);
     }
+
+    @Transactional
+    public void additionalTestData() {
+        //Test Data
+        List<PiAddress> piAddresses = piAddressRepository.findAll();
+        List<Location> locations = new ArrayList<>();
+        for (int i = 100; i < 105; i++) {
+            Location location = Location.builder().piAddress(piAddresses.get(i)).distance(0).x(4).y(0).build();
+            locations.add(location);
+        }
+        locationRepository.saveAll(locations);
+    }
+
+
 
 //    @Async
 //    @EventListener
