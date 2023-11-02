@@ -27,7 +27,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;700&family=Orbit&display=swap');
         body{
-          font-family: 'NanumSquareNeoExtraBold'
+            font-family: 'NanumSquareNeoExtraBold'
         }
         img {width: 100%;}
         .map {
@@ -190,14 +190,14 @@
             }
         }
 
-         @media screen and (min-width:1800px){
+        @media screen and (min-width:1800px){
             #building-text{
                 font-size:2.5vw;
             }
-             #grade{
-                 font-size:2.3vw;
-             }
-         }
+            #grade{
+                font-size:2.3vw;
+            }
+        }
     </style>
 </head>
 
@@ -437,106 +437,106 @@
 
                 <!--                    <div class="row justify-content-center">-->
                 <script>
-                            var j = 0;
-                            var arr = new Array(6);
+                    var j = 0;
+                    var arr = new Array(6);
 
-                            for (var i = 0; i < arr.length; i++) {
-                                arr[i] = new Array(4).fill(0);
-                            }
-                            // arr[0][0] = 7;
-                            // arr[0][1] = 5;
-                            // arr[0][2] = 24;
-                            // arr[0][3] = 6;
-                            // arr[1][0] = 3;
-                            // arr[1][1] = 1;
-                            // arr[1][2] = 9;
-                            // arr[1][3] = 10;
-                            // arr[2][0] = 7;
-                            // arr[2][1] = 5;
-                            // arr[2][3] = 6;
-                            // arr[3][0] = 3;
-                            // arr[3][1] = 1;
-                            // arr[3][3] = 2;
-                            // arr[4][0] = 8;
-                            // arr[4][1] = 5;
-                            // arr[4][2] = 0;
-                            // arr[4][3] = 6;
-                            // arr[5][0] = 3;
-                            // arr[5][1] = 1;
-                            // arr[5][2] = 4;
-                            // arr[5][3] = 1;
+                    for (var i = 0; i < arr.length; i++) {
+                        arr[i] = new Array(4).fill(0);
+                    }
+                    // arr[0][0] = 7;
+                    // arr[0][1] = 5;
+                    // arr[0][2] = 24;
+                    // arr[0][3] = 6;
+                    // arr[1][0] = 3;
+                    // arr[1][1] = 1;
+                    // arr[1][2] = 9;
+                    // arr[1][3] = 10;
+                    // arr[2][0] = 7;
+                    // arr[2][1] = 5;
+                    // arr[2][3] = 6;
+                    // arr[3][0] = 3;
+                    // arr[3][1] = 1;
+                    // arr[3][3] = 2;
+                    // arr[4][0] = 8;
+                    // arr[4][1] = 5;
+                    // arr[4][2] = 0;
+                    // arr[4][3] = 6;
+                    // arr[5][0] = 3;
+                    // arr[5][1] = 1;
+                    // arr[5][2] = 4;
+                    // arr[5][3] = 1;
 
-                            setInterval(
-                                function () {
-                                    $.ajax({
-                                        type: "GET",
-                                        url: "/getLocationsEach",
-                                        dataType: "json",
-                                        success: function(data) {
-                                            for (i = 0; i < arr.length; i++) {
-                                                for (j = 0; j < arr[i].length; j++) {
-                                                    arr[i][j] = 0;
-                                                }
-                                            }
-                                            str = '';
-                                            // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
-                                            $.each(data , function(i) {
-                                                ++arr[data[i].x][data[i].y];
-                                            });
-                                            sum = 0;
-                                            for(var i = 0; i < arr.length; i++) {
-                                                for(var j = 0; j < arr[i].length; j++) {
-                                                    var count = arr[i][j];
-                                                    var grade = null;
-                                                    if(count > 7) {
-                                                        grade = "고위험";
-                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#ff0000");
-
-                                                    }else if(count > 4) {
-                                                        grade = "위험";
-                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#e3d430");
-
-                                                    }else if(count > 2) {
-                                                        grade = "주의";
-                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#008000");
-
-                                                    }else {
-                                                        grade = "안전";
-                                                        $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#808080");
-
-                                                    }
-
-                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(1).html(count.toString()+"명");
-                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).html(grade);
-                                                    $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').css("opacity",1);
-
-                                                    sum += count;
-
-                                                }
-                                            $('#coordinate_info tfoot').find('tr[class="table-active"]').find('th').eq(1).html(sum + "명");
-                                            }
-                                            //     str += '<TD>' + data[i].address + '</TD>' +
-                                            //         '<TD>' + data[i].distance + '</TD>' +
-                                            //         '<TD>' + data[i].x + '</TD>' +
-                                            //         '<TD>' + data[i].y + '</TD>';
-                                            //     str+= '</TR>';
-                                            //
-                                            //     var loc = data[i].x * 2 + data[i].y;
-                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);
-                                            //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");
-                                            // });
-                                            // $('.table_body').html(str);
-                                        },
-                                        error: function(XMLHttpRequest, textStatus, errorThrown){
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: '통신 실패',
-                                                text: '통신에 실패하였습니다.',
-                                            })
+                    setInterval(
+                        function () {
+                            $.ajax({
+                                type: "GET",
+                                url: "/getLocationsEach",
+                                dataType: "json",
+                                success: function(data) {
+                                    for (i = 0; i < arr.length; i++) {
+                                        for (j = 0; j < arr[i].length; j++) {
+                                            arr[i][j] = 0;
                                         }
+                                    }
+                                    str = '';
+                                    // $('#coordinate_info tbody').find('tr[class="table-active"]').find('th').eq(1).html(data.length.toString() + "명");
+                                    $.each(data , function(i) {
+                                        ++arr[data[i].x][data[i].y];
+                                    });
+                                    sum = 0;
+                                    for(var i = 0; i < arr.length; i++) {
+                                        for(var j = 0; j < arr[i].length; j++) {
+                                            var count = arr[i][j];
+                                            var grade = null;
+                                            if(count > 7) {
+                                                grade = "고위험";
+                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#ff0000");
+
+                                            }else if(count > 4) {
+                                                grade = "위험";
+                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#e3d430");
+
+                                            }else if(count > 2) {
+                                                grade = "주의";
+                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#008000");
+
+                                            }else {
+                                                grade = "안전";
+                                                $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).css("color","#808080");
+
+                                            }
+
+                                            $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(1).html(count.toString()+"명");
+                                            $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').eq(2).html(grade);
+                                            $('#coordinate_info tbody').find('tr').eq(i*arr[i].length+j).find('td').css("opacity",1);
+
+                                            sum += count;
+
+                                        }
+                                        $('#coordinate_info tfoot').find('tr[class="table-active"]').find('th').eq(1).html(sum + "명");
+                                    }
+                                    //     str += '<TD>' + data[i].address + '</TD>' +
+                                    //         '<TD>' + data[i].distance + '</TD>' +
+                                    //         '<TD>' + data[i].x + '</TD>' +
+                                    //         '<TD>' + data[i].y + '</TD>';
+                                    //     str+= '</TR>';
+                                    //
+                                    //     var loc = data[i].x * 2 + data[i].y;
+                                    //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(2).html(++arr[data[i].x][data[i].y]);
+                                    //     $('#coordinate_info tbody').find('tr').eq(loc).find('td').eq(3).append(data[i].address + "<br>");
+                                    // });
+                                    // $('.table_body').html(str);
+                                },
+                                error: function(XMLHttpRequest, textStatus, errorThrown){
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: '통신 실패',
+                                        text: '통신에 실패하였습니다.',
                                     })
-                                },1000);
-                        </script>
+                                }
+                            })
+                        },1000);
+                </script>
                 <!--                        <table class="table table-striped">-->
                 <!--                            <thead>-->
                 <!--                            <tr>-->
@@ -636,89 +636,89 @@
                     </div>
 
                     <script>
-                            function changePopupText(locx, locy, addr, x, y) {
-                                var loc = locx.toString() + "," + locy.toString();
-                                var data = {};
-                                if(arr[locx][locy] > 7) {
-                                    data.fillColor = "ff0000";
-                                    data.strokeColor = "ff0000";
-                                }else if(arr[locx][locy] > 4) {
-                                    data.fillColor = "FFFF00";
-                                    data.strokeColor = "FFFF00";
-                                }else if(arr[locx][locy] > 2) {
-                                    data.fillColor = "008000";
-                                    data.strokeColor = "008000";
-                                }else {
-                                    data.fillColor = "808080";
-                                    data.strokeColor = "808080";
-                                }
-                                $('area[alt="' + loc + '"]').data('maphilight', data);
-
-                                document.getElementById('popup_title').innerHTML = "(" + String.fromCharCode(locx+65) + "," + locy.toString() + ")";
-                                document.getElementById('popup_description').innerHTML = "실시간 인원 수: " + arr[locx][locy];
-                                document.getElementById('popup_addr').href = addr;
-
-                                //document.getElementById('popup').style.left = x + "px";
-                                //document.getElementById('popup').style.top = y + "px";
-                                document.getElementById('popup').style.opacity = 1;
+                        function changePopupText(locx, locy, addr, x, y) {
+                            var loc = locx.toString() + "," + locy.toString();
+                            var data = {};
+                            if(arr[locx][locy] > 7) {
+                                data.fillColor = "ff0000";
+                                data.strokeColor = "ff0000";
+                            }else if(arr[locx][locy] > 4) {
+                                data.fillColor = "FFFF00";
+                                data.strokeColor = "FFFF00";
+                            }else if(arr[locx][locy] > 2) {
+                                data.fillColor = "008000";
+                                data.strokeColor = "008000";
+                            }else {
+                                data.fillColor = "808080";
+                                data.strokeColor = "808080";
                             }
+                            $('area[alt="' + loc + '"]').data('maphilight', data);
 
-                            // 마우스오버 상자 숨기기
-                            function hidePopup() {
-                                document.getElementById('popup').style.opacity = 0;
+                            document.getElementById('popup_title').innerHTML = "(" + String.fromCharCode(locx+65) + "," + locy.toString() + ")";
+                            document.getElementById('popup_description').innerHTML = "실시간 인원 수: " + arr[locx][locy];
+                            document.getElementById('popup_addr').href = addr;
+
+                            //document.getElementById('popup').style.left = x + "px";
+                            //document.getElementById('popup').style.top = y + "px";
+                            document.getElementById('popup').style.opacity = 1;
+                        }
+
+                        // 마우스오버 상자 숨기기
+                        function hidePopup() {
+                            document.getElementById('popup').style.opacity = 0;
+                        }
+
+                        // 마우스오버 상자 보이기
+                        function showPopup() {
+                            document.getElementById('popup').style.opacity = 1;
+                        }
+
+                        //구역 선택 시 포커싱
+                        function tableFocus(alpha, x){
+                            var focus = x;
+                            var minus = 1;
+                            if(alpha == 'B') {
+                                focus += 4;
+                            }else if(alpha == 'C') {
+                                focus += 8;
+                                if(x == 3)
+                                    minus++;
+                            }else if(alpha == 'D') {
+                                focus += 12;
+                                if(x==3)
+                                    minus++;
+                            }else if(alpha == 'E') {
+                                focus += 16;
+                            }else if(alpha == 'F') {
+                                focus += 20;
                             }
+                            $('#coordinate_info tbody').find('tr').css("backgroundColor","#FFF");
+                            var grade = $('#coordinate_info tbody').find('tr').eq(focus).find('td').eq(2).text();
+                            var targetTop = $('#coordinate_info tbody').find('tr').eq(focus-minus).position().top;
+                            var div = document.getElementById("coordinate_info");
+                            var divTop = div.getBoundingClientRect().top;
+                            //var targetTop2 = $('#coordinate_info').offset().top;
+                            //const element = document.getElementById("coordinate_info");
 
-                            // 마우스오버 상자 보이기
-                            function showPopup() {
-                                document.getElementById('popup').style.opacity = 1;
+                            if(focus == 0) targetTop = 0;
+
+                            if(grade == "고위험") {
+                                $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(255, 0, 0, 0.2)");
+
+                            }else if(grade == "위험") {
+                                $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(227, 212, 48, 0.2)");
+
+                            }else if(grade == "주의") {
+                                $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(0, 128, 0, 0.2)");
+
+                            }else {
+                                $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(128, 128, 128, 0.2)");
                             }
-
-                            //구역 선택 시 포커싱
-                                function tableFocus(alpha, x){
-                                    var focus = x;
-                                    var minus = 1;
-                                    if(alpha == 'B') {
-                                        focus += 4;
-                                    }else if(alpha == 'C') {
-                                        focus += 8;
-                                        if(x == 3)
-                                            minus++;
-                                    }else if(alpha == 'D') {
-                                        focus += 12;
-                                        if(x==3)
-                                            minus++;
-                                    }else if(alpha == 'E') {
-                                        focus += 16;
-                                    }else if(alpha == 'F') {
-                                        focus += 20;
-                                    }
-                                    $('#coordinate_info tbody').find('tr').css("backgroundColor","#FFF");
-                                    var grade = $('#coordinate_info tbody').find('tr').eq(focus).find('td').eq(2).text();
-                                    var targetTop = $('#coordinate_info tbody').find('tr').eq(focus-minus).position().top;
-                                    var div = document.getElementById("coordinate_info");
-                                    var divTop = div.getBoundingClientRect().top;
-                                    //var targetTop2 = $('#coordinate_info').offset().top;
-                                    //const element = document.getElementById("coordinate_info");
-
-                                    if(focus == 0) targetTop = 0;
-
-                                    if(grade == "고위험") {
-                                        $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(255, 0, 0, 0.2)");
-
-                                    }else if(grade == "위험") {
-                                         $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(227, 212, 48, 0.2)");
-
-                                    }else if(grade == "주의") {
-                                        $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(0, 128, 0, 0.2)");
-
-                                    }else {
-                                        $('#coordinate_info tbody').find('tr').eq(focus).css("backgroundColor","rgba(128, 128, 128, 0.2)");
-                                    }
-                                    $('#content-wrapper').animate( { scrollTop : 166 }, 500 );
-                                    //element.scrollIntoView({ behavior: 'auto' });
-                                    $('#building').animate( { scrollTop : targetTop }, 500 );
-                                }
-                        </script>
+                            $('#content-wrapper').animate( { scrollTop : 166 }, 500 );
+                            //element.scrollIntoView({ behavior: 'auto' });
+                            $('#building').animate( { scrollTop : targetTop }, 500 );
+                        }
+                    </script>
                 </div>
 
                 <div class="col-lg-5 col-sm-10" id="building" style="overflow:auto">
@@ -931,23 +931,23 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
-        $.fn.popover.Constructor.Default.whiteList.table=[];
-        $.fn.popover.Constructor.Default.whiteList.th=[];
-        $.fn.popover.Constructor.Default.whiteList.tr=[];
-        $.fn.popover.Constructor.Default.whiteList.td=[];
-        $.fn.popover.Constructor.Default.whiteList.div=[];
-        $.fn.popover.Constructor.Default.whiteList.tbody=[];
-        $.fn.popover.Constructor.Default.whiteList.thead=[];
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover({
-                placement : 'bottom',
-                trigger : 'hover',
-                html : true,
-                content : '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
-                //content : '<div class="media"><img src="img/density_level.png" class="mr-3" alt="Sample Image"><div class="media-body"><h5 class="media-heading">kk</h5><p>kk</p></div></div>'
-            });
+    $.fn.popover.Constructor.Default.whiteList.table=[];
+    $.fn.popover.Constructor.Default.whiteList.th=[];
+    $.fn.popover.Constructor.Default.whiteList.tr=[];
+    $.fn.popover.Constructor.Default.whiteList.td=[];
+    $.fn.popover.Constructor.Default.whiteList.div=[];
+    $.fn.popover.Constructor.Default.whiteList.tbody=[];
+    $.fn.popover.Constructor.Default.whiteList.thead=[];
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover({
+            placement : 'bottom',
+            trigger : 'hover',
+            html : true,
+            content : '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>10명 이상</td><tr></table></div></div>'
+            //content : '<div class="media"><img src="img/density_level.png" class="mr-3" alt="Sample Image"><div class="media-body"><h5 class="media-heading">kk</h5><p>kk</p></div></div>'
         });
-        </script>
+    });
+</script>
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -996,10 +996,10 @@
 <script>
     function btn(){
         Swal.fire({
-          className: 'alert',
-          title: '<strong id=\"grade\">밀집도 등급</strong>',
-          html:
-            '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>8명 이상</td><tr></table></div></div>'
+            className: 'alert',
+            title: '<strong id=\"grade\">밀집도 등급</strong>',
+            html:
+                '<div><table class="table"><tr class="table-secondary"><td>안전</td><td>1-2명</td></tr><tr class="table-success"><td>주의</td><td>3-4명</td></tr><tr class="table-warning"><td>위험</td><td>5-7명</td></tr><tr class="table-danger"><td>고위험</td><td>8명 이상</td><tr></table></div></div>'
 
         })
     }

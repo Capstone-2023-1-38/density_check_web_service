@@ -81,7 +81,7 @@ public class NotifyService {
 
     @Transactional
     public void warning(String email) {
-//        testData();
+        testData();
 
         if (email == null)
             return;
