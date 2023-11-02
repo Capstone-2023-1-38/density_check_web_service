@@ -22,5 +22,10 @@ public class CameraLocationRequestDto {
         this.x = cameraLocation.getX();
         this.y = cameraLocation.getY();
     }
+
+    public CameraLocationRequestDto(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 }
 
