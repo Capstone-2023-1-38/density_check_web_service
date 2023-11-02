@@ -6,10 +6,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    private final String fileDir = System.getProperty("user.dir") + "/src/main/resources/static/img/profile/";
+    private final String fileDir = System.getProperty("user.dir") + "/density_check_web_service/src/main/resources/static/img/profile/";
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/img/profile/**").addResourceLocations("file:/"+fileDir);
+        registry.addResourceHandler("/img/profile/**").addResourceLocations("file:"+fileDir);
     }
 }

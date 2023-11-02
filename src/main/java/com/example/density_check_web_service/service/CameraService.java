@@ -48,10 +48,10 @@ public class CameraService {
         int random = (int)(Math.random()*10);
 
         List<CameraLocationRequestDto> xy2 = new ArrayList<>();
-        xy2.add(new CameraLocationRequestDto(188-random, 200));
-        xy2.add(new CameraLocationRequestDto(200, 178+random));
+        xy2.add(new CameraLocationRequestDto(320-random, 200));
+        xy2.add(new CameraLocationRequestDto(350, 178+random));
         xy2.add(new CameraLocationRequestDto(310, 165+random));
-        xy2.add(new CameraLocationRequestDto(220-random, 182));
+        xy2.add(new CameraLocationRequestDto(280-random, 182));
         xy2.add(new CameraLocationRequestDto(400, 173-random));
         xy2.add(new CameraLocationRequestDto(380+random, 169));
         cameraLocationRequestListDtos.add(new CameraLocationRequestListDto("2", xy2));

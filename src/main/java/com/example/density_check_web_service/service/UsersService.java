@@ -56,7 +56,7 @@ public class UsersService {
         users.updateRole(role);
     }
 
-    private final String fileDir = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img\\profile\\";
+    private final String fileDir = System.getProperty("user.dir") + "/density_check_web_service/src/main/resources/static/img/profile/";
     public String getFullPath(String filename) { return fileDir + filename; }
 
     @Transactional
